@@ -1,3 +1,6 @@
+mat-toolbar {
+  height: 4rem;
+}
 .example-spacer {
   flex: 1 1 auto;
 }
