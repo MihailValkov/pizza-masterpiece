@@ -1,1 +1,48 @@
-<p>register works!</p>
+<mat-card class="register-container">
+  <img class="register-image" src="./../../../assets/register.png" alt="login-image" />
+  <form [formGroup]="form" class="register-form" (ngSubmit)="submitHandler()">
+
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input color="primary" type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('required')">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="passwordHide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="passwordHide">
+        <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="form.controls['password'].hasError('minlength') && !form.controls['password'].hasError('required')">
+        Password should be at least 6 characters
+      </mat-error>
+      <mat-error *ngIf="form.controls['password'].hasError('required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Repeat password</mat-label>
+      <input matInput [type]="rePasswordHide ? 'password' : 'text'" formControlName="repeatPassword">
+      <button mat-icon-button matSuffix (click)="rePasswordHide = !rePasswordHide"
+        [attr.aria-label]="'rePasswordHide password'" [attr.aria-pressed]="rePasswordHide">
+        <mat-icon>{{rePasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-flat-button color="primary" class="btn-register"
+      [disabled]="form.invalid || (isLoading$ | async)">Register</button>
+  </form>
+  <div class="register-link-container">
+    <span>Already have account?</span>
+    <a mat-flat-button routerLink="/user/login">Login Now!</a>
+  </div>
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
+</mat-card>

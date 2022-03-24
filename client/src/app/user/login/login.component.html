@@ -1,1 +1,43 @@
-<p>login works!</p>
+<mat-card class="login-container">
+
+  <img class="login-image" src="" alt="login-image" />
+
+  <form [formGroup]="form" class="login-form" (ngSubmit)="submitHandler()">
+
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input color="primary" type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('required')">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="passwordHide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="passwordHide">
+        <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="form.controls['password'].hasError('minlength') && !form.controls['password'].hasError('required')">
+        Password should be at least 6 characters
+      </mat-error>
+      <mat-error *ngIf="form.controls['password'].hasError('required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" class="btn-login" type="submit"
+      [disabled]="form.invalid || (isLoading$ | async)">Login</button>
+  </form>
+
+  <div class="login-link-container">
+    <span>Not registered yet?</span>
+    <a mat-flat-button routerLink="/user/register">Register Now!</a>
+  </div>
+
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading$ | async"></mat-progress-bar>
+</mat-card>
