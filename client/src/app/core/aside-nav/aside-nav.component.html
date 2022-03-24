@@ -1,0 +1,14 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+  <app-navigation></app-navigation>
+  <main class="main">
+    <ng-content></ng-content>
+  </main>
+  <app-footer></app-footer>
+</mat-drawer-container>

@@ -1,0 +1,14 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+nav ul {
+  display: flex;
+}
+nav ul a {
+  border-bottom: 1px solid transparent;
+}
+nav ul a:hover,
+.active {
+  border-bottom: 1px solid white;
+}

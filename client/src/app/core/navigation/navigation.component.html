@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Pizza Masterpiece</span>
+  <span class="example-spacer"></span>
+  <nav>
+    <ul>
+      <li>
+        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon>home</mat-icon>
+          Home
+        </a>
+      </li>
+      <li>
+        <a mat-button routerLink="/user/login" routerLinkActive="active">
+          <mat-icon>login</mat-icon>
+          Login
+        </a>
+      </li>
+      <li>
+        <a mat-button routerLink="/user/register" routerLinkActive="active">
+          <mat-icon>how_to_reg</mat-icon>
+          Register
+        </a>
+      </li>
+      <li>
+        <button mat-button>
+          <mat-icon>power_settings_new</mat-icon>
+          Logout
+        </button>
+      </li>
+    </ul>
+  </nav>
+</mat-toolbar>
