@@ -16,6 +16,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
 
 const modules = [
   MatFormFieldModule,
@@ -35,6 +36,7 @@ const modules = [
   MatExpansionModule,
   MatTreeModule,
   MatCheckboxModule,
+  MatMenuModule,
 ];
 
 @NgModule({

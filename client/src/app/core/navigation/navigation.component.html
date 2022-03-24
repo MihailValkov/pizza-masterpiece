@@ -7,29 +7,67 @@
   <nav>
     <ul>
       <li>
-        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <mat-icon>home</mat-icon>
+        <a mat-button routerLink="/">
+          <mat-icon routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">home</mat-icon>
           Home
         </a>
       </li>
-      <li *ngIf="!(isLogged$ | async)">
-        <a mat-button routerLink="/user/login" routerLinkActive="active">
-          <mat-icon>login</mat-icon>
-          Login
+      <li>
+        <a mat-button routerLink="/cart">
+          <mat-icon routerLinkActive="active">shopping_cart</mat-icon>
+          Your Cart
         </a>
       </li>
-      <li *ngIf="!(isLogged$ | async)">
-        <a mat-button routerLink="/user/register" routerLinkActive="active">
-          <mat-icon>how_to_reg</mat-icon>
-          Register
+      <li>
+        <a mat-button routerLink="/favorites">
+          <mat-icon routerLinkActive="active">favorites</mat-icon>
+          Your Favorites
         </a>
       </li>
-      <li *ngIf="(isLogged$ | async)">
-        <button mat-button (click)="logoutHandler()">
-          <mat-icon>power_settings_new</mat-icon>
-          Logout
-        </button>
-      </li>
+      <ng-container [ngTemplateOutlet]="(isLogged$ | async) ? isLogged : isNotLogged">
+      </ng-container>
     </ul>
   </nav>
 </mat-toolbar>
+
+<ng-template #isNotLogged>
+  <li>
+    <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+  </li>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item routerLink="/user/login">
+      <mat-icon routerLinkActive="active">login</mat-icon>
+      <span>Login</span>
+    </a>
+    <a mat-menu-item routerLink="/user/register">
+      <mat-icon routerLinkActive="active">how_to_reg</mat-icon>
+      <span>Register</span>
+    </a>
+  </mat-menu>
+</ng-template>
+
+<ng-template #isLogged>
+  <li>
+    <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+  </li>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item routerLink="/user/profile">
+      <mat-icon routerLinkActive="active">personal_injury</mat-icon>
+      <span>My Profile</span>
+    </a>
+    <a mat-menu-item routerLink="/orders">
+      <mat-icon routerLinkActive="active">format_list_bulleted</mat-icon>
+      <span>Your Orders</span>
+    </a>
+    <button mat-menu-item (click)="logoutHandler()">
+      <mat-icon>power_settings_new</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</ng-template>

@@ -6,12 +6,14 @@ export interface IAuthState {
   user: IUser | undefined | null;
   isLoading: boolean;
   message: string | null;
+  success: boolean;
 }
 
 const initialAuthState: IAuthState = {
   user: undefined,
   isLoading: false,
   message: null,
+  success: false,
 };
 
 const setUser = (
@@ -27,6 +29,7 @@ const setUser = (
   user,
   message: null,
   isLoading: false,
+  success: true,
 });
 
 const setErrorMessage = (
@@ -36,6 +39,7 @@ const setErrorMessage = (
   ...state,
   message,
   isLoading: false,
+  success: false,
 });
 
 const startFetching = (state: IAuthState) => ({
@@ -50,18 +54,31 @@ export const authReducer = createReducer<IAuthState>(
   on(authActions.loginStart, startFetching),
   on(authActions.loginSuccess, setUser),
   on(authActions.loginFailure, setErrorMessage),
-  on(authActions.loginClearError, (state) => ({ ...state, message: null })),
+  on(authActions.loginClearError, (state) => ({
+    ...state,
+    message: null,
+    success: false,
+  })),
   on(authActions.registerStart, startFetching),
   on(authActions.registerSuccess, setUser),
   on(authActions.registerFailure, setErrorMessage),
-  on(authActions.registerClearError, (state) => ({ ...state, message: null })),
+  on(authActions.registerClearError, (state) => ({
+    ...state,
+    message: null,
+    success: false,
+  })),
   on(authActions.authenticateStart, startFetching),
   on(authActions.authenticateSuccess, setUser),
-  on(authActions.authenticateFailure, (state, action) => ({
+  on(authActions.authenticateFailure, (state) => ({
     ...state,
     isLoading: false,
     user: null,
   })),
   on(authActions.logoutStart, startFetching),
-  on(authActions.logoutSuccess, (state) => ({ ...state, user: null, isLoading: false }))
+  on(authActions.logoutSuccess, (state) => ({
+    ...state,
+    user: null,
+    isLoading: false,
+    success: false,
+  }))
 );

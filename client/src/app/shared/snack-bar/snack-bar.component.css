@@ -2,7 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 .snackbar-container span {
   color: white;
+}
+.snackbar-container button {
+  border: 1px solid white;
+}
+
+.success {
+  background-color: #036c03;
+}
+.error {
+  background-color: #6c1303;
 }

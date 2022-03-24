@@ -1,4 +1,4 @@
-<div class="snackbar-container">
+<div class="snackbar-container" [ngClass]="{success:status === 'success',error:status === 'error'}">
   <span>{{message}}</span>
-  <button mat-button (click)="actionHandler()" color="warn">{{action}}</button>
+  <button mat-stroked-button (click)="actionHandler()">{{action}}</button>
 </div>

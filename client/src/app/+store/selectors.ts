@@ -16,3 +16,7 @@ export const selectErrorMessage = createSelector(
   selectAuth,
   (state) => state.message
 );
+export const selectSuccess = createSelector(
+  selectAuth,
+  (state) => state.success
+);

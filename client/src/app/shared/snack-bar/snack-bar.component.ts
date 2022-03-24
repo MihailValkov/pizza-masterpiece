@@ -12,15 +12,21 @@ import {
 export class SnackBarComponent implements OnInit {
   message = '';
   action = '';
+  status = 'error';
   constructor(
     @Inject(MAT_SNACK_BAR_DATA)
-    private data: { message: string; action: string },
+    private data: {
+      message: string;
+      action: string;
+      status: 'success' | 'error';
+    },
     private snackBarRef: MatSnackBarRef<SnackBarComponent>
   ) {}
 
   ngOnInit(): void {
     this.message = this.data.message;
     this.action = this.data.action;
+    this.status = this.data.status;
   }
 
   actionHandler(): void {
