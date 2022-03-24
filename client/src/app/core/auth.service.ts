@@ -14,9 +14,9 @@ export class AuthService {
     return this.http.post<IUser>('/auth/register', data);
   }
   logout(): Observable<{ message: string }> {
-    return this.http.get<{ message: string }>('/auth/logout');
+    return this.http.post<{ message: string }>('/auth/logout', {});
   }
   authenticate(): Observable<IUser> {
-    return this.http.get<IUser>('/auth/profile');
+    return this.http.get<IUser>('/auth/authenticate');
   }
 }
