@@ -12,20 +12,20 @@
           Home
         </a>
       </li>
-      <li>
+      <li *ngIf="!(isLogged$ | async)">
         <a mat-button routerLink="/user/login" routerLinkActive="active">
           <mat-icon>login</mat-icon>
           Login
         </a>
       </li>
-      <li>
+      <li *ngIf="!(isLogged$ | async)">
         <a mat-button routerLink="/user/register" routerLinkActive="active">
           <mat-icon>how_to_reg</mat-icon>
           Register
         </a>
       </li>
-      <li>
-        <button mat-button>
+      <li *ngIf="(isLogged$ | async)">
+        <button mat-button (click)="logoutHandler()">
           <mat-icon>power_settings_new</mat-icon>
           Logout
         </button>

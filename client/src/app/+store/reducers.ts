@@ -63,5 +63,5 @@ export const authReducer = createReducer<IAuthState>(
     user: null,
   })),
   on(authActions.logoutStart, startFetching),
-  on(authActions.logoutEnd, (state) => ({ ...state, user: null, isLoading: false }))
+  on(authActions.logoutSuccess, (state) => ({ ...state, user: null, isLoading: false }))
 );

@@ -37,7 +37,7 @@ export const registerCancel = createAction(`${authNamespace} Register Cancel`);
 export const registerClearError = createAction(`${authNamespace} Register Clear Error Message`);
 
 export const logoutStart = createAction(`${authNamespace} Logout Start`);
-export const logoutEnd = createAction(`${authNamespace} Logout End`);
+export const logoutSuccess = createAction(`${authNamespace} Logout Success`);
 
 export const authenticateStart = createAction(
   `${authNamespace} Authenticate Start`
@@ -55,3 +55,4 @@ export const authenticateFailure = createAction(
 export const authenticateCancel = createAction(
   `${authNamespace} Authenticate Cancel`
 );
+

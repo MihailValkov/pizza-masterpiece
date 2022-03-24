@@ -62,6 +62,20 @@ export class AuthEffect {
     );
   });
 
+  logout = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(authActions.logoutStart),
+      switchMap(() =>
+        this.authService.logout().pipe(
+          map(() => {
+            this.router.navigateByUrl('/');
+            return authActions.logoutSuccess();
+          })
+        )
+      )
+    );
+  });
+
   constructor(
     private authService: AuthService,
     private actions$: Actions,
