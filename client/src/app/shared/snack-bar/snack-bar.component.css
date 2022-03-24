@@ -1,0 +1,8 @@
+.snackbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.snackbar-container span {
+  color: white;
+}
