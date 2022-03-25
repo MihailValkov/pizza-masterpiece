@@ -10,6 +10,7 @@ const cloudinaryUploadImage = async (path, location) =>
   await cloudinary.uploader.upload(path, {
     upload_preset: location,
   });
+  
 const cloudinaryDeleteImage = async (id) => {
   return await cloudinary.api.delete_resources([id], (error, result) => {
     if (error) {

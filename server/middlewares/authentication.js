@@ -1,30 +1,24 @@
-function isAuthNeeded(isAuthNeeded = true) {
-  return (req, res, next) => {
-    const needAuth = !req.user && isAuthNeeded;
-    const noNeedAuth = req.user && !isAuthNeeded;
-    if (needAuth || noNeedAuth) {
+const isAuthNeeded =
+  (authRequired = true) =>
+  (req, res, next) => {
+    if ((!req.user && authRequired) || (req.user && !authRequired)) {
       res.status(403).json({
-        message:
-          'Accessing the page or resource you were trying to reach is absolutely forbidden for some reason!',
+        message: 'Accessing the page or resource you were trying to reach is absolutely forbidden!',
       });
       return;
     }
     next();
   };
-}
 
-function isAdmin() {
-  return (req, res, next) => {
-    if (req?.user?.role !== 'Admin') {
-      res.status(403).json({
-        message:
-          'Accessing the page or resource you were trying to reach is absolutely forbidden for some reason!',
-      });
-      return;
-    }
-    next();
-  };
-}
+const isAdmin = () => (req, res, next) => {
+  if (req?.user?.role !== 'Admin') {
+    res.status(403).json({
+      message: 'Accessing the page or resource you were trying to reach is absolutely forbidden!',
+    });
+    return;
+  }
+  next();
+};
 
 module.exports = {
   isAuthNeeded,

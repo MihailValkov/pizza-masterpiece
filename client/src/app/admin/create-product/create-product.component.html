@@ -1,1 +1,7 @@
 <p>create-product works!</p>
+<form [formGroup]="form">
+  <button mat-raised-button for="file" (click)="uploadHandler(inputRef)" type="button">Upload image
+    <mat-icon>upload</mat-icon>
+  </button>
+  <input #inputRef type="file" id="file" (change)="uploadFile($event)" formControlName="imageUrl" />
+</form>

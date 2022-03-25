@@ -25,30 +25,16 @@ const fileUpload = multer({
 });
 
 const uploadSingleImage = fileUpload.single('image');
-const uploadMultipleImages = fileUpload.array('images', 5);
 
-function single() {
-  return (req, res, next) => {
-    uploadSingleImage(req, res, (err) => {
-      if (err) {
-        return res.status(409).json({ message: err.message });
-      }
-      next();
-    });
-  };
-}
-function multiple() {
-  return (req, res, next) => {
-    uploadMultipleImages(req, res, (err) => {
-      if (err) {
-        return res.status(409).json({ message: err.message });
-      }
-      next();
-    });
-  };
-}
+const single = () => (req, res, next) => {
+  uploadSingleImage(req, res, (err) => {
+    if (err) {
+      return res.status(409).json({ message: err.message });
+    }
+    next();
+  });
+};
 
 module.exports = {
   single,
-  multiple,
 };

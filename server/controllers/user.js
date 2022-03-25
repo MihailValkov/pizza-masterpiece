@@ -24,7 +24,7 @@ const login = async (req, res) => {
   try {
     const user = await userModel.findOne({ email: { $regex: email, $options: 'i' } });
     if (!user) {
-      return res.status(409).json({ message: "Email or Password don't match!" });
+      return res.status(409).json({ message: 'Email or Password don\'t match!' });
     }
     const match = await user.comparePasswords(password);
     if (!match) {
@@ -44,7 +44,7 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   const { email, password, repeatPassword } = req?.body;
   if (password.trim() !== repeatPassword.trim()) {
-    return res.status(409).json({ message: "Passwords don't match!" });
+    return res.status(409).json({ message: 'Passwords don\'t match!' });
   }
   try {
     let user = await userModel.findOne({ email: { $regex: email, $options: 'i' } });

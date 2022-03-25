@@ -21,11 +21,10 @@ const start = async () => {
         res.sendFile(path.join(__dirname, 'public/index.html'));
       }
     });
-
-    console.log('*** >>> Data base is connect <<< ***');
+    console.log('*** >>> Database is connected <<< ***');
     app.listen(port, () => console.log(`Server is listening on port: ${port}`));
   } catch (error) {
-    console.error('!!!--- > Data base is not connect < --- !!!\nError:', error);
+    console.error('!!! >>> Database is not connected <<< !!!\nError:', error.message);
   }
 };
 start();
