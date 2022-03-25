@@ -3,6 +3,10 @@ import { CreateProductComponent } from './create-product/create-product.componen
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+  },
+  {
     path: 'create',
     component: CreateProductComponent,
   },

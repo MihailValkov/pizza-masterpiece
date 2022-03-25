@@ -44,7 +44,6 @@ const setErrorMessage = (
 
 const startFetching = (state: IAuthState) => ({
   ...state,
-  user: null,
   isLoading: true,
   message: null,
 });

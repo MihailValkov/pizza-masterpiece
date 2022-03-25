@@ -21,13 +21,13 @@ import { AuthEffect } from './+store/effects';
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [
-    CoreModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
+    CoreModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffect]),
     environment.production ? [] : StoreDevtoolsModule.instrument(),

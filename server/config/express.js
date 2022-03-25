@@ -2,7 +2,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const auth = require('../middlewares/auth');
-const whitelist = ['http://localhost:4200'];
+const whitelist = ['http://localhost:4200', 'http://localhost:55886'];
 
 module.exports = (app, express) => {
   app.use(express.static('public'));
@@ -10,7 +10,7 @@ module.exports = (app, express) => {
   app.use(express.json());
   app.use(cookieParser());
   app.use(auth());
-  
+
   app.use((error, req, res, next) => {
     if (res.headerSent) {
       return next(error);

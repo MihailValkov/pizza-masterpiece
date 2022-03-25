@@ -9,11 +9,12 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { AppInterceptorProvider } from './app.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './auth.service';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
   declarations: [FooterComponent, NavigationComponent, AsideNavComponent],
   imports: [CommonModule, RouterModule, MaterialModule],
-  providers: [AppInterceptorProvider, AuthGuard, AuthService],
+  providers: [AppInterceptorProvider, AuthGuard, AdminGuard, AuthService],
   exports: [AsideNavComponent],
 })
 export class CoreModule {}
