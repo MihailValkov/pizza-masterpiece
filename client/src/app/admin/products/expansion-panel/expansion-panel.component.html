@@ -15,10 +15,10 @@
           <mat-form-field appearance="outline"
             [ngClass]="{'form-control':true,'l': controlNames.length === 1, 'm':controlNames.length === 2,'s':controlNames.length === 3}"
             *ngFor="let control of controlNames">
-            <mat-label>{{control}}</mat-label>
+            <mat-label>{{control | firstCapitalLetter}}</mat-label>
             <input matInput [formControlName]="control" [placeholder]="control" [id]="control+i">
             <mat-error *ngIf="getErrorMessage(control,i) as errorMessage">
-              {{errorMessage}}
+              {{errorMessage | firstCapitalLetter}}
             </mat-error>
           </mat-form-field>
         </div>
