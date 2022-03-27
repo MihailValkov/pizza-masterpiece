@@ -1,0 +1,86 @@
+mat-card-content {
+  display: flex;
+}
+.image-container {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.image-container button {
+  margin-top: 20px;
+}
+#file {
+  display: none;
+}
+
+.form-container {
+  flex: 10;
+  padding: 0px 20px;
+  width: 100%;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.control-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+.form-row > * {
+  width: 32%;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.ingredient-chip-list {
+  width: 100%;
+}
+
+.mat-panel-description {
+  height: 50px;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
+}
+
+@media (max-width: 1150px) {
+  .control-container {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 1000px) {
+  mat-card-header {
+    justify-content: center;
+  }
+  mat-card-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  mat-card-content .image-container {
+    width: 500px;
+  }
+  .image-container button {
+    margin-bottom: 10px;
+    width: auto;
+  }
+}

@@ -1,0 +1,37 @@
+<mat-expansion-panel [formGroup]="form">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{title}}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{description}}
+      <mat-icon>{{iconName}}</mat-icon>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <article [ngClass]="{ingredients:formArrayName === 'ingredients'}">
+    <ng-container [formArrayName]="formArrayName" *ngFor="let form of getFormArray.controls; let i=index;">
+      <div [formGroupName]="i" class="control-container">
+        <div class="form-row">
+          <mat-form-field appearance="outline"
+            [ngClass]="{'form-control':true,'l': controlNames.length === 1, 'm':controlNames.length === 2,'s':controlNames.length === 3}"
+            *ngFor="let control of controlNames">
+            <mat-label>{{control}}</mat-label>
+            <input matInput [formControlName]="control" [placeholder]="control" [id]="control+i">
+            <mat-error *ngIf="getErrorMessage(control,i) as errorMessage">
+              {{errorMessage}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button mat-mini-fab color="warn" (click)="remove(i,formArrayName)" title="Remove"
+          [disabled]="getFormArray.controls.length === 1">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+  </article>
+  <button mat-mini-fab color="primary" (click)="add(formArrayName)"
+    title="Add">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</mat-expansion-panel>
