@@ -14,8 +14,8 @@ export class ProductFormService {
   initForm(): FormGroup {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      imageUrl: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.minLength]],
+      image: [null, [Validators.required]],
+      description: ['', [Validators.required, Validators.minLength(10)]],
       sizes: this.fb.array([this.createControl('sizes')], Validators.required),
       doughs: this.fb.array(
         [this.createControl('doughs')],
@@ -40,23 +40,23 @@ export class ProductFormService {
   ): FormGroup {
     if (type === 'sizes') {
       return this.fb.group({
-        size: [null, [Validators.required, Validators.minLength(3)]],
-        pieces: [null, [Validators.required, Validators.min(6)]],
-        price: [null, [Validators.required, Validators.min(1)]],
+        size: ['', [Validators.required, Validators.minLength(3)]],
+        pieces: ['', [Validators.required, Validators.min(6)]],
+        price: ['', [Validators.required, Validators.min(1)]],
       });
     } else if (type === 'doughs') {
       return this.fb.group({
-        dough: [null, [Validators.required, Validators.minLength(3)]],
-        price: [null, [Validators.required, Validators.min(0)]],
+        dough: ['', [Validators.required, Validators.minLength(3)]],
+        price: ['', [Validators.required, Validators.min(0)]],
       });
     } else if (type === 'extras') {
       return this.fb.group({
-        extra: [null, [Validators.required, Validators.minLength(3)]],
-        price: [null, [Validators.required, Validators.min(0.5)]],
+        extra: ['', [Validators.required, Validators.minLength(3)]],
+        price: ['', [Validators.required, Validators.min(0.5)]],
       });
     }
     return this.fb.group({
-      ingredient: [null, [Validators.required, Validators.minLength(3)]],
+      ingredient: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
 
@@ -70,6 +70,11 @@ export class ProductFormService {
     type: 'sizes' | 'doughs' | 'extras' | 'ingredients'
   ): void {
     this.getControl(type).removeAt(index);
+    this.form.next(this.form.getValue());
+  }
+
+  setFileImage(file: File) {
+    this.form.getValue().patchValue({ image: file }, { onlySelf: true });
     this.form.next(this.form.getValue());
   }
 }

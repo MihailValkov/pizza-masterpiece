@@ -23,14 +23,14 @@
           </mat-form-field>
         </div>
         <button mat-mini-fab color="warn" (click)="remove(i,formArrayName)" title="Remove"
-          [disabled]="getFormArray.controls.length === 1">
+          [disabled]="getFormArray.controls.length === 1" type="button">
           <mat-icon>remove</mat-icon>
         </button>
       </div>
     </ng-container>
   </article>
   <button mat-mini-fab color="primary" (click)="add(formArrayName)"
-    title="Add">
+    title="Add" type="button">
     <mat-icon>add</mat-icon>
   </button>
 

@@ -5,15 +5,20 @@ function createErrorMessage(error) {
 }
 
 function errorHandler(error, res, req) {
-  console.log(`${req.method} >> ${req.baseUrl}: ${error.message}`);
+  let message = 'Something went wrong!';
   if (error instanceof TypeError || error.name == 'MongoError') {
-    return res.status(500).json({ message: 'Something went wrong!' });
+    res.status(500).json({ message });
   } else if (error.name === 'CastError') {
-    return res.status(500).json({ message: error.message });
+    message = error.message;
+    res.status(500).json({ message });
+  } else if (error.http_code === 400 && error.name === 'Error') {
+    message = error.message;
+    res.status(400).json({ message });
   } else {
-    const message = createErrorMessage(error);
+    message = createErrorMessage(error);
     res.status(400).json({ message });
   }
+  console.log(`${req.method} >> ${req.baseUrl}: ${message}`);
 }
 
 module.exports = {

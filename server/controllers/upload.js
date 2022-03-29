@@ -1,15 +1,14 @@
 const { errorHandler } = require('../utils/errorHandler');
 const { cloudinaryUploadImage, cloudinaryDeleteImage } = require('../utils/cloudinary');
 
-const uploadProductImage = async (req, res) => {
-  const path = req.file.path;
-  console.log(path);
+const uploadProductImage = async (req, res, next) => {
+  const path = req?.file?.path;
   try {
     const response = await cloudinaryUploadImage(path, 'pizza-masterpiece-products');
-
-    res.status(200).json({ _id: response.public_id, url: response.secure_url });
+    req.image = { _id: response.public_id, url: response.secure_url };
+    next();
   } catch (error) {
-    errorHandler(error, res, req);
+    errorHandler(error, res, req, );
   }
 };
 
@@ -24,5 +23,5 @@ const deleteProductImage = async (req, res) => {
 
 module.exports = {
   uploadProductImage,
-  deleteProductImage
+  deleteProductImage,
 };

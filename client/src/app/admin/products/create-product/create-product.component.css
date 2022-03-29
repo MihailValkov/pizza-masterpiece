@@ -11,6 +11,10 @@ mat-card-content {
 .image-container button {
   margin-top: 20px;
 }
+.image-container .mat-error {
+  margin-top: 10px;
+}
+
 #file {
   display: none;
 }
@@ -82,5 +86,11 @@ mat-card-content {
   .image-container button {
     margin-bottom: 10px;
     width: auto;
+  }
+  .image-container .mat-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
   }
 }
