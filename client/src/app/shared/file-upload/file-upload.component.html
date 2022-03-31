@@ -1,0 +1,11 @@
+<button mat-raised-button for="file" (click)="uploadHandler(inputRef)" type="button">Upload image
+  <mat-icon>upload</mat-icon>
+</button>
+<input #inputRef type="file" id="file" (change)="uploadFile($event)"  />
+<mat-error *ngIf="inputControl.hasError('required') && inputControl.touched">
+  Image is required
+</mat-error>
+
+<mat-error *ngIf="inputControl.errors?.['type'] && !inputControl.hasError('required')">
+  The file must be of type image
+</mat-error>

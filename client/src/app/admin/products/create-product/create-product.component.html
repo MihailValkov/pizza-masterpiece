@@ -6,19 +6,11 @@
     <div class="image-container">
       <img
         [src]="imagePreview">
-      <button mat-raised-button for="file" (click)="uploadHandler(inputRef)" type="button">Upload image
-        <mat-icon>upload</mat-icon>
-      </button>
-      <mat-error *ngIf="form.controls['image'].errors?.['required'] && form.controls['image'].touched">
-        Image is required
-      </mat-error>
-      <mat-error *ngIf="form.controls['image'].errors?.['type'] && !form.controls['image'].errors?.['required']">
-        The file must be of type image
-      </mat-error>
+        <app-file-upload (onPickFile)="onFileUpload($event)"></app-file-upload>
     </div>
     <div class="form-container">
       <form [formGroup]="form" (ngSubmit)="submitHandler()">
-        <input #inputRef type="file" id="file" (change)="uploadFile($event)"/>
+
         <mat-form-field class="form-control" appearance="outline">
           <mat-label>Pizza name</mat-label>
           <input color="primary" type="text" matInput formControlName="name" placeholder="Chicago Pizza">

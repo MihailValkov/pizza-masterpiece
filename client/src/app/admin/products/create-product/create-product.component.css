@@ -8,17 +8,6 @@ mat-card-content {
   width: 500px;
 }
 
-.image-container button {
-  margin-top: 20px;
-}
-.image-container .mat-error {
-  margin-top: 10px;
-}
-
-#file {
-  display: none;
-}
-
 .form-container {
   flex: 10;
   padding: 0px 20px;

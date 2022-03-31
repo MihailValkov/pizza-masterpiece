@@ -1,0 +1,14 @@
+:host {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.mat-error {
+  margin-top: 10px;
+}
+
+#file {
+  display: none;
+}

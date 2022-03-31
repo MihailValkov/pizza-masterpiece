@@ -1,11 +1,8 @@
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParamsOptions,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { IFileImageUpload } from 'src/app/shared/interfaces/image-upload';
 
 import { ProductFormService } from '../product-form.service';
 
@@ -32,23 +29,11 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     });
   }
 
-  uploadFile(event: Event) {
-    const element = event.currentTarget as HTMLInputElement;
-    const file: File | null = element.files && element.files[0];
-    if (!file?.type.includes('image')) {
-      return this.form.get('image')?.setErrors({ type: true });
-    }
-    if (file) {
-      this.productForm.setFileImage(file);
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-  uploadHandler(inputRef: HTMLInputElement) {
-    inputRef.click();
+  onFileUpload(imageFileData: IFileImageUpload) {
+    this.imagePreview = imageFileData.file
+      ? imageFileData.imageUrl
+      : this.imagePreview;
+    this.productForm.setFileImage(imageFileData.file);
   }
 
   submitHandler(): void {
