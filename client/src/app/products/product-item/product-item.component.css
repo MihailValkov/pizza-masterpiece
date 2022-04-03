@@ -1,0 +1,31 @@
+.product-card {
+  max-width: 250px;
+}
+
+.mat-card-header {
+  width: 100%;
+  justify-content: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.actions .mat-icon {
+  width: 30px;
+  height: 30px;
+  background: #39373714;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 25px;
+  color: #f9bf3b;
+}
+
+.actions .mat-icon:hover {
+  cursor: pointer;
+  color: #f9673b;
+}

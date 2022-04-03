@@ -1,1 +1,18 @@
-<p>product-item works!</p>
+<a >
+  <mat-card class="product-card">
+    <mat-card-header>
+      <mat-card-title>{{product.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="product.image.url" [alt]="product.name">
+    <mat-card-content>
+      <p>
+        {{product.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <mat-icon>shopping_cart_checkout</mat-icon>
+
+      <mat-icon>favorite_border</mat-icon>
+    </mat-card-actions>
+  </mat-card>
+</a>
