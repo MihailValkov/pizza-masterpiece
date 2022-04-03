@@ -1,4 +1,4 @@
-<a >
+<a [routerLink]="['/products/detail',product._id]">
   <mat-card class="product-card">
     <mat-card-header>
       <mat-card-title>{{product.name}}</mat-card-title>
@@ -11,7 +11,7 @@
     </mat-card-content>
     <mat-card-actions class="actions">
       <mat-icon>shopping_cart_checkout</mat-icon>
-
+      <app-star-rating [rating]="88"></app-star-rating>
       <mat-icon>favorite_border</mat-icon>
     </mat-card-actions>
   </mat-card>

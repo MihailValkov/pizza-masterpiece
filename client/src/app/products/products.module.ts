@@ -6,6 +6,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { MaterialModule } from '../material/material.module';
 import { ProductRoutingModule } from './product-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductsListComponent,
     ProductDetailComponent,
   ],
-  imports: [CommonModule, MaterialModule, ProductRoutingModule,ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ProductRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
 })
 export class ProductsModule {}
