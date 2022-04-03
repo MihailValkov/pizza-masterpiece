@@ -1,1 +1,7 @@
-<p>products-list works!</p>
+<section class="products-list-container">
+  <ul class="products-list">
+    <li *ngFor="let product of products">
+      <app-product-item [product]="product"></app-product-item>
+    </li>
+  </ul>
+</section>

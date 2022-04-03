@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { IBaseProduct } from 'src/app/shared/interfaces/product';
 
 @Component({
   selector: 'app-product-item',
@@ -7,7 +7,7 @@ import { IProduct } from 'src/app/shared/interfaces/product';
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent {
-  @Input() product!: IProduct;
+  @Input() product!: IBaseProduct;
   
   constructor() {}
 }

@@ -1,7 +1,13 @@
 export interface IBaseProduct {
   _id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  name: string;
+  description: string;
+  image: {
+    url: string;
+    _id: string;
+  };
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ISize {
@@ -33,15 +39,9 @@ export interface ICreateProduct {
 }
 
 export interface IProduct extends IBaseProduct {
-  name: string;
-  description: string;
   sizes: ISize[];
   doughs: IDough[];
   ingredients: IIngredient[];
   extras: IExtra[];
-  image: {
-    url: string;
-    _id: string;
-  };
   author: string;
 }
