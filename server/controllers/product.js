@@ -3,7 +3,7 @@ const { errorHandler } = require('../utils/errorHandler');
 
 const getAllProducts = async (req, res, next) => {
   try {
-    const products = await productModel.find();
+    const products = await productModel.find({}, '-sizes -extras -ingredients -doughs -author -__v');
 
     res.status(200).json(products);
   } catch (error) {
