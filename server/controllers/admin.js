@@ -31,12 +31,19 @@ const createProduct = async (req, res) => {
       image: req.image,
       author: req.user._id,
     });
-    return res.status(200).json({ product: product.toObject() });
+    return res.status(200).json(product.toObject());
   } catch (error) {
     errorHandler(error, res, req);
   }
 };
 
+const getProductById = async (req, res, next) => {
+  const { id } = req.params;
+
+  res.status(200).json({ _id: 'test' });
+};
+
 module.exports = {
   createProduct,
+  getProductById,
 };

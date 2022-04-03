@@ -4,9 +4,8 @@
   </mat-card-header>
   <mat-card-content>
     <div class="image-container">
-      <img
-        [src]="imagePreview">
-        <app-file-upload (onPickFile)="onFileUpload($event)"></app-file-upload>
+      <img [src]="imagePreview">
+      <app-file-upload (onPickFile)="onFileUpload($event)"></app-file-upload>
     </div>
     <div class="form-container">
       <form [formGroup]="form" (ngSubmit)="submitHandler()">
@@ -23,8 +22,10 @@
         </mat-form-field>
         <mat-form-field class="form-control" appearance="outline">
           <mat-label>Pizza Description</mat-label>
-          <textarea rows="5" color="primary" type="text" matInput formControlName="description" placeholder="Enjoy the highest calorie delicious traditional Italian pizza..."> </textarea>
-          <mat-error *ngIf="form.controls['description'].hasError('minlength') && !form.controls['description'].hasError('required')">
+          <textarea rows="5" color="primary" type="text" matInput formControlName="description"
+            placeholder="Enjoy the highest calorie delicious traditional Italian pizza..."> </textarea>
+          <mat-error
+            *ngIf="form.controls['description'].hasError('minlength') && !form.controls['description'].hasError('required')">
             Pizza description should be at least 10 characters long
           </mat-error>
           <mat-error *ngIf="form.controls['description'].hasError('required')">
@@ -33,36 +34,23 @@
         </mat-form-field>
 
         <mat-accordion class="example-headers-align" multi>
-          <app-expansion-panel
-          title="Pizza Sizes"
-          description="Please add types of pizza sizes. You must fulfill all fields - size name,pieces and price"
-          iconName="local_pizza"
-          formArrayName="sizes"
-          >
+          <app-expansion-panel title="Pizza Sizes"
+            description="Please add types of pizza sizes. You must fulfill all fields - size name,pieces and price"
+            iconName="local_pizza" formArrayName="sizes">
           </app-expansion-panel>
 
-          <app-expansion-panel
-          title="Pizza Dough"
-          description="Please add types of pizza dough.You must fulfill all fields - dough name and additional price"
-          iconName="circle"
-          formArrayName="doughs"
-          >
+          <app-expansion-panel title="Pizza Dough"
+            description="Please add types of pizza dough.You must fulfill all fields - dough name and additional price"
+            iconName="circle" formArrayName="doughs">
           </app-expansion-panel>
 
-          <app-expansion-panel
-          title="Pizza Ingredients"
-          description="Please add pizza's Ingredients"
-          iconName="local_pizza"
-          formArrayName="ingredients"
-          >
+          <app-expansion-panel title="Pizza Ingredients" description="Please add pizza's Ingredients"
+            iconName="local_pizza" formArrayName="ingredients">
           </app-expansion-panel>
 
-          <app-expansion-panel
-          title="Pizza Extras"
-          description="Please add extras.You must fulfill all fields - extra name and price"
-          iconName="settings_suggest"
-          formArrayName="extras"
-          >
+          <app-expansion-panel title="Pizza Extras"
+            description="Please add extras.You must fulfill all fields - extra name and price"
+            iconName="settings_suggest" formArrayName="extras">
           </app-expansion-panel>
 
         </mat-accordion>
@@ -74,3 +62,4 @@
 
   </mat-card-content>
 </mat-card>
+<app-loading-spinner *ngIf="isLoading$ | async"></app-loading-spinner>

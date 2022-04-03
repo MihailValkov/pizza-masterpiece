@@ -7,11 +7,11 @@ import { ILoginUser, IRegisterUser, IUser } from '../shared/interfaces/user';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login(data: ILoginUser): Observable<IUser> {
-    return this.http.post<IUser>('/auth/login', data);
+  login(userData: ILoginUser): Observable<IUser> {
+    return this.http.post<IUser>('/auth/login', userData);
   }
-  register(data: IRegisterUser): Observable<IUser> {
-    return this.http.post<IUser>('/auth/register', data);
+  register(userData: IRegisterUser): Observable<IUser> {
+    return this.http.post<IUser>('/auth/register', userData);
   }
   logout(): Observable<{ message: string }> {
     return this.http.post<{ message: string }>('/auth/logout', {});

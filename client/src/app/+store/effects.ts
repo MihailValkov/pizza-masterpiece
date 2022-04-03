@@ -6,15 +6,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ILoginUser, IRegisterUser, IUser } from '../shared/interfaces/user';
 import { AuthService } from '../core/auth.service';
 import * as authActions from './actions';
-
-interface IErrorResponse {
-  error: { message: string };
-}
+import { IErrorResponse } from '../shared/interfaces/error-response';
 
 @Injectable()
 export class AuthEffect {
 
-  login = createEffect(() => {
+  login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.loginStart),
       switchMap((data: ILoginUser) =>
@@ -32,7 +29,7 @@ export class AuthEffect {
     );
   });
 
-  register = createEffect(() => {
+  register$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.registerStart),
       switchMap((data: IRegisterUser) =>
@@ -50,7 +47,7 @@ export class AuthEffect {
     );
   });
 
-  authenticate = createEffect(() => {
+  authenticate$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.authenticateStart),
       switchMap(() => {
@@ -63,7 +60,7 @@ export class AuthEffect {
     );
   });
 
-  logout = createEffect(() => {
+  logout$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.logoutStart),
       switchMap(() =>

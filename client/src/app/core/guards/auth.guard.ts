@@ -6,18 +6,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
-import {
-  catchError,
-  filter,
-  first,
-  last,
-  map,
-  Observable,
-  of,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs';
+import { filter, last, map, Observable, take, tap } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 
 import { IRootState } from 'src/app/+store';
@@ -29,9 +18,7 @@ import { IUser } from 'src/app/shared/interfaces/user';
 @Injectable()
 export class AuthGuard implements CanActivateChild {
   user$ = this.store.pipe(select(selectUser));
-  constructor(private store: Store<IRootState>, private router: Router) {
-    // this.store.dispatch(authenticateStart());
-  }
+  constructor(private store: Store<IRootState>, private router: Router) {}
 
   getFromStoreOrAPI(): Observable<IUser | null | undefined | void> {
     return this.user$.pipe(
@@ -47,34 +34,6 @@ export class AuthGuard implements CanActivateChild {
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    // return this.user$.pipe(
-    //   switchMap((user) => {
-    //     if (user === undefined) {
-    //       return this.authService.authenticate().pipe(
-    //         tap((user: IUser) => this.store.dispatch(authenticateSuccess({ user }))),
-    //         catchError(() => {
-    //           this.store.dispatch(authenticateFailure())
-    //           return [null];
-    //         }),
-    //         last()
-    //       );
-    //     }
-    //     return [user];
-    //   }),
-    //   map(
-    //     (user) =>
-    //       typeof childRoute.data?.['isLogged'] !== 'boolean' ||
-    //       childRoute.data?.['isLogged'] === !!user
-    //   ),
-    //   tap((canContinue) => {
-    //     if (canContinue) {
-    //       return;
-    //     }
-    //     this.router.navigate(['/']);
-    //   }),
-    //   first()
-    // );
-
     return this.getFromStoreOrAPI().pipe(
       map(
         (user) =>
@@ -85,7 +44,6 @@ export class AuthGuard implements CanActivateChild {
         if (canContinue) {
           return;
         }
-
         this.router.navigateByUrl('/');
       }),
       last()
