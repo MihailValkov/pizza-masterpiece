@@ -7,6 +7,11 @@ import { MaterialModule } from '../material/material.module';
 import { ProductRoutingModule } from './product-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ProductService } from './product.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './+store';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductsEffects } from './+store/effects';
 
 @NgModule({
   declarations: [
@@ -20,6 +25,9 @@ import { SharedModule } from '../shared/shared.module';
     ProductRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    StoreModule.forFeature('product', reducers),
+    EffectsModule.forFeature([ProductsEffects]),
   ],
+  providers: [ProductService],
 })
 export class ProductsModule {}

@@ -4,11 +4,15 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { combineLatest, startWith } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Store } from '@ngrx/store';
+import { IProductModuleState } from '../+store';
+import { loadProductStart } from '../+store/actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent implements OnInit {
   // @Input()
@@ -46,9 +50,13 @@ export class ProductDetailComponent implements OnInit {
   ];
   amount = 1;
   amountControl = new FormControl(this.amount, [Validators.min(1)]);
-  panelOpenState=true;
+  panelOpenState = true;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<IProductModuleState>,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     combineLatest([
@@ -60,6 +68,9 @@ export class ProductDetailComponent implements OnInit {
     // this.form = this.fb.group({
     //   size: ['', [Validators.required]],
     // });
+
+    const { id } = this.activatedRoute.snapshot.params;
+    this.store.dispatch(loadProductStart({ id }));
   }
 
   increaseAmount(): void {
@@ -72,9 +83,8 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  select(extra:string){
+  select(extra: string) {
     console.log(extra);
-    
   }
 
   add(event: MatChipInputEvent): void {
