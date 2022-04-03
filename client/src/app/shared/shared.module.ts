@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 import { FirstCapitalLetterPipe } from './pipes/first-capital-letter.pipe';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FirstCapitalLetterPipe,
     FileUploadComponent,
     LoadingSpinnerComponent,
+    StarRatingComponent
   ],
   imports: [CommonModule, MaterialModule],
   exports: [
@@ -20,6 +22,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FileUploadComponent,
     FirstCapitalLetterPipe,
     LoadingSpinnerComponent,
+    StarRatingComponent,
   ],
 })
 export class SharedModule {}

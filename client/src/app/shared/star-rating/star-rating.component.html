@@ -1,0 +1,17 @@
+<div class="rating-container">
+  <div class="rating">
+    <mat-icon class="icon">star_rate</mat-icon>
+    <mat-icon class="icon">star_rate</mat-icon>
+    <mat-icon class="icon">star_rate</mat-icon>
+    <mat-icon class="icon">star_rate</mat-icon>
+    <mat-icon class="icon">star_rate</mat-icon>
+    <p class="rating-inner" [ngStyle]="{width: rating+'%'}">
+      <mat-icon class="icon-overlay">star_rate</mat-icon>
+      <mat-icon class="icon-overlay">star_rate</mat-icon>
+      <mat-icon class="icon-overlay">star_rate</mat-icon>
+      <mat-icon class="icon-overlay">star_rate</mat-icon>
+      <mat-icon class="icon-overlay">star_rate</mat-icon>
+    </p>
+  </div>
+  <span class="text" *ngIf="showRatingInfo">{{getRatingText()}}</span>
+</div>
