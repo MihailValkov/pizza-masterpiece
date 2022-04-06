@@ -1,16 +1,16 @@
-<mat-card>
+<mat-card *ngIf="(product$|async) as product">
   <mat-card-header>
-    <mat-card-title>{{product.title}}</mat-card-title>
+    <mat-card-title>{{product.name}}</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <div class="image-container">
-      <img [src]="product.imageUrl" [alt]="product.imageUrl">
+      <img [src]="product.image.url" [alt]="product.name">
       <div class="ingredients-container">
         <h2 matCardTitle>Ingredients:</h2>
         <mat-chip-list>
-          <mat-chip *ngFor="let vegetable of vegetables" color="primary" selected>
-            {{vegetable.name}}
+          <mat-chip *ngFor="let obj of product.ingredients" color="primary" selected>
+            {{obj.ingredient}}
           </mat-chip>
         </mat-chip-list>
       </div>
@@ -25,24 +25,23 @@
         <mat-form-field appearance="outline">
           <mat-label>Size</mat-label>
           <mat-select [formControl]="sizeControl">
-            <mat-option value="normal">Normal (6 pieces)</mat-option>
-            <mat-option value="medium">Medium (8 pieces)</mat-option>
-            <mat-option value="large">Large (12 pieces)</mat-option>
+            <mat-option *ngFor="let sizeObj of product.sizes" [value]="sizeObj.size">{{sizeObj.size |
+              firstCapitalLetter}} ({{sizeObj.pieces}} pieces) </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Dough</mat-label>
           <mat-select [formControl]="doughControl">
-            <mat-option value="traditional">Traditional</mat-option>
-            <mat-option value="wholemeal">Wholemeal ( +1.00 BGN )</mat-option>
-            <mat-option value="italian">Italian ( +2.00 BGN )</mat-option>
+            <mat-option *ngFor="let doughObj of product.doughs" [value]="doughObj.dough">{{doughObj.dough |
+              firstCapitalLetter}} ( + {{doughObj.price | decimalFixed}} BGN)</mat-option>
           </mat-select>
           <mat-error *ngIf="doughControl.hasError('required')">Please choose a dough</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Extras</mat-label>
           <mat-select [formControl]="extrasControl" multiple>
-            <mat-option *ngFor="let extra of extrasList" [value]="extra">{{extra}}</mat-option>
+            <mat-option *ngFor="let extraObj of product.extras" [value]="extraObj.extra">{{extraObj.extra |
+              firstCapitalLetter}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -62,11 +61,11 @@
         <div class="amount-container">
           <h2 matCardTitle>Amount</h2>
           <div class="amount">
-            <button mat-mini-fab color="primary" (click)="increaseAmount()">
+            <button mat-mini-fab color="primary" (click)="setAmountValue('increase')">
               <mat-icon>add</mat-icon>
             </button>
-            <input matInput type="number" [readonly]="true" [formControl]="amountControl" min="1" [value]="amount" />
-            <button mat-mini-fab color="primary" (click)="decreaseAmount()">
+            <input matInput type="number" [readonly]="true" [formControl]="amountControl" />
+            <button mat-mini-fab color="primary" (click)="setAmountValue('decrease')">
               <mat-icon>remove</mat-icon>
             </button>
           </div>
@@ -90,7 +89,7 @@
             <mat-divider [vertical]="true"></mat-divider>
             <div class="price">
               <h2 matCardTitle>Total price:</h2>
-              <strong>15.90 BGN</strong>
+              <strong>{{totalPrice | decimalFixed}} BGN</strong>
             </div>
           </div>
         </div>

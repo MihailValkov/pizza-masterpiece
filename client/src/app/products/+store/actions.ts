@@ -21,3 +21,21 @@ export const loadProductFailure = createAction(
 export const loadProductCancel = createAction(
   `${productsNamespace} Load Product Cancel`
 );
+
+export const loadProductsStart = createAction(
+  `${productsNamespace} Load Products Start`
+);
+
+export const loadProductsSuccess = createAction(
+  `${productsNamespace} Load Products Success`,
+  props<{ products: IProduct[] }>()
+);
+
+export const loadProductsFailure = createAction(
+  `${productsNamespace} Load Products Failure`,
+  props<{ message: string }>()
+);
+
+export const loadProductsCancel = createAction(
+  `${productsNamespace} Load Products Cancel`
+);

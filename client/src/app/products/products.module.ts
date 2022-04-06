@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './+store';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from './+store/effects';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ProductsEffects } from './+store/effects';
   ],
   imports: [
     CommonModule,
+    CoreModule,
     MaterialModule,
     ProductRoutingModule,
     ReactiveFormsModule,

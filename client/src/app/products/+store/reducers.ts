@@ -40,5 +40,13 @@ export const productsReducer = createReducer<IProductsState>(
       return { ...state, currentProduct: product };
     }
   ),
-  on(productsActions.loadProductFailure, setErrorMessage)
+  on(productsActions.loadProductFailure, setErrorMessage),
+  on(productsActions.loadProductsStart, startFetching),
+  on(
+    productsActions.loadProductsSuccess,
+    (state: IProductsState, { products }: { products: IProduct[] }) => {
+      return { ...state, productsList: products };
+    }
+  ),
+  on(productsActions.loadProductsFailure, setErrorMessage)
 );

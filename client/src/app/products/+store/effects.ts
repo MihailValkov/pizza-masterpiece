@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, takeUntil } from 'rxjs';
 import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
+import { IProduct } from 'src/app/shared/interfaces/product';
 import { ProductService } from '../product.service';
 import * as productsActions from './actions';
 
@@ -19,6 +20,25 @@ export class ProductsEffects {
           map((product) => productsActions.loadProductSuccess({ product })),
           catchError(({ error }: IErrorResponse) => [
             productsActions.loadProductFailure({ message: error.message }),
+          ])
+        )
+      )
+    )
+  );
+
+  loadProducts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(productsActions.loadProductsStart),
+      switchMap(() =>
+        this.productService.loadAllProducts().pipe(
+          takeUntil(
+            this.actions$.pipe(ofType(productsActions.loadProductsCancel))
+          ),
+          map((products: IProduct[]) =>
+            productsActions.loadProductsSuccess({ products })
+          ),
+          catchError(({ error }: IErrorResponse) => [
+            productsActions.loadProductsFailure({ message: error.message }),
           ])
         )
       )

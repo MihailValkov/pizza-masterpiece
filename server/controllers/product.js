@@ -3,7 +3,10 @@ const { errorHandler } = require('../utils/errorHandler');
 
 const getAllProducts = async (req, res, next) => {
   try {
-    const products = await productModel.find({}, '-sizes -extras -ingredients -doughs -author -__v');
+    const products = await productModel.find(
+      {},
+      '-sizes -extras -ingredients -doughs -author -__v'
+    );
 
     res.status(200).json(products);
   } catch (error) {
@@ -15,7 +18,9 @@ const getProductById = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const product = await productModel.findById(id);
+    const product = await productModel
+      .findById(id, '-__v -author')
+      .populate('sizes extras ingredients doughs');
     if (!product) {
       throw new Error('There is no such product with provided ID - ' + id);
     }

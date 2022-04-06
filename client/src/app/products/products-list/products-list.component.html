@@ -1,6 +1,6 @@
 <section class="products-list-container">
   <ul class="products-list">
-    <li *ngFor="let product of products">
+    <li *ngFor="let product of (products$ | async)">
       <app-product-item [product]="product"></app-product-item>
     </li>
   </ul>
