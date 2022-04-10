@@ -8,6 +8,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { DecimalFixedPipe } from './pipes/decimal-fixed.pipe';
+import { NoProductsComponent } from './no-products/no-products.component';
+import { AsideMenuComponent } from './aside-menu/aside-menu.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { DecimalFixedPipe } from './pipes/decimal-fixed.pipe';
     LoadingSpinnerComponent,
     StarRatingComponent,
     DecimalFixedPipe,
+    NoProductsComponent,
+    AsideMenuComponent,
   ],
   imports: [CommonModule, MaterialModule],
   exports: [
@@ -26,6 +30,8 @@ import { DecimalFixedPipe } from './pipes/decimal-fixed.pipe';
     DecimalFixedPipe,
     LoadingSpinnerComponent,
     StarRatingComponent,
+    NoProductsComponent,
+    AsideMenuComponent,
   ],
 })
 export class SharedModule {}

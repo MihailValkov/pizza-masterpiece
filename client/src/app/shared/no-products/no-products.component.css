@@ -1,0 +1,12 @@
+.no-products {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(80vh - 10rem);
+}
+.no-products img {
+  height: 300px;
+  width: 100%;
+  object-fit: contain;
+}

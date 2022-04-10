@@ -18,6 +18,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const modules = [
   MatFormFieldModule,
@@ -39,6 +41,8 @@ const modules = [
   MatCheckboxModule,
   MatMenuModule,
   MatProgressSpinnerModule,
+  MatTableModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({

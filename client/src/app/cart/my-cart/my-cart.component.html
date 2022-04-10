@@ -1,0 +1,11 @@
+<section class="cart-container">
+  <app-aside-menu></app-aside-menu>
+  <div class="cart-content">
+    <mat-toolbar color="primary">
+      My Cart
+    </mat-toolbar>
+    <app-cart-table *ngIf="products.length > 0" [products]="products"></app-cart-table>
+    <app-no-products *ngIf="products.length === 0"></app-no-products>
+  </div>
+  <app-cart-information></app-cart-information>
+</section>

@@ -1,0 +1,20 @@
+.cart-information {
+  margin-left: 20px;
+  width: 250px;
+}
+.cart-information .mat-toolbar,
+.total-price {
+  text-align: center;
+  justify-content: center;
+}
+.total-price h2 {
+  margin-bottom: 5px;
+}
+.mat-card > p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mat-card > a {
+  width: 100%;
+}

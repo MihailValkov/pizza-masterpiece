@@ -45,3 +45,12 @@ export interface IProduct extends IBaseProduct {
   extras: IExtra[];
   author: string;
 }
+
+export interface ICartProduct {
+  _id: string;
+  name: string;
+  imageUrl: string;
+  quantity: number;
+  price: number;
+  totalPrice: number;
+}

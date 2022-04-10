@@ -1,0 +1,55 @@
+.aside-menu {
+  margin-right: 20px;
+  width: 250px;
+}
+
+.aside-menu .mat-menu-item {
+  line-height: 40px;
+  height: 40px;
+}
+
+.user-container-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.user-container-info img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-status,
+.user-role {
+  display: flex;
+  align-items: center;
+}
+.user-status .mat-icon,
+.user-role .mat-icon {
+  margin-right: 5px;
+}
+
+.user-status .mat-icon {
+  color: #5cb85c;
+}
+
+.mat-card .mat-divider-horizontal {
+  position: sticky;
+  margin: 10px auto;
+}
+
+.mat-expansion-panel {
+  margin-bottom: 10px;
+}
+
+.user-navigation {
+  background-color: #fafafa;
+}
+.user-navigation a {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}

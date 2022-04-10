@@ -1,0 +1,57 @@
+<mat-card class="aside-menu">
+  <div class="user-container-info">
+    <img
+      src="https://res.cloudinary.com/dofijitd8/image/upload/v1645731949/virtual-store/images/users/lfzxu45mefh4zc9wuwad.jpg"
+      alt="profile-img">
+    <div class="user-info">
+      <strong>Mihail</strong>
+      <p class="user-role">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <span>Admin</span>
+      </p>
+      <p class="user-status">
+        <mat-icon>circle</mat-icon>
+        <span>Online</span>
+      </p>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Profile
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ul class="user-navigation">
+        <li>
+          <a mat-menu-item routerLink="/user/profile">
+            <mat-icon routerLinkActive="active">personal_injury</mat-icon>
+            <span>My Profile</span>
+          </a>
+        </li>
+        <li>
+          <a mat-menu-item routerLink="/cart">
+            <mat-icon routerLinkActive="active">shopping_cart</mat-icon>
+            Your Cart
+          </a>
+        </li>
+        <li>
+          <a mat-menu-item routerLink="/favorites">
+            <mat-icon routerLinkActive="active">favorites</mat-icon>
+            Your Favorites
+          </a>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          test
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>This is the primary content of the panel.</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</mat-card>
