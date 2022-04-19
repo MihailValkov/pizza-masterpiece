@@ -2,7 +2,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AdminGuard } from './core/guards/admin.guard';
 import { AuthGuard } from './core/guards/auth.guard';
-import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
 
 const routes: Routes = [
   {
@@ -12,7 +14,11 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: HomeComponent,
+        component: ProductsListComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: ProductDetailComponent,
       },
       {
         path: 'user',
@@ -20,20 +26,24 @@ const routes: Routes = [
           import('./user/user.module').then((m) => m.UserModule),
       },
       {
-        path: 'products',
-        loadChildren: () =>
-          import('./products/products.module').then((m) => m.ProductsModule),
-      },
-      {
         path: 'cart',
         loadChildren: () =>
           import('./cart/cart.module').then((m) => m.CartModule),
+      },
+      {
+        path: 'favorites',
+        loadChildren: () =>
+          import('./favorites/favorites.module').then((m) => m.FavoritesModule),
       },
       {
         path: 'admin',
         canActivate: [AdminGuard],
         loadChildren: () =>
           import('./admin/admin.module').then((m) => m.AdminModule),
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
       },
     ],
   },

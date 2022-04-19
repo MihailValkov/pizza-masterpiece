@@ -16,14 +16,20 @@ import {
   startWith,
   Subscription,
   switchMap,
+  tap,
 } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { select, Store } from '@ngrx/store';
-import { IProductModuleState } from '../+store';
-import { loadProductStart } from '../+store/actions';
 import { ActivatedRoute } from '@angular/router';
-import { selectCurrentProduct } from '../+store/selectors';
-
+import { IRootState } from 'src/app/+store';
+import { selectCurrentProduct } from 'src/app/+store/products/selectors';
+import { loadProductStart } from 'src/app/+store/products/actions';
+import {
+  ICartProduct,
+  IFavoriteProduct,
+} from 'src/app/shared/interfaces/product';
+import { addProductToCart } from 'src/app/core/+store/cart/actions';
+import { addProductToFavorites } from 'src/app/core/+store/favorites/actions';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -36,20 +42,23 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   product$ = this.store.pipe(select(selectCurrentProduct));
   sizeControl = new FormControl('', Validators.required);
   doughControl = new FormControl('', Validators.required);
-  amountControl = new FormControl(1, Validators.min(1));
+  quantityControl = new FormControl(1, Validators.min(1));
   extrasControl = new FormControl([]);
   extras: string[] = [];
-  totalPrice = 0;
+  selectedProduct!: ICartProduct;
   subscription: Subscription = new Subscription();
 
   constructor(
-    private store: Store<IProductModuleState>,
+    private store: Store<IRootState>,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.subscription.add(
-      this.calculateTotalPrice().subscribe((price) => (this.totalPrice = price))
+      this.calculateTotalPrice().subscribe((price) => {
+        this.selectedProduct.price = price;
+        this.selectedProduct.totalPrice = price * this.quantityControl.value;
+      })
     );
 
     this.subscription.add(
@@ -63,36 +72,85 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     this.store.dispatch(loadProductStart({ id }));
   }
 
+  addToCart() {
+    this.store.dispatch(addProductToCart({ product: this.selectedProduct }));
+  }
+
+  addToFavorites() {
+    const { _id, name, imageUrl, rating, size, dough, gr } =
+      this.selectedProduct;
+    const product: IFavoriteProduct = {
+      _id,
+      name,
+      imageUrl,
+      rating,
+      size,
+      dough,
+      gr,
+    };
+    this.store.dispatch(addProductToFavorites({ product }));
+  }
+
   setAmountValue(type: 'increase' | 'decrease'): void {
-    const value = this.amountControl.value;
+    const value = this.quantityControl.value;
     if (type === 'increase') {
-      this.amountControl.setValue(value + 1);
+      this.quantityControl.setValue(value + 1);
     } else {
-      value > 1 && this.amountControl.setValue(value - 1);
+      value > 1 && this.quantityControl.setValue(value - 1);
     }
   }
 
   calculateTotalPrice(): Observable<number> {
     return combineLatest([
-      this.amountControl.valueChanges.pipe(startWith(1)),
+      this.quantityControl.valueChanges.pipe(startWith(1)),
       this.sizeControl.valueChanges.pipe(startWith('')),
       this.doughControl.valueChanges.pipe(startWith('')),
       this.extrasControl.valueChanges.pipe(startWith([])),
     ]).pipe(
-      filter(([amount, size, dough, extras]) => !!size && !!dough),
-      switchMap(([amount, size, dough, extras]) =>
+      filter(([quantity, size, dough, extras]) => !!size && !!dough),
+      switchMap(([quantity, size, dough, extras]) =>
         this.product$.pipe(
           map((product) => {
-            const sizePrice =
-              product?.sizes.find((s) => s.size === size)?.price || 0;
-            const doughPrice =
-              product?.doughs.find((s) => s.dough === dough)?.price || 0;
+            const selectedSize = product!.sizes.find((s) => s.size === size)!;
+            const selectedDough = product!.doughs.find(
+              (s) => s.dough === dough
+            )!;
+            const selectedExtras = product!.extras.filter((e) =>
+              extras.includes(e.extra)
+            );
+            return {
+              selectedSize,
+              selectedDough,
+              selectedExtras,
+              product,
+            };
+          }),
+          tap(({ selectedSize, selectedDough, selectedExtras, product }) => {
+            this.selectedProduct = {
+              _id: product!._id,
+              uniqueId: `${selectedSize.size}-${
+                selectedDough.dough
+              }-${selectedExtras.map(e => e.extra).join('-')}`,
+              name: product!.name,
+              imageUrl: product!.image.url,
+              size: selectedSize,
+              dough: selectedDough,
+              extras: selectedExtras,
+              gr: selectedSize.pieces * 85,
+              rating: product!.rating,
+              quantity,
+              price: 0,
+              totalPrice: 0,
+            };
+          }),
+          map(({ selectedSize, selectedDough, selectedExtras }) => {
+            const sizePrice = selectedSize?.price || 0;
+            const doughPrice = selectedDough?.price || 0;
             const extrasPrice =
-              product?.extras
-                .filter((e) => extras.includes(e.extra))
-                .reduce((a, b) => a + b.price, 0) || 0;
+              selectedExtras?.reduce((a, b) => a + b.price, 0) || 0;
+            const price = sizePrice + doughPrice + extrasPrice;
 
-            return amount * (sizePrice + doughPrice + extrasPrice);
+            return price;
           })
         )
       )

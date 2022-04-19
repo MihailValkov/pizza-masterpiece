@@ -20,6 +20,10 @@ const sizeSchema = new Schema({
     type: Number,
     minLength: [1, 'Price should be minimum 1'],
   },
+  rating: {
+    type: Number,
+    default: 0,
+  },
 });
 const sizeModel = model('Size', sizeSchema);
 const doughSchema = new Schema({
@@ -63,28 +67,28 @@ const productSchema = new Schema(
       {
         type: Schema.ObjectId,
         ref: 'Ingredient',
-        default:[]
+        default: [],
       },
     ],
     sizes: [
       {
         type: Schema.ObjectId,
         ref: 'Size',
-        default:[]
+        default: [],
       },
     ],
     doughs: [
       {
         type: Schema.ObjectId,
         ref: 'Dough',
-        default:[]
+        default: [],
       },
     ],
     extras: [
       {
         type: Schema.ObjectId,
         ref: 'Extra',
-        default:[]
+        default: [],
       },
     ],
     author: { type: Schema.Types.ObjectId, ref: 'User' },

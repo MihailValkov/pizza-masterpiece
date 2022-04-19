@@ -10,6 +10,7 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { DecimalFixedPipe } from './pipes/decimal-fixed.pipe';
 import { NoProductsComponent } from './no-products/no-products.component';
 import { AsideMenuComponent } from './aside-menu/aside-menu.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { AsideMenuComponent } from './aside-menu/aside-menu.component';
     NoProductsComponent,
     AsideMenuComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, RouterModule],
   exports: [
     SnackBarComponent,
     FileUploadComponent,

@@ -31,7 +31,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Dough</mat-label>
-          <mat-select [formControl]="doughControl">
+          <mat-select [formControl]="doughControl" #selectedDough>
             <mat-option *ngFor="let doughObj of product.doughs" [value]="doughObj.dough">{{doughObj.dough |
               firstCapitalLetter}} ( + {{doughObj.price | decimalFixed}} BGN)</mat-option>
           </mat-select>
@@ -59,12 +59,12 @@
       <mat-divider [inset]="true"></mat-divider>
       <div class="info-container">
         <div class="amount-container">
-          <h2 matCardTitle>Amount</h2>
+          <h2 matCardTitle>Quantity</h2>
           <div class="amount">
             <button mat-mini-fab color="primary" (click)="setAmountValue('increase')">
               <mat-icon>add</mat-icon>
             </button>
-            <input matInput type="number" [readonly]="true" [formControl]="amountControl" />
+            <input matInput type="number" [readonly]="true" [formControl]="quantityControl" />
             <button mat-mini-fab color="primary" (click)="setAmountValue('decrease')">
               <mat-icon>remove</mat-icon>
             </button>
@@ -75,31 +75,31 @@
           <div class="product-info">
             <mat-chip-list class="mat-chip-list-stacked">
               <p><strong>Size:</strong>
-                <mat-chip color="primary" selected>{{sizeControl.value}}</mat-chip>
+                <mat-chip color="primary" selected>{{sizeControl.value | firstCapitalLetter}}</mat-chip>
               </p>
               <p><strong>Dough:</strong>
-                <mat-chip color="primary" selected> {{doughControl.value}}</mat-chip>
+                <mat-chip color="primary" selected> {{doughControl.value | firstCapitalLetter}}</mat-chip>
               </p>
             </mat-chip-list>
             <mat-divider [vertical]="true"></mat-divider>
             <div class="weight">
-              <strong>550 g</strong>
+              <strong>{{selectedProduct.gr}} g</strong>
               <mat-icon>scale</mat-icon>
             </div>
             <mat-divider [vertical]="true"></mat-divider>
             <div class="price">
               <h2 matCardTitle>Total price:</h2>
-              <strong>{{totalPrice | decimalFixed}} BGN</strong>
+              <strong>{{selectedProduct.totalPrice | decimalFixed}} BGN</strong>
             </div>
           </div>
         </div>
       </div>
       <div class="actions">
-        <button mat-flat-button color="primary">
+        <button mat-flat-button color="primary" (click)="addToCart()">
           <mat-icon>shopping_cart_checkout</mat-icon>
           <span>Add to Cart</span>
         </button>
-        <button mat-flat-button color="accent">
+        <button mat-flat-button color="accent" (click)="addToFavorites()">
           <mat-icon>favorite</mat-icon>
           <span>Add to Favorites</span>
         </button>

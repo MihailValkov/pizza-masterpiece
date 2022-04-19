@@ -11,5 +11,4 @@ export class AsideMenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

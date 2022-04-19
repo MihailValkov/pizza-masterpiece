@@ -9,8 +9,7 @@ import * as authActions from './actions';
 import { IErrorResponse } from '../shared/interfaces/error-response';
 
 @Injectable()
-export class AuthEffect {
-
+export class AuthEffects {
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.loginStart),

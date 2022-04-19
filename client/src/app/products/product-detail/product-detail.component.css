@@ -16,9 +16,6 @@ mat-card-content {
   width: 100%;
 }
 
-.ingredients-container {
-}
-
 .product-content {
   flex: 6;
   display: flex;

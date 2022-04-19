@@ -17,3 +17,7 @@ nav ul li button:hover,
 .active {
   border-bottom: 1px solid white;
 }
+
+nav ul li a span {
+  margin-left: 13px;
+}

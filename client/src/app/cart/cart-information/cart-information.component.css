@@ -18,3 +18,7 @@
 .mat-card > a {
   width: 100%;
 }
+
+.mat-button-disabled {
+  pointer-events: none;
+}

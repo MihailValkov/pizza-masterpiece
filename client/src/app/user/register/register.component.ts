@@ -14,6 +14,7 @@ import {
 } from 'src/app/+store/selectors';
 
 import { SnackBarComponent } from 'src/app/shared/snack-bar/snack-bar.component';
+import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwords';
 
 @Component({
   selector: 'app-register',
@@ -39,11 +40,14 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      repeatPassword: [''],
-    });
+    this.form = this.fb.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        repeatPassword: ['', [Validators.required]],
+      },
+      { validators: passwordsMatchValidator() }
+    );
 
     this.subscription.add(
       combineLatest([this.errorMessage$, this.success$]).subscribe(

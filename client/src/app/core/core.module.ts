@@ -10,10 +10,17 @@ import { AppInterceptorProvider } from './app.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './auth.service';
 import { AdminGuard } from './guards/admin.guard';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './+store';
 
 @NgModule({
   declarations: [FooterComponent, NavigationComponent, AsideNavComponent],
-  imports: [CommonModule, RouterModule, MaterialModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MaterialModule,
+    StoreModule.forFeature('userData', reducers, { metaReducers }),
+  ],
   providers: [AppInterceptorProvider, AuthGuard, AdminGuard, AuthService],
   exports: [AsideNavComponent],
 })

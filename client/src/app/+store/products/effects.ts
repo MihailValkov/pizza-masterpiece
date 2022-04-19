@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, takeUntil } from 'rxjs';
 import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { ProductService } from '../product.service';
+import { ProductService } from '../../products/product.service';
 import * as productsActions from './actions';
 
 @Injectable()

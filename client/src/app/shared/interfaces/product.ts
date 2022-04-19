@@ -43,14 +43,31 @@ export interface IProduct extends IBaseProduct {
   doughs: IDough[];
   ingredients: IIngredient[];
   extras: IExtra[];
+  rating: number;
   author: string;
 }
 
 export interface ICartProduct {
   _id: string;
+  uniqueId: null | string;
   name: string;
   imageUrl: string;
+  size: ISize;
+  dough: IDough;
+  extras: IExtra[];
+  rating: number;
+  gr: number;
   quantity: number;
   price: number;
   totalPrice: number;
+}
+
+export interface IFavoriteProduct {
+  _id: string;
+  name: string;
+  imageUrl: string;
+  size: ISize;
+  dough: IDough;
+  rating: number;
+  gr: number;
 }

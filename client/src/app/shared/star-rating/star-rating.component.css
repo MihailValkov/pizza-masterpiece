@@ -9,6 +9,11 @@
   margin-left: 5px;
   font-size: 1rem;
 }
+.rating-container.vertical {
+  align-items: center;
+  flex-direction: column;
+}
+
 .rating {
   display: inline-block;
   position: relative;
@@ -21,6 +26,7 @@
   letter-spacing: 2px;
   display: flex;
   align-items: center;
+  margin: auto;
 }
 
 .rating-inner {

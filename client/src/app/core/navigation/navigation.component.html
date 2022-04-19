@@ -14,14 +14,18 @@
       </li>
       <li>
         <a mat-button routerLink="/cart">
-          <mat-icon routerLinkActive="active">shopping_cart</mat-icon>
-          Your Cart
+          <mat-icon routerLinkActive="active" [matBadge]="(cartListCounter | async)" matBadgeColor="warn"
+            [matBadgeHidden]="(cartListCounter | async) === 0">shopping_cart
+          </mat-icon>
+          <span>Your Cart</span>
         </a>
       </li>
       <li>
         <a mat-button routerLink="/favorites">
-          <mat-icon routerLinkActive="active">favorites</mat-icon>
-          Your Favorites
+          <mat-icon routerLinkActive="active" [matBadge]="favoritesListCounter | async" matBadgeColor="warn"
+            [matBadgeHidden]="(favoritesListCounter | async) === 0">
+            favorites</mat-icon>
+          <span>Your Favorites</span>
         </a>
       </li>
       <ng-container [ngTemplateOutlet]="(isLogged$ | async) ? isLogged : isNotLogged">

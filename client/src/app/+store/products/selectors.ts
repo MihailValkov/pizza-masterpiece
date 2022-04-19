@@ -2,10 +2,10 @@ import { createSelector } from '@ngrx/store';
 import { IProductsState } from './reducers';
 
 interface ISelectState {
-  product: IProductsState;
+  products: IProductsState;
 }
 
-export const selectProduct = (state: ISelectState) => state.product;
+export const selectProduct = (state: ISelectState) => state.products;
 
 export const selectCurrentProduct = createSelector(
   selectProduct,

@@ -5,22 +5,22 @@
   <mat-card>
     <p>
       <span>Total products:</span>
-      <span>2</span>
+      <span>{{((totalProducts | async) || 0)}}</span>
     </p>
     <p>
       <span>Price:</span>
-      <span>25.99 BGN</span>
+      <span>{{((totalPrice | async) || 0 | decimalFixed)}} BGN</span>
     </p>
     <p>
       <span>Delivery Tax:</span>
-      <span>0.00 BGN</span>
+      <span>{{((taxes | async)|| 0) | decimalFixed}} BGN</span>
     </p>
     <mat-divider></mat-divider>
     <div class="total-price">
       <h2>Total price:</h2>
-      <h2>4363.00 BGN</h2>
+      <h2>{{((totalPrice | async) || 0) + ((taxes | async) || 0) | decimalFixed}} BGN</h2>
     </div>
-    <a href="/cart/checkout" mat-raised-button color="primary">Continue</a>
+    <a routerLink="/cart/checkout" mat-raised-button color="primary" [disabled]="!canContinue">Continue</a>
 
   </mat-card>
 </div>

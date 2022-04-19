@@ -36,6 +36,13 @@
         aria-label="'rePasswordHide password'" [attr.aria-pressed]="rePasswordHide" tabindex="-1">
         <mat-icon>{{rePasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
+      <mat-error *ngIf="form.controls['repeatPassword'].hasError('required')">
+        Repeat Password is required
+      </mat-error>
+      <mat-error *ngIf="form.controls['repeatPassword'].hasError('isNotSame')">
+        Passwords does't match
+      </mat-error>
+
     </mat-form-field>
     <button mat-flat-button color="primary" class="btn-register" type="submit"
       [disabled]="form.invalid || (isLoading$ | async)">Register</button>

@@ -14,7 +14,9 @@
   justify-content: center;
   margin-bottom: 15px;
 }
-
+.user-container-info {
+  text-align: right;
+}
 .user-container-info img {
   width: 120px;
   height: 120px;

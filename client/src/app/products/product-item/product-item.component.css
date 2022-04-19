@@ -1,31 +1,24 @@
 .product-card {
-  max-width: 250px;
+  width: 250px;
 }
-
+.product-card a {
+  color: inherit;
+}
 .mat-card-header {
   width: 100%;
   justify-content: center;
 }
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+.card-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
 }
-.actions .mat-icon {
-  width: 30px;
-  height: 30px;
-  background: #39373714;
-  border-radius: 50%;
+.card-description {
+  height: 50px;
+}
+.mat-card-footer {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 5px;
-  font-size: 25px;
-  color: #f9bf3b;
-}
-
-.actions .mat-icon:hover {
-  cursor: pointer;
-  color: #f9673b;
+  justify-content: center;
+  padding-bottom: 10px;
 }

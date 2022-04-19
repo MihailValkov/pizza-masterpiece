@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { IProductModuleState } from '../+store';
-import { loadProductsStart } from '../+store/actions';
-import { selectErrorMessage, selectProductsList } from '../+store/selectors';
+import { IRootState } from 'src/app/+store';
+import { loadProductsStart } from '../../+store/products/actions';
+import {
+  selectErrorMessage,
+  selectProductsList,
+} from '../../+store/products/selectors';
 
 @Component({
   selector: 'app-products-list',
@@ -13,7 +16,7 @@ export class ProductsListComponent implements OnInit {
   products$ = this.store.pipe(select(selectProductsList));
   errorMessage$ = this.store.pipe(select(selectErrorMessage));
 
-  constructor(private store: Store<IProductModuleState>) {}
+  constructor(private store: Store<IRootState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadProductsStart());

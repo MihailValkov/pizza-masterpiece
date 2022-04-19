@@ -20,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBadgeModule } from '@angular/material/badge';
 
 const modules = [
   MatFormFieldModule,
@@ -43,6 +44,7 @@ const modules = [
   MatProgressSpinnerModule,
   MatTableModule,
   MatPaginatorModule,
+  MatBadgeModule,
 ];
 
 @NgModule({
