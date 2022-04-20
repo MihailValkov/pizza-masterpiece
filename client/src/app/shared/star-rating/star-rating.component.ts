@@ -13,7 +13,7 @@ export class StarRatingComponent {
   constructor() {}
 
   getRatingText(): string {
-    const transformedRating = (this.rating / 20 || 0).toFixed(1);
+    const transformedRating = ((this.rating / 20) || 0).toFixed(1);
     return `( ${transformedRating} / 5.0 )`;
   }
 }

@@ -40,7 +40,7 @@
     <ng-container matColumnDef="rating">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Rating </th>
       <td mat-cell *matCellDef="let row">
-        <app-star-rating [rating]="55" [showRatingInfo]="true" position="vertical"></app-star-rating>
+        <app-star-rating [rating]="row.rating" [showRatingInfo]="true" position="vertical"></app-star-rating>
       </td>
     </ng-container>
 

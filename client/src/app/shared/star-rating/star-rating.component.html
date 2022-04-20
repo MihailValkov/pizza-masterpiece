@@ -5,7 +5,7 @@
     <mat-icon class="icon">star_rate</mat-icon>
     <mat-icon class="icon">star_rate</mat-icon>
     <mat-icon class="icon">star_rate</mat-icon>
-    <p class="rating-inner" [ngStyle]="{width: rating+'%'}">
+    <p class="rating-inner" [ngStyle]="{width: (rating || 0)+'%'}">
       <mat-icon class="icon-overlay">star_rate</mat-icon>
       <mat-icon class="icon-overlay">star_rate</mat-icon>
       <mat-icon class="icon-overlay">star_rate</mat-icon>
