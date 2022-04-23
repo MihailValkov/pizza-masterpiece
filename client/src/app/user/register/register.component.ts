@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { combineLatest, Subscription, switchMap, zip } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -86,12 +86,4 @@ export class RegisterComponent implements OnInit {
       this.store.dispatch(registerClearError());
     }
   }
-}
-function combine(
-  arg0: (
-    | import('rxjs').Observable<string | null>
-    | import('rxjs').Observable<boolean>
-  )[]
-) {
-  throw new Error('Function not implemented.');
 }

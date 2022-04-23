@@ -1,17 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import {
-  combineLatest,
-  combineLatestAll,
-  map,
-  merge,
-  mergeAll,
-  of,
-  Subscription,
-  switchMap,
-  zip,
-} from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

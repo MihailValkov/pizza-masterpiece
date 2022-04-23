@@ -1,0 +1,53 @@
+<ng-container *ngIf="addressForm$ | async as addressForm">
+  <form [formGroup]="addressForm">
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Country</mat-label>
+      <input color="primary" type="text" matInput formControlName="country" placeholder="Ex. Bulgaria">
+      <mat-error
+        *ngIf="addressForm.controls['country'].hasError('minlength') && !addressForm.controls['country'].hasError('required')">
+        Country should be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="addressForm.controls['country'].hasError('required')">
+        Country is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>City</mat-label>
+      <input color="primary" type="text" matInput formControlName="city" placeholder="Ex. Sofia">
+      <mat-error
+        *ngIf="addressForm.controls['city'].hasError('minlength') && !addressForm.controls['city'].hasError('required')">
+        City should be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+        City is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Street</mat-label>
+      <input color="primary" type="text" matInput formControlName="street" placeholder="Ex. Bul. Bulgaria">
+      <mat-error
+        *ngIf="addressForm.controls['street'].hasError('minlength') && !addressForm.controls['street'].hasError('required')">
+        Street should be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="addressForm.controls['street'].hasError('required')">
+        Street is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Street Number</mat-label>
+      <input color="primary" type="number" matInput formControlName="streetNumber" placeholder="Ex. 113">
+      <mat-error
+        *ngIf="addressForm.controls['streetNumber'].hasError('min') && !addressForm.controls['streetNumber'].hasError('required')">
+        Street Number should be minimum 1
+      </mat-error>
+      <mat-error *ngIf="addressForm.controls['streetNumber'].hasError('required')">
+        Street Number is required
+      </mat-error>
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button matStepperNext (click)="setFormValue()">Next</button>
+    </div>
+  </form>
+</ng-container>

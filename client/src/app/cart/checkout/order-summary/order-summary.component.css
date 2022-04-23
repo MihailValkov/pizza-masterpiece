@@ -1,0 +1,52 @@
+.form-control {
+  width: 100%;
+  display: block;
+}
+
+.order-container {
+  display: flex;
+  justify-content: space-between;
+}
+.mat-toolbar {
+  margin-bottom: 20px;
+}
+
+.user-info > div {
+  display: flex;
+}
+.user-info {
+  flex: 8;
+  margin-right: 20px;
+}
+.order-info {
+  flex: 4;
+}
+
+.user,
+.address {
+  width: 100%;
+}
+.user {
+  margin-right: 20px;
+}
+
+.total-price {
+  text-align: center;
+  justify-content: center;
+}
+.total-price h2 {
+  margin-bottom: 5px;
+}
+.mat-card > p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-actions > button:first-child {
+  margin-right: 20px;
+}

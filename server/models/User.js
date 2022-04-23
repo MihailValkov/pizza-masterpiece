@@ -10,10 +10,15 @@ const userSchema = new Schema(
       required: true,
       match: [/^[A-Za-z0-9_\.]+@[A-Za-z]+\.[A-Za-z]{2,3}$/, 'Email is not valid!'],
     },
-    username: {
+    firstName: {
       type: String,
-      default: 'Username',
-      minLength: [4, 'Username should be at least 4 characters long!'],
+      default: 'first name',
+      minLength: [3, 'First Name should be at least 3 characters long!'],
+    },
+    lastName: {
+      type: String,
+      default: 'last name',
+      minLength: [3, 'Last Name should be at least 3 characters long!'],
     },
     password: {
       type: String,
@@ -31,8 +36,30 @@ const userSchema = new Schema(
     },
     phone: {
       type: String,
-      default: '+359 888 888 888',
-      required: [true, 'Phone number is required!'],
+      default: '0888888888',
+      match: [/^0[1-9]{1}[0-9]{8}$/, 'Phone Number is not valid!'],
+    },
+    address: {
+      country: {
+        type: String,
+        default: 'country',
+        minLength: [3, 'Country should be at least 3 characters long!'],
+      },
+      city: {
+        type: String,
+        default: 'city',
+        minLength: [3, 'City should be at least 3 characters long!'],
+      },
+      street: {
+        type: String,
+        default: 'street',
+        minLength: [3, 'Street should be at least 3 characters long!'],
+      },
+      streetNumber: {
+        type: Number,
+        default: 1,
+        min: [1, 'Street Number Street Number should be minimum 1!'],
+      },
     },
   },
   { timestamps: true }

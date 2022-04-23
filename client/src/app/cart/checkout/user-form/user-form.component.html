@@ -1,0 +1,55 @@
+<ng-container *ngIf="userForm$ | async as userForm">
+  <form [formGroup]="userForm">
+
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input color="primary" type="text" matInput formControlName="firstName" placeholder="Ex. Mihail">
+      <mat-error
+        *ngIf="userForm.controls['firstName'].hasError('minlength') && !userForm.controls['firstName'].hasError('required')">
+        First Name should be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
+        First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input color="primary" type="text" matInput formControlName="lastName" placeholder="Ex. Valkov">
+      <mat-error
+        *ngIf="userForm.controls['lastName'].hasError('minlength') && !userForm.controls['lastName'].hasError('required')">
+        Last Name should be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
+        Last Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input color="primary" type="email" matInput formControlName="email" placeholder="Ex. Bul. Bulgaria">
+      <mat-error
+        *ngIf="userForm.controls['email'].hasError('email') && !userForm.controls['email'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input color="primary" type="text" matInput formControlName="phoneNumber" placeholder="Ex. 0888888888">
+      <mat-error
+        *ngIf="userForm.controls['phoneNumber'].hasError('pattern') && !userForm.controls['phoneNumber'].hasError('required')">
+        Phone Number is not valid
+      </mat-error>
+      <mat-error *ngIf="userForm.controls['phoneNumber'].hasError('required')">
+        Phone Number is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="btn-actions">
+      <button mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button matStepperNext (click)="setFormValue()">Next</button>
+    </div>
+  </form>
+</ng-container>

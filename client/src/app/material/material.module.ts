@@ -21,6 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const modules = [
   MatFormFieldModule,
@@ -45,6 +46,7 @@ const modules = [
   MatTableModule,
   MatPaginatorModule,
   MatBadgeModule,
+  MatStepperModule,
 ];
 
 @NgModule({

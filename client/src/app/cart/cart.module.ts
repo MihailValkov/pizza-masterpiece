@@ -6,10 +6,31 @@ import { MaterialModule } from '../material/material.module';
 import { CartTableComponent } from './cart-table/cart-table.component';
 import { SharedModule } from '../shared/shared.module';
 import { CartInformationComponent } from './cart-information/cart-information.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddressFormComponent } from './checkout/address-form/address-form.component';
+import { UserFormComponent } from './checkout/user-form/user-form.component';
+import { OrderSummaryComponent } from './checkout/order-summary/order-summary.component';
+import { AddressFormService } from './checkout/address-form.service';
+import { UserFormService } from './checkout/user-form.service';
 
 @NgModule({
-  declarations: [MyCartComponent, CartTableComponent, CartInformationComponent],
-  imports: [CommonModule, SharedModule, MaterialModule, CartRoutingModule],
-  providers: [],
+  declarations: [
+    MyCartComponent,
+    CartTableComponent,
+    CartInformationComponent,
+    CheckoutComponent,
+    AddressFormComponent,
+    UserFormComponent,
+    OrderSummaryComponent,
+  ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MaterialModule,
+    CartRoutingModule,
+    ReactiveFormsModule,
+  ],
+  providers: [AddressFormService, UserFormService],
 })
 export class CartModule {}

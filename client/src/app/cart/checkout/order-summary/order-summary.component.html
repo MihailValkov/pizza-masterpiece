@@ -1,0 +1,90 @@
+<div class="order-container">
+  <div class="user-info">
+    <mat-toolbar color="primary"> User Information</mat-toolbar>
+    <div>
+      <div class="user">
+        <mat-form-field class="form-control" appearance="outline">
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-label>First Name</mat-label>
+          <input [readonly]="true" [value]="userInfo?.firstName" type="text" matInput>
+        </mat-form-field>
+        <mat-form-field class="form-control" appearance="outline">
+          <mat-icon matPrefix>person</mat-icon>
+          <mat-label>Last Name</mat-label>
+          <input [readonly]="true" [value]="userInfo?.lastName" type="text" matInput>
+        </mat-form-field>
+        <mat-form-field class="form-control" appearance="outline">
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-label>Email</mat-label>
+          <input [readonly]="true" [value]="userInfo?.email" type="email" matInput>
+        </mat-form-field>
+        <mat-form-field class="form-control" appearance="outline">
+          <mat-icon matPrefix>phone</mat-icon>
+          <mat-label>Phone Number</mat-label>
+          <input [readonly]="true" [value]="userInfo?.phoneNumber" type="tel" matInput>
+        </mat-form-field>
+
+      </div>
+      <div class="address">
+        <mat-form-field class="form-control" appearance="outline">
+          <mat-icon matPrefix>location_on</mat-icon>
+          <mat-label>Country</mat-label>
+          <input [readonly]="true" [value]="addressInfo?.country" type="text" matInput>
+        </mat-form-field>
+        <mat-form-field class="form-control" appearance="outline">
+          <mat-icon matPrefix>location_city</mat-icon>
+          <mat-label>City</mat-label>
+          <input [readonly]="true" [value]="addressInfo?.city" type="text" matInput>
+        </mat-form-field>
+        <mat-form-field class="form-control" appearance="outline">
+          <mat-icon matPrefix>streetview</mat-icon>
+          <mat-label>Street</mat-label>
+          <input [readonly]="true" [value]="addressInfo?.street" type="text" matInput>
+        </mat-form-field>
+        <mat-form-field class="form-control" appearance="outline">
+          <mat-icon matPrefix>home</mat-icon>
+          <mat-label>Street Number</mat-label>
+          <input [readonly]="true" [value]="addressInfo?.streetNumber" type="number" matInput>
+        </mat-form-field>
+
+      </div>
+    </div>
+  </div>
+  <div class="order-info">
+    <mat-toolbar color="primary"> Order Summary</mat-toolbar>
+    <div>
+      <mat-card>
+        <p>
+          <span>Total products:</span>
+          <span>0</span>
+        </p>
+        <p>
+          <span>Price:</span>
+          <span>0 BGN</span>
+        </p>
+        <p>
+          <span>Delivery Tax:</span>
+          <span>0 BGN</span>
+        </p>
+
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Payment Method</mat-label>
+          <mat-icon matPrefix>payment</mat-icon>
+          <mat-select>
+            <mat-option value="cache">Cache</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <div class="total-price">
+          <h2>Total price:</h2>
+          <h2>0 BGN</h2>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+</div>
+<div class="btn-actions">
+  <button mat-raised-button matStepperPrevious>Back</button>
+  <button mat-raised-button>Confirm Order</button>
+</div>
