@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserFormService } from '../user-form.service';
 
 @Component({
@@ -7,7 +7,10 @@ import { UserFormService } from '../user-form.service';
   styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent {
+  @Input() width: number = 50;
+  @Input() hideActions: boolean = false;
   userForm$ = this.userFormService.userForm$;
+  isFormFulfilled = this.userFormService.formIsFulfilled;
 
   constructor(private userFormService: UserFormService) {}
 

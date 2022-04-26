@@ -1,10 +1,18 @@
 form {
-  width: 100%;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-form > .form-control {
-  width: 50%;
+.form-control {
+  width: 100%;
+}
+
+.link {
+  margin-bottom: 10px;
+}
+.link a {
+  text-decoration: underline;
+  color: #3F51B5;
 }

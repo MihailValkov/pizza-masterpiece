@@ -34,7 +34,7 @@ const userSchema = new Schema(
       enum: ['Member', 'Admin'],
       default: 'Member',
     },
-    phone: {
+    phoneNumber: {
       type: String,
       default: '0888888888',
       match: [/^0[1-9]{1}[0-9]{8}$/, 'Phone Number is not valid!'],

@@ -10,8 +10,15 @@ interface IBaseUser {
   updatedAt: Date;
 }
 export interface IUser extends IBaseUser {
-  username: string;
-  phone: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  address: {
+    country: string;
+    city: string;
+    street: string;
+    streetNumber: number;
+  };
 }
 
 export interface IRegisterUser {

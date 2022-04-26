@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { IRootState } from 'src/app/+store';
+import { selectUser } from 'src/app/+store/selectors';
 
 export interface IAddressForm {
   country: string;
@@ -8,15 +11,31 @@ export interface IAddressForm {
   street: string;
   streetNumber: number;
 }
-
 @Injectable()
-export class AddressFormService {
+export class AddressFormService implements OnDestroy {
+  private form = this.initForm();
   private addressForm: BehaviorSubject<FormGroup> = new BehaviorSubject(
-    this.initForm()
+    this.form
   );
   addressForm$: Observable<FormGroup> = this.addressForm.asObservable();
+  user$ = this.store.pipe(select(selectUser));
+  formIsFulfilled: boolean = false;
+  subscription!: Subscription;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store<IRootState>) {
+    this.subscription = this.user$.subscribe((user) => {
+      if (user?.address) {
+        const { country, city, street, streetNumber } = user.address;
+        this.form.patchValue({ country, city, street, streetNumber });
+        this.setAddressFormValue();
+        this.formIsFulfilled = true;
+      }
+    });
+  }
+  
+  get isFormFulfilled(): boolean {
+    return this.formIsFulfilled;
+  }
 
   initForm() {
     return this.fb.group({
@@ -28,6 +47,12 @@ export class AddressFormService {
   }
 
   setAddressFormValue() {
-    this.addressForm.next(this.addressForm.getValue());
+    this.addressForm.next(this.form);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

@@ -1,9 +1,9 @@
 <ng-container *ngIf="userForm$ | async as userForm">
-  <form [formGroup]="userForm">
-
+  <form [formGroup]="userForm" [ngStyle]="{width: width+'%'}">
     <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>person</mat-icon>
       <mat-label>First Name</mat-label>
-      <input color="primary" type="text" matInput formControlName="firstName" placeholder="Ex. Mihail">
+      <input type="text" matInput formControlName="firstName" placeholder="Ex. Mihail" [readonly]="isFormFulfilled">
       <mat-error
         *ngIf="userForm.controls['firstName'].hasError('minlength') && !userForm.controls['firstName'].hasError('required')">
         First Name should be at least 3 characters
@@ -14,8 +14,9 @@
     </mat-form-field>
 
     <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>person</mat-icon>
       <mat-label>Last Name</mat-label>
-      <input color="primary" type="text" matInput formControlName="lastName" placeholder="Ex. Valkov">
+      <input type="text" matInput formControlName="lastName" placeholder="Ex. Valkov" [readonly]="isFormFulfilled">
       <mat-error
         *ngIf="userForm.controls['lastName'].hasError('minlength') && !userForm.controls['lastName'].hasError('required')">
         Last Name should be at least 3 characters
@@ -25,8 +26,9 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>email</mat-icon>
       <mat-label>Email</mat-label>
-      <input color="primary" type="email" matInput formControlName="email" placeholder="Ex. Bul. Bulgaria">
+      <input type="email" matInput formControlName="email" placeholder="Ex. Bul. Bulgaria" [readonly]="isFormFulfilled">
       <mat-error
         *ngIf="userForm.controls['email'].hasError('email') && !userForm.controls['email'].hasError('required')">
         Please enter a valid email address
@@ -36,8 +38,10 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>phone</mat-icon>
       <mat-label>Phone Number</mat-label>
-      <input color="primary" type="text" matInput formControlName="phoneNumber" placeholder="Ex. 0888888888">
+      <input type="tel" matInput formControlName="phoneNumber" placeholder="Ex. 0888888888"
+        [readonly]="isFormFulfilled">
       <mat-error
         *ngIf="userForm.controls['phoneNumber'].hasError('pattern') && !userForm.controls['phoneNumber'].hasError('required')">
         Phone Number is not valid
@@ -46,10 +50,16 @@
         Phone Number is required
       </mat-error>
     </mat-form-field>
+    <ng-container *ngIf="!hideActions">
+
+    <div *ngIf="isFormFulfilled" class="link">
+      Your information is auto fulfilled. If you want to change it, go to <a routerLink="/user/profile">My Profile</a>
+    </div>
 
     <div class="btn-actions">
       <button mat-raised-button matStepperPrevious>Back</button>
       <button mat-raised-button matStepperNext (click)="setFormValue()">Next</button>
     </div>
+  </ng-container>
   </form>
 </ng-container>

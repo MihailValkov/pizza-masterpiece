@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { IRootState } from 'src/app/+store';
+import { selectUser } from 'src/app/+store/selectors';
 
 export interface IUserForm {
   firstName: string;
@@ -8,15 +11,29 @@ export interface IUserForm {
   email: string;
   phoneNumber: string;
 }
-
 @Injectable()
 export class UserFormService {
-  private userForm: BehaviorSubject<FormGroup> = new BehaviorSubject(
-    this.initForm()
-  );
+  private form = this.initForm();
+  private userForm: BehaviorSubject<FormGroup> = new BehaviorSubject(this.form);
   userForm$: Observable<FormGroup> = this.userForm.asObservable();
+  user$ = this.store.pipe(select(selectUser));
+  formIsFulfilled: boolean = false;
+  subscription!: Subscription;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store<IRootState>) {
+    this.subscription = this.user$.subscribe((user) => {
+      if (user) {
+        const { firstName, lastName, email, phoneNumber } = user;
+        this.form.patchValue({ firstName, lastName, email, phoneNumber });
+        this.setUserFormValue();
+        this.formIsFulfilled = true;
+      }
+    });
+  }
+  
+  get isFormFulfilled(): boolean {
+    return this.formIsFulfilled;
+  }
 
   initForm() {
     return this.fb.group({
@@ -31,7 +48,12 @@ export class UserFormService {
   }
 
   setUserFormValue() {
-    this.userForm.next(this.userForm.getValue());
+    this.userForm.next(this.form);
   }
 
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

@@ -10,6 +10,9 @@
 .mat-toolbar {
   margin-bottom: 20px;
 }
+.mat-card .mat-divider-horizontal {
+  position: relative;
+}
 
 .user-info > div {
   display: flex;
@@ -29,7 +32,9 @@
 .user {
   margin-right: 20px;
 }
-
+.total-products {
+  margin-top: 8px;
+}
 .total-price {
   text-align: center;
   justify-content: center;

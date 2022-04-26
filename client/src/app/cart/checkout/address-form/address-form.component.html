@@ -1,8 +1,9 @@
 <ng-container *ngIf="addressForm$ | async as addressForm">
-  <form [formGroup]="addressForm">
+  <form [formGroup]="addressForm" [ngStyle]="{width: width+'%'}">
     <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>location_on</mat-icon>
       <mat-label>Country</mat-label>
-      <input color="primary" type="text" matInput formControlName="country" placeholder="Ex. Bulgaria">
+      <input type="text" matInput formControlName="country" placeholder="Ex. Bulgaria" [readonly]="isFormFulfilled">
       <mat-error
         *ngIf="addressForm.controls['country'].hasError('minlength') && !addressForm.controls['country'].hasError('required')">
         Country should be at least 3 characters
@@ -13,8 +14,9 @@
     </mat-form-field>
 
     <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>location_city</mat-icon>
       <mat-label>City</mat-label>
-      <input color="primary" type="text" matInput formControlName="city" placeholder="Ex. Sofia">
+      <input type="text" matInput formControlName="city" placeholder="Ex. Sofia" [readonly]="isFormFulfilled">
       <mat-error
         *ngIf="addressForm.controls['city'].hasError('minlength') && !addressForm.controls['city'].hasError('required')">
         City should be at least 3 characters
@@ -24,8 +26,9 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>streetview</mat-icon>
       <mat-label>Street</mat-label>
-      <input color="primary" type="text" matInput formControlName="street" placeholder="Ex. Bul. Bulgaria">
+      <input type="text" matInput formControlName="street" placeholder="Ex. Bul. Bulgaria" [readonly]="isFormFulfilled">
       <mat-error
         *ngIf="addressForm.controls['street'].hasError('minlength') && !addressForm.controls['street'].hasError('required')">
         Street should be at least 3 characters
@@ -35,8 +38,9 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>home</mat-icon>
       <mat-label>Street Number</mat-label>
-      <input color="primary" type="number" matInput formControlName="streetNumber" placeholder="Ex. 113">
+      <input type="number" matInput formControlName="streetNumber" placeholder="Ex. 113" [readonly]="isFormFulfilled">
       <mat-error
         *ngIf="addressForm.controls['streetNumber'].hasError('min') && !addressForm.controls['streetNumber'].hasError('required')">
         Street Number should be minimum 1
@@ -45,9 +49,15 @@
         Street Number is required
       </mat-error>
     </mat-form-field>
+    <ng-container *ngIf="!hideActions">
 
-    <div>
-      <button mat-raised-button matStepperNext (click)="setFormValue()">Next</button>
-    </div>
+      <div *ngIf="isFormFulfilled" class="link">
+        Your information is auto fulfilled. If you want to change it, go to <a routerLink="/user/profile">My Profile</a>
+      </div>
+
+      <div class="btn-actions">
+        <button mat-raised-button matStepperNext (click)="setFormValue()">Next</button>
+      </div>
+    </ng-container>
   </form>
 </ng-container>
