@@ -20,7 +20,7 @@ const getProductById = async (req, res, next) => {
   try {
     const product = await productModel
       .findById(id, '-__v -author')
-      .populate('sizes extras ingredients doughs','-_id -__v');
+      .populate('sizes extras ingredients doughs','-__v');
     if (!product) {
       throw new Error('There is no such product with provided ID - ' + id);
     }

@@ -1,0 +1,21 @@
+.order-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.order-content {
+  width: 100%;
+}
+
+app-aside-menu {
+  flex: 2 1;
+  position: sticky;
+  top: 3rem;
+}
+
+@media (max-width: 1000px) {
+  app-aside-menu {
+    display: none;
+  }
+}

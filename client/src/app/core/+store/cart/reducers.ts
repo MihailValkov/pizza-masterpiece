@@ -5,15 +5,15 @@ import { ICartProduct } from 'src/app/shared/interfaces/product';
 export interface ICartState {
   cartList: ICartProduct[];
   totalProducts: number;
-  totalPrice: number;
+  price: number;
   taxes: number;
 }
 
 const initialCartState: ICartState = {
   cartList: [],
   totalProducts: 0,
+  price: 0,
   taxes: 0,
-  totalPrice: 0,
 };
 
 export const cartReducer = createReducer<ICartState>(
@@ -30,34 +30,36 @@ export const cartReducer = createReducer<ICartState>(
       existingProduct.totalPrice =
         existingProduct.quantity * existingProduct.price;
       cartList[index] = existingProduct;
+      totalProducts += product.quantity;
     } else {
       cartList.push(product);
-      totalProducts++;
+      totalProducts += product.quantity;
     }
-    const totalPrice = state.totalPrice + product.totalPrice;
-    const taxes = totalPrice > 0 && totalPrice < 30 ? 5 : 0;
+    const price = state.price + product.totalPrice;
+    const taxes = price > 0 && price < 30 ? 5 : 0;
 
     return {
       ...state,
       cartList,
-      totalPrice,
+      price,
       totalProducts,
       taxes,
     };
   }),
   on(cartActions.removeProductFromCart, (state, { index }) => {
     const existingProduct: ICartProduct = state.cartList[index];
-    let totalPrice = state.totalPrice - existingProduct.totalPrice;
-    if (totalPrice < 0) {
-      totalPrice = 0;
+    let price = state.price - existingProduct.totalPrice;
+    if (price < 0) {
+      price = 0;
     }
-    const taxes = totalPrice > 0 && totalPrice < 30 ? 5 : 0;
+    const taxes = price > 0 && price < 30 ? 5 : 0;
+    const cartList = state.cartList.filter((_, i) => i !== index);
     return {
       ...state,
-      cartList: state.cartList.filter((_, i) => i !== index),
-      totalProducts: state.totalProducts - 1,
-      totalPrice,
-      taxes,
+      cartList,
+      totalProducts: state.totalProducts - existingProduct.quantity,
+      price,
+      taxes: cartList.length === 0 ? 0 : taxes,
     };
   }),
   on(cartActions.updateProductQuantity, (state, { index, actionType }) => {
@@ -69,16 +71,16 @@ export const cartReducer = createReducer<ICartState>(
 
     cartProduct.totalPrice = cartProduct.price * quantity;
     cartProduct.quantity = quantity;
-    let totalPrice =
+    let price =
       actionType === 'increase'
-        ? state.totalPrice + cartProduct.price
-        : state.totalPrice - cartProduct.price;
+        ? state.price + cartProduct.price
+        : state.price - cartProduct.price;
 
-    if (totalPrice < 0) {
-      totalPrice = 0;
+    if (price < 0) {
+      price = 0;
     }
 
-    const taxes = totalPrice > 0 && totalPrice < 30 ? 5 : 0;
+    const taxes = price > 0 && price < 30 ? 5 : 0;
     let cartList = [];
     if (quantity === 0) {
       cartList = [
@@ -95,10 +97,12 @@ export const cartReducer = createReducer<ICartState>(
     return {
       ...state,
       cartList,
-      totalPrice,
+      price,
       taxes,
       totalProducts:
-        quantity === 0 ? state.totalProducts - 1 : state.totalProducts,
+        actionType === 'increase'
+          ? state.totalProducts + 1
+          : state.totalProducts - 1,
     };
   })
 );

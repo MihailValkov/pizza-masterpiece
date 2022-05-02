@@ -11,8 +11,10 @@ mat-card-content {
 }
 
 .image-container img {
-  width: 480px;
-  height: 400px;
+  width: 100%;
+  height: auto;
+  max-width: 480px;
+  max-height: 400px;
   object-fit: contain;
 }
 
@@ -149,11 +151,31 @@ mat-card-content {
   .weight strong {
     width: 40px;
   }
-}
-
-@media (max-width: 800px) {
   .product-info {
     flex-direction: column;
     align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .image-container {
+    padding: 0;
+  }
+  .mat-card-header {
+    justify-content: center;
+  }
+  .product-content {
+    margin-top: 10px;
+  }
+  :host ::ng-deep .mat-chip-list-stacked .mat-chip-list-wrapper {
+    align-items: center;
+  }
+  .weight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .weight .mat-icon {
+    font-size: 24px;
   }
 }

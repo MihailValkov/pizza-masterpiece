@@ -1,0 +1,83 @@
+<div class="mat-elevation-z8 order-table">
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+
+    <ng-container matColumnDef="product">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
+      <td mat-cell *matCellDef="let row">
+        <a [routerLink]="['detail',row._id]" class="product-link">
+          <img [src]="row.imageUrl" class="product-img" [alt]="row.name" />
+          <span>{{row.name}}</span>
+        </a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+      <td mat-cell *matCellDef="let row"> {{row.price | decimalFixed}} BGN </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <input class="quantity" matInput type="number" [value]="row.quantity" readonly="true" />
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+      <td mat-cell *matCellDef="let row"> {{row.totalPrice | decimalFixed}} BGN</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+      <td mat-cell *matCellDef="let row; let i = index" class="actions">
+        <button mat-icon-button (click)="row.isExpanded = !row.isExpanded">
+          <mat-icon *ngIf="row.isExpanded">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="!row.isExpanded">keyboard_arrow_up</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+
+      <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+        <div class="product-row-detail" [@detailExpand]="row.isExpanded ? 'expanded' : 'collapsed'">
+          <div class="image-container">
+            <img [src]="row.imageUrl" class="product-img" [alt]="row.name" mat-card-xl-image/>
+          </div>
+          <mat-chip-list class="mat-chip-list-stacked">
+            <p><span>Size:</span>
+              <mat-chip color="primary" class="mat-chip" selected>{{row.selectedSize | firstCapitalLetter}}</mat-chip>
+            </p>
+            <p><span>Dough:</span>
+              <mat-chip color="primary" class="mat-chip" selected>{{row.selectedDough | firstCapitalLetter}}</mat-chip>
+            </p>
+            <p><span>Weight:</span>
+              <mat-chip color="primary" class="mat-chip" selected>{{row.gr}} g</mat-chip>
+            </p>
+            <p><span>Ingredients:</span>
+              <mat-chip *ngFor="let ingredient of row.ingredients" color="primary" class="mat-chip" selected >
+                {{ingredient | firstCapitalLetter}}
+              </mat-chip>
+            </p>
+            <p *ngIf="row?.selectedExtras.length !== 0"><span>Extras:</span>
+              <mat-chip *ngFor="let extra of row.selectedExtras" color="primary" class="mat-chip" selected>
+                {{extra | firstCapitalLetter}}
+              </mat-chip>
+            </p>
+            <p><span>Rating:</span>
+              <app-star-rating [rating]="row.rating" [showRatingInfo]="true"></app-star-rating>
+            </p>
+          </mat-chip-list>
+
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" class="product-row"
+      [class.student-expanded-row]="row.isExpanded"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="product-detail-row"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" aria-label="Select page of cart products"></mat-paginator>
+</div>

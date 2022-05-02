@@ -1,0 +1,35 @@
+<section class="order-detail-container">
+  <app-aside-menu></app-aside-menu>
+  <div class="order-detail-content">
+    <mat-toolbar color="primary">
+      My Order Details
+    </mat-toolbar>
+    <mat-card *ngIf="currentOrder$ | async as currentOrder">
+      <mat-card-title>Order Number: <span>{{currentOrder._id}}</span></mat-card-title>
+      <mat-card-header>
+        <div>
+          <p><span class="order-created">Created:</span> <strong>{{currentOrder?.createdAt | date:'short'}}</strong></p>
+          <p><span class="order-status">Status:</span> <strong> {{currentOrder?.status}}</strong></p>
+        </div>
+        <div>
+          <p><span class="order-username">Full Name:</span> <strong>{{currentOrder?.user?.firstName}}
+              {{currentOrder?.user?.lastName}}</strong></p>
+          <p><span class="order-address">Address:</span> <strong>{{currentOrder?.user?.country}},
+              {{currentOrder?.user?.city}}, {{currentOrder?.user?.street}} №
+              {{currentOrder?.user?.streetNumber}}</strong></p>
+        </div>
+        <div>
+          <p><span class="order-products-count">Total Products:</span> <strong>{{currentOrder?.totalProducts}}</strong>
+          </p>
+          <p><span class="order-price">Total Price:</span> <strong>{{(currentOrder?.taxes||0) + (currentOrder?.price||0)
+              | decimalFixed}} BGN</strong></p>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <ng-container *ngIf="(currentOrder$ | async) as currentOrder">
+          <app-products-table [products]="currentOrder.products"></app-products-table>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>

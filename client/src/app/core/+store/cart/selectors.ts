@@ -17,8 +17,5 @@ export const selectTotalProducts = createSelector(
   selectCart,
   (state) => state.totalProducts
 );
-export const selectTotalPrice = createSelector(
-  selectCart,
-  (state) => state.totalPrice
-);
+export const selectPrice = createSelector(selectCart, (state) => state.price);
 export const selectTaxes = createSelector(selectCart, (state) => state.taxes);

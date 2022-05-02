@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aside-nav.component.css']
 })
 export class AsideNavComponent implements OnInit {
-  showFiller = false;
+  showFiller = true;
   constructor() { }
 
   ngOnInit(): void {

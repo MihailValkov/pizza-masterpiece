@@ -1,7 +1,7 @@
 mat-toolbar {
   height: 4rem;
 }
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
@@ -20,4 +20,22 @@ nav ul li button:hover,
 
 nav ul li a span {
   margin-left: 13px;
+}
+
+@media (max-width: 800px) {
+  li span {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .logo {
+    display: none;
+  }
+}
+
+@media (min-width: 700px) {
+  .menu-btn {
+    display: none;
+  }
 }

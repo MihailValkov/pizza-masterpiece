@@ -6,6 +6,7 @@ import {
   animate,
 } from '@angular/animations';
 import {
+  AfterViewInit,
   Component,
   Input,
   OnChanges,
@@ -13,24 +14,15 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Store } from '@ngrx/store';
-import { IUserDataState } from 'src/app/core/+store';
-import { removeProductFromFavorites } from 'src/app/core/+store/favorites/actions';
-import { IFavoriteProduct } from 'src/app/shared/interfaces/product';
+import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
 
 @Component({
-  selector: 'app-favorites-table',
-  templateUrl: './favorites-table.component.html',
-  styleUrls: ['./favorites-table.component.css'],
+  selector: 'app-products-table',
+  templateUrl: './products-table.component.html',
+  styleUrls: ['./products-table.component.css'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -42,26 +34,30 @@ import { IFavoriteProduct } from 'src/app/shared/interfaces/product';
     ]),
   ],
 })
-export class FavoritesTableComponent implements OnInit, OnChanges {
-  @Input() products!: IFavoriteProduct[];
-  panelOpenState = true;
-  ingredients = ['Pizza sauce', 'Mozzarella', 'Pepperoni'];
+export class ProductsTableComponent
+  implements OnInit, AfterViewInit, OnChanges
+{
+  @Input() products!: IOrderProductDetail[];
+
   displayedColumns: string[] = [
     'product',
-    'rating',
-    'size',
-    'dough',
-    'grams',
+    'price',
+    'quantity',
+    'total',
     'action',
   ];
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<IOrderProductDetail>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private store: Store<IUserDataState>) {}
+
+  constructor() {}
 
   ngOnInit(): void {
-    const products = this.products.map((p) => ({ ...p, isOn: false }));
+    const products: IOrderProductDetail[] = this.products.map((p) => ({
+      ...p,
+      isExpandable: false,
+    }));
     this.dataSource = new MatTableDataSource(products);
   }
 
@@ -72,9 +68,5 @@ export class FavoritesTableComponent implements OnInit, OnChanges {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  removeFromFavorites(index: number) {
-    this.store.dispatch(removeProductFromFavorites({ index }));
   }
 }

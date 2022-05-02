@@ -10,14 +10,12 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { select, Store } from '@ngrx/store';
-import { IRootState } from 'src/app/+store';
+import { Store } from '@ngrx/store';
 import { IUserDataState } from 'src/app/core/+store';
 import {
   removeProductFromCart,
   updateProductQuantity,
 } from 'src/app/core/+store/cart/actions';
-import { selectCartList } from 'src/app/core/+store/cart/selectors';
 import { ICartProduct } from 'src/app/shared/interfaces/product';
 
 @Component({

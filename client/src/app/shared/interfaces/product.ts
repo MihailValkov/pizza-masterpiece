@@ -11,11 +11,13 @@ export interface IBaseProduct {
 }
 
 export interface ISize {
+  _id: string;
   size: string;
   pieces: number;
   price: number;
 }
 export interface IDough {
+  _id: string;
   dough: string;
   price: number;
 }
@@ -24,6 +26,7 @@ export interface IIngredient {
 }
 
 export interface IExtra {
+  _id: string;
   extra: string;
   price: number;
 }

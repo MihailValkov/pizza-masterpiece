@@ -1,15 +1,15 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button>
+  <button mat-icon-button (click)="drawer.toggle()" class="menu-btn">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Pizza Masterpiece</span>
-  <span class="example-spacer"></span>
+  <span class="logo">Pizza Masterpiece</span>
+  <span class="spacer"></span>
   <nav>
     <ul>
       <li>
         <a mat-button routerLink="/">
           <mat-icon routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">home</mat-icon>
-          Home
+          <span>Home</span>
         </a>
       </li>
       <li>
@@ -36,9 +36,9 @@
 
 <ng-template #isNotLogged>
   <li>
-    <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <button mat-button [matMenuTriggerFor]="menu" aria-label="Account menu">
       <mat-icon>person</mat-icon>
-      <span>Profile</span>
+      <span>Account</span>
     </button>
   </li>
   <mat-menu #menu="matMenu">
@@ -55,9 +55,9 @@
 
 <ng-template #isLogged>
   <li>
-    <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <button mat-button [matMenuTriggerFor]="menu" aria-label="Account menu">
       <mat-icon>person</mat-icon>
-      <span>Profile</span>
+      <span>Account</span>
     </button>
   </li>
   <mat-menu #menu="matMenu">

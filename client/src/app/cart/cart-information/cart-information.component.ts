@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { IUserDataState } from 'src/app/core/+store';
 import {
   selectTaxes,
-  selectTotalPrice,
+  selectPrice,
   selectTotalProducts,
 } from 'src/app/core/+store/cart/selectors';
 
@@ -14,7 +14,7 @@ import {
 })
 export class CartInformationComponent implements OnInit {
   @Input() canContinue: boolean = false;
-  totalPrice = this.store.pipe(select(selectTotalPrice));
+  totalPrice = this.store.pipe(select(selectPrice));
   totalProducts = this.store.pipe(select(selectTotalProducts));
   taxes = this.store.pipe(select(selectTaxes));
 

@@ -17,7 +17,7 @@
         <mat-form-field appearance="outline" class="form-control">
           <mat-label>Payment Method</mat-label>
           <mat-icon matPrefix>payment</mat-icon>
-          <mat-select>
+          <mat-select [formControl]="paymentMethodControl">
             <mat-option value="cache">Cache</mat-option>
           </mat-select>
         </mat-form-field>
@@ -28,7 +28,7 @@
         </p>
         <p>
           <span>Price:</span>
-          <span>{{(cartTotalPrice$ | async) || 0 | decimalFixed}} BGN</span>
+          <span>{{(cartPrice$ | async) || 0 | decimalFixed}} BGN</span>
         </p>
         <p>
           <span>Delivery Tax:</span>
@@ -38,7 +38,7 @@
 
         <div class="total-price">
           <h2>Total price:</h2>
-          <h2>{{((cartTotalPrice$ | async) || 0) + ((cartTaxes$ | async) || 0) | decimalFixed}} BGN</h2>
+          <h2>{{((cartPrice$ | async) || 0) + ((cartTaxes$ | async) || 0) | decimalFixed}} BGN</h2>
         </div>
       </mat-card>
     </div>
@@ -47,5 +47,5 @@
 </div>
 <div class="btn-actions">
   <button mat-raised-button matStepperPrevious>Back</button>
-  <button mat-raised-button>Confirm Order</button>
+  <button mat-raised-button (click)="completeOrder()" [disabled]="this.paymentMethodControl.invalid">Confirm Order</button>
 </div>

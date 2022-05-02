@@ -6,7 +6,15 @@ function createErrorMessage(error) {
 
 function errorHandler(error, res, req) {
   let message = 'Something went wrong!';
-  if (error instanceof TypeError || error.name == 'MongoError') {
+  if (error.name === 'CustomValidationError') {
+    message = error.message;
+    res.status(error.code).json({ message });
+  } else if (
+    error instanceof TypeError ||
+    error.name == 'MongoError' ||
+    error.name == 'ObjectParameterError'
+  ) {
+    message = error?.message;
     res.status(500).json({ message });
   } else if (error.name === 'CastError') {
     message = error.message;

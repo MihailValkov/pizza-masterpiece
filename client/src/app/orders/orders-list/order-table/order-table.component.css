@@ -1,0 +1,123 @@
+.order-container {
+  position: relative;
+  background: white;
+  padding-left: 10px;
+}
+
+.order-table {
+  position: relative;
+  height: 310px;
+  overflow-y: scroll;
+  background: white;
+}
+
+.loading-shade {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-rate-limit-reached {
+  max-width: 360px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 14px;
+}
+th:first-child,
+td:first-child,
+:host ::ng-deep th:first-child .mat-sort-header-container,
+th:first-child.mat-header-cell {
+  text-align: left;
+  justify-content: start;
+}
+th,
+td,
+:host ::ng-deep .mat-sort-header-container,
+.mat-header-cell {
+  text-align: center;
+  justify-content: center;
+  width: auto;
+}
+th:last-child,
+td:last-child,
+:host ::ng-deep th:last-child .mat-sort-header-container,
+th:last-child.mat-header-cell,
+:host ::ng-deep .mat-column-status .mat-sort-header-container {
+  text-align: end;
+  justify-content: end;
+}
+
+td.mat-cell,
+th.mat-header-cell {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.mat-row .mat-cell {
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: #f7f7f7;
+  border-color: #3f51b5;
+}
+
+@media (max-width: 500px) {
+  .mat-column-_id {
+    display: none;
+  }
+  table {
+    width: 650px!important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .mat-row:hover .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .order-table {
+    width: 1000px;
+    height: 310px;
+    max-width: 100%;
+    overflow: auto;
+  }
+
+  table {
+    width: 1000px;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1285px) {
+  .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .mat-row:hover .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .order-table {
+    width: calc(100vw - 286px - 6rem);
+  }
+  table {
+    width: 1000px;
+  }
+}
