@@ -1,7 +1,9 @@
-<button mat-raised-button for="file" (click)="uploadHandler(inputRef)" type="button">Upload image
+<button mat-raised-button for="file" (click)="uploadHandler(inputRef)" type="button" [disabled]="isLoading">
+  {{isLoading ? 'Uploading...' :'Upload image'}}
   <mat-icon>upload</mat-icon>
 </button>
-<input #inputRef type="file" id="file" (change)="uploadFile($event)"  />
+<input #inputRef type="file" id="file" (change)="uploadFile($event)" />
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 <mat-error *ngIf="inputControl.hasError('required') && inputControl.touched">
   Image is required
 </mat-error>

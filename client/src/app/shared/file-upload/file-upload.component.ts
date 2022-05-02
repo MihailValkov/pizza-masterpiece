@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { IFileImageUpload } from '../interfaces/image-upload';
 
@@ -11,6 +11,7 @@ export class FileUploadComponent {
   inputControl: AbstractControl = this.fb.control(null, {
     validators: Validators.required,
   });
+  @Input() isLoading: boolean = false;
   @Output() onPickFile: EventEmitter<IFileImageUpload> = new EventEmitter();
 
   constructor(private fb: FormBuilder) {}
@@ -29,7 +30,7 @@ export class FileUploadComponent {
       reader.onload = () =>
         this.setUploadedFile({
           file,
-          imageUrl: reader.result as string
+          imageUrl: reader.result as string,
         });
       reader.readAsDataURL(file);
     }

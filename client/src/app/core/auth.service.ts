@@ -19,4 +19,12 @@ export class AuthService {
   authenticate(): Observable<IUser> {
     return this.http.get<IUser>('/auth/authenticate');
   }
+  updateUserImage(
+    formData: FormData
+  ): Observable<{ url: string; _id: string }> {
+    return this.http.patch<{ url: string; _id: string }>(
+      '/auth/update-user-image',
+      formData
+    );
+  }
 }

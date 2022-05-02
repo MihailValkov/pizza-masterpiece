@@ -3,6 +3,7 @@ const userModel = require('../models/User');
 const { cookie_name } = require('../config/config');
 const { errorHandler } = require('../utils/errorHandler');
 const { removeObjectFields } = require('../utils/removeSafeData');
+const { deleteUserImage } = require('./upload');
 
 const createToken = ({ _id, email, role }) => jwt.create({ _id, email, role });
 
@@ -24,7 +25,7 @@ const login = async (req, res) => {
   try {
     const user = await userModel.findOne({ email: { $regex: email, $options: 'i' } });
     if (!user) {
-      return res.status(409).json({ message: 'Email or Password don\'t match!' });
+      return res.status(409).json({ message: "Email or Password don't match!" });
     }
     const match = await user.comparePasswords(password);
     if (!match) {
@@ -44,7 +45,7 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   const { email, password, repeatPassword } = req?.body;
   if (password.trim() !== repeatPassword.trim()) {
-    return res.status(409).json({ message: 'Passwords don\'t match!' });
+    return res.status(409).json({ message: "Passwords don't match!" });
   }
   try {
     let user = await userModel.findOne({ email: { $regex: email, $options: 'i' } });
@@ -71,9 +72,24 @@ const logout = async (req, res) => {
     .json({ message: 'Logout is successful' });
 };
 
+const updateUserImage = async (req, res, next) => {
+  const userId = req.user._id;
+  const image = req.image;
+  try {
+    const user = await userModel.findByIdAndUpdate(userId, { image });
+    if (user.image?._id) {
+      await deleteUserImage(user.image?._id);
+    }
+    res.status(200).json(image);
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
 module.exports = {
   login,
   register,
   logout,
   authenticate,
+  updateUserImage,
 };

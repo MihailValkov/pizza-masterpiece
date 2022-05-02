@@ -18,7 +18,9 @@ export const loginFailure = createAction(
 );
 
 export const loginCancel = createAction(`${authNamespace} Login Cancel`);
-export const loginClearError = createAction(`${authNamespace} Login Clear Error Message`);
+export const loginClearError = createAction(
+  `${authNamespace} Login Clear Error Message`
+);
 
 export const registerStart = createAction(
   `${authNamespace} Register Start`,
@@ -34,7 +36,9 @@ export const registerFailure = createAction(
   props<{ message: string }>()
 );
 export const registerCancel = createAction(`${authNamespace} Register Cancel`);
-export const registerClearError = createAction(`${authNamespace} Register Clear Error Message`);
+export const registerClearError = createAction(
+  `${authNamespace} Register Clear Error Message`
+);
 
 export const logoutStart = createAction(`${authNamespace} Logout Start`);
 export const logoutSuccess = createAction(`${authNamespace} Logout Success`);
@@ -49,10 +53,28 @@ export const authenticateSuccess = createAction(
 );
 
 export const authenticateFailure = createAction(
-  `${authNamespace} Authenticate Failure`,
+  `${authNamespace} Authenticate Failure`
 );
 
 export const authenticateCancel = createAction(
   `${authNamespace} Authenticate Cancel`
 );
 
+export const updateUserImageStart = createAction(
+  `${authNamespace} Update Image Start`,
+  props<{ formData: FormData }>()
+);
+
+export const updateUserImageSuccess = createAction(
+  `${authNamespace} Update Image Success`,
+  props<{ image: { url: string; _id: string } }>()
+);
+
+export const updateUserImageFailure = createAction(
+  `${authNamespace} Update Image Failure`,
+  props<{ message: string }>()
+);
+
+export const updateUserImageCancel = createAction(
+  `${authNamespace} Update Image Cancel`
+);

@@ -73,6 +73,23 @@ export class AuthEffects {
     );
   });
 
+  updateUserImage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.updateUserImageStart),
+      switchMap(({ formData }) =>
+        this.authService.updateUserImage(formData).pipe(
+          takeUntil(
+            this.actions$.pipe(ofType(authActions.updateUserImageFailure))
+          ),
+          map((image) => authActions.updateUserImageSuccess({ image })),
+          catchError((err: IErrorResponse) => [
+            authActions.updateUserImageFailure({ message: err.error.message }),
+          ])
+        )
+      )
+    )
+  );
+
   constructor(
     private authService: AuthService,
     private actions$: Actions,

@@ -79,5 +79,13 @@ export const authReducer = createReducer<IAuthState>(
     user: null,
     isLoading: false,
     success: false,
-  }))
+  })),
+  on(authActions.updateUserImageStart, startFetching),
+  on(authActions.updateUserImageSuccess, (state, { image }) => {
+    if (state.user) {
+      return { ...state, isLoading: false, user: { ...state.user, image } };
+    }
+    return state;
+  }),
+  on(authActions.updateUserImageFailure, setErrorMessage)
 );
