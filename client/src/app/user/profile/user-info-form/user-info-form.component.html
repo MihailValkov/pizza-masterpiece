@@ -1,4 +1,4 @@
-<form [formGroup]="userForm">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div [ngClass]="{'form-row':true,vertical: position === 'vertical'}">
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>person</mat-icon>
@@ -46,6 +46,7 @@
     </mat-form-field>
   </div>
   <div class="btn-actions" *ngIf="!readOnly">
-    <button mat-raised-button [disabled]="userForm.invalid" color="primary">Save</button>
+    <button mat-raised-button [disabled]="userForm.invalid" color="primary"
+      [disabled]="userForm.invalid || (updateUserInfoIdLoading$|async)">Save</button>
   </div>
 </form>

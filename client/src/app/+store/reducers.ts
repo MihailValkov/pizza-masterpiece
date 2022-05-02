@@ -7,6 +7,9 @@ export interface IAuthState {
   isLoading: boolean;
   message: string | null;
   success: boolean;
+  updateUserImageLoading: boolean;
+  updateUserInfoLoading: boolean;
+  updateUserAddressLoading: boolean;
 }
 
 const initialAuthState: IAuthState = {
@@ -14,6 +17,9 @@ const initialAuthState: IAuthState = {
   isLoading: false,
   message: null,
   success: false,
+  updateUserImageLoading: false,
+  updateUserInfoLoading: false,
+  updateUserAddressLoading: false,
 };
 
 const setUser = (
@@ -38,8 +44,11 @@ const setErrorMessage = (
 ) => ({
   ...state,
   message,
-  isLoading: false,
   success: false,
+  isLoading: false,
+  updateUserImageLoading: false,
+  updateUserInfoLoading: false,
+  updateUserAddressLoading: false,
 });
 
 const startFetching = (state: IAuthState) => ({
@@ -80,12 +89,34 @@ export const authReducer = createReducer<IAuthState>(
     isLoading: false,
     success: false,
   })),
-  on(authActions.updateUserImageStart, startFetching),
+  on(authActions.updateUserImageStart, (state) => ({
+    ...state,
+    updateUserImageLoading: true,
+  })),
   on(authActions.updateUserImageSuccess, (state, { image }) => {
     if (state.user) {
-      return { ...state, isLoading: false, user: { ...state.user, image } };
+      return {
+        ...state,
+        updateUserImageLoading: false,
+        user: { ...state.user, image },
+      };
     }
     return state;
   }),
-  on(authActions.updateUserImageFailure, setErrorMessage)
+  on(authActions.updateUserImageFailure, setErrorMessage),
+  on(authActions.updateUserInfoStart, (state) => ({
+    ...state,
+    updateUserInfoLoading: true,
+  })),
+  on(authActions.updateUserInfoSuccess, (state, { userInfo }) => {
+    if (state.user) {
+      return {
+        ...state,
+        updateUserInfoLoading: false,
+        user: { ...state.user, ...userInfo },
+      };
+    }
+    return state;
+  }),
+  on(authActions.updateUserInfoFailure, setErrorMessage)
 );

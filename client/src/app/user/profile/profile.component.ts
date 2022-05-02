@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { IRootState } from 'src/app/+store';
 import { updateUserImageStart } from 'src/app/+store/actions';
-import { selectIsLoading, selectUserImage } from 'src/app/+store/selectors';
+import { selectIsLoading, selectUpdateUserImageIsLoading, selectUpdateUserInfoIsLoading, selectUserImage } from 'src/app/+store/selectors';
 import { IFileImageUpload } from 'src/app/shared/interfaces/image-upload';
 @Component({
   selector: 'app-profile',
@@ -11,7 +11,8 @@ import { IFileImageUpload } from 'src/app/shared/interfaces/image-upload';
 })
 export class ProfileComponent implements OnInit {
   userImage$ = this.store.pipe(select(selectUserImage));
-  isLoading$ = this.store.pipe(select(selectIsLoading));
+  uploadImageIsLoading$ = this.store.pipe(select(selectUpdateUserImageIsLoading));
+  updateUserInfoIsLoading$ = this.store.pipe(select(selectUpdateUserInfoIsLoading));
 
   constructor(private store: Store<IRootState>) {}
 

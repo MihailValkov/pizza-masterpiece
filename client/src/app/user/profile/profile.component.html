@@ -9,7 +9,7 @@
       <mat-card-content>
         <div class="image-container">
           <img [src]="(userImage$ | async)?.url" alt="user-profile-image">
-          <app-file-upload (onPickFile)="onFileUpload($event)" [isLoading]="(isLoading$|async)|| false">
+          <app-file-upload (onPickFile)="onFileUpload($event)" [isLoading]="(uploadImageIsLoading$|async)|| false">
           </app-file-upload>
         </div>
         <app-user-info-form position="vertical" [readOnly]="true"></app-user-info-form>
@@ -22,7 +22,8 @@
             <mat-icon class="tab-icon">account_circle</mat-icon>
             Edit User Information
           </ng-template>
-          <div class="form-container">
+          <div class="form-container" [ngClass]="{'is-loading': (updateUserInfoIsLoading$|async)}">
+            <app-loading-spinner position="absolute" *ngIf="(updateUserInfoIsLoading$|async)"></app-loading-spinner>
             <app-user-info-form></app-user-info-form>
           </div>
         </mat-tab>

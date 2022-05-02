@@ -30,14 +30,6 @@ mat-card-content {
   justify-content: space-between;
   margin-bottom: 10px;
 }
-/* .form-row {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-}
-.form-row > * {
-  width: 32%;
-} */
 
 .form-control {
   width: 100%;

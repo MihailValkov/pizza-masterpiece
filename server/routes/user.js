@@ -15,6 +15,7 @@ router.patch(
   uploadUserImage,
   controller.updateUserImage
 );
+router.patch('/update-user-info', isAuthNeeded(), controller.updateUserInfo);
 
 router.get('/authenticate', isAuthNeeded(), controller.authenticate);
 

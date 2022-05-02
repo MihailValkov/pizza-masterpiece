@@ -86,10 +86,22 @@ const updateUserImage = async (req, res, next) => {
   }
 };
 
+const updateUserInfo = async (req, res, next) => {
+  const userId = req.user._id;
+  let { firstName, lastName, phoneNumber } = req.body;
+  try {
+    await userModel.findByIdAndUpdate(userId, { firstName, lastName, phoneNumber });
+    res.status(200).json({ firstName, lastName, phoneNumber });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
 module.exports = {
   login,
   register,
   logout,
   authenticate,
   updateUserImage,
+  updateUserInfo,
 };

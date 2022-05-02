@@ -40,6 +40,7 @@ mat-tab-group {
 }
 .form-container {
   margin-top: 20px;
+  position: relative;
 }
 
 .tab-icon {
@@ -58,6 +59,11 @@ app-file-upload {
   max-width: 300px;
   margin: 0px;
   margin-top: 10px;
+}
+
+.is-loading {
+  background: #6c70744a;
+  border-radius: 4px;
 }
 
 @media (max-width: 1000px) {

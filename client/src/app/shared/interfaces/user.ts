@@ -31,3 +31,15 @@ export interface ILoginUser {
   email: string;
   password: string;
 }
+
+export interface IUpdateUserInfo {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+}
+export interface IUpdateUserAddress {
+  country: string;
+  city: string;
+  street: string;
+  streetNumber: number;
+}

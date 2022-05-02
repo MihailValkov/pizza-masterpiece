@@ -79,9 +79,26 @@ export class AuthEffects {
       switchMap(({ formData }) =>
         this.authService.updateUserImage(formData).pipe(
           takeUntil(
-            this.actions$.pipe(ofType(authActions.updateUserImageFailure))
+            this.actions$.pipe(ofType(authActions.updateUserImageCancel))
           ),
           map((image) => authActions.updateUserImageSuccess({ image })),
+          catchError((err: IErrorResponse) => [
+            authActions.updateUserImageFailure({ message: err.error.message }),
+          ])
+        )
+      )
+    )
+  );
+
+  updateUserInfo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.updateUserInfoStart),
+      switchMap((userInfo) =>
+        this.authService.updateUserInfo(userInfo).pipe(
+          takeUntil(
+            this.actions$.pipe(ofType(authActions.updateUserInfoCancel))
+          ),
+          map((userInfo) => authActions.updateUserInfoSuccess({ userInfo })),
           catchError((err: IErrorResponse) => [
             authActions.updateUserImageFailure({ message: err.error.message }),
           ])

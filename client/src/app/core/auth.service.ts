@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ILoginUser, IRegisterUser, IUser } from '../shared/interfaces/user';
+import {
+  ILoginUser,
+  IRegisterUser,
+  IUpdateUserInfo,
+  IUser,
+} from '../shared/interfaces/user';
 
 @Injectable()
 export class AuthService {
@@ -26,5 +31,9 @@ export class AuthService {
       '/auth/update-user-image',
       formData
     );
+  }
+
+  updateUserInfo(userInfo: IUpdateUserInfo): Observable<IUpdateUserInfo> {
+    return this.http.patch<IUpdateUserInfo>('/auth/update-user-info', userInfo);
   }
 }

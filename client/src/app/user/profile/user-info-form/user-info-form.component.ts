@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { IRootState } from 'src/app/+store';
-import { selectUser } from 'src/app/+store/selectors';
+import { updateUserInfoStart } from 'src/app/+store/actions';
+import { selectUpdateUserInfoIsLoading, selectUser } from 'src/app/+store/selectors';
 
 @Component({
   selector: 'app-user-info-form',
@@ -14,6 +15,7 @@ export class UserInfoFormComponent implements OnInit {
   @Input() readOnly: boolean = false;
   userForm!: FormGroup;
   user$ = this.store.pipe(select(selectUser));
+  updateUserInfoIdLoading$ = this.store.pipe(select(selectUpdateUserInfoIsLoading))
 
   constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
 
@@ -35,5 +37,13 @@ export class UserInfoFormComponent implements OnInit {
         phoneNumber: user?.phoneNumber,
       });
     });
+  }
+
+  onSubmit() {
+    if (this.userForm.invalid) {
+      return;
+    }
+    const { firstName, lastName, phoneNumber } = this.userForm.value;
+    this.store.dispatch(updateUserInfoStart({ firstName, lastName, phoneNumber }));
   }
 }

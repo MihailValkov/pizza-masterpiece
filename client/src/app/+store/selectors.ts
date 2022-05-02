@@ -16,6 +16,18 @@ export const selectIsLoading = createSelector(
   selectAuth,
   (state) => state.isLoading
 );
+export const selectUpdateUserImageIsLoading = createSelector(
+  selectAuth,
+  (state) => state.updateUserImageLoading
+);
+export const selectUpdateUserInfoIsLoading = createSelector(
+  selectAuth,
+  (state) => state.updateUserInfoLoading
+);
+export const selectUpdateUserAddressIsLoading = createSelector(
+  selectAuth,
+  (state) => state.updateUserAddressLoading
+);
 export const selectErrorMessage = createSelector(
   selectAuth,
   (state) => state.message

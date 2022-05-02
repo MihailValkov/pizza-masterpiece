@@ -1,5 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { ILoginUser, IRegisterUser, IUser } from '../shared/interfaces/user';
+import {
+  ILoginUser,
+  IRegisterUser,
+  IUpdateUserInfo,
+  IUser,
+} from '../shared/interfaces/user';
 const authNamespace = '[Auth]';
 
 export const loginStart = createAction(
@@ -77,4 +82,23 @@ export const updateUserImageFailure = createAction(
 
 export const updateUserImageCancel = createAction(
   `${authNamespace} Update Image Cancel`
+);
+
+export const updateUserInfoStart = createAction(
+  `${authNamespace} Update User Info Start`,
+  props<IUpdateUserInfo>()
+);
+
+export const updateUserInfoSuccess = createAction(
+  `${authNamespace} Update User Info Success`,
+  props<{ userInfo: IUpdateUserInfo }>()
+);
+
+export const updateUserInfoFailure = createAction(
+  `${authNamespace} Update User Info Failure`,
+  props<{ message: string }>()
+);
+
+export const updateUserInfoCancel = createAction(
+  `${authNamespace} Update User Info Cancel`
 );
