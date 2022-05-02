@@ -23,6 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const modules = [
   MatFormFieldModule,
@@ -49,6 +50,7 @@ const modules = [
   MatBadgeModule,
   MatStepperModule,
   MatSortModule,
+  MatTabsModule,
 ];
 
 @NgModule({

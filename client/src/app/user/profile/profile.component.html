@@ -1,0 +1,51 @@
+<section class="profile-container">
+  <app-aside-menu></app-aside-menu>
+  <div class="profile-content">
+    <mat-toolbar color="primary">
+      My Profile
+    </mat-toolbar>
+    <mat-card>
+
+      <mat-card-content>
+        <div class="image-container">
+          <!-- <img [src]="(userImage | async)?.url" alt="user-profile-image"> -->
+          <img src="https://res.cloudinary.com/dofijitd8/image/upload/v1645731949/virtual-store/images/users/lfzxu45mefh4zc9wuwad.jpg" alt="user-profile-image">
+          <app-file-upload (onPickFile)="onFileUpload($event)"></app-file-upload>
+        </div>
+        <app-user-info-form position="vertical" [readOnly]="true"></app-user-info-form>
+        <app-user-address-form position="vertical" [readOnly]="true"></app-user-address-form>
+        
+      </mat-card-content>
+      <mat-tab-group color="primary">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">account_circle</mat-icon>
+            Edit User Information
+          </ng-template>
+          <div class="form-container">
+            <app-user-info-form></app-user-info-form>
+          </div>
+        </mat-tab>
+      
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">edit_location</mat-icon>
+            Edit User Address
+          </ng-template>
+          <div class="form-container">
+            <app-user-address-form></app-user-address-form>
+          </div>
+        </mat-tab>
+      
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">edit_location</mat-icon>
+            Change your password
+          </ng-template>
+      
+          Content 3
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</section>

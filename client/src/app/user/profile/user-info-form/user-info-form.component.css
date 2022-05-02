@@ -1,0 +1,29 @@
+form {
+  flex-direction: column;
+  padding: 0px 10px;
+}
+.form-control {
+  width: 100%;
+}
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+.form-row > * {
+  width: 48%;
+}
+.vertical {
+  flex-direction: column;
+}
+.vertical > * {
+  width: 100%;
+}
+
+.btn-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.btn-actions button {
+  width: 150px;
+}

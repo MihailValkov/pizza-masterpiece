@@ -1,0 +1,57 @@
+<form [formGroup]="addressForm">
+  <div [ngClass]="{'form-row':true,vertical: position === 'vertical'}">
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>location_on</mat-icon>
+      <mat-label>Country</mat-label>
+      <input type="text" matInput formControlName="country" placeholder="Ex. Bulgaria" [readonly]="readOnly">
+      <mat-error
+        *ngIf="addressForm.controls['country'].hasError('minlength') && !addressForm.controls['country'].hasError('required')">
+        Country should be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="addressForm.controls['country'].hasError('required')">
+        Country is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>location_city</mat-icon>
+      <mat-label>City</mat-label>
+      <input type="text" matInput formControlName="city" placeholder="Ex. Sofia" [readonly]="readOnly">
+      <mat-error
+        *ngIf="addressForm.controls['city'].hasError('minlength') && !addressForm.controls['city'].hasError('required')">
+        City should be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+        City is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div [ngClass]="{'form-row':true,vertical: position === 'vertical'}">
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>streetview</mat-icon>
+      <mat-label>Street</mat-label>
+      <input type="text" matInput formControlName="street" placeholder="Ex. Bul. Bulgaria" [readonly]="readOnly">
+      <mat-error
+        *ngIf="addressForm.controls['street'].hasError('minlength') && !addressForm.controls['street'].hasError('required')">
+        Street should be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="addressForm.controls['street'].hasError('required')">
+        Street is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control" appearance="outline">
+      <mat-icon matPrefix>home</mat-icon>
+      <mat-label>Street Number</mat-label>
+      <input type="number" matInput formControlName="streetNumber" placeholder="Ex. 113" [readonly]="readOnly">
+      <mat-error
+        *ngIf="addressForm.controls['streetNumber'].hasError('min') && !addressForm.controls['streetNumber'].hasError('required')">
+        Street Number should be minimum 1
+      </mat-error>
+      <mat-error *ngIf="addressForm.controls['streetNumber'].hasError('required')">
+        Street Number is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="btn-actions" *ngIf="!readOnly">
+    <button mat-raised-button [disabled]="addressForm.invalid" color="primary">Save</button>
+  </div>
+</form>

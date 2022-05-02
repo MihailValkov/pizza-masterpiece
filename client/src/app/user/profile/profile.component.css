@@ -1,0 +1,67 @@
+.profile-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.profile-content {
+  width: 100%;
+}
+
+app-aside-menu {
+  flex: 2 1;
+  position: sticky;
+  top: 3rem;
+}
+
+.mat-card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container {
+  flex: 4;
+  padding: 20px;
+  padding-top: 0;
+  justify-content: flex-start;
+}
+
+.mat-card-content app-user-info-form,
+.mat-card-content app-user-address-form {
+  flex: 4;
+  padding: 20px;
+  padding-top: 0;
+}
+
+mat-tab-group {
+  flex: 8;
+  padding: 20px;
+  padding-top: 0px;
+}
+.form-container {
+  margin-top: 20px;
+}
+
+.tab-icon {
+  margin-right: 10px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: contain;
+}
+app-file-upload {
+  width: 100%;
+  max-width: 300px;
+  margin: 0px;
+  margin-top: 10px;
+}
+
+@media (max-width: 1000px) {
+  app-aside-menu {
+    display: none;
+  }
+}

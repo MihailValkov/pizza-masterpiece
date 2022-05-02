@@ -8,6 +8,10 @@ interface ISelectState {
 export const selectAuth = (state: ISelectState) => state.auth;
 
 export const selectUser = createSelector(selectAuth, (state) => state.user);
+export const selectUserImage = createSelector(
+  selectAuth,
+  (state) => state.user?.image
+);
 export const selectIsLoading = createSelector(
   selectAuth,
   (state) => state.isLoading
