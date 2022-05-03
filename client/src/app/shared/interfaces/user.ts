@@ -43,3 +43,8 @@ export interface IUpdateUserAddress {
   street: string;
   streetNumber: number;
 }
+export interface IUpdateUserPassword {
+  oldPassword: string;
+  password: string;
+  repeatPassword: string;
+}

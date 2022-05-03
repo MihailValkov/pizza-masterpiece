@@ -7,6 +7,7 @@ import { ILoginUser, IRegisterUser, IUser } from '../shared/interfaces/user';
 import { AuthService } from '../core/auth.service';
 import * as authActions from './actions';
 import { IErrorResponse } from '../shared/interfaces/error-response';
+import { NotificationService } from '../core/notification.service';
 
 @Injectable()
 export class AuthEffects {
@@ -81,10 +82,22 @@ export class AuthEffects {
           takeUntil(
             this.actions$.pipe(ofType(authActions.updateUserImageCancel))
           ),
-          map((image) => authActions.updateUserImageSuccess({ image })),
-          catchError((err: IErrorResponse) => [
-            authActions.updateUserImageFailure({ message: err.error.message }),
-          ])
+          map((image) => {
+            this.notificationService.showMessage(
+              'Your image has been changed successfully!',
+              'success'
+            );
+            return authActions.updateUserImageSuccess({ image });
+          }),
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [
+              authActions.updateUserImageFailure({
+                message,
+              }),
+            ];
+          })
         )
       )
     )
@@ -98,10 +111,77 @@ export class AuthEffects {
           takeUntil(
             this.actions$.pipe(ofType(authActions.updateUserInfoCancel))
           ),
-          map((userInfo) => authActions.updateUserInfoSuccess({ userInfo })),
-          catchError((err: IErrorResponse) => [
-            authActions.updateUserImageFailure({ message: err.error.message }),
-          ])
+          map((userInfo) => {
+            this.notificationService.showMessage(
+              'Your personal information has been changed successfully!',
+              'success'
+            );
+            return authActions.updateUserInfoSuccess({ userInfo });
+          }),
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [
+              authActions.updateUserInfoFailure({
+                message,
+              }),
+            ];
+          })
+        )
+      )
+    )
+  );
+
+  updateUserAddress$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.updateUserAddressStart),
+      switchMap((userAddress) =>
+        this.authService.updateUserAddress(userAddress).pipe(
+          takeUntil(
+            this.actions$.pipe(ofType(authActions.updateUserAddressCancel))
+          ),
+          map((userAddress) => {
+            this.notificationService.showMessage(
+              'Your address has been changed successfully!',
+              'success'
+            );
+            return authActions.updateUserAddressSuccess({ userAddress });
+          }),
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [
+              authActions.updateUserAddressFailure({
+                message,
+              }),
+            ];
+          })
+        )
+      )
+    )
+  );
+
+  updateUserPassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.updateUserPasswordStart),
+      switchMap((userPassword) =>
+        this.authService.updateUserPassword(userPassword).pipe(
+          takeUntil(
+            this.actions$.pipe(ofType(authActions.updateUserPasswordCancel))
+          ),
+          map(({ message }) => {
+            this.notificationService.showMessage(message, 'success');
+            return authActions.updateUserPasswordSuccess();
+          }),
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [
+              authActions.updateUserPasswordFailure({
+                message,
+              }),
+            ];
+          })
         )
       )
     )
@@ -109,6 +189,7 @@ export class AuthEffects {
 
   constructor(
     private authService: AuthService,
+    private notificationService: NotificationService,
     private actions$: Actions,
     private router: Router
   ) {}

@@ -27,7 +27,8 @@ app-aside-menu {
 }
 
 .mat-card-content app-user-info-form,
-.mat-card-content app-user-address-form {
+.mat-card-content app-user-address-form,
+.mat-card-content app-user-password-form  {
   flex: 4;
   padding: 20px;
   padding-top: 0;

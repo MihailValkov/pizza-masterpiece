@@ -2,7 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { IRootState } from 'src/app/+store';
-import { selectUser } from 'src/app/+store/selectors';
+import { updateUserAddressStart } from 'src/app/+store/actions';
+import {
+  selectUpdateUserAddressIsLoading,
+  selectUser,
+} from 'src/app/+store/selectors';
 
 @Component({
   selector: 'app-user-address-form',
@@ -14,6 +18,9 @@ export class UserAddressFormComponent implements OnInit {
   @Input() readOnly: boolean = false;
   addressForm!: FormGroup;
   user$ = this.store.pipe(select(selectUser));
+  updateUserAddressIsLoading$ = this.store.pipe(
+    select(selectUpdateUserAddressIsLoading)
+  );
 
   constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
 
@@ -27,5 +34,20 @@ export class UserAddressFormComponent implements OnInit {
     this.user$.subscribe((user) => {
       this.addressForm.setValue(user!.address);
     });
+  }
+
+  onSubmit() {
+    if (this.addressForm.invalid) {
+      return;
+    }
+    const { country, city, street, streetNumber } = this.addressForm.value;
+    this.store.dispatch(
+      updateUserAddressStart({
+        country,
+        city,
+        street,
+        streetNumber: Number(streetNumber),
+      })
+    );
   }
 }

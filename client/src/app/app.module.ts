@@ -30,7 +30,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ProductItemComponent,
     ProductsListComponent,
     ProductDetailComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

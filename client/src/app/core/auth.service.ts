@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import {
   ILoginUser,
   IRegisterUser,
+  IUpdateUserAddress,
   IUpdateUserInfo,
+  IUpdateUserPassword,
   IUser,
 } from '../shared/interfaces/user';
-
 @Injectable()
 export class AuthService {
   constructor(private http: HttpClient) {}
@@ -35,5 +37,23 @@ export class AuthService {
 
   updateUserInfo(userInfo: IUpdateUserInfo): Observable<IUpdateUserInfo> {
     return this.http.patch<IUpdateUserInfo>('/auth/update-user-info', userInfo);
+  }
+
+  updateUserAddress(
+    userAddress: IUpdateUserAddress
+  ): Observable<IUpdateUserAddress> {
+    return this.http.patch<IUpdateUserAddress>(
+      '/auth/update-user-address',
+      userAddress
+    );
+  }
+
+  updateUserPassword(
+    userPassword: IUpdateUserPassword
+  ): Observable<{ message: string }> {
+    return this.http.patch<{ message: string }>(
+      '/auth/update-user-password',
+      userPassword
+    );
   }
 }

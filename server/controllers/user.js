@@ -88,10 +88,45 @@ const updateUserImage = async (req, res, next) => {
 
 const updateUserInfo = async (req, res, next) => {
   const userId = req.user._id;
-  let { firstName, lastName, phoneNumber } = req.body;
+  const { firstName, lastName, phoneNumber } = req.body;
   try {
     await userModel.findByIdAndUpdate(userId, { firstName, lastName, phoneNumber });
     res.status(200).json({ firstName, lastName, phoneNumber });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
+const updateUserAddress = async (req, res, next) => {
+  const userId = req.user._id;
+  const { country, city, street, streetNumber } = req.body;
+  try {
+    await userModel.findByIdAndUpdate(userId, { address: { country, city, street, streetNumber } });
+    res.status(200).json({ country, city, street, streetNumber });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
+const updateUserPassword = async (req, res, next) => {
+  const { oldPassword, password, repeatPassword } = req.body;
+
+  if (oldPassword == '' || password == '' || repeatPassword == '') {
+    return res.status(400).json({ message: 'All fields are required!' });
+  }
+  if (password != repeatPassword) {
+    return res.status(409).json({ message: "Passwords don't match!" });
+  }
+
+  try {
+    const user = await userModel.findById(req.user._id);
+    const match = await user.comparePasswords(oldPassword);
+    if (!match) {
+      return res.status(409).json({ message: 'Old Password is not correct! Please try again.' });
+    }
+    user.password = password;
+    await user.save();
+    res.status(200).json({ message: 'Password has been changed successfully!' });
   } catch (error) {
     errorHandler(error, res, req);
   }
@@ -104,4 +139,6 @@ module.exports = {
   authenticate,
   updateUserImage,
   updateUserInfo,
+  updateUserAddress,
+  updateUserPassword,
 };

@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserInfoFormComponent } from './profile/user-info-form/user-info-form.component';
 import { UserAddressFormComponent } from './profile/user-address-form/user-address-form.component';
+import { UserPasswordFormComponent } from './profile/user-password-form/user-password-form.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -18,6 +19,7 @@ import { UserAddressFormComponent } from './profile/user-address-form/user-addre
     ProfileComponent,
     UserInfoFormComponent,
     UserAddressFormComponent,
+    UserPasswordFormComponent,
   ],
   imports: [
     CommonModule,

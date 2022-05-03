@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm">
+<form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
   <div [ngClass]="{'form-row':true,vertical: position === 'vertical'}">
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>location_on</mat-icon>
@@ -52,6 +52,7 @@
     </mat-form-field>
   </div>
   <div class="btn-actions" *ngIf="!readOnly">
-    <button mat-raised-button [disabled]="addressForm.invalid" color="primary">Save</button>
+    <button mat-raised-button [disabled]="addressForm.invalid || (updateUserAddressIsLoading$|async)"
+      color="primary">Save</button>
   </div>
 </form>

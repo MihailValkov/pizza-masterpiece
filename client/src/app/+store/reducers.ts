@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { IUser } from '../shared/interfaces/user';
 import * as authActions from './actions';
@@ -10,6 +11,7 @@ export interface IAuthState {
   updateUserImageLoading: boolean;
   updateUserInfoLoading: boolean;
   updateUserAddressLoading: boolean;
+  updateUserPasswordLoading: boolean;
 }
 
 const initialAuthState: IAuthState = {
@@ -20,6 +22,7 @@ const initialAuthState: IAuthState = {
   updateUserImageLoading: false,
   updateUserInfoLoading: false,
   updateUserAddressLoading: false,
+  updateUserPasswordLoading: false,
 };
 
 const setUser = (
@@ -29,7 +32,6 @@ const setUser = (
   }:
     | ReturnType<typeof authActions.loginSuccess>
     | ReturnType<typeof authActions.registerSuccess>
-    | ReturnType<typeof authActions.authenticateSuccess>
 ) => ({
   ...state,
   user,
@@ -76,7 +78,14 @@ export const authReducer = createReducer<IAuthState>(
     success: false,
   })),
   on(authActions.authenticateStart, startFetching),
-  on(authActions.authenticateSuccess, setUser),
+  on(authActions.authenticateSuccess, (state, { user }) => {
+    return {
+      ...state,
+      user,
+      message: null,
+      isLoading: false,
+    };
+  }),
   on(authActions.authenticateFailure, (state) => ({
     ...state,
     isLoading: false,
@@ -118,5 +127,34 @@ export const authReducer = createReducer<IAuthState>(
     }
     return state;
   }),
-  on(authActions.updateUserInfoFailure, setErrorMessage)
+  on(authActions.updateUserInfoFailure, setErrorMessage),
+  on(authActions.updateUserAddressStart, (state) => ({
+    ...state,
+    updateUserAddressLoading: true,
+  })),
+  on(authActions.updateUserAddressSuccess, (state, { userAddress }) => {
+    if (state.user) {
+      return {
+        ...state,
+        updateUserAddressLoading: false,
+        user: { ...state.user, address: userAddress },
+      };
+    }
+    return state;
+  }),
+  on(authActions.updateUserInfoFailure, setErrorMessage),
+  on(authActions.updateUserPasswordStart, (state) => ({
+    ...state,
+    updateUserPasswordLoading: true,
+  })),
+  on(authActions.updateUserPasswordSuccess, (state) => {
+    if (state.user) {
+      return {
+        ...state,
+        updateUserPasswordLoading: false,
+      };
+    }
+    return state;
+  }),
+  on(authActions.updateUserPasswordFailure, setErrorMessage)
 );

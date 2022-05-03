@@ -2,7 +2,9 @@ import { createAction, props } from '@ngrx/store';
 import {
   ILoginUser,
   IRegisterUser,
+  IUpdateUserAddress,
   IUpdateUserInfo,
+  IUpdateUserPassword,
   IUser,
 } from '../shared/interfaces/user';
 const authNamespace = '[Auth]';
@@ -101,4 +103,41 @@ export const updateUserInfoFailure = createAction(
 
 export const updateUserInfoCancel = createAction(
   `${authNamespace} Update User Info Cancel`
+);
+
+export const updateUserAddressStart = createAction(
+  `${authNamespace} Update User Address Start`,
+  props<IUpdateUserAddress>()
+);
+
+export const updateUserAddressSuccess = createAction(
+  `${authNamespace} Update User Address Success`,
+  props<{ userAddress: IUpdateUserAddress }>()
+);
+
+export const updateUserAddressFailure = createAction(
+  `${authNamespace} Update User Address Failure`,
+  props<{ message: string }>()
+);
+
+export const updateUserAddressCancel = createAction(
+  `${authNamespace} Update User Address Cancel`
+);
+
+export const updateUserPasswordStart = createAction(
+  `${authNamespace} Update User Password Start`,
+  props<IUpdateUserPassword>()
+);
+
+export const updateUserPasswordSuccess = createAction(
+  `${authNamespace} Update User Password Success`
+);
+
+export const updateUserPasswordFailure = createAction(
+  `${authNamespace} Update User Password Failure`,
+  props<{ message: string }>()
+);
+
+export const updateUserPasswordCancel = createAction(
+  `${authNamespace} Update User Password Cancel`
 );

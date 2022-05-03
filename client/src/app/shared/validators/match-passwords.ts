@@ -9,6 +9,11 @@ export function passwordsMatchValidator(): ValidatorFn {
       control.get('repeatPassword')?.setErrors({ isNotSame: true });
       return { isNotSame: true };
     }
+
+    if (password && repeatPassword && password === repeatPassword) {
+      control.get('repeatPassword')?.setErrors(null);
+      return null;
+    }
     return null;
   };
 }

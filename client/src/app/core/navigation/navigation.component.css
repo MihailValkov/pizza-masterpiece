@@ -18,7 +18,7 @@ nav ul li button:hover,
   border-bottom: 1px solid white;
 }
 
-nav ul li a span {
+nav ul li a span , nav ul li button span{
   margin-left: 13px;
 }
 
