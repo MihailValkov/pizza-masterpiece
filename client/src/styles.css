@@ -38,3 +38,8 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(77, 75, 75, 0.76);
 }
+
+.mat-snack-bar-container {
+  margin-top: 5rem!important;
+  margin-bottom: 3rem!important;
+}

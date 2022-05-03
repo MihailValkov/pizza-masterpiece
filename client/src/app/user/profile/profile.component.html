@@ -8,7 +8,7 @@
 
       <mat-card-content>
         <div class="image-container">
-          <img [src]="(userImage$ | async)?.url" alt="user-profile-image">
+          <img [src]="(userImage$ | async)?.url || noAvatarImagePath" alt="user-profile-image">
           <app-file-upload (onPickFile)="onFileUpload($event)" [isLoading]="(uploadImageIsLoading$|async)|| false">
           </app-file-upload>
         </div>
@@ -27,7 +27,7 @@
           </div>
         </mat-tab>
 
-        <mat-tab >
+        <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon class="tab-icon">edit_location</mat-icon>
             Edit your address
@@ -43,8 +43,8 @@
             <mat-icon class="tab-icon">edit_location</mat-icon>
             Change your password
           </ng-template>
-          <div class="form-container" [ngClass]="{'is-loading': (updateUserAddressIsLoading$|async)}">
-            <app-loading-spinner position="absolute" *ngIf="(updateUserAddressIsLoading$|async)"></app-loading-spinner>
+          <div class="form-container" [ngClass]="{'is-loading': (updateUserPasswordIsLoading$|async)}">
+            <app-loading-spinner position="absolute" *ngIf="(updateUserPasswordIsLoading$|async)"></app-loading-spinner>
             <app-user-password-form></app-user-password-form>
           </div>
         </mat-tab>

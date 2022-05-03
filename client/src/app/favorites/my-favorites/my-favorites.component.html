@@ -5,7 +5,7 @@
       My Favorites
     </mat-toolbar>
     <app-favorites-table [products]="products" *ngIf="products.length > 0"></app-favorites-table>
-    <app-no-products *ngIf="products.length === 0"></app-no-products>
+    <app-no-products *ngIf="products.length === 0" type="favorites"></app-no-products>
   </div>
 
 </section>

@@ -1,12 +1,19 @@
 .no-products {
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   height: calc(80vh - 10rem);
 }
-.no-products img {
-  height: 300px;
+
+.icon {
+  font-size: 12rem;
+  height: 200px;
+  margin-bottom: 20px;
+  text-align: center;
   width: 100%;
-  object-fit: contain;
+}
+
+.mat-card-title {
+  margin-bottom: 12px;
+}
+.btn {
+  margin-top: 20px;
 }

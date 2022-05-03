@@ -28,6 +28,11 @@ export const selectUpdateUserAddressIsLoading = createSelector(
   selectAuth,
   (state) => state.updateUserAddressLoading
 );
+
+export const selectUpdateUserPasswordIsLoading = createSelector(
+  selectAuth,
+  (state) => state.updateUserPasswordLoading
+);
 export const selectErrorMessage = createSelector(
   selectAuth,
   (state) => state.message

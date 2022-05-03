@@ -8,7 +8,7 @@ import {
 } from 'src/app/+store/actions';
 import {
   selectUser,
-  selectUpdateUserInfoIsLoading,
+  selectUpdateUserPasswordIsLoading,
 } from 'src/app/+store/selectors';
 import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwords';
 
@@ -25,8 +25,8 @@ export class UserPasswordFormComponent implements OnInit {
   @Input() readOnly: boolean = false;
   passwordForm!: FormGroup;
   user$ = this.store.pipe(select(selectUser));
-  updateUserInfoIdLoading$ = this.store.pipe(
-    select(selectUpdateUserInfoIsLoading)
+  updateUserPasswordIsLoading$ = this.store.pipe(
+    select(selectUpdateUserPasswordIsLoading)
   );
 
   constructor(private fb: FormBuilder, private store: Store<IRootState>) {}

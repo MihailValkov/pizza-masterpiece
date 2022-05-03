@@ -29,6 +29,7 @@
 .user-role {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .user-status .mat-icon,
 .user-role .mat-icon {
@@ -48,10 +49,10 @@
   margin-bottom: 10px;
 }
 
-.user-navigation {
+.navigation li{
   background-color: #fafafa;
 }
-.user-navigation a {
+.navigation a {
   border: 1px solid #ccc;
   margin-bottom: 5px;
 }

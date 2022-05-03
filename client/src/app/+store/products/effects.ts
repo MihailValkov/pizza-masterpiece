@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, takeUntil } from 'rxjs';
+import { NotificationService } from 'src/app/core/notification.service';
 import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { ProductService } from '../../products/product.service';
@@ -18,9 +18,11 @@ export class ProductsEffects {
             this.actions$.pipe(ofType(productsActions.loadProductCancel))
           ),
           map((product) => productsActions.loadProductSuccess({ product })),
-          catchError(({ error }: IErrorResponse) => [
-            productsActions.loadProductFailure({ message: error.message }),
-          ])
+          catchError(({ error }: IErrorResponse) => {
+            const message = error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [productsActions.loadProductFailure({ message })];
+          })
         )
       )
     )
@@ -37,9 +39,11 @@ export class ProductsEffects {
           map((products: IProduct[]) =>
             productsActions.loadProductsSuccess({ products })
           ),
-          catchError(({ error }: IErrorResponse) => [
-            productsActions.loadProductsFailure({ message: error.message }),
-          ])
+          catchError(({ error }: IErrorResponse) => {
+            const message = error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [productsActions.loadProductsFailure({ message })];
+          })
         )
       )
     )
@@ -47,7 +51,7 @@ export class ProductsEffects {
 
   constructor(
     private productService: ProductService,
-    private router: Router,
+    private notificationService: NotificationService,
     private actions$: Actions
   ) {}
 }

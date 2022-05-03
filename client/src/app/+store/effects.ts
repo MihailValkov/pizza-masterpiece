@@ -18,12 +18,18 @@ export class AuthEffects {
         this.authService.login(data).pipe(
           takeUntil(this.actions$.pipe(ofType(authActions.loginCancel))),
           map((user: IUser) => {
+            this.notificationService.showMessage(
+              'Your image has been changed successfully!',
+              'success'
+            );
             this.router.navigateByUrl('/');
             return authActions.loginSuccess({ user });
           }),
-          catchError((err: IErrorResponse) => [
-            authActions.loginFailure({ message: err.error.message }),
-          ])
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [authActions.loginFailure({ message: err.error.message })];
+          })
         )
       )
     );
@@ -36,12 +42,20 @@ export class AuthEffects {
         this.authService.register(data).pipe(
           takeUntil(this.actions$.pipe(ofType(authActions.registerCancel))),
           map((user: IUser) => {
+            this.notificationService.showMessage(
+              'Register successfully!',
+              'success'
+            );
             this.router.navigateByUrl('/');
             return authActions.registerSuccess({ user });
           }),
-          catchError((err: IErrorResponse) => [
-            authActions.registerFailure({ message: err.error.message }),
-          ])
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [
+              authActions.registerFailure({ message: err.error.message }),
+            ];
+          })
         )
       )
     );
@@ -66,6 +80,10 @@ export class AuthEffects {
       switchMap(() =>
         this.authService.logout().pipe(
           map(() => {
+            this.notificationService.showMessage(
+              'Logout successfully!',
+              'success'
+            );
             this.router.navigateByUrl('/');
             return authActions.logoutSuccess();
           })

@@ -1,13 +1,16 @@
 <mat-card class="aside-menu">
   <div class="user-container-info">
-    <img
-      src="https://res.cloudinary.com/dofijitd8/image/upload/v1645731949/virtual-store/images/users/lfzxu45mefh4zc9wuwad.jpg"
-      alt="profile-img">
+    <img [src]="(userImage$ | async)?.url || noAvatarImagePath" alt="profile-img">
     <div class="user-info">
-      <p><strong>Mihail</strong></p>
+      <p><strong>{{((user$ | async)?.firstName) || 'Anonymous'}} </strong></p>
       <p class="user-role">
-        <mat-icon>admin_panel_settings</mat-icon>
-        <span>Admin</span>
+        <mat-icon *ngIf="(user$ | async)?.role === 'Admin'">
+          admin_panel_settings
+        </mat-icon>
+        <mat-icon *ngIf="(user$ | async)?.role !== 'Admin'">
+          person
+        </mat-icon>
+        <span>{{(user$ | async)?.role || 'Guest'}}</span>
       </p>
       <p class="user-status">
         <mat-icon>circle</mat-icon>
@@ -23,34 +26,53 @@
           Profile
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <ul class="user-navigation">
-        <li>
+      <ul class="navigation">
+        <li *ngIf="(user$ | async)">
           <a mat-menu-item routerLink="/user/profile">
             <mat-icon routerLinkActive="active">personal_injury</mat-icon>
-            <span>My Profile</span>
+            <span>Profile</span>
           </a>
         </li>
         <li>
           <a mat-menu-item routerLink="/cart">
             <mat-icon routerLinkActive="active">shopping_cart</mat-icon>
-            Your Cart
+            Cart
           </a>
         </li>
         <li>
           <a mat-menu-item routerLink="/favorites">
             <mat-icon routerLinkActive="active">favorites</mat-icon>
-            Your Favorites
+            Favorites
           </a>
         </li>
       </ul>
     </mat-expansion-panel>
-    <mat-expansion-panel>
+    <mat-expansion-panel *ngIf="(user$ | async)?.role === 'Admin'">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          test
+          Administration
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>This is the primary content of the panel.</p>
+      <ul class="navigation">
+        <li>
+          <a mat-menu-item routerLink="/user/profile">
+            <mat-icon routerLinkActive="active">personal_injury</mat-icon>
+            <span>Profile</span>
+          </a>
+        </li>
+        <li>
+          <a mat-menu-item routerLink="/cart">
+            <mat-icon routerLinkActive="active">shopping_cart</mat-icon>
+            Cart
+          </a>
+        </li>
+        <li>
+          <a mat-menu-item routerLink="/favorites">
+            <mat-icon routerLinkActive="active">favorites</mat-icon>
+            Favorites
+          </a>
+        </li>
+      </ul>
     </mat-expansion-panel>
   </mat-accordion>
 

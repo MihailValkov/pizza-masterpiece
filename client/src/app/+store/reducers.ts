@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { IUser } from '../shared/interfaces/user';
 import * as authActions from './actions';
@@ -51,6 +50,7 @@ const setErrorMessage = (
   updateUserImageLoading: false,
   updateUserInfoLoading: false,
   updateUserAddressLoading: false,
+  updateUserPasswordLoading: false,
 });
 
 const startFetching = (state: IAuthState) => ({

@@ -80,7 +80,7 @@ export const cartReducer = createReducer<ICartState>(
       price = 0;
     }
 
-    const taxes = price > 0 && price < 30 ? 5 : 0;
+    const taxes = price > 0 && price < 30 && quantity !== 0 ? 5 : 0;
     let cartList = [];
     if (quantity === 0) {
       cartList = [

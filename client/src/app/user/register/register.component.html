@@ -1,5 +1,5 @@
 <mat-card class="register-container">
-  <img class="register-image" src="./../../../assets/register.png" alt="login-image" />
+  <img class="register-image" [src]="registerLogoPath" alt="login-image" />
   <form [formGroup]="form" class="register-form" (ngSubmit)="submitHandler()">
 
     <mat-form-field class="form-control" appearance="outline">

@@ -16,6 +16,7 @@ import {
 export class UserAddressFormComponent implements OnInit {
   @Input() position: 'horizontal' | 'vertical' = 'horizontal';
   @Input() readOnly: boolean = false;
+
   addressForm!: FormGroup;
   user$ = this.store.pipe(select(selectUser));
   updateUserAddressIsLoading$ = this.store.pipe(
@@ -46,7 +47,7 @@ export class UserAddressFormComponent implements OnInit {
         country,
         city,
         street,
-        streetNumber: Number(streetNumber),
+        streetNumber,
       })
     );
   }

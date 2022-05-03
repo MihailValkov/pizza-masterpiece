@@ -5,7 +5,7 @@
       My Cart
     </mat-toolbar>
     <app-cart-table [products]="products" *ngIf="products.length > 0"></app-cart-table>
-    <app-no-products *ngIf="products.length === 0"></app-no-products>
+    <app-no-products *ngIf="products.length === 0" type="cart"></app-no-products>
   </div>
   <app-cart-information [canContinue]="products.length > 0"></app-cart-information>
 </section>

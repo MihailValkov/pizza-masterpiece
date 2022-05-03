@@ -11,7 +11,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './auth.service';
 import { AdminGuard } from './guards/admin.guard';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './+store';
+import { reducers, metaReducers, Effects } from './+store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [FooterComponent, NavigationComponent, AsideNavComponent],
@@ -20,6 +21,7 @@ import { reducers, metaReducers } from './+store';
     RouterModule,
     MaterialModule,
     StoreModule.forFeature('userData', reducers, { metaReducers }),
+    EffectsModule.forFeature(Effects),
   ],
   providers: [AppInterceptorProvider, AuthGuard, AdminGuard, AuthService],
   exports: [AsideNavComponent],
