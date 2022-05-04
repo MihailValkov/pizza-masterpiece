@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from 'src/app/core/notification.service';
@@ -31,14 +32,14 @@ export class ProductsEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(productsActions.loadProductsStart),
-      switchMap(() =>
-        this.productService.loadAllProducts().pipe(
+      switchMap(({ page, limit }) =>
+        this.productService.loadAllProducts(page, limit).pipe(
           takeUntil(
             this.actions$.pipe(ofType(productsActions.loadProductsCancel))
           ),
-          map((products: IProduct[]) =>
-            productsActions.loadProductsSuccess({ products })
-          ),
+          map(({ products, count }) => {
+            return productsActions.loadProductsSuccess({ products, count });
+          }),
           catchError(({ error }: IErrorResponse) => {
             const message = error.message;
             this.notificationService.showMessage(message, 'error');
@@ -52,6 +53,7 @@ export class ProductsEffects {
   constructor(
     private productService: ProductService,
     private notificationService: NotificationService,
+    private router: Router,
     private actions$: Actions
   ) {}
 }

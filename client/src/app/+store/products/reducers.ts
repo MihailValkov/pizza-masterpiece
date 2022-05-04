@@ -4,15 +4,21 @@ import * as productsActions from './actions';
 
 export interface IProductsState {
   currentProduct: IProduct | null;
-  productsList: IProduct[];
+  products: {
+    productsList: IProduct[];
+    count: number;
+  };
   isLoading: boolean;
   message: string | null;
 }
 
 const initialAuthState: IProductsState = {
   currentProduct: null,
-  productsList: [],
-  isLoading: false,
+  products: {
+    productsList: [],
+    count: 0,
+  },
+  isLoading: true,
   message: null,
 };
 
@@ -37,15 +43,22 @@ export const productsReducer = createReducer<IProductsState>(
   on(
     productsActions.loadProductSuccess,
     (state: IProductsState, { product }: { product: IProduct }) => {
-      return { ...state, currentProduct: product };
+      return { ...state, isLoading: false, currentProduct: product };
     }
   ),
   on(productsActions.loadProductFailure, setErrorMessage),
   on(productsActions.loadProductsStart, startFetching),
   on(
     productsActions.loadProductsSuccess,
-    (state: IProductsState, { products }: { products: IProduct[] }) => {
-      return { ...state, productsList: products };
+    (
+      state: IProductsState,
+      { products, count }: { products: IProduct[]; count: number }
+    ) => {
+      return {
+        ...state,
+        isLoading: false,
+        products: { productsList: state.products.productsList.concat(products), count },
+      };
     }
   ),
   on(productsActions.loadProductsFailure, setErrorMessage)

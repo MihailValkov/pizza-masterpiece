@@ -10,7 +10,12 @@ export class ProductService {
     return this.http.get<IProduct>(`/products/${id}`);
   }
 
-  loadAllProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>('/products');
+  loadAllProducts(
+    page: number,
+    limit: number
+  ): Observable<{ products: IProduct[]; count: number }> {
+    return this.http.get<{ products: IProduct[]; count: number }>(
+      `/products?page=${page}&limit=${limit}`
+    );
   }
 }

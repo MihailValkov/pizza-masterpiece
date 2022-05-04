@@ -21,5 +21,9 @@ export const selectErrorMessage = createSelector(
 );
 export const selectProductsList = createSelector(
   selectProduct,
-  (state) => state.productsList
+  (state) => state.products.productsList
+);
+export const selectProductsListCount = createSelector(
+  selectProduct,
+  (state) => state.products.count
 );

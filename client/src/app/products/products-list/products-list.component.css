@@ -4,12 +4,12 @@
   flex-wrap: wrap;
   justify-content: space-between;
   transition: all 0.4s ease 0.2s;
-  padding-bottom: 5px;
+  min-height: 450px;
 }
 
 .products-list li {
   padding-top: 0px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   padding: 15px;
 }
 

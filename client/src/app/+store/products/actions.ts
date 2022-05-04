@@ -23,12 +23,13 @@ export const loadProductCancel = createAction(
 );
 
 export const loadProductsStart = createAction(
-  `${productsNamespace} Load Products Start`
+  `${productsNamespace} Load Products Start`,
+  props<{ page: number; limit: number }>()
 );
 
 export const loadProductsSuccess = createAction(
   `${productsNamespace} Load Products Success`,
-  props<{ products: IProduct[] }>()
+  props<{ products: IProduct[]; count: number }>()
 );
 
 export const loadProductsFailure = createAction(
