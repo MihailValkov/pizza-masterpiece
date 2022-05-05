@@ -48,6 +48,10 @@ export const loadOrdersCancel = createAction(
   `${orderNamespace} Load Orders Cancel`
 );
 
+export const clearOrders = createAction(
+  `${orderNamespace} Clear Order`
+);
+
 // Load order
 export const loadOrderStart = createAction(
   `${orderNamespace} Load Order Start`,

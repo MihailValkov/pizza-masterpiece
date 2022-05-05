@@ -1,12 +1,9 @@
 <div class="order-container mat-elevation-z8">
-  <div class="loading-shade" *ngIf="(isLoading$ | async) || (orders$ | async)?.length === 0">
-    <mat-spinner *ngIf="(isLoading$ | async)"></mat-spinner>
-    <div class="example-rate-limit-reached" *ngIf="(orders$ | async)?.length === 0">
-      There is no orders yet.
-    </div>
+  <div class="loading-shade" *ngIf="(isLoading$ | async)">
+    <mat-spinner></mat-spinner>
   </div>
   <div class="order-table">
-    <table mat-table [dataSource]="(orders$ | async) || []" matSort matSortActive="createdAt" matSortDisableClear
+    <table mat-table [dataSource]="orders" matSort matSortActive="createdAt" matSortDisableClear
       matSortDirection="desc">
 
       <ng-container matColumnDef="_id" sticky>
@@ -51,8 +48,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/orders',row._id]"></tr>
     </table>
   </div>
-
-  <mat-paginator [length]="ordersCount$ | async" [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons
-    aria-label="Select page of Orders results">
+  <mat-paginator [length]="ordersCount" [pageSizeOptions]="ordersCount === 0 ? [0]: [5, 10, 15, 20]"
+    showFirstLastButtons aria-label="Select page of Orders results">
   </mat-paginator>
 </div>

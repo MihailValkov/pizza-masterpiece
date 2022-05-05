@@ -5,7 +5,11 @@ import { map } from 'rxjs';
 
 import { IRootState } from 'src/app/+store';
 import { logoutStart } from 'src/app/+store/actions';
-import { selectUser } from 'src/app/+store/selectors';
+import {
+  selectUser,
+  selectUserIsAdmin,
+  selectUserIsLogged,
+} from 'src/app/+store/selectors';
 import { IUserDataState } from '../+store';
 import { selectTotalProducts } from '../+store/cart/selectors';
 import { selectFavoritesList } from '../+store/favorites/selectors';
@@ -17,8 +21,10 @@ import { selectFavoritesList } from '../+store/favorites/selectors';
 })
 export class NavigationComponent {
   @Input() drawer!: MatDrawer;
+
+  isLogged$ = this.store.pipe(select(selectUserIsLogged));
+  isAdmin$ = this.store.pipe(select(selectUserIsAdmin));
   
-  isLogged$ = this.store.pipe(select(selectUser));
   favoritesListCounter = this.store.pipe(
     select(selectFavoritesList),
     map((x) => x.length)

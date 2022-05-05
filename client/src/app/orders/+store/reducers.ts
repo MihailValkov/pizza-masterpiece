@@ -80,6 +80,14 @@ export const ordersReducer = createReducer<IOrderState>(
     };
   }),
   on(orderActions.loadOrdersFailure, setErrorMessage),
+  on(orderActions.clearOrders, (state) => {
+    return {
+      ...state,
+      orders: { ordersList: [], count: 0 },
+      errorMessage: null,
+      isLoading: true,
+    };
+  }),
   on(orderActions.rateOrdererProductStart, startFetching),
   on(orderActions.rateOrdererProductSuccess, (state, { productId, rating }) => {
     const products = state.currentOrder!.products.slice();

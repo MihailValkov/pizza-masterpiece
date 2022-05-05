@@ -5,5 +5,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./no-products.component.css'],
 })
 export class NoProductsComponent {
-  @Input() type: 'cart' | 'favorites' = 'cart';
+  @Input() type: 'cart' | 'favorites' | 'orders' = 'cart';
 }

@@ -10,6 +10,9 @@
   overflow-y: scroll;
   background: white;
 }
+table.hidden {
+  width: 100%;
+}
 
 .loading-shade {
   position: absolute;
@@ -80,7 +83,7 @@ th.mat-header-cell {
     display: none;
   }
   table {
-    width: 650px!important;
+    width: 650px !important;
   }
 }
 

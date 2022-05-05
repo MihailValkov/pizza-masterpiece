@@ -76,7 +76,7 @@ const getOrders = async (req, res, next) => {
   const order = req?.query?.order;
   const skipIndex = (page - 1) * limit;
   try {
-    const count = await orderModel.countDocuments();
+
     const ordersList = await orderModel
       .find({ 'user.email': req.user.email })
       .limit(limit)
@@ -84,7 +84,7 @@ const getOrders = async (req, res, next) => {
       .sort({ [sort]: order })
       .lean();
 
-    return res.status(200).json({ ordersList, count });
+    return res.status(200).json({ ordersList, count: ordersList.length });
   } catch (error) {
     errorHandler(error, res, req);
   }
@@ -112,7 +112,7 @@ const getOrder = async (req, res, next) => {
       const rates = Object.values(product.productId.rate)
         .map((v) => (v / product.productId.comments.length) * 100)
         .slice(0, 5);
-        
+
       const currentProduct = {
         ...product,
         _id: product.productId._id,

@@ -1,12 +1,14 @@
-<!-- *ngIf="(products$ | async) as products" -->
 <section class="order-container">
   <app-aside-menu></app-aside-menu>
   <div class="order-content">
     <mat-toolbar color="primary">
       My Orders
     </mat-toolbar>
-    <!-- <app-order-table [products]="products" *ngIf="products.length > 0"></app-order-table> -->
-    <app-order-table></app-order-table>
-    <!-- <app-no-products *ngIf="products.length === 0"></app-no-products> -->
+    <ng-container *ngIf="(ordersCount$ | async) !== 0">
+      <app-order-table [orders]="(orders$ | async) || []" [ordersCount]="(ordersCount$ | async) || 0"></app-order-table>
+    </ng-container>
+    <ng-container *ngIf="(ordersCount$ | async) === 0">
+      <app-no-products type="orders"></app-no-products>
+    </ng-container>
   </div>
 </section>

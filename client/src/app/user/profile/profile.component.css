@@ -21,8 +21,7 @@ app-aside-menu {
 
 .image-container {
   flex: 4;
-  padding: 20px;
-  padding-top: 0;
+  padding: 0px 20px;
   justify-content: flex-start;
 }
 
@@ -30,8 +29,7 @@ app-aside-menu {
 .mat-card-content app-user-address-form,
 .mat-card-content app-user-password-form  {
   flex: 4;
-  padding: 20px;
-  padding-top: 0;
+  padding: 0px 20px;
 }
 
 mat-tab-group {
@@ -52,7 +50,7 @@ mat-tab-group {
   width: 100%;
   height: auto;
   max-width: 300px;
-  max-height: 300px;
+  max-height: 238px;
   object-fit: contain;
 }
 app-file-upload {

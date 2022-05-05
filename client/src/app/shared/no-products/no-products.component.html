@@ -1,6 +1,35 @@
 <mat-card class="no-products">
   <mat-card-content>
-    <ng-container *ngTemplateOutlet="type === 'cart' ? cartTemplate : favoritesTemplate"></ng-container>
+    <!-- <ng-container *ngTemplateOutlet="type === 'cart' ? cartTemplate : favoritesTemplate"></ng-container> -->
+    <ng-container [ngSwitch]="type">
+      <ng-container *ngSwitchCase="'cart'">
+        <mat-icon class="icon">
+          shopping_cart_checkout
+        </mat-icon>
+        <mat-card-title>Your cart is currently empty</mat-card-title>
+        <p>
+          Before proceed to checkout, you <strong>must add</strong> some products to your <strong>cart</strong>.
+        </p>
+      </ng-container>
+      <ng-container *ngSwitchCase="'favorites'">
+        <mat-icon class="icon">
+          favorite_outline
+        </mat-icon>
+        <mat-card-title>No favorites found.</mat-card-title>
+        <p>
+          Click the heart icon on any product, and you'll see it here next time you visit.
+        </p>
+      </ng-container>
+      <ng-container *ngSwitchCase="'orders'">
+        <mat-icon class="icon">
+          list_alt
+        </mat-icon>
+        <mat-card-title>No orders found.</mat-card-title>
+        <p>
+          Looks like you haven't made your order yet.
+        </p>
+      </ng-container>
+    </ng-container>
     <p>
       You will find a lot of interesting products on our <strong>Catalogue</strong> page.
     </p>
@@ -9,24 +38,3 @@
     </mat-card-actions>
   </mat-card-content>
 </mat-card>
-
-<ng-template #cartTemplate>
-  <mat-icon class="icon">
-    shopping_cart_checkout
-  </mat-icon>
-  <mat-card-title>Your cart is currently empty</mat-card-title>
-  <p>
-    Before proceed to checkout, you <strong>must add</strong> some products to your <strong>cart</strong>.
-  </p>
-
-</ng-template>
-
-<ng-template #favoritesTemplate>
-  <mat-icon class="icon">
-    favorite_outline
-  </mat-icon>
-  <mat-card-title>No favorites yet.</mat-card-title>
-  <p>
-    Click the heart icon on any product, and you'll see it here next time you visit.
-  </p>
-</ng-template>
