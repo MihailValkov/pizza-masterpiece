@@ -54,7 +54,30 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <ul class="navigation">
-
+        <li>
+          <a mat-menu-item routerLink="/admin/products/create">
+            <mat-icon routerLinkActive="active">add</mat-icon>
+            <span>Add new product</span>
+          </a>
+        </li>
+        <li>
+          <a mat-menu-item routerLink="/admin/users">
+            <mat-icon routerLinkActive="active">groups</mat-icon>
+            <span>Users</span>
+          </a>
+        </li>
+        <li>
+          <a mat-menu-item routerLink="/admin/orders">
+            <mat-icon routerLinkActive="active">list_alt</mat-icon>
+            <span>Orders</span>
+          </a>
+        </li>
+        <li>
+          <a mat-menu-item routerLink="/admin/products">
+            <mat-icon routerLinkActive="active">card_giftcard</mat-icon>
+            <span>Products</span>
+          </a>
+        </li>
       </ul>
     </mat-expansion-panel>
   </mat-accordion>

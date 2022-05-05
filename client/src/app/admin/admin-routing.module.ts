@@ -7,7 +7,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'create',
+    path: 'products/create',
     component: CreateProductComponent,
   },
 ];
