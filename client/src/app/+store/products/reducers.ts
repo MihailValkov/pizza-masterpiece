@@ -47,6 +47,9 @@ export const productsReducer = createReducer<IProductsState>(
     }
   ),
   on(productsActions.loadProductFailure, setErrorMessage),
+  on(productsActions.clearProduct, (state) => {
+    return { ...state, currentProduct: null };
+  }),
   on(productsActions.loadProductsStart, startFetching),
   on(
     productsActions.loadProductsSuccess,
@@ -57,9 +60,15 @@ export const productsReducer = createReducer<IProductsState>(
       return {
         ...state,
         isLoading: false,
-        products: { productsList: state.products.productsList.concat(products), count },
+        products: {
+          productsList: state.products.productsList.concat(products),
+          count,
+        },
       };
     }
   ),
-  on(productsActions.loadProductsFailure, setErrorMessage)
+  on(productsActions.loadProductsFailure, setErrorMessage),
+  on(productsActions.clearProducts, (state) => {
+    return { ...state, products: { productsList: [], count: 0 } };
+  })
 );

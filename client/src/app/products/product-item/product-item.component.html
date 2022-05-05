@@ -1,10 +1,10 @@
-<mat-toolbar color="primary">{{product.name}}</mat-toolbar>
+<mat-toolbar color="primary">{{product?.name}}</mat-toolbar>
 <mat-card class="product-card">
-  <a [routerLink]="['/detail',product._id]">
-    <img class="card-image" [src]="product.image.url" [alt]="product.name">
+  <a [routerLink]="['/detail',product?._id]">
+    <img class="card-image" [src]="product?.image?.url" [alt]="product.name">
     <mat-card-content>
       <p class="card-description">
-        {{product.description}}
+        {{product?.description}}
       </p>
     </mat-card-content>
   </a>

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import { IRootState } from 'src/app/+store';
-import { loadProductsStart } from '../../+store/products/actions';
+import {
+  clearProducts,
+  loadProductsStart,
+} from '../../+store/products/actions';
 import {
   selectErrorMessage,
   selectProductsList,
@@ -14,7 +17,7 @@ import {
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css'],
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, OnDestroy {
   products$ = this.store.pipe(select(selectProductsList));
   productsCount$ = this.store.pipe(select(selectProductsListCount));
   errorMessage$ = this.store.pipe(select(selectErrorMessage));
@@ -41,5 +44,8 @@ export class ProductsListComponent implements OnInit {
         })
       );
     }
+  }
+  ngOnDestroy(): void {
+    this.store.dispatch(clearProducts());
   }
 }

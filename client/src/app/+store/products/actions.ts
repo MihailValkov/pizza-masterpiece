@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/shared/interfaces/product';
 
 const productsNamespace = '[Product]';
 
+// Load Product
 export const loadProductStart = createAction(
   `${productsNamespace} Load Product Start`,
   props<{ id: string }>()
@@ -22,6 +23,9 @@ export const loadProductCancel = createAction(
   `${productsNamespace} Load Product Cancel`
 );
 
+export const clearProduct = createAction(`${productsNamespace} Clear Product`);
+
+// Load Products
 export const loadProductsStart = createAction(
   `${productsNamespace} Load Products Start`,
   props<{ page: number; limit: number }>()
@@ -39,4 +43,8 @@ export const loadProductsFailure = createAction(
 
 export const loadProductsCancel = createAction(
   `${productsNamespace} Load Products Cancel`
+);
+
+export const clearProducts = createAction(
+  `${productsNamespace} Clear Products`
 );

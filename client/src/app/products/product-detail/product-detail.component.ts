@@ -23,7 +23,10 @@ import { select, Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { IRootState } from 'src/app/+store';
 import { selectCurrentProduct } from 'src/app/+store/products/selectors';
-import { loadProductStart } from 'src/app/+store/products/actions';
+import {
+  clearProduct,
+  loadProductStart,
+} from 'src/app/+store/products/actions';
 import {
   ICartProduct,
   IFavoriteProduct,
@@ -130,7 +133,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
               _id: product!._id,
               uniqueId: `${selectedSize.size}-${
                 selectedDough.dough
-              }-${selectedExtras.map(e => e.extra).join('-')}`,
+              }-${selectedExtras.map((e) => e.extra).join('-')}`,
               name: product!.name,
               imageUrl: product!.image.url,
               size: selectedSize,
@@ -183,5 +186,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.store.dispatch(clearProduct());
   }
 }
