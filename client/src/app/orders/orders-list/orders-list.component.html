@@ -4,11 +4,6 @@
     <mat-toolbar color="primary">
       My Orders
     </mat-toolbar>
-    <ng-container *ngIf="(ordersCount$ | async) !== 0">
-      <app-order-table [orders]="(orders$ | async) || []" [ordersCount]="(ordersCount$ | async) || 0"></app-order-table>
-    </ng-container>
-    <ng-container *ngIf="(ordersCount$ | async) === 0">
-      <app-no-products type="orders"></app-no-products>
-    </ng-container>
+    <app-order-table></app-order-table>
   </div>
 </section>

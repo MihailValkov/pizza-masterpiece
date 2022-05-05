@@ -1,27 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
-import {
-  combineLatest,
-  filter,
-  first,
-  last,
-  map,
-  Observable,
-  startWith,
-  Subscription,
-  tap,
-} from 'rxjs';
+import { combineLatest, map, startWith, Subscription } from 'rxjs';
 import { IUserDataState } from 'src/app/core/+store';
+import { completeCheckoutStart } from 'src/app/core/+store/cart/actions';
 import {
   selectTaxes,
   selectPrice,
   selectTotalProducts,
   selectCartList,
+  selectCheckoutIsLoading,
+  selectCheckoutErrorMessage,
 } from 'src/app/core/+store/cart/selectors';
+
 import { IOrder } from 'src/app/shared/interfaces/order';
 import { AddressFormService, IAddressForm } from '../address-form.service';
+import { CheckoutCompleteComponent } from '../checkout-complete/checkout-complete.component';
 import { IUserForm, UserFormService } from '../user-form.service';
 
 @Component({
@@ -43,16 +38,11 @@ export class OrderSummaryComponent implements OnDestroy {
     private addressFormService: AddressFormService,
     private userFormService: UserFormService,
     private store: Store<IUserDataState>,
-    private http: HttpClient
+    private dialog: MatDialog
   ) {
     this.subscription = this.getOrderData().subscribe(
       (orderData) => (this.orderInfo = orderData)
     );
-
-    this.http.get('/orders').subscribe({
-      next: (x) => console.log(x),
-      error: (error) => console.log(error),
-    });
   }
 
   transformProducts() {
@@ -114,13 +104,17 @@ export class OrderSummaryComponent implements OnDestroy {
   }
 
   completeOrder() {
-    if (this.paymentMethodControl.valid) {
-      // console.log(this.orderInfo);
-      this.http.post('/orders', this.orderInfo).subscribe({
-        next: (x) => console.log(x),
-        error: (error) => console.log(error),
-      });
+    if (this.paymentMethodControl.invalid) {
+      return;
     }
+    this.openDialog();
+    this.store.dispatch(completeCheckoutStart({ order: this.orderInfo }));
+  }
+
+  openDialog() {
+    this.dialog.open(CheckoutCompleteComponent, {
+      disableClose: true,
+    });
   }
 
   ngOnDestroy(): void {

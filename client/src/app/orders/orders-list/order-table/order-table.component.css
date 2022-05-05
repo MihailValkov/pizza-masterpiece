@@ -10,8 +10,8 @@
   overflow-y: scroll;
   background: white;
 }
-table.hidden {
-  width: 100%;
+.hidden {
+  opacity: 0;
 }
 
 .loading-shade {

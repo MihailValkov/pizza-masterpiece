@@ -23,5 +23,6 @@ export const favoritesReducer = createReducer<IFavoritesState>(
       ...state,
       favoritesList: state.favoritesList.filter((_, i) => i !== index),
     };
-  })
+  }),
+  on(favoritesActions.clearFavorites, () => initialFavoritesState)
 );

@@ -7,10 +7,6 @@ import { IOrder, IOrderDetail } from '../shared/interfaces/order';
 export class OrderService {
   constructor(private http: HttpClient) {}
 
-  createNewOrder(order: IOrder): Observable<IOrder> {
-    return this.http.post<IOrder>('/orders', order);
-  }
-
   getMyOrders(
     page: number,
     limit: number,

@@ -39,19 +39,6 @@ const setErrorMessage = (
 
 export const ordersReducer = createReducer<IOrderState>(
   initialOrdersState,
-  on(orderActions.createOrderStart, startFetching),
-  on(orderActions.createOrderSuccess, (state: IOrderState, { order }) => {
-    return {
-      ...state,
-      isLoading: false,
-      errorMessage: null,
-      orders: {
-        ordersList: state.orders.ordersList.concat(order),
-        count: state.orders.count + 1,
-      },
-    };
-  }),
-  on(orderActions.createOrderFailure, setErrorMessage),
   on(orderActions.loadOrderStart, startFetching),
   on(orderActions.loadOrderSuccess, (state, { order }) => {
     const transformedOrderProducts = order.products.map((p) => ({

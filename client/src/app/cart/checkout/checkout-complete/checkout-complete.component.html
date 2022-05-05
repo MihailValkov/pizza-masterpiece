@@ -1,0 +1,41 @@
+<section class="order-complete-container">
+  <h2 mat-dialog-title>Checkout progress</h2>
+  <mat-divider></mat-divider>
+  <mat-dialog-content class="mat-typography">
+
+    <ng-container *ngIf="(errorMessage$|async) as errorMessage">
+      <div class="order-status">
+        <h2>We're so sorry, it looks like your order couldn't be completed.</h2>
+        <img src="../../../../assets/images/not-checkmark.png" alt="error-logo" class="logo" />
+        <h3 mat-card-title>{{ errorMessage}}</h3>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="(isLoading$|async) as isLoading">
+      <div class="order-status">
+        <h2>Your order is being processed.</h2>
+        <mat-spinner class="logo"></mat-spinner>
+        <h3 mat-card-title>Please wait.</h3>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!(isLoading$|async) && !(errorMessage$|async)">
+      <div class="order-status">
+        <h2>Thank you for ordering in our website.</h2>
+        <img src="../../../../assets/images/checkmark.png" alt="success-logo" class="logo" />
+        <h3 mat-card-title>Order Number</h3>
+        <strong>{{orderId$ | async}}</strong>
+      </div>
+    </ng-container>
+
+  </mat-dialog-content>
+  <mat-divider></mat-divider>
+  <mat-dialog-actions align="center">
+    <button mat-stroked-button color="primary" routerLink="/" [disabled]="(isLoading$|async)" mat-dialog-close>
+      <mat-icon>shopping_cart</mat-icon>
+      Continue shopping
+    </button>
+    <button mat-stroked-button *ngIf="isLogged$|async" routerLink="/orders" [disabled]="(isLoading$|async)" mat-dialog-close>
+      <mat-icon>list_alt</mat-icon>
+      My Orders
+    </button>
+  </mat-dialog-actions>
+</section>

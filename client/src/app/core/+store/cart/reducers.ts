@@ -7,6 +7,9 @@ export interface ICartState {
   totalProducts: number;
   price: number;
   taxes: number;
+  isLoading: boolean;
+  errorMessage: string | null;
+  lastCreatedOrderId: string | null;
 }
 
 const initialCartState: ICartState = {
@@ -14,6 +17,9 @@ const initialCartState: ICartState = {
   totalProducts: 0,
   price: 0,
   taxes: 0,
+  isLoading: false,
+  errorMessage: null,
+  lastCreatedOrderId: null,
 };
 
 export const cartReducer = createReducer<ICartState>(
@@ -104,5 +110,27 @@ export const cartReducer = createReducer<ICartState>(
           ? state.totalProducts + 1
           : state.totalProducts - 1,
     };
-  })
+  }),
+  on(cartActions.completeCheckoutStart, (state) => {
+    return { ...state, isLoading: true, errorMessage: null };
+  }),
+  on(cartActions.completeCheckoutSuccess, (state, { orderId }) => {
+    return {
+      ...state,
+      isLoading: false,
+      errorMessage: null,
+      lastCreatedOrderId: orderId,
+    };
+  }),
+  on(cartActions.completeCheckoutFailure, (state, { message }) => {
+    return {
+      ...state,
+      isLoading: false,
+      errorMessage: message,
+    };
+  }),
+  on(cartActions.clearCart, (state) => ({
+    ...initialCartState,
+    lastCreatedOrderId: state.lastCreatedOrderId,
+  }))
 );

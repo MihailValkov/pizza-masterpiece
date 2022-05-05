@@ -19,3 +19,16 @@ export const selectTotalProducts = createSelector(
 );
 export const selectPrice = createSelector(selectCart, (state) => state.price);
 export const selectTaxes = createSelector(selectCart, (state) => state.taxes);
+
+export const selectCheckoutIsLoading = createSelector(
+  selectCart,
+  (state) => state.isLoading
+);
+export const selectCheckoutErrorMessage = createSelector(
+  selectCart,
+  (state) => state.errorMessage
+);
+export const selectCheckoutLastOrderId = createSelector(
+  selectCart,
+  (state) => state.lastCreatedOrderId
+);

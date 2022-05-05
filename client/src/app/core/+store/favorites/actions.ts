@@ -20,3 +20,7 @@ export const removeProductFromFavorites = createAction(
 export const removeProductFromFavoritesSuccess = createAction(
   `${favoritesNamespace} Remove product success`
 );
+
+export const clearFavorites = createAction(
+  `${favoritesNamespace} Clear favorites`
+);

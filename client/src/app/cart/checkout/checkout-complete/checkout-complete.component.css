@@ -1,0 +1,47 @@
+.order-complete-container {
+  text-align: center;
+}
+.order-complete-container .order-status {
+  width: 100%;
+  min-height: 200px;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.order-status img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.logo {
+  margin: 20px;
+}
+
+.order-status h2 {
+  margin-top: 20px;
+}
+.order-status h3 {
+  margin-top: 16px;
+  margin-bottom: 0px;
+}
+.order-status > strong {
+  color: rgb(56, 161, 202);
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 768px) {
+  .order-status h3 {
+    margin-bottom: 10px;
+  }
+  .actions {
+    flex-direction: column;
+  }
+}

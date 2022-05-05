@@ -3,7 +3,7 @@
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>location_on</mat-icon>
       <mat-label>Country</mat-label>
-      <input type="text" matInput formControlName="country" placeholder="Ex. Bulgaria" [readonly]="isFormFulfilled">
+      <input type="text" matInput formControlName="country" placeholder="Ex. Bulgaria" [readonly]="isFormFulfilled" [value]="addressForm.controls['country']?.value">
       <mat-error
         *ngIf="addressForm.controls['country'].hasError('minlength') && !addressForm.controls['country'].hasError('required')">
         Country should be at least 3 characters
@@ -16,7 +16,7 @@
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>location_city</mat-icon>
       <mat-label>City</mat-label>
-      <input type="text" matInput formControlName="city" placeholder="Ex. Sofia" [readonly]="isFormFulfilled">
+      <input type="text" matInput formControlName="city" placeholder="Ex. Sofia" [readonly]="isFormFulfilled" [value]="addressForm.controls['city']?.value">
       <mat-error
         *ngIf="addressForm.controls['city'].hasError('minlength') && !addressForm.controls['city'].hasError('required')">
         City should be at least 3 characters
@@ -28,7 +28,7 @@
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>streetview</mat-icon>
       <mat-label>Street</mat-label>
-      <input type="text" matInput formControlName="street" placeholder="Ex. Bul. Bulgaria" [readonly]="isFormFulfilled">
+      <input type="text" matInput formControlName="street" placeholder="Ex. Bul. Bulgaria" [readonly]="isFormFulfilled" [value]="addressForm.controls['street']?.value">
       <mat-error
         *ngIf="addressForm.controls['street'].hasError('minlength') && !addressForm.controls['street'].hasError('required')">
         Street should be at least 3 characters
@@ -40,7 +40,7 @@
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>home</mat-icon>
       <mat-label>Street Number</mat-label>
-      <input type="number" matInput formControlName="streetNumber" placeholder="Ex. 113" [readonly]="isFormFulfilled">
+      <input type="number" matInput formControlName="streetNumber" placeholder="Ex. 113" [readonly]="isFormFulfilled" [value]="addressForm.controls['streetNumber']?.value">
       <mat-error
         *ngIf="addressForm.controls['streetNumber'].hasError('min') && !addressForm.controls['streetNumber'].hasError('required')">
         Street Number should be minimum 1

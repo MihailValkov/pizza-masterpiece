@@ -3,26 +3,6 @@ import { IOrder, IOrderDetail } from 'src/app/shared/interfaces/order';
 
 const orderNamespace = '[Orders]';
 
-// Create new order
-export const createOrderStart = createAction(
-  `${orderNamespace} Create Start`,
-  props<{ order: IOrder }>()
-);
-
-export const createOrderSuccess = createAction(
-  `${orderNamespace} Create Success`,
-  props<{ order: IOrder }>()
-);
-
-export const createOrderFailure = createAction(
-  `${orderNamespace} Create Failure`,
-  props<{ message: string }>()
-);
-
-export const createOrderCancel = createAction(
-  `${orderNamespace} Create Cancel`
-);
-
 // Load all orders
 export const loadOrdersStart = createAction(
   `${orderNamespace} Load Orders Start`,

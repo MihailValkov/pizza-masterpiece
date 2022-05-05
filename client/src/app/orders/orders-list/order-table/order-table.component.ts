@@ -16,6 +16,8 @@ import { clearOrders, loadOrdersStart } from '../../+store/actions';
 import {
   selectOrderErrorMessage,
   selectOrderIsLoading,
+  selectOrders,
+  selectOrdersCount,
 } from '../../+store/selectors';
 
 @Component({
@@ -24,11 +26,11 @@ import {
   styleUrls: ['./order-table.component.css'],
 })
 export class OrderTableComponent implements AfterViewInit, OnDestroy {
-  @Input() orders: IOrder[] = [];
-  @Input() ordersCount: number = 0;
-
+  orders$ = this.store.pipe(select(selectOrders));
+  ordersCount$ = this.store.pipe(select(selectOrdersCount));
   isLoading$ = this.store.pipe(select(selectOrderIsLoading));
   errorMessage$ = this.store.pipe(select(selectOrderErrorMessage));
+
   displayedColumns: string[] = [
     '_id',
     'createdAt',

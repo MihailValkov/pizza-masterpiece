@@ -63,7 +63,7 @@ const createOrder = async (req, res, next) => {
       products: transformedProducts,
     });
 
-    res.status(201).json({ order: newOrder.toObject() });
+    res.status(201).json({ orderId: newOrder._id });
   } catch (error) {
     errorHandler(error, res, req);
   }
@@ -76,7 +76,7 @@ const getOrders = async (req, res, next) => {
   const order = req?.query?.order;
   const skipIndex = (page - 1) * limit;
   try {
-
+    const count = await orderModel.countDocuments({ 'user.email': req.user.email });
     const ordersList = await orderModel
       .find({ 'user.email': req.user.email })
       .limit(limit)
@@ -84,7 +84,7 @@ const getOrders = async (req, res, next) => {
       .sort({ [sort]: order })
       .lean();
 
-    return res.status(200).json({ ordersList, count: ordersList.length });
+    return res.status(200).json({ ordersList, count });
   } catch (error) {
     errorHandler(error, res, req);
   }

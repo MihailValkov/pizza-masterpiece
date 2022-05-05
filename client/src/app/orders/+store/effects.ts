@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { switchMap, takeUntil, map, catchError } from 'rxjs';
 import { NotificationService } from 'src/app/core/notification.service';
@@ -8,35 +8,34 @@ import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
 import { IOrder } from 'src/app/shared/interfaces/order';
 
 import { OrderService } from '../order.service';
-import { RateProductComponent } from '../orders-list/rate-product/rate-product.component';
 import * as orderActions from './actions';
 
 @Injectable()
 export class OrdersEffects {
-  createOrder$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(orderActions.createOrderStart),
-      switchMap(({ order }) =>
-        this.orderService.createNewOrder(order).pipe(
-          takeUntil(this.actions$.pipe(ofType(orderActions.createOrderCancel))),
-          map((order: IOrder) => {
-            this.notificationService.showMessage(
-              'Your order is completed!',
-              'success'
-            );
-            return orderActions.createOrderSuccess({ order });
-          }),
-          catchError((err: IErrorResponse) => {
-            const message = err.error.message;
-            this.notificationService.showMessage(message, 'error');
-            return [
-              orderActions.createOrderFailure({ message: err.error.message }),
-            ];
-          })
-        )
-      )
-    )
-  );
+  // createOrder$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(orderActions.createOrderStart),
+  //     switchMap(({ order }) =>
+  //       this.orderService.createNewOrder(order).pipe(
+  //         takeUntil(this.actions$.pipe(ofType(orderActions.createOrderCancel))),
+  //         map((order: IOrder) => {
+  //           this.notificationService.showMessage(
+  //             'Your order is completed!',
+  //             'success'
+  //           );
+  //           return orderActions.createOrderSuccess({ order });
+  //         }),
+  //         catchError((err: IErrorResponse) => {
+  //           const message = err.error.message;
+  //           this.notificationService.showMessage(message, 'error');
+  //           return [
+  //             orderActions.createOrderFailure({ message: err.error.message }),
+  //           ];
+  //         })
+  //       )
+  //     )
+  //   )
+  // );
 
   getMyOrders$ = createEffect(() =>
     this.actions$.pipe(

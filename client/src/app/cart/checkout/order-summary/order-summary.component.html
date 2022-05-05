@@ -47,5 +47,7 @@
 </div>
 <div class="btn-actions">
   <button mat-raised-button matStepperPrevious>Back</button>
-  <button mat-raised-button (click)="completeOrder()" [disabled]="this.paymentMethodControl.invalid">Confirm Order</button>
+  <button mat-raised-button (click)="completeOrder()"
+    [title]="(cartTotalProducts$ | async) === 0 ? 'Your cart is empty!' : ''"
+    [disabled]="paymentMethodControl.invalid || (cartTotalProducts$ | async) === 0">Confirm Order</button>
 </div>

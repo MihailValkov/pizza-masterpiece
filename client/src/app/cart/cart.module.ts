@@ -13,6 +13,7 @@ import { UserFormComponent } from './checkout/user-form/user-form.component';
 import { OrderSummaryComponent } from './checkout/order-summary/order-summary.component';
 import { AddressFormService } from './checkout/address-form.service';
 import { UserFormService } from './checkout/user-form.service';
+import { CheckoutCompleteComponent } from './checkout/checkout-complete/checkout-complete.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UserFormService } from './checkout/user-form.service';
     AddressFormComponent,
     UserFormComponent,
     OrderSummaryComponent,
+    CheckoutCompleteComponent,
   ],
   imports: [
     CommonModule,
