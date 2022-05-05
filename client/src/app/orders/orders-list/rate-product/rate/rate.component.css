@@ -1,0 +1,29 @@
+.rate-buttons {
+  display: table;
+}
+.rate-buttons label {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  float: right;
+  transition: color 0.4s;
+  color: #ccc;
+  padding: 0;
+  margin-right: 8px;
+}
+.rate-buttons input {
+  display: none;
+}
+.rate-buttons label:hover ~ label .mat-icon,
+.rate-buttons label .mat-icon:hover,
+.rate-buttons input:checked ~ label .mat-icon,
+.rate-buttons input:checked .mat-icon {
+  color: #f9bf3b;
+}
+.rate-buttons label .mat-icon {
+  line-height: 32px;
+  color: #ccc;
+  font-size: 30px;
+  opacity: 1;
+}

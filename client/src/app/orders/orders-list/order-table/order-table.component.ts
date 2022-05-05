@@ -7,8 +7,8 @@ import { startWith, tap } from 'rxjs/operators';
 import { IOrderModuleState } from '../../+store';
 import { loadOrdersStart } from '../../+store/actions';
 import {
-  selectErrorMessage,
-  selectIsLoading,
+  selectOrderErrorMessage,
+  selectOrderIsLoading,
   selectOrders,
   selectOrdersCount,
 } from '../../+store/selectors';
@@ -30,8 +30,8 @@ export class OrderTableComponent implements AfterViewInit {
 
   orders$ = this.store.pipe(select(selectOrders));
   ordersCount$ = this.store.pipe(select(selectOrdersCount));
-  isLoading$ = this.store.pipe(select(selectIsLoading));
-  errorMessage$ = this.store.pipe(select(selectErrorMessage));
+  isLoading$ = this.store.pipe(select(selectOrderIsLoading));
+  errorMessage$ = this.store.pipe(select(selectOrderErrorMessage));
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

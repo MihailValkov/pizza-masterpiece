@@ -54,11 +54,19 @@ export const ordersReducer = createReducer<IOrderState>(
   on(orderActions.createOrderFailure, setErrorMessage),
   on(orderActions.loadOrderStart, startFetching),
   on(orderActions.loadOrderSuccess, (state, { order }) => {
+    const transformedOrderProducts = order.products.map((p) => ({
+      ...p,
+      isExpanded: false,
+    }));
+
     return {
       ...state,
       isLoading: false,
       errorMessage: null,
-      currentOrder: order,
+      currentOrder: {
+        ...order,
+        products: transformedOrderProducts,
+      },
     };
   }),
   on(orderActions.loadOrderFailure, setErrorMessage),
@@ -71,5 +79,29 @@ export const ordersReducer = createReducer<IOrderState>(
       orders: { ordersList, count },
     };
   }),
-  on(orderActions.loadOrdersFailure, setErrorMessage)
+  on(orderActions.loadOrdersFailure, setErrorMessage),
+  on(orderActions.rateOrdererProductStart, startFetching),
+  on(orderActions.rateOrdererProductSuccess, (state, { productId, rating }) => {
+    const products = state.currentOrder!.products.slice();
+    const existingProductId = products.findIndex((p) => p._id == productId);
+
+    if (existingProductId && existingProductId !== -1 && products.length > 0) {
+      const currentProduct = {
+        ...products[existingProductId],
+      };
+      currentProduct.rating = rating;
+      products[existingProductId] = currentProduct;
+    }
+
+    return {
+      ...state,
+      isLoading: false,
+      errorMessage: null,
+      currentOrder: {
+        ...state.currentOrder!,
+        products,
+      },
+    };
+  }),
+  on(orderActions.rateOrdererProductFailure, setErrorMessage)
 );

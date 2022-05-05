@@ -1,5 +1,14 @@
 const { productModel } = require('../models/Product');
+const { ValidationError } = require('../utils/createValidationError');
 const { errorHandler } = require('../utils/errorHandler');
+
+const mapToStatus = {
+  1: 'Poor',
+  2: 'Fair',
+  3: 'Good',
+  4: 'Very Good',
+  5: 'Excellent',
+};
 
 const getAllProducts = async (req, res, next) => {
   const page = parseInt(req?.query?.page);
@@ -36,7 +45,42 @@ const getProductById = async (req, res, next) => {
   }
 };
 
+const rateProduct = async (req, res, next) => {
+  const { id } = req.params;
+  const userId = req.user._id;
+  const { rate, comment } = req.body;
+
+  try {
+    const product = await productModel.findById(id);
+
+    if (!product) {
+      throw new ValidationError('Product with provided id is not found', 404);
+    }
+
+    if (product.toObject().comments.find((comment) => comment.user == userId)) {
+      throw new ValidationError('You have already rated this product!', 403);
+    }
+
+    product.comments.push({
+      user: userId,
+      comment,
+      status: mapToStatus[rate],
+      rate,
+    });
+    product.rate[rate]++;
+    product.rate.total += rate;
+    product.rating = product.rate.total / product.comments.length;
+
+    await product.save();
+
+    res.status(200).json({ rating: product.rating });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
 module.exports = {
   getProductById,
   getAllProducts,
+  rateProduct,
 };

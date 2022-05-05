@@ -24,6 +24,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const modules = [
   MatFormFieldModule,
@@ -51,6 +52,7 @@ const modules = [
   MatStepperModule,
   MatSortModule,
   MatTabsModule,
+  MatDialogModule,
 ];
 
 @NgModule({

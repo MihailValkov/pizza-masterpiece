@@ -9,15 +9,15 @@ import {
   AfterViewInit,
   Component,
   Input,
-  OnChanges,
   OnInit,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
+import { RateProductComponent } from '../../orders-list/rate-product/rate-product.component';
 
 @Component({
   selector: 'app-products-table',
@@ -34,10 +34,9 @@ import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
     ]),
   ],
 })
-export class ProductsTableComponent
-  implements OnInit, AfterViewInit, OnChanges
-{
+export class ProductsTableComponent implements OnInit, AfterViewInit {
   @Input() products!: IOrderProductDetail[];
+  @Input() orderId!: string;
 
   displayedColumns: string[] = [
     'product',
@@ -51,22 +50,21 @@ export class ProductsTableComponent
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    const products: IOrderProductDetail[] = this.products.map((p) => ({
-      ...p,
-      isExpandable: false,
-    }));
+    const products = this.products.map((p) => ({ ...p, isExpanded: false }));
     this.dataSource = new MatTableDataSource(products);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.dataSource = new MatTableDataSource(changes['products'].currentValue);
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  openDialog(productId: string, productName: string, imageUrl: string) {
+    this.dialog.open(RateProductComponent, {
+      data: { orderId: this.orderId, productId, productName, imageUrl },
+    });
   }
 }

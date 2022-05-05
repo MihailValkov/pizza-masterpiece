@@ -11,6 +11,12 @@ export const selectCurrentOrder = createSelector(
   selectProducts,
   (state) => state.currentOrder
 );
+
+export const selectCurrentOrderProducts = createSelector(
+  selectProducts,
+  (state) => state.currentOrder!.products
+);
+
 export const selectOrders = createSelector(
   selectProducts,
   (state) => state.orders.ordersList
@@ -19,11 +25,11 @@ export const selectOrdersCount = createSelector(
   selectProducts,
   (state) => state.orders.count
 );
-export const selectIsLoading = createSelector(
+export const selectOrderIsLoading = createSelector(
   selectProducts,
   (state) => state.isLoading
 );
-export const selectErrorMessage = createSelector(
+export const selectOrderErrorMessage = createSelector(
   selectProducts,
   (state) => state.errorMessage
 );

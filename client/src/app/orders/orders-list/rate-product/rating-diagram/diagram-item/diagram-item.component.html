@@ -1,0 +1,9 @@
+<li>
+  <p [ngStyle]="{width: (rate)+'%'}"></p>
+  <div class="product-rating">
+    <span>
+      <mat-icon *ngFor="let icon of starIconsCount">star_border</mat-icon>
+    </span>
+    <span>{{rate | decimalFixed:2}} %</span>
+  </div>
+</li>

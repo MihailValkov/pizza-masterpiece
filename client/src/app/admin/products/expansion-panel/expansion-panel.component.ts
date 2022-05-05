@@ -17,10 +17,10 @@ export class ExpansionPanelComponent implements OnInit {
   @Input() formArrayName!: 'sizes' | 'doughs' | 'extras' | 'ingredients';
 
   form!: FormGroup;
-  constructor(private productForm: ProductFormService) {}
+  constructor(private productFormService: ProductFormService) {}
 
   ngOnInit(): void {
-    this.productForm.form$.subscribe((form) => {
+    this.productFormService.form$.subscribe((form) => {
       this.form = form;
     });
   }
@@ -53,10 +53,10 @@ export class ExpansionPanelComponent implements OnInit {
   }
 
   add(type: 'sizes' | 'doughs' | 'extras' | 'ingredients') {
-    this.productForm.addControl(type);
+    this.productFormService.addControl(type);
   }
 
   remove(index: number, type: 'sizes' | 'doughs' | 'extras' | 'ingredients') {
-    this.productForm.removeControl(index, type);
+    this.productFormService.removeControl(index, type);
   }
 }

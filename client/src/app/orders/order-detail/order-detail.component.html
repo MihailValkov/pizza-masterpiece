@@ -27,7 +27,7 @@
       </mat-card-header>
       <mat-card-content>
         <ng-container *ngIf="(currentOrder$ | async) as currentOrder">
-          <app-products-table [products]="currentOrder.products"></app-products-table>
+          <app-products-table [products]="currentOrder.products" [orderId]="currentOrder._id"></app-products-table>
         </ng-container>
       </mat-card-content>
     </mat-card>

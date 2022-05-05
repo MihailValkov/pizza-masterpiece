@@ -47,6 +47,9 @@ export interface IProduct extends IBaseProduct {
   ingredients: IIngredient[];
   extras: IExtra[];
   rating: number;
+  rate: {
+    [prop: string]: number;
+  };
   author: string;
 }
 

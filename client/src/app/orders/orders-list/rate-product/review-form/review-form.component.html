@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+  <mat-form-field class="form-control" appearance="outline">
+    <mat-label>Review</mat-label>
+    <textarea rows="5" type="text" matInput placeholder="Leave your review" formControlName="comment"></textarea>
+    <mat-error *ngIf="form.controls['comment'].hasError('minlength') && !form.controls['comment'].hasError('required')">
+      Content of the comment should be at least 3 characters
+    </mat-error>
+    <mat-error *ngIf="form.controls['comment'].hasError('maxlength') && !form.controls['comment'].hasError('required')">
+      Content of the comment should be maximum 500 characters
+    </mat-error>
+    <mat-error *ngIf="form.controls['comment'].hasError('required')">
+      Content of the comment is required
+    </mat-error>
+    <mat-hint align="end">{{form.controls['comment'].value?.length || 0}} / 500</mat-hint>
+  </mat-form-field>
+</div>

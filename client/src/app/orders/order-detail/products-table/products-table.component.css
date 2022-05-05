@@ -80,6 +80,8 @@ th:first-child.mat-header-cell {
 
 .image-container {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .mat-chip-list-stacked {

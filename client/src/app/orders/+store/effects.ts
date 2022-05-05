@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { switchMap, takeUntil, map, catchError } from 'rxjs';
+import { NotificationService } from 'src/app/core/notification.service';
 import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
 import { IOrder } from 'src/app/shared/interfaces/order';
 
 import { OrderService } from '../order.service';
+import { RateProductComponent } from '../orders-list/rate-product/rate-product.component';
 import * as orderActions from './actions';
 
 @Injectable()
@@ -17,11 +20,19 @@ export class OrdersEffects {
         this.orderService.createNewOrder(order).pipe(
           takeUntil(this.actions$.pipe(ofType(orderActions.createOrderCancel))),
           map((order: IOrder) => {
+            this.notificationService.showMessage(
+              'Your order is completed!',
+              'success'
+            );
             return orderActions.createOrderSuccess({ order });
           }),
-          catchError((err: IErrorResponse) => [
-            orderActions.createOrderFailure({ message: err.error.message }),
-          ])
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [
+              orderActions.createOrderFailure({ message: err.error.message }),
+            ];
+          })
         )
       )
     )
@@ -64,8 +75,44 @@ export class OrdersEffects {
     )
   );
 
+  rateOrderedProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(orderActions.rateOrdererProductStart),
+      switchMap(({ productId, rate, comment }) =>
+        this.orderService.rateProduct(productId, rate, comment).pipe(
+          takeUntil(
+            this.actions$.pipe(ofType(orderActions.rateOrdererProductCancel))
+          ),
+          map(({ rating }) => {
+            this.notificationService.showMessage(
+              'Thank you for your review.',
+              'success'
+            );
+            
+            this.dialog.closeAll()
+            return orderActions.rateOrdererProductSuccess({
+              productId,
+              rating,
+            });
+          }),
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [
+              orderActions.rateOrdererProductFailure({
+                message: err.error.message,
+              }),
+            ];
+          })
+        )
+      )
+    )
+  );
+
   constructor(
     private orderService: OrderService,
+    private dialog: MatDialog,
+    private notificationService: NotificationService,
     private actions$: Actions,
     private router: Router
   ) {}

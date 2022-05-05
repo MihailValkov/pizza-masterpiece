@@ -1,4 +1,3 @@
-const { populate } = require('../models/Order');
 const orderModel = require('../models/Order');
 const { productModel } = require('../models/Product');
 const { ValidationError } = require('../utils/createValidationError');
@@ -100,26 +99,34 @@ const getOrder = async (req, res, next) => {
         path: 'products',
         populate: {
           path: 'productId',
-          select: 'description image name ingredients rating',
+          select: 'description image name ingredients rating rate comments',
           populate: {
             path: 'ingredients',
             select: 'ingredient',
           },
         },
       })
-      // .populate('products.productId', 'description image ingredients name rating')
       .lean();
+
     const transformedProducts = data.products.map((product) => {
+      const rates = Object.values(product.productId.rate)
+        .map((v) => (v / product.productId.comments.length) * 100)
+        .slice(0, 5);
+        
       const currentProduct = {
         ...product,
+        _id: product.productId._id,
         name: product.productId.name,
         description: product.productId.description,
         imageUrl: product.productId.image.url,
         ingredients: product.productId.ingredients.map((i) => i.ingredient),
+        rating: product.productId.rating,
+        rates,
       };
       delete currentProduct.productId;
       return currentProduct;
     });
+
     const order = {
       ...data,
       products: transformedProducts,

@@ -4,7 +4,7 @@
     <ng-container matColumnDef="product">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
       <td mat-cell *matCellDef="let row">
-        <a [routerLink]="['detail',row._id]" class="product-link">
+        <a [routerLink]="['/detail',row._id]" class="product-link">
           <img [src]="row.imageUrl" class="product-img" [alt]="row.name" />
           <span>{{row.name}}</span>
         </a>
@@ -30,6 +30,9 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
       <td mat-cell *matCellDef="let row; let i = index" class="actions">
+        <button mat-icon-button color="primary" (click)="openDialog(row?._id,row?.name,row?.imageUrl)">
+          <mat-icon>star_outline</mat-icon>
+        </button>
         <button mat-icon-button (click)="row.isExpanded = !row.isExpanded">
           <mat-icon *ngIf="row.isExpanded">keyboard_arrow_down</mat-icon>
           <mat-icon *ngIf="!row.isExpanded">keyboard_arrow_up</mat-icon>
@@ -42,7 +45,7 @@
       <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
         <div class="product-row-detail" [@detailExpand]="row.isExpanded ? 'expanded' : 'collapsed'">
           <div class="image-container">
-            <img [src]="row.imageUrl" class="product-img" [alt]="row.name" mat-card-xl-image/>
+            <img [src]="row.imageUrl" class="product-img" [alt]="row.name" mat-card-xl-image />
           </div>
           <mat-chip-list class="mat-chip-list-stacked">
             <p><span>Size:</span>
@@ -55,7 +58,7 @@
               <mat-chip color="primary" class="mat-chip" selected>{{row.gr}} g</mat-chip>
             </p>
             <p><span>Ingredients:</span>
-              <mat-chip *ngFor="let ingredient of row.ingredients" color="primary" class="mat-chip" selected >
+              <mat-chip *ngFor="let ingredient of row.ingredients" color="primary" class="mat-chip" selected>
                 {{ingredient | firstCapitalLetter}}
               </mat-chip>
             </p>

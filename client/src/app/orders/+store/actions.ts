@@ -67,3 +67,28 @@ export const loadOrderFailure = createAction(
 export const loadOrderCancel = createAction(
   `${orderNamespace} Load Order Cancel`
 );
+
+// Rate ordered product
+export const rateOrdererProductStart = createAction(
+  `${orderNamespace} Rate Product Start`,
+  props<{
+    orderId: string;
+    productId: string;
+    rate: number;
+    comment: string;
+  }>()
+);
+
+export const rateOrdererProductSuccess = createAction(
+  `${orderNamespace} Rate Product Success`,
+  props<{ productId: string; rating: number }>()
+);
+
+export const rateOrdererProductFailure = createAction(
+  `${orderNamespace} Rate Product Failure`,
+  props<{ message: string }>()
+);
+
+export const rateOrdererProductCancel = createAction(
+  `${orderNamespace} Rate Product Cancel`
+);

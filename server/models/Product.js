@@ -87,6 +87,37 @@ const productSchema = new Schema(
         default: [],
       },
     ],
+    comments: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: 'User',
+        },
+        comment: {
+          type: String,
+          required: true,
+          minLength: [3, 'Comment should be at least 3 characters long!'],
+          maxLength: [500, 'Comment should be be maximum 500 characters long!'],
+        },
+        status: {
+          type:String,
+          required:[true, 'Rating status is required!']
+        },
+        rate: {
+          type: Number,
+          min: [1, 'Please provide correct rate between 1-5!'],
+          max: [5, 'Please provide correct rate between 1-5!'],
+        },
+      },
+    ],
+    rate: {
+      1: { type: Number, default: 0 },
+      2: { type: Number, default: 0 },
+      3: { type: Number, default: 0 },
+      4: { type: Number, default: 0 },
+      5: { type: Number, default: 0 },
+      total: { type: Number, default: 0 },
+    },
     rating: {
       type: Number,
       default: 0,

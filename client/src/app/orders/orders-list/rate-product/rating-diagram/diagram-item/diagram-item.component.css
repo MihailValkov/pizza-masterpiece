@@ -1,0 +1,30 @@
+li {
+  height: 24px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px #e3e6e6;
+  background-color: #f0f2f2;
+  position: relative;
+}
+
+li > p {
+  height: 24px;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #f8be3b;
+}
+
+li .product-rating {
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 5px;
+  left: 5px;
+  padding: 0 5px;
+  justify-content: space-between;
+  color: #010000;
+  position: absolute;
+  font-weight: 700;
+}

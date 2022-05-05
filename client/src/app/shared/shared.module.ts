@@ -11,6 +11,7 @@ import { DecimalFixedPipe } from './pipes/decimal-fixed.pipe';
 import { NoProductsComponent } from './no-products/no-products.component';
 import { AsideMenuComponent } from './aside-menu/aside-menu.component';
 import { RouterModule } from '@angular/router';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     DecimalFixedPipe,
     NoProductsComponent,
     AsideMenuComponent,
+    ModalComponent,
   ],
   imports: [CommonModule, MaterialModule, RouterModule],
   exports: [
@@ -33,6 +35,7 @@ import { RouterModule } from '@angular/router';
     StarRatingComponent,
     NoProductsComponent,
     AsideMenuComponent,
+    ModalComponent
   ],
 })
 export class SharedModule {}

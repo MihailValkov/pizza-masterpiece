@@ -9,6 +9,6 @@
     </mat-card-content>
   </a>
   <mat-card-footer>
-    <app-star-rating [rating]="88"></app-star-rating>
+    <app-star-rating [rating]="product?.rating || 0"></app-star-rating>
   </mat-card-footer>
 </mat-card>

@@ -21,7 +21,6 @@ export interface IOrder {
   paymentMethod: string;
 }
 
-
 export interface IOrderProductDetail {
   _id: string;
   selectedExtras: string[];
@@ -35,6 +34,9 @@ export interface IOrderProductDetail {
   description: string;
   imageUrl: string;
   ingredients: string[];
+  rating: number;
+  rates: number[];
+  isExpanded: boolean;
 }
 
 export interface IOrderDetail {

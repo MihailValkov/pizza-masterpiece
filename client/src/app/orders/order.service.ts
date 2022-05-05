@@ -25,4 +25,15 @@ export class OrderService {
   getMyOrder(orderId: string): Observable<IOrderDetail> {
     return this.http.get<IOrderDetail>(`/orders/${orderId}`);
   }
+
+  rateProduct(
+    productId: string,
+    rate: number,
+    comment: string
+  ): Observable<{ rating: number }> {
+    return this.http.patch<{ rating: number }>(`/products/rate/${productId}`, {
+      rate,
+      comment,
+    });
+  }
 }
