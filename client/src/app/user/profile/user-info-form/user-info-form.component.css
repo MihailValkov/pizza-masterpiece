@@ -26,3 +26,12 @@ form {
 .btn-actions button {
   width: 150px;
 }
+
+@media (max-width: 1070px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .form-row > * {
+    width: 100%;
+  }
+}

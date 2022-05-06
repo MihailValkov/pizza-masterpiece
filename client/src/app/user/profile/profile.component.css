@@ -4,8 +4,9 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+
 .profile-content {
-  width: 100%;
+  width: calc(100vw - 302px);
 }
 
 app-aside-menu {
@@ -65,8 +66,22 @@ app-file-upload {
   border-radius: 4px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1120px) {
+  .mat-card-content {
+    flex-direction: column;
+  }
+  .image-container {
+    margin: 20px auto;
+  }
   app-aside-menu {
     display: none;
   }
+  
+  .profile-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+
 }
