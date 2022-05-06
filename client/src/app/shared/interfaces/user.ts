@@ -6,8 +6,8 @@ interface IBaseUser {
     _id: string;
     url: string;
   };
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 export interface IUser extends IBaseUser {
   firstName: string;
@@ -19,6 +19,8 @@ export interface IUser extends IBaseUser {
     street: string;
     streetNumber: number;
   };
+  orders: string[];
+  ratedProducts: string[];
 }
 
 export interface IRegisterUser {

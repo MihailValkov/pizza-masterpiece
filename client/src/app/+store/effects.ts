@@ -43,7 +43,7 @@ export class AuthEffects {
           takeUntil(this.actions$.pipe(ofType(authActions.registerCancel))),
           map((user: IUser) => {
             this.notificationService.showMessage(
-              'Register successfully!',
+              'Thanks for signing up. Your account has been created.',
               'success'
             );
             this.router.navigateByUrl('/');

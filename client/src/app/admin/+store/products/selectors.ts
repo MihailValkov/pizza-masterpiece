@@ -9,20 +9,20 @@ interface ISelectState {
 
 export const selectProducts = (state: ISelectState) => state.admin.products;
 
-export const selectCurrentProduct = createSelector(
+export const selectAdminProductsCurrentProduct = createSelector(
   selectProducts,
   (state) => state.currentProduct
 );
-export const selectIsLoading = createSelector(
+export const selectAdminProductsIsLoading = createSelector(
   selectProducts,
   (state) => state.isLoading
 );
-export const selectErrorMessage = createSelector(
+export const selectAdminProductsErrorMessage = createSelector(
   selectProducts,
   (state) => state.errorMessage
 );
 
-export const selectProductList = createSelector(
+export const selectAdminProductsProductList = createSelector(
   selectProducts,
   (state) => state.productsList
 );

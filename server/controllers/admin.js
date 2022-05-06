@@ -5,6 +5,8 @@ const {
   doughModel,
   extraModel,
 } = require('../models/Product');
+const { userModel, roles } = require('../models/User');
+
 const { errorHandler } = require('../utils/errorHandler');
 
 const createProduct = async (req, res) => {
@@ -43,7 +45,72 @@ const getProductById = async (req, res, next) => {
   res.status(200).json({ _id: 'test' });
 };
 
+const getUsers = async (req, res, next) => {
+  const page = parseInt(req?.query?.page);
+  const limit = parseInt(req?.query?.limit);
+  const sort = req?.query?.sort;
+  const order = req?.query?.order;
+  const searchValue = req?.query?.searchValue;
+  const selectValue = req?.query?.selectValue;
+  const skipIndex = (page - 1) * limit;
+
+  let query = {};
+  if (searchValue && selectValue) {
+    if (selectValue == '_id') {
+      query = { [selectValue]: searchValue.trim() };
+    } else {
+      query = { [selectValue]: new RegExp(searchValue.trim() || '', 'i') };
+    }
+  }
+
+  try {
+    const count = await userModel.countDocuments(query);
+    const users = await userModel
+      .find(query)
+      .limit(limit)
+      .skip(skipIndex)
+      .sort({ [sort]: order })
+      .lean();
+
+    return res.status(200).json({ users, count, roles });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
+const getUser = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const user = await userModel.findById(id).lean();
+
+    return res.status(200).json({ user });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
+const changeUserSettings = async (req, res, next) => {
+  const { id } = req.params;
+  const { role, accountStatus } = req.body;
+
+  try {
+    const user = await userModel.findByIdAndUpdate(
+      id,
+      { role, accountStatus },
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json({ email: user.email, role, accountStatus });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
 module.exports = {
   createProduct,
   getProductById,
+  getUsers,
+  getUser,
+  changeUserSettings,
 };

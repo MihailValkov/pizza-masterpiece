@@ -1,0 +1,59 @@
+:host {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 20px;
+}
+
+.image-container {
+  margin-right: 20px;
+}
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-width: 210px;
+  max-height: 210px;
+  object-fit: cover;
+  flex: 4;
+}
+
+.control {
+  width: auto;
+  display: block;
+}
+.user-details {
+  flex: 8;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0px !important;
+}
+
+.left {
+  flex: 4;
+}
+.right {
+  flex: 4;
+}
+
+.left fieldset > p:last-of-type {
+  margin-bottom: 0px;
+}
+
+.left,
+.right h2 {
+  text-align: left;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+::ng-deep .loading {
+  width: 36px !important;
+  height: 36px !important;
+  margin-right: 20px;
+}
+::ng-deep .loading svg {
+  width: 33px !important;
+  height: 33px !important;
+}

@@ -5,8 +5,11 @@ const { uploadProductImage } = require('../controllers/upload');
 const { isAdmin } = require('../middlewares/authentication');
 const { single } = require('../middlewares/file-upload');
 
-router.get('/products/:id', isAdmin(), controller.getProductById);
+router.get('/users', isAdmin(), controller.getUsers);
+router.get('/users/:id', isAdmin(), controller.getUser);
+router.patch('/users/:id', isAdmin(), controller.changeUserSettings);
 
+router.get('/products/:id', isAdmin(), controller.getProductById);
 
 router.post('/products', isAdmin(), single(), uploadProductImage, controller.createProduct);
 

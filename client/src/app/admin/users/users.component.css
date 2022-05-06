@@ -1,0 +1,53 @@
+.admin-users-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.users-content {
+  width: 100%;
+}
+
+app-aside-menu {
+  flex: 2 1;
+  position: sticky;
+  top: 3rem;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 1000px) {
+  app-aside-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 660px) {
+  mat-toolbar {
+    height: 140px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .title {
+    font-size: 14px;
+  }
+  .icon {
+    display: none;
+  }
+}
+
+@media (max-width: 410px) {
+  mat-toolbar .title {
+    display: none;
+  }
+  mat-toolbar {
+    height: 115px;
+  }
+}

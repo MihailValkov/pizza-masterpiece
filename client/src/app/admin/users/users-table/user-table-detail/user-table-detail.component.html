@@ -1,0 +1,65 @@
+<ng-container *ngIf="(currentUser$ |async) as currentUser">
+  <div class="image-container">
+    <img [src]="currentUser?.image?.url || noAvatarImagePath" alt="profile-picture" />
+  </div>
+  <div class="user-details">
+    <div class="left">
+      <p>
+        First Name: <strong>{{currentUser?.firstName}}</strong>
+      </p>
+      <p>
+        Last Name: <strong>{{currentUser?.lastName}}</strong>
+      </p>
+      <p>
+        Email: <strong>{{currentUser?.email}}</strong>
+      </p>
+      <p>
+        Phone Number: <strong>{{currentUser?.phoneNumber}}</strong>
+      </p>
+      <p>
+        Address: <strong>{{currentUser?.address?.country}}, {{currentUser?.address?.city}},
+          {{currentUser?.address?.street}}
+          №
+          {{currentUser?.address?.streetNumber}}</strong>
+      </p>
+
+      <p>
+        Created on: <strong>{{currentUser?.createdAt | date:'short'}}</strong>
+      </p>
+      <p>
+        Modified on: <strong>{{currentUser?.updatedAt | date:'short'}}</strong>
+      </p>
+
+    </div>
+    <form class="right" #form="ngForm" (ngSubmit)="submitHandler(form, currentUser._id)">
+      <fieldset>
+        <legend>Account settings:</legend>
+        <mat-form-field appearance="outline" class="control">
+          <mat-label>Change user role</mat-label>
+          <mat-icon matPrefix *ngIf="currentUser?.role === 'Admin'">admin_panel_settings</mat-icon>
+          <mat-icon matPrefix *ngIf="currentUser?.role === 'Member'">person</mat-icon>
+          <mat-select name="role" [ngModel]="currentUser?.role" required>
+            <mat-option *ngFor="let role of roles" [value]="role" sel>{{role}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="control">
+          <mat-label>Change account status</mat-label>
+          <mat-icon matPrefix *ngIf="currentUser?.accountStatus === 'Active'">personal_injury</mat-icon>
+          <mat-icon matPrefix *ngIf="currentUser?.accountStatus === 'Inactive'">lock_person</mat-icon>
+          <mat-select [ngModel]="currentUser?.accountStatus" name="accountStatus" required>
+            <mat-option value="Active">Active</mat-option>
+            <mat-option value="Inactive">Inactive</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="actions">
+          <mat-spinner class="loading" *ngIf="currentUserIsLoading$|async"></mat-spinner>
+          <button mat-raised-button [disabled]="form.invalid || !form.touched || (currentUserIsLoading$ | async)">
+            <mat-icon>save</mat-icon>
+            Save changes
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</ng-container>

@@ -1,5 +1,5 @@
 const jwt = require('../utils/jwt');
-const userModel = require('../models/User');
+const { userModel, accountStatuses } = require('../models/User');
 const { cookie_name } = require('../config/config');
 const { errorHandler } = require('../utils/errorHandler');
 const { removeObjectFields } = require('../utils/removeSafeData');
@@ -31,6 +31,13 @@ const login = async (req, res) => {
     if (!match) {
       return res.status(409).json({ message: "Email or Password don't match!" });
     }
+    const accountIsActive = user.accountStatus === accountStatuses[0];
+    if (!accountIsActive) {
+      return res
+        .status(403)
+        .json({ message: 'Your account is deactivated, you can contact our Site Administrator to get it reactivated.' });
+    }
+
     const token = createToken(user);
 
     res

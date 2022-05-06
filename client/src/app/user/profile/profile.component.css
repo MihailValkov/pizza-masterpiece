@@ -27,7 +27,7 @@ app-aside-menu {
 
 .mat-card-content app-user-info-form,
 .mat-card-content app-user-address-form,
-.mat-card-content app-user-password-form  {
+.mat-card-content app-user-password-form {
   flex: 4;
   padding: 0px 20px;
 }
@@ -51,7 +51,7 @@ mat-tab-group {
   height: auto;
   max-width: 300px;
   max-height: 238px;
-  object-fit: contain;
+  object-fit: cover;
 }
 app-file-upload {
   width: 100%;

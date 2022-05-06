@@ -1,0 +1,42 @@
+:host {
+  width: 100%;
+}
+.search {
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin: 0 20px;
+}
+
+.search-input {
+  width: 80%;
+  max-width: 500px;
+}
+
+.control {
+  margin: 0 20px;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+@media (max-width: 660px) {
+  .search {
+    flex-direction: column;
+  }
+  .search-input {
+    max-width: auto;
+  }
+}
+
+@media (max-width: 450px) {
+  .icon {
+    display: none;
+  }
+  .control {
+    margin: 0px;
+    width: 100%;
+  }
+}

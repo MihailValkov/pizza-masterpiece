@@ -10,7 +10,7 @@ import { AdminService } from '../../admin.service';
 import * as productActions from './actions';
 
 @Injectable()
-export class AdminProductsEffect {
+export class AdminProductsEffects {
   createProduct$ = createEffect(() =>
     this.actions$.pipe(
       ofType(productActions.createProductStart),

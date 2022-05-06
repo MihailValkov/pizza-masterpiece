@@ -12,6 +12,8 @@ import { NoProductsComponent } from './no-products/no-products.component';
 import { AsideMenuComponent } from './aside-menu/aside-menu.component';
 import { RouterModule } from '@angular/router';
 import { ModalComponent } from './modal/modal.component';
+import { SearchComponent } from './search/search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,8 +26,9 @@ import { ModalComponent } from './modal/modal.component';
     NoProductsComponent,
     AsideMenuComponent,
     ModalComponent,
+    SearchComponent,
   ],
-  imports: [CommonModule, MaterialModule, RouterModule],
+  imports: [CommonModule, MaterialModule, RouterModule, FormsModule],
   exports: [
     SnackBarComponent,
     FileUploadComponent,
@@ -35,7 +38,8 @@ import { ModalComponent } from './modal/modal.component';
     StarRatingComponent,
     NoProductsComponent,
     AsideMenuComponent,
-    ModalComponent
+    ModalComponent,
+    SearchComponent,
   ],
 })
 export class SharedModule {}

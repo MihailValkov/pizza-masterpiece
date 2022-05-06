@@ -43,7 +43,7 @@
     <ng-container matColumnDef="expandedDetail">
 
       <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
-        <div class="product-row-detail" [@detailExpand]="row.isExpanded ? 'expanded' : 'collapsed'">
+        <div class="expanded-content" [@detailExpand]="row.isExpanded ? 'expanded' : 'collapsed'">
           <div class="image-container">
             <img [src]="row.imageUrl" class="product-img" [alt]="row.name" mat-card-xl-image />
           </div>
@@ -77,9 +77,8 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns" class="product-row"
-      [class.student-expanded-row]="row.isExpanded"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="product-detail-row"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" class="table-row"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="expanded-detail"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" aria-label="Select page of cart products"></mat-paginator>

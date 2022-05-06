@@ -58,14 +58,14 @@ th:first-child.mat-header-cell {
   margin-right: 10px;
 }
 
-.product-detail-row {
+.expanded-detail {
   height: 0px;
 }
-.product-row td {
+.table-row td {
   border-bottom-width: 0;
 }
 
-.product-row-detail {
+.expanded-content {
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -74,7 +74,7 @@ th:first-child.mat-header-cell {
   box-shadow: inset 2px 3px 8px #c1c1c1;
   border-radius: 8px;
 }
-.product-row-detail > p {
+.expanded-content > p {
   margin: 10px;
 }
 
@@ -102,7 +102,7 @@ th:first-child.mat-header-cell {
 }
 
 @media (max-width: 600px) {
-  .product-row-detail {
+  .expanded-content {
     justify-content: center;
   }
   .mat-chip-list-stacked p span {
@@ -155,3 +155,4 @@ th:first-child.mat-header-cell {
     display: none;
   }
 }
+

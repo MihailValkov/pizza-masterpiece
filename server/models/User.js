@@ -3,6 +3,9 @@ const { Schema, model } = require('mongoose');
 
 const { rounds } = require('../config/config');
 
+const roles = ['Member', 'Admin'];
+const accountStatuses = ['Active', 'Inactive'];
+
 const userSchema = new Schema(
   {
     email: {
@@ -31,14 +34,26 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ['Member', 'Admin'],
-      default: 'Member',
+      enum: {
+        values: roles,
+        message: `Role is one of the following: ${roles.join(', ')}.`,
+      },
+      default: roles[0],
+    },
+    accountStatus: {
+      type: String,
+      enum: {
+        values: accountStatuses,
+        message: `Account status is one of the following: ${accountStatuses.join(', ')}.`,
+      },
+      default: accountStatuses[0],
     },
     phoneNumber: {
       type: String,
       default: '0888888888',
       match: [/^0[1-9]{1}[0-9]{8}$/, 'Phone Number is not valid!'],
     },
+
     address: {
       country: {
         type: String,
@@ -81,4 +96,9 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-module.exports = model('User', userSchema);
+const userModel = model('User', userSchema);
+module.exports = {
+  userModel,
+  roles,
+  accountStatuses,
+};
