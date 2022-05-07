@@ -37,6 +37,7 @@ mat-tab-group {
   flex: 8;
   padding: 20px;
   padding-top: 0px;
+  min-height: 200px;
 }
 .form-container {
   margin-top: 20px;
@@ -65,23 +66,22 @@ app-file-upload {
   background: #6c70744a;
   border-radius: 4px;
 }
-
-@media (max-width: 1120px) {
+@media (max-width: 1285px) {
   .mat-card-content {
     flex-direction: column;
   }
   .image-container {
     margin: 20px auto;
   }
+}
+
+@media (max-width: 1120px) {
+
   app-aside-menu {
     display: none;
   }
-  
+
   .profile-content {
     width: 100%;
   }
-}
-
-@media (max-width: 1000px) {
-
 }
