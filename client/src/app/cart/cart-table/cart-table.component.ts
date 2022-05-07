@@ -21,15 +21,15 @@ import { ICartProduct } from 'src/app/shared/interfaces/product';
 @Component({
   selector: 'app-cart-table',
   templateUrl: './cart-table.component.html',
-  styleUrls: ['./cart-table.component.css'],
+  styleUrls: ['./cart-table.component.css', '../../shared/styles/table.css'],
 })
 export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
   @Input() products!: ICartProduct[];
   displayedColumns: string[] = [
-    'product',
+    'name',
     'price',
     'quantity',
-    'total',
+    'totalPrice',
     'action',
   ];
   dataSource!: MatTableDataSource<ICartProduct>;
@@ -45,6 +45,8 @@ export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.dataSource = new MatTableDataSource(changes['products'].currentValue);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {

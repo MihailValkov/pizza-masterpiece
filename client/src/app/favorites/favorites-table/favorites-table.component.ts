@@ -13,12 +13,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -30,7 +25,10 @@ import { IFavoriteProduct } from 'src/app/shared/interfaces/product';
 @Component({
   selector: 'app-favorites-table',
   templateUrl: './favorites-table.component.html',
-  styleUrls: ['./favorites-table.component.css'],
+  styleUrls: [
+    './favorites-table.component.css',
+    '../../shared/styles/table.css',
+  ],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -47,26 +45,28 @@ export class FavoritesTableComponent implements OnInit, OnChanges {
   panelOpenState = true;
   ingredients = ['Pizza sauce', 'Mozzarella', 'Pepperoni'];
   displayedColumns: string[] = [
-    'product',
+    'name',
     'rating',
     'size',
     'dough',
-    'grams',
+    'gr',
     'action',
   ];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  
   constructor(private store: Store<IUserDataState>) {}
 
   ngOnInit(): void {
-    const products = this.products.map((p) => ({ ...p, isOn: false }));
-    this.dataSource = new MatTableDataSource(products);
+    this.dataSource = new MatTableDataSource(this.products);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.dataSource = new MatTableDataSource(changes['products'].currentValue);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {

@@ -7,6 +7,7 @@
 .cart-content {
   width: 100%;
   flex: 8 1;
+  display: flex;
 }
 
 app-aside-menu,
@@ -14,4 +15,25 @@ app-cart-information {
   flex: 2 1;
   position: sticky;
   top: 7em;
+}
+
+@media (max-width: 1150px) {
+  .cart-content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1000px) {
+  app-aside-menu {
+    display: none;
+  }
+  .cart-content {
+    margin-left: 0px;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1121px) {
+  .cart-content {
+    margin-left: 20px;
+  }
 }

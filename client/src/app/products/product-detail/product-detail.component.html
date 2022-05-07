@@ -41,9 +41,9 @@
           <mat-label>Extras</mat-label>
           <mat-select [formControl]="extrasControl" multiple>
             <mat-select-trigger>
-              {{extrasControl?.value ? (extrasControl?.value[0] | firstCapitalLetter) : ''}}
+              {{extrasControl?.value ? ((extrasControl?.value?.[0] || '') | firstCapitalLetter) : ''}}
               <span *ngIf="extrasControl?.value?.length > 1" class="extras-selection">
-                (+{{extrasControl?.value.length - 1}} {{extrasControl?.value?.length === 2 ? 'other' : 'others'}})
+                (+{{extrasControl?.value?.length - 1}} {{extrasControl?.value?.length === 2 ? 'other' : 'others'}})
               </span>
             </mat-select-trigger>
 

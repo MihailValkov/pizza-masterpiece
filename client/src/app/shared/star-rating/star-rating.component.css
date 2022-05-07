@@ -63,7 +63,8 @@
   font-size: 18px;
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 1150px) {
   .text {
     display: none;
   }

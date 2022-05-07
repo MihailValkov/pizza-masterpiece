@@ -1,39 +1,45 @@
-table {
+:host {
   width: 100%;
 }
-th {
-  font-size: 14px;
+
+.table-wrapper {
+  width: 100%;
 }
+
 td,
 th {
-  width: 25%;
-  text-align: center;
-}
-th:first-child.mat-header-cell {
-  text-align: left;
-}
-.mat-header-cell {
-  text-align: center;
+  width: 26%;
 }
 
-.product-link {
-  display: flex;
-  align-items: center;
-}
-
-.product-link img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  margin: 5px 10px 5px 0px;
-  border-radius: 50px;
-  padding: 2px;
-  border: 1px solid rgb(147, 145, 145);
-}
 .quantity {
   border: 1px solid #dddddd;
   height: 40px;
   text-align: center;
   width: 60px;
   margin: 0px 10px 0px 10px;
+}
+
+@media (min-width: 1001px) and (max-width: 1150px) {
+  .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .table-wrapper {
+    width: calc(92vw - 302px) !important;
+  }
+  table {
+    width: 800px !important;
+  }
+}
+
+@media (min-width: 1150px) and (max-width: 1400px) {
+  .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+  .table-wrapper {
+    width: calc(92vw - 302px - 270px) !important;
+  }
+  table {
+    width: 800px !important;
+  }
 }

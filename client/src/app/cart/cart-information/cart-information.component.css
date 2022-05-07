@@ -1,3 +1,6 @@
+mat-toolbar {
+  height: 50px;
+}
 .cart-information {
   margin-left: 20px;
   width: 250px;
@@ -21,4 +24,12 @@
 
 .mat-button-disabled {
   pointer-events: none;
+}
+
+@media (max-width: 1150px) {
+  .cart-information {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 100%;
+  }
 }

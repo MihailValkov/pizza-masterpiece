@@ -1,3 +1,6 @@
+:host {
+  width: 100%;
+}
 .no-products {
   text-align: center;
   height: calc(80vh - 10rem);
@@ -15,5 +18,5 @@
   margin-bottom: 12px;
 }
 .btn {
-  margin-top: 20px;
+  margin: 20px auto;
 }

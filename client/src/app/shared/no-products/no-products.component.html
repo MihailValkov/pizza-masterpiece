@@ -1,6 +1,5 @@
 <mat-card class="no-products">
   <mat-card-content>
-    <!-- <ng-container *ngTemplateOutlet="type === 'cart' ? cartTemplate : favoritesTemplate"></ng-container> -->
     <ng-container [ngSwitch]="type">
       <ng-container *ngSwitchCase="'cart'">
         <mat-icon class="icon">

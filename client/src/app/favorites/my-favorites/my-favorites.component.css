@@ -14,3 +14,15 @@ app-aside-menu {
   position: sticky;
   top: 3rem;
 }
+
+@media (max-width: 1000px) {
+  app-aside-menu {
+    display: none;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1121px) {
+  .favorites-content {
+    margin-left: 20px;
+  }
+}

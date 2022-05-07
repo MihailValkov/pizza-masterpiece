@@ -1,11 +1,8 @@
 <section class="cart-container" *ngIf="(products$ | async) as products">
   <app-aside-menu></app-aside-menu>
   <div class="cart-content">
-    <mat-toolbar color="primary">
-      My Cart
-    </mat-toolbar>
     <app-cart-table [products]="products" *ngIf="products.length > 0"></app-cart-table>
     <app-no-products *ngIf="products.length === 0" type="cart"></app-no-products>
+    <app-cart-information [canContinue]="products.length > 0"></app-cart-information>
   </div>
-  <app-cart-information [canContinue]="products.length > 0"></app-cart-information>
 </section>

@@ -1,44 +1,10 @@
-table {
+.table-wrapper {
   width: 100%;
 }
-th {
-  font-size: 14px;
-}
+
 td,
 th {
   width: 20%;
-  text-align: center;
-}
-:host ::ng-deep .mat-sort-header-container {
-  justify-content: center;
-}
-:host ::ng-deep th:first-child .mat-sort-header-container {
-  justify-content: flex-start;
-}
-:host ::ng-deep th:last-child .mat-sort-header-container {
-  justify-content: flex-end;
-}
-
-th:first-child.mat-header-cell {
-  text-align: left;
-}
-.mat-header-cell {
-  text-align: center;
-}
-
-.product-link {
-  display: flex;
-  align-items: center;
-}
-
-.product-link img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  margin: 5px 10px 5px 0px;
-  border-radius: 50px;
-  padding: 2px;
-  border: 1px solid rgb(147, 145, 145);
 }
 
 .mat-chip-list-stacked {
@@ -51,9 +17,28 @@ th:first-child.mat-header-cell {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: 66px;
   width: auto;
 }
 .actions button:first-of-type {
   margin-right: 10px;
+}
+
+@media (max-width: 650px) {
+  .actions {
+    height: 86px;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1150px) {
+  .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .table-wrapper {
+    width: calc(92vw - 302px) !important;
+  }
+  table {
+    width: 800px !important;
+  }
 }
