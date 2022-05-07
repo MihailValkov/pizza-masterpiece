@@ -23,7 +23,7 @@
     <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Profile
+          Account
         </mat-panel-title>
       </mat-expansion-panel-header>
       <ul class="navigation" (click)="onLinkClick()">
@@ -43,6 +43,12 @@
           <a mat-menu-item routerLink="/favorites">
             <mat-icon routerLinkActive="active">favorites</mat-icon>
             Favorites
+          </a>
+        </li>
+        <li>
+          <a mat-menu-item routerLink="/orders">
+            <mat-icon routerLinkActive="active">list_alt</mat-icon>
+            Orders
           </a>
         </li>
       </ul>
