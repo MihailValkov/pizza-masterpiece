@@ -70,7 +70,7 @@ Register page
 ![Register Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Register.png)
 
 Detail page
-![Detail Page]()
+![Detail Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Detail.png)
 
 Cart page - empty
 ![Cart page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Cart-empty.png)
