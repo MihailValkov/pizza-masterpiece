@@ -56,7 +56,7 @@
         <h2 matCardTitle *ngIf="extras.length > 0">Extras:</h2>
         <mat-chip-list>
           <mat-chip *ngFor="let extra of extras" color="primary" selected (removed)="remove(extra)">
-            {{extra}}
+            {{extra | firstCapitalLetter}}
             <button matChipRemove>
               <mat-icon color="warn">cancel</mat-icon>
             </button>
@@ -110,11 +110,6 @@
           <mat-icon>favorite</mat-icon>
           <span>Add to Favorites</span>
         </button>
-        <!-- <button mat-raised-button color="warn">
-          <mat-icon>star</mat-icon>
-          <span>Leave a review</span>
-        </button> -->
-
       </div>
     </div>
 

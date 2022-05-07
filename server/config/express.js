@@ -1,9 +1,8 @@
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const multer = require('multer')();
 
 const auth = require('../middlewares/auth');
-const whitelist = ['http://localhost:4200', 'http://localhost:55886'];
+const whitelist = ['http://localhost:4200'];
 
 module.exports = (app, express) => {
   app.use(express.static('public'));

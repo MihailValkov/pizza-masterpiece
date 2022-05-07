@@ -143,6 +143,16 @@ mat-card-content {
     width: 100%;
   }
 }
+@media (min-width: 780px) and (max-width: 1000px) {
+  .image-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .ingredients-container {
+    margin-left: 20px;
+  }
+}
+
 @media (max-width: 800px) {
   .info-container {
     flex-direction: column;
@@ -156,8 +166,7 @@ mat-card-content {
   .weight strong {
     width: 40px;
   }
-  .product-info {
-    flex-direction: column;
+  :host ::ng-deep .mat-chip-list-stacked .mat-chip-list-wrapper {
     align-items: center;
   }
 }
@@ -172,7 +181,8 @@ mat-card-content {
   .product-content {
     margin-top: 10px;
   }
-  :host ::ng-deep .mat-chip-list-stacked .mat-chip-list-wrapper {
+  .product-info {
+    flex-direction: column;
     align-items: center;
   }
   .weight {
