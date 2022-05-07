@@ -64,10 +64,10 @@ Home page
 ![Home Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Home.png)
 
 Login page
-![Login Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Login.png)
+![Login page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Login.png)
 
 Register page
-![Register Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Register.png)
+![Register page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Register.png)
 
 Detail page
 ![Detail Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Detail.png)
