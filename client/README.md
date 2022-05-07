@@ -61,7 +61,7 @@ Navigation bar
 ![Navigation](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Navigation.png)
 
 Home page
-![Home Page]()
+![Home Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Home.png)
 
 Login page
 ![Login Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Login.png)
