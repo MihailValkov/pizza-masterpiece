@@ -1,27 +1,92 @@
-# PizzaMasterpiece
+# Angular Application - Pizza Masterpiece
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
+## 🛠 Libraries and tools used
+- [Angular](https://angular.io/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [NGRX Store](https://ngrx.io/guide/store)
+- [NGRX Effects](https://v10.ngrx.io/guide/effects)
+- [NGRX Devtools](https://ngrx.io/guide/store-devtools)
+- [Angular Material](https://material.angular.io/)
+- [Cloudinary](https://cloudinary.com/)
+- [Rxjs](https://rxjs.dev/guide/overview)
+- [Angular Infinite Scroll](https://www.npmjs.com/package/ngx-infinite-scroll)
+- [Custom API]()
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting Started
+Clone this repository and install dependencies
+```
+> git clone https://github.com/MihailValkov/pizza-masterpiece.git
+> cd client
+> npm install
+> ng build
+> cd ../server
+> npm install
+> npm start
+> go to http://localhost:3005
+```
+**NOTE: Don't forget to read the documentation about the CUSTOM API, you can find it [here]().**
 
-## Code scaffolding
+## Application Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Permissions:
 
-## Build
+| **Permissions** | Guest   | Logged in User  | Admin           |
+| --------------- | -----   | --------------  | --------------  |
+| Login/ Register | ✅     | ❌              | ❌              |
+| Home page       | ✅     | ✅              | ✅              |
+| Details         | ✅     | ✅              | ✅              |
+| Cart            | ✅     | ✅              | ✅              |
+| Favorites       | ✅     | ✅              | ✅              |
+| Checkout        | ✅     | ✅              | ✅              |
+| Profile         | ❌     | ✅              | ✅              |
+| My Orders       | ❌     | ✅              | ✅              |
+| Create Product  | ❌     | ❌              | ✅              |
+| Admin Users     | ❌     | ❌              | ✅              |
+| Admin Orders    | ❌     | ❌              | ✅              |
+| Admin Products  | ❌     | ❌              | ✅              |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Application Structure
 
-## Running unit tests
+### Public part (accessible without authentication)
+### Private part (available for registered users)
+### Admin part (accessible for admin users)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Pages:
 
-## Running end-to-end tests
+### Public Pages (logged out users):
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Home page
+![Home Page]()
 
-## Further help
+Login page
+![Login Page]()
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Register page
+![Register Page]()
+
+Detail page
+![Detail Page]()
+
+Cart page - empty
+![Cart page]()
+
+Cart page
+![Cart page]()
+
+Favorites page - empty
+![Favorites page]()
+
+Favorites page
+![Favorites page]()
+
+Not Found page
+![Not Found Page]()
+
+
+
+### Private Pages (logged in users):
+
+### Admin Pages:

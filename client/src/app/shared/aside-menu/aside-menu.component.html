@@ -45,7 +45,7 @@
             Favorites
           </a>
         </li>
-        <li>
+        <li *ngIf="(user$ | async)">
           <a mat-menu-item routerLink="/orders">
             <mat-icon routerLinkActive="active">list_alt</mat-icon>
             Orders

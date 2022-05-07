@@ -55,7 +55,7 @@
 
         </mat-accordion>
         <mat-card-actions>
-          <button mat-raised-button color="primary">Submit</button>
+          <button mat-raised-button color="primary" [disabled]="form.invalid || (isLoading$|async)">Submit</button>
         </mat-card-actions>
       </form>
     </div>
