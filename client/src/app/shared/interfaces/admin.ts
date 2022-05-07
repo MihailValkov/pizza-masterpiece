@@ -14,7 +14,9 @@ export interface IBaseAdminUser {
   role: IRoles.Admin | IRoles.Member;
   accountStatus: IAccountStatus.Active | IAccountStatus.Inactive;
   orders: string[];
-  ratedProducts: string[];
+  ordersCount: string[];
+  ratedProducts: number;
+  ratedProductsCount: number;
   createdAt: string;
   updatedAt: string;
 }

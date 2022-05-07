@@ -53,7 +53,6 @@ const userSchema = new Schema(
       default: '0888888888',
       match: [/^0[1-9]{1}[0-9]{8}$/, 'Phone Number is not valid!'],
     },
-
     address: {
       country: {
         type: String,
@@ -75,6 +74,28 @@ const userSchema = new Schema(
         default: 1,
         min: [1, 'Street Number Street Number should be minimum 1!'],
       },
+    },
+    ratedProducts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Product',
+        default: [],
+      },
+    ],
+    ratedProductsCount: {
+      type: Number,
+      default: 0,
+    },
+    orders: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Order',
+        default: [],
+      },
+    ],
+    ordersCount: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true }

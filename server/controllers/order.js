@@ -1,9 +1,11 @@
 const orderModel = require('../models/Order');
 const { productModel } = require('../models/Product');
+const { userModel } = require('../models/User');
 const { ValidationError } = require('../utils/createValidationError');
 const { errorHandler } = require('../utils/errorHandler');
 
 const createOrder = async (req, res, next) => {
+  const userId = req?.user?._id;
   const { user, products, totalProducts, price, taxes, paymentMethod } = req.body;
   const ids = products.map((p) => p.productId);
 
@@ -55,13 +57,23 @@ const createOrder = async (req, res, next) => {
     });
 
     const newOrder = await orderModel.create({
-      user,
+      user: {
+        ...user,
+        _id: userId ? userId : `${user.firstName}-${user.email}`,
+      },
       paymentMethod,
       taxes,
       price,
       totalProducts,
       products: transformedProducts,
     });
+
+    if (userId) {
+      const currentUser = await userModel.findById(userId);
+      currentUser.orders.push(newOrder);
+      currentUser.ordersCount = currentUser.orders.length;
+      await currentUser.save();
+    }
 
     res.status(201).json({ orderId: newOrder._id });
   } catch (error) {
@@ -76,9 +88,9 @@ const getOrders = async (req, res, next) => {
   const order = req?.query?.order;
   const skipIndex = (page - 1) * limit;
   try {
-    const count = await orderModel.countDocuments({ 'user.email': req.user.email });
+    const count = await orderModel.countDocuments({ 'user._id': req.user._id });
     const ordersList = await orderModel
-      .find({ 'user.email': req.user.email })
+      .find({ 'user._id': req.user._id })
       .limit(limit)
       .skip(skipIndex)
       .sort({ [sort]: order })

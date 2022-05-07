@@ -1,4 +1,5 @@
 const { productModel } = require('../models/Product');
+const { userModel } = require('../models/User');
 const { ValidationError } = require('../utils/createValidationError');
 const { errorHandler } = require('../utils/errorHandler');
 
@@ -57,9 +58,9 @@ const rateProduct = async (req, res, next) => {
       throw new ValidationError('Product with provided id is not found', 404);
     }
 
-    if (product.toObject().comments.find((comment) => comment.user == userId)) {
-      throw new ValidationError('You have already rated this product!', 403);
-    }
+    // if (product.toObject().comments.find((comment) => comment.user == userId)) {
+    //   throw new ValidationError('You have already rated this product!', 403);
+    // }
 
     product.comments.push({
       user: userId,
@@ -72,6 +73,11 @@ const rateProduct = async (req, res, next) => {
     product.rating = product.rate.total / product.comments.length;
 
     await product.save();
+
+    const currentUser = await userModel.findById(userId);
+    currentUser.ratedProducts.push(id);
+    currentUser.ratedProductsCount = currentUser.ratedProducts.length;
+    await currentUser.save();
 
     res.status(200).json({ rating: product.rating });
   } catch (error) {

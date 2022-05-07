@@ -55,6 +55,8 @@ const getUsers = async (req, res, next) => {
   const skipIndex = (page - 1) * limit;
 
   let query = {};
+  let sortCriteria = { [sort]: order };
+
   if (searchValue && selectValue) {
     if (selectValue == '_id') {
       query = { [selectValue]: searchValue.trim() };
@@ -65,12 +67,7 @@ const getUsers = async (req, res, next) => {
 
   try {
     const count = await userModel.countDocuments(query);
-    const users = await userModel
-      .find(query)
-      .limit(limit)
-      .skip(skipIndex)
-      .sort({ [sort]: order })
-      .lean();
+    let users = await userModel.find(query).limit(limit).skip(skipIndex).sort(sortCriteria).lean();
 
     return res.status(200).json({ users, count, roles });
   } catch (error) {
