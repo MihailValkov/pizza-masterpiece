@@ -19,14 +19,14 @@
     </div>
   </div>
   <mat-divider></mat-divider>
-  <mat-accordion>
-    <mat-expansion-panel>
+  <mat-accordion multi>
+    <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Profile
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <ul class="navigation">
+      <ul class="navigation" (click)="onLinkClick()">
         <li *ngIf="(user$ | async)">
           <a mat-menu-item routerLink="/user/profile">
             <mat-icon routerLinkActive="active">personal_injury</mat-icon>
@@ -53,7 +53,7 @@
           Administration
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <ul class="navigation">
+      <ul class="navigation" (click)="onLinkClick()">
         <li>
           <a mat-menu-item routerLink="/admin/products/create">
             <mat-icon routerLinkActive="active">add</mat-icon>

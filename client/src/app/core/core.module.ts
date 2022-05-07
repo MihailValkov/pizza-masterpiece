@@ -13,6 +13,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers, Effects } from './+store';
 import { EffectsModule } from '@ngrx/effects';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [FooterComponent, NavigationComponent, AsideNavComponent],
@@ -20,6 +21,7 @@ import { EffectsModule } from '@ngrx/effects';
     CommonModule,
     RouterModule,
     MaterialModule,
+    SharedModule,
     StoreModule.forFeature('userData', reducers, { metaReducers }),
     EffectsModule.forFeature(Effects),
   ],

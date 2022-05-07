@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { select, Store } from '@ngrx/store';
 import { IRootState } from 'src/app/+store';
 import { selectUserImage, selectUser } from 'src/app/+store/selectors';
@@ -9,9 +10,15 @@ import { selectUserImage, selectUser } from 'src/app/+store/selectors';
   styleUrls: ['./aside-menu.component.css'],
 })
 export class AsideMenuComponent {
+  @Input() drawer!: MatDrawer;
+
   noAvatarImagePath = '../../../assets/images/anonymous-user-circle.png';
   userImage$ = this.store.pipe(select(selectUserImage));
   user$ = this.store.pipe(select(selectUser));
 
   constructor(private store: Store<IRootState>) {}
+
+  onLinkClick() {
+    this.drawer.close();
+  }
 }

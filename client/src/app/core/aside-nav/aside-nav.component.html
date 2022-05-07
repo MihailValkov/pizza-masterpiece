@@ -1,6 +1,6 @@
-<mat-drawer-container class="example-container">
-  <mat-drawer #drawer class="example-sidenav" mode="over">
-    MENU
+<mat-drawer-container class="container">
+  <mat-drawer #drawer class="sidenav" mode="over">
+    <app-aside-menu [drawer]="drawer"></app-aside-menu>
   </mat-drawer>
   <app-navigation [drawer]="drawer"></app-navigation>
   <main class="main">

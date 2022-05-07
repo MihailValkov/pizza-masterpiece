@@ -49,10 +49,17 @@
   margin-bottom: 10px;
 }
 
-.navigation li{
+.navigation li {
   background-color: #fafafa;
 }
 .navigation a {
   border: 1px solid #ccc;
   margin-bottom: 5px;
+}
+
+@media (max-width: 1120px) {
+  .aside-menu {
+    margin-right: 0px;
+    box-shadow: none;
+  }
 }
