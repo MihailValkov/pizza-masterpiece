@@ -1,5 +1,4 @@
 # Angular Application - Pizza Masterpiece
-
 ## 🛠 Libraries and tools used
 - [Angular](https://angular.io/)
 - [TypeScript](https://www.typescriptlang.org/)
