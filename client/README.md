@@ -57,29 +57,32 @@ Clone this repository and install dependencies
 
 ### Public Pages (logged out users):
 
+Navigation bar
+![Navigation](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Navigation.png)
+
 Home page
 ![Home Page]()
 
 Login page
-![Login Page]()
+![Login Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Login.png)
 
 Register page
-![Register Page]()
+![Register Page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Register.png)
 
 Detail page
 ![Detail Page]()
 
 Cart page - empty
-![Cart page]()
+![Cart page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Cart-empty.png)
 
 Cart page
-![Cart page]()
+![Cart page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Cart.png)
 
 Favorites page - empty
-![Favorites page]()
+![Favorites page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Favorites-empty.png)
 
 Favorites page
-![Favorites page]()
+![Favorites page](https://github.com/MihailValkov/pizza-masterpiece/blob/main/pages/Favorites.png)
 
 Not Found page
 ![Not Found Page]()
