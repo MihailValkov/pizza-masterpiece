@@ -4,7 +4,7 @@
     <img class="card-image" [src]="product?.image?.url" [alt]="product.name">
     <mat-card-content>
       <p class="card-description">
-        {{product?.description}}
+        {{(product?.description || '') | textLength:105}}
       </p>
     </mat-card-content>
   </a>

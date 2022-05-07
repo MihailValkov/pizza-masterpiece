@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { ModalComponent } from './modal/modal.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+import { TextLengthPipe } from './pipes/text-length.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
     AsideMenuComponent,
     ModalComponent,
     SearchComponent,
+    TextLengthPipe,
   ],
   imports: [CommonModule, MaterialModule, RouterModule, FormsModule],
   exports: [
@@ -34,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     FileUploadComponent,
     FirstCapitalLetterPipe,
     DecimalFixedPipe,
+    TextLengthPipe,
     LoadingSpinnerComponent,
     StarRatingComponent,
     NoProductsComponent,
