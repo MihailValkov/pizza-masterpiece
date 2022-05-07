@@ -8,7 +8,10 @@ import { selectIsLoading } from 'src/app/+store/selectors';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: [
+    '../../shared/styles/login-register.css',
+    './login.component.css',
+  ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   form!: FormGroup;

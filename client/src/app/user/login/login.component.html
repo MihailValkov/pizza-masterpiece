@@ -1,8 +1,8 @@
-<mat-card class="login-container">
+<mat-card class="container">
 
-  <img class="login-image" [src]="loginLogoPath" alt="login-image" />
+  <img class="image" [src]="loginLogoPath" alt="login-image" />
 
-  <form [formGroup]="form" class="login-form" (ngSubmit)="submitHandler()">
+  <form [formGroup]="form" class="form" (ngSubmit)="submitHandler()">
 
     <mat-form-field class="form-control" appearance="outline">
       <mat-label>Email</mat-label>
@@ -30,11 +30,11 @@
         Password is required
       </mat-error>
     </mat-form-field>
-    <button mat-flat-button color="primary" class="btn-login" type="submit"
+    <button mat-flat-button color="primary" class="btn" type="submit"
       [disabled]="form.invalid || (isLoading$ | async)">Login</button>
   </form>
 
-  <div class="login-link-container">
+  <div class="link-container">
     <span>Not registered yet?</span>
     <a mat-flat-button routerLink="/user/register">Register Now!</a>
   </div>

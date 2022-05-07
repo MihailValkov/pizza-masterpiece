@@ -1,6 +1,6 @@
-<mat-card class="register-container">
-  <img class="register-image" [src]="registerLogoPath" alt="login-image" />
-  <form [formGroup]="form" class="register-form" (ngSubmit)="submitHandler()">
+<mat-card class="container">
+  <img class="image" [src]="registerLogoPath" alt="login-image" />
+  <form [formGroup]="form" class="form" (ngSubmit)="submitHandler()">
 
     <mat-form-field class="form-control" appearance="outline">
       <mat-label>Email</mat-label>
@@ -44,10 +44,10 @@
       </mat-error>
 
     </mat-form-field>
-    <button mat-flat-button color="primary" class="btn-register" type="submit"
+    <button mat-flat-button color="primary" class="btn" type="submit"
       [disabled]="form.invalid || (isLoading$ | async)">Register</button>
   </form>
-  <div class="register-link-container">
+  <div class="link-container">
     <span>Already have account?</span>
     <a mat-flat-button routerLink="/user/login">Login Now!</a>
   </div>

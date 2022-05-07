@@ -9,7 +9,10 @@ import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwor
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  styleUrls: [
+    '../../shared/styles/login-register.css',
+    './register.component.css',
+  ],
 })
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
@@ -17,7 +20,7 @@ export class RegisterComponent implements OnInit {
   passwordHide = true;
   rePasswordHide = true;
   isLoading$ = this.store.pipe(select(selectIsLoading));
-  
+
   constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
 
   ngOnInit(): void {
