@@ -1,5 +1,5 @@
 <ng-container *ngIf="addressForm$ | async as addressForm">
-  <form [formGroup]="addressForm" [ngStyle]="{width: width+'%'}">
+  <form [formGroup]="addressForm">
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>location_on</mat-icon>
       <mat-label>Country</mat-label>

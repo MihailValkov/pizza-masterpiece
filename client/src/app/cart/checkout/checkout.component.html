@@ -1,18 +1,26 @@
-<mat-stepper linear #stepper>
-  <ng-container *ngIf="addressForm$ | async as addressForm">
-    <mat-step [stepControl]="addressForm">
-      <ng-template matStepLabel>Address for Delivery</ng-template>
-      <app-address-form></app-address-form>
+<section #container>
+  <mat-stepper linear #stepper [orientation]="orientation">
+    <ng-container *ngIf="addressForm$ | async as addressForm">
+      <mat-step [stepControl]="addressForm">
+        <ng-template matStepLabel>Address for Delivery</ng-template>
+        <div class="address-container">
+          <app-address-form></app-address-form>
+        </div>
+      </mat-step>
+    </ng-container>
+    <ng-container *ngIf="userForm$ | async as userForm">
+      <mat-step [stepControl]="userForm">
+        <ng-template matStepLabel>User Information</ng-template>
+        <div class="user-container">
+          <app-user-form></app-user-form>
+        </div>
+      </mat-step>
+    </ng-container>
+    <mat-step>
+      <ng-template matStepLabel>Order Information</ng-template>
+      <div class="summary-container">
+        <app-order-summary></app-order-summary>
+      </div>
     </mat-step>
-  </ng-container>
-  <ng-container *ngIf="userForm$ | async as userForm">
-    <mat-step [stepControl]="userForm">
-      <ng-template matStepLabel>User Information</ng-template>
-      <app-user-form></app-user-form>
-    </mat-step>
-  </ng-container>
-  <mat-step>
-    <ng-template matStepLabel>Order Information</ng-template>
-    <app-order-summary></app-order-summary>
-  </mat-step>
-</mat-stepper>
+  </mat-stepper>
+</section>

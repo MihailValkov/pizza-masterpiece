@@ -7,7 +7,6 @@ import { UserFormService } from '../user-form.service';
   styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent {
-  @Input() width: number = 50;
   @Input() hideActions: boolean = false;
   userForm$ = this.userFormService.userForm$;
   isFormFulfilled = this.userFormService.formIsFulfilled;

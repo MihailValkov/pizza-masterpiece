@@ -8,13 +8,13 @@
   justify-content: space-between;
 }
 .mat-toolbar {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .mat-card .mat-divider-horizontal {
   position: relative;
 }
 
-.user-info > div {
+.user-info > .user-information {
   display: flex;
 }
 .user-info {
@@ -54,4 +54,25 @@
 }
 .btn-actions > button:first-child {
   margin-right: 20px;
+}
+
+@media (max-width: 600px) {
+  .user-info {
+    margin-right: 0px;
+  }
+  .user-information {
+    flex-direction: column;
+  }
+}
+@media (max-width: 900px) {
+  .user-info {
+    margin-right: 0px;
+  }
+
+  .order-container {
+    flex-direction: column;
+  }
+  .btn-actions {
+    margin-top: 20px;
+  }
 }

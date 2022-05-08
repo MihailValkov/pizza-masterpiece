@@ -7,7 +7,6 @@ import { AddressFormService } from '../address-form.service';
   styleUrls: ['./address-form.component.css'],
 })
 export class AddressFormComponent {
-  @Input() width: number = 50;
   @Input() hideActions: boolean = false;
   addressForm$ = this.addressFormService.addressForm$;
   isFormFulfilled = this.addressFormService.formIsFulfilled;

@@ -1,5 +1,5 @@
 <ng-container *ngIf="userForm$ | async as userForm">
-  <form [formGroup]="userForm" [ngStyle]="{width: width+'%'}">
+  <form [formGroup]="userForm">
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>person</mat-icon>
       <mat-label>First Name</mat-label>
