@@ -1,3 +1,8 @@
+::ng-deep .mat-snack-bar-container {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+}
+
 .snackbar-container {
   display: flex;
   justify-content: space-between;
@@ -18,4 +23,11 @@
 }
 .error {
   background-color: #6c1303;
+}
+
+@media (max-width: 650px) {
+  ::ng-deep .mat-snack-bar-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
