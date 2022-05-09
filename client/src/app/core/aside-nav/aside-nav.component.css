@@ -13,3 +13,10 @@
   width: 92%;
   min-height: calc(100vh - 13rem);
 }
+
+@media (max-width: 650px) {
+  .main {
+    margin: 1rem auto;
+    min-height: calc(100vh - 9rem);
+  }
+}

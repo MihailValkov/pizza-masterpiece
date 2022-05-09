@@ -17,8 +17,12 @@
   transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 650px) {
+  .products-list {
+    justify-content: center;
+  }
   .products-list li {
-    margin: auto auto 20px;
+    padding-bottom: 10px;
   }
 }
+
