@@ -3,6 +3,6 @@
   <div class="cart-content">
     <app-cart-table [products]="products" *ngIf="products.length > 0"></app-cart-table>
     <app-no-products *ngIf="products.length === 0" type="cart"></app-no-products>
-    <app-cart-information [canContinue]="products.length > 0"></app-cart-information>
+    <app-cart-information *ngIf="products.length > 0" [canContinue]="products.length > 0"></app-cart-information>
   </div>
 </section>
