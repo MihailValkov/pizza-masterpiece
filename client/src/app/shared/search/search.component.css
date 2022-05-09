@@ -21,6 +21,9 @@
 .icon {
   margin-right: 10px;
 }
+.hidden {
+  display: none;
+}
 
 @media (max-width: 660px) {
   .search {

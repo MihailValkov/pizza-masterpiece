@@ -46,7 +46,10 @@
     </mat-form-field>
   </div>
   <div class="btn-actions" *ngIf="!readOnly">
+
     <button mat-raised-button [disabled]="userForm.invalid" color="primary"
-      [disabled]="userForm.invalid || (updateUserInfoIdLoading$|async)">Save</button>
+      [disabled]="userForm.invalid || !userForm.touched|| (updateUserInfoIdLoading$|async)">
+      <span>Save</span>
+    </button>
   </div>
 </form>

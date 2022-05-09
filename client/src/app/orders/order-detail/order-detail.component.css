@@ -85,7 +85,10 @@ app-aside-menu {
     flex-direction: column;
     align-items: flex-start;
   }
-  .mat-card-title span {
+  .mat-card-title {
+    font-size: 18px;
+  }
+  .mat-card-title strong {
     margin-top: 10px;
     display: block;
   }

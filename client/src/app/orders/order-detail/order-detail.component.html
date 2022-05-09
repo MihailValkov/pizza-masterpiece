@@ -5,7 +5,7 @@
       My Order Details
     </mat-toolbar>
     <mat-card *ngIf="currentOrder$ | async as currentOrder">
-      <mat-card-title>Order Number: <span>{{currentOrder._id}}</span></mat-card-title>
+      <mat-card-title>Order Number: <strong>{{currentOrder._id}}</strong></mat-card-title>
       <mat-card-header>
         <div>
           <p><span class="order-created">Created:</span> <strong>{{currentOrder?.createdAt | date:'short'}}</strong></p>

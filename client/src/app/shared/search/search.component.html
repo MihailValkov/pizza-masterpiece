@@ -2,10 +2,10 @@
 
   <mat-form-field class="control search-input">
     <mat-icon matPrefix class="icon">search</mat-icon>
-    <input type="search" matInput #searchElement placeholder="Search...">
+    <input type="search" matInput #searchElement [placeholder]="'Search by '+ searchCriterions[0]?.value">
   </mat-form-field>
 
-  <mat-form-field class="control">
+  <mat-form-field [ngClass]="{control:true,hidden:searchCriterionsLength}">
     <mat-select [value]="searchCriterions[0]?.prop" #selectElement>
       <mat-option *ngFor="let criteria of searchCriterions" [value]="criteria.prop">{{criteria.value|
         firstCapitalLetter}}

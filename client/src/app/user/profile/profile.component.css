@@ -71,6 +71,9 @@ app-file-upload {
   .label {
     display: none;
   }
+  ::ng-deep .mat-tab-labels {
+    justify-content: center!important;
+  }
 }
 
 @media (max-width: 1120px) {

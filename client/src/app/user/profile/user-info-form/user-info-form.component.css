@@ -27,6 +27,12 @@ form {
   width: 150px;
 }
 
+@media (max-width: 650px) {
+  .btn-actions {
+    margin-bottom: 0px;
+  }
+}
+
 @media (max-width: 1070px) {
   .form-row {
     flex-direction: column;

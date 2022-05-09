@@ -17,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
-import { RateProductComponent } from '../../orders-list/rate-product/rate-product.component';
+import { RateProductComponent } from '../rate-product/rate-product.component';
 
 @Component({
   selector: 'app-products-table',

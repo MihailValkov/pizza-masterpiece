@@ -156,3 +156,9 @@ th:first-child.mat-header-cell {
   }
 }
 
+
+
+
+.product-detail-row {
+  height: 0px;
+}

@@ -52,7 +52,7 @@
     </mat-form-field>
   </div>
   <div class="btn-actions" *ngIf="!readOnly">
-    <button mat-raised-button [disabled]="addressForm.invalid || (updateUserAddressIsLoading$|async)"
+    <button mat-raised-button [disabled]="addressForm.invalid || !addressForm.touched || (updateUserAddressIsLoading$|async)"
       color="primary">Save</button>
   </div>
 </form>

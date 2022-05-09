@@ -9,7 +9,7 @@
     <table mat-table [dataSource]="users" matSort matSortActive="createdAt" matSortDisableClear matSortDirection="desc"
       multiTemplateDataRows>
 
-      <ng-container matColumnDef="_id" sticky>
+      <ng-container matColumnDef="_id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>User Id</th>
         <td mat-cell *matCellDef="let row">{{row?._id}}</td>
       </ng-container>

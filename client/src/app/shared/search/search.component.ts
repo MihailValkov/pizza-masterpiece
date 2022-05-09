@@ -3,15 +3,11 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-
   Input,
-
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  MatSelect,
-} from '@angular/material/select';
+import { MatSelect } from '@angular/material/select';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -36,6 +32,10 @@ export class SearchComponent implements AfterViewInit {
   @ViewChild(MatSelect) selectElement!: MatSelect;
 
   constructor() {}
+
+  get searchCriterionsLength() {
+    return this.searchCriterions.length;
+  }
 
   ngAfterViewInit(): void {
     const searchEvent = fromEvent(

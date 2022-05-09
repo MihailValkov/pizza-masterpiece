@@ -25,6 +25,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 const modules = [
   MatFormFieldModule,
@@ -53,6 +54,7 @@ const modules = [
   MatSortModule,
   MatTabsModule,
   MatDialogModule,
+  MatButtonToggleModule,
 ];
 
 @NgModule({
