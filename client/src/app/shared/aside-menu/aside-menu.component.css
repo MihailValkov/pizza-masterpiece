@@ -71,3 +71,10 @@
     box-shadow: none;
   }
 }
+
+@media (max-width: 500px) {
+  .aside-menu {
+    margin-right: 0px;
+    width: 230px;
+  }
+}

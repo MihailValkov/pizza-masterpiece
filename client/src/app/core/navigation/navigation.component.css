@@ -1,6 +1,9 @@
 mat-toolbar {
   height: 4rem;
 }
+.menu-btn {
+  display: none;
+}
 .spacer {
   flex: 1 1 auto;
 }
@@ -18,8 +21,14 @@ nav ul li button:hover,
   border-bottom: 1px solid white;
 }
 
-nav ul li a span , nav ul li button span{
+nav ul li a span,
+nav ul li button span {
   margin-left: 13px;
+}
+@media (max-width: 1000px) {
+  .menu-btn {
+    display: block;
+  }
 }
 
 @media (max-width: 800px) {
@@ -30,12 +39,6 @@ nav ul li a span , nav ul li button span{
 
 @media (max-width: 500px) {
   .logo {
-    display: none;
-  }
-}
-
-@media (min-width: 700px) {
-  .menu-btn {
     display: none;
   }
 }

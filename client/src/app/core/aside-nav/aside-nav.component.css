@@ -20,3 +20,9 @@
     min-height: calc(100vh - 9rem);
   }
 }
+
+@media (max-width: 500px) {
+  .sidenav {
+    padding: 10px 0px;
+  }
+}
