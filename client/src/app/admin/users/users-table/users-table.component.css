@@ -16,3 +16,9 @@ th {
     width: 100%;
   }
 }
+
+@media (max-width: 1000px) {
+  .table-wrapper {
+    height: calc(100vh - 9rem - 180px) !important;
+  }
+}

@@ -32,16 +32,15 @@
   margin-bottom: 20px;
 }
 
-.actions {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 @media (max-width: 768px) {
   .order-status h3 {
     margin-bottom: 10px;
   }
-  .actions {
-    flex-direction: column;
+  .actions button {
+    margin-left: 0px;
+    text-align: left;
+    min-width: 180px;
+    margin: auto;
+    margin-bottom: 10px;
   }
 }

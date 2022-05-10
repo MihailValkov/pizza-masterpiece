@@ -14,8 +14,8 @@
         <td mat-cell *matCellDef="let row">{{row?._id}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef >FullName</th>
+      <ng-container matColumnDef="firstName" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
         <td mat-cell *matCellDef="let row"> {{row?.firstName}} {{row?.lastName}}</td>
       </ng-container>
 

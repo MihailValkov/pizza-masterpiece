@@ -45,7 +45,7 @@ export class OrdersTableComponent {
   displayedColumns: string[] = [
     '_id',
     'email',
-    'name',
+    'firstName',
     'address',
     'totalProducts',
     'totalPrice',

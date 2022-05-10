@@ -48,7 +48,7 @@ export class UsersTableComponent implements AfterViewInit {
   displayedColumns: string[] = [
     '_id',
     'email',
-    'fullName',
+    'firstName',
     'ordersCount',
     'ratedProductsCount',
     'accountStatus',
