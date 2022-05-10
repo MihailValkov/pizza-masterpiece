@@ -96,6 +96,7 @@ export class OrderSummaryComponent implements OnDestroy {
             totalProducts,
             price,
             taxes,
+            totalPrice: price + taxes,
             products,
             paymentMethod,
           })

@@ -58,14 +58,14 @@ export const cartReducer = createReducer<ICartState>(
     if (price < 0) {
       price = 0;
     }
-    const taxes = price > 0 && price < 30 ? 5 : 0;
     const cartList = state.cartList.filter((_, i) => i !== index);
+    const taxes = price > 0 && price < 30 && cartList.length !== 0 ? 5 : 0;
     return {
       ...state,
       cartList,
       totalProducts: state.totalProducts - existingProduct.quantity,
       price,
-      taxes: cartList.length === 0 ? 0 : taxes,
+      taxes,
     };
   }),
   on(cartActions.updateProductQuantity, (state, { index, actionType }) => {

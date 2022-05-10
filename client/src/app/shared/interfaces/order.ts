@@ -18,6 +18,7 @@ export interface IOrder {
   totalProducts: number;
   price: number;
   taxes: number;
+  totalPrice: number;
   paymentMethod: string;
 }
 

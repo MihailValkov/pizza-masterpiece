@@ -52,6 +52,7 @@ const orderSchema = new Schema(
     paymentMethod: { type: String, required: [true, 'Payment method is required!'] },
     taxes: { type: Number, default: 0, min: [0, 'Taxes should be positive number!'] },
     price: { type: Number, min: [1, 'Taxes should be positive number and greater than zero!'] },
+    totalPrice: { type: Number, min: [1, 'Total Price should be positive number and greater than zero!'] },
     products: [
       {
         productId: {

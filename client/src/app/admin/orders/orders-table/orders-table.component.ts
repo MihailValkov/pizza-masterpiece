@@ -1,10 +1,3 @@
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -32,26 +25,12 @@ import {
   selectAdminOrdersIsLoading,
   selectAdminOrdersErrorMessage,
 } from '../../+store/orders/selectors';
-
-interface ITableOrder extends IBaseAdminOrder {
-  isExpanded: boolean;
-}
 @Component({
   selector: 'app-orders-table',
   templateUrl: './orders-table.component.html',
   styleUrls: [
     '../../../shared/styles/table.css',
     './orders-table.component.css',
-  ],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0' })),
-      state('expanded', style({ height: '*' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
-      ),
-    ]),
   ],
 })
 export class OrdersTableComponent {
@@ -63,11 +42,10 @@ export class OrdersTableComponent {
 
   searchValue: string = '';
   selectValue: string = '';
-  orders: ITableOrder[] = [];
   displayedColumns: string[] = [
     '_id',
     'email',
-    'fullName',
+    'name',
     'address',
     'totalProducts',
     'totalPrice',
@@ -110,20 +88,12 @@ export class OrdersTableComponent {
               selectValue: this.selectValue,
             })
           );
-        }),
-        switchMap(() =>
-          this.orders$.pipe(
-            map((orders) => orders.map((o) => ({ ...o, isExpanded: false })))
-          )
-        )
+        })
       )
-      .subscribe((orders: ITableOrder[]) => (this.orders = orders));
+      .subscribe();
   }
 
-  onExpand(orderId: string) {
-    this.orders = this.orders.map((o) =>
-      o._id === orderId ? o : { ...o, isExpanded: false }
-    );
+  showOrderDetail (orderId: string) {
     this.store.dispatch(loadOrderStart({ orderId }));
   }
 

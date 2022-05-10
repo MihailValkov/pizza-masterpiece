@@ -42,11 +42,11 @@
         <td mat-cell *matCellDef="let row">x {{row?.totalProducts}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="price">
+      <ng-container matColumnDef="totalPrice">
         <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear arrowPosition="before">
           Total Price
         </th>
-        <td mat-cell *matCellDef="let row">{{(row?.price + row?.taxes) | decimalFixed}} BGN</td>
+        <td mat-cell *matCellDef="let row">{{row?.totalPrice | decimalFixed}} BGN</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>

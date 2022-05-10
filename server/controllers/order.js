@@ -6,7 +6,7 @@ const { errorHandler } = require('../utils/errorHandler');
 
 const createOrder = async (req, res, next) => {
   const userId = req?.user?._id;
-  const { user, products, totalProducts, price, taxes, paymentMethod } = req.body;
+  const { user, products, totalProducts, totalPrice, price, taxes, paymentMethod } = req.body;
   const ids = products.map((p) => p.productId);
 
   try {
@@ -65,6 +65,7 @@ const createOrder = async (req, res, next) => {
       taxes,
       price,
       totalProducts,
+      totalPrice,
       products: transformedProducts,
     });
 

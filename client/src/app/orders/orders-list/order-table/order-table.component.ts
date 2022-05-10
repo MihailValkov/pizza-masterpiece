@@ -37,7 +37,7 @@ export class OrderTableComponent implements AfterViewInit, OnDestroy {
     'address',
     'status',
     'totalProducts',
-    'price',
+    'totalPrice',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
