@@ -1,0 +1,12 @@
+<section class="admin-orders-container">
+  <app-aside-menu></app-aside-menu>
+  <div class="orders-content">
+    <mat-toolbar color="primary">
+      <mat-icon matPrefix class="icon">list_alt</mat-icon>
+      <span class="title">Orders</span>
+      <span class="spacer"></span>
+      <app-search [searchCriterions]="searchCriterions" (onSearch)="onSearchHandler($event)"></app-search>
+    </mat-toolbar>
+    <!-- <app-users-table></app-users-table> -->
+  </div>
+</section>

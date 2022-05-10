@@ -14,6 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { UsersComponent } from './users/users.component';
 import { UsersTableComponent } from './users/users-table/users-table.component';
 import { UserTableDetailComponent } from './users/users-table/user-table-detail/user-table-detail.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrdersTableComponent } from './orders/orders-table/orders-table.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { UserTableDetailComponent } from './users/users-table/user-table-detail/
     UsersComponent,
     UsersTableComponent,
     UserTableDetailComponent,
+    OrdersComponent,
+    OrdersTableComponent,
   ],
   imports: [
     CommonModule,

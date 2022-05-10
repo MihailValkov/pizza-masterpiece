@@ -5,7 +5,7 @@
     <input type="search" matInput #searchElement [placeholder]="'Search by '+ searchCriterions[0]?.value">
   </mat-form-field>
 
-  <mat-form-field [ngClass]="{control:true,hidden:searchCriterionsLength}">
+  <mat-form-field [ngClass]="{control:true,hidden:searchCriterionsLength === 1}">
     <mat-select [value]="searchCriterions[0]?.prop" #selectElement>
       <mat-option *ngFor="let criteria of searchCriterions" [value]="criteria.prop">{{criteria.value|
         firstCapitalLetter}}
