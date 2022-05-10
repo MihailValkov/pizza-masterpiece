@@ -41,7 +41,7 @@ interface ITableUser extends IBaseAdminUser {
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
-  styleUrls: ['./users-table.component.css'],
+  styleUrls: ['../../styles/table.css', './users-table.component.css'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),

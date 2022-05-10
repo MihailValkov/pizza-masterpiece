@@ -1,16 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import {
+  Subscription,
+  merge,
+  filter,
+  map,
+  startWith,
+  tap,
+  switchMap,
+} from 'rxjs';
 import { IBaseAdminOrder } from 'src/app/shared/interfaces/admin';
+import { IAdminModuleState } from '../../+store';
+import {
+  loadOrdersStart,
+  loadOrderStart,
+  clearOrders,
+} from '../../+store/orders/actions';
+import {
+  selectAdminOrdersList,
+  selectAdminOrdersListCount,
+  selectAdminOrdersIsLoading,
+  selectAdminOrdersErrorMessage,
+} from '../../+store/orders/selectors';
 
-interface ITableUser extends IBaseAdminOrder {
+interface ITableOrder extends IBaseAdminOrder {
   isExpanded: boolean;
 }
 @Component({
   selector: 'app-orders-table',
   templateUrl: './orders-table.component.html',
-  styleUrls: ['./orders-table.component.css']
+  styleUrls: ['../../styles/table.css', './orders-table.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
-export class OrdersTableComponent implements OnInit {
-
+export class OrdersTableComponent {
   orders$ = this.store.pipe(select(selectAdminOrdersList));
   ordersCount$ = this.store.pipe(select(selectAdminOrdersListCount));
   ordersIsLoading$ = this.store.pipe(select(selectAdminOrdersIsLoading));
@@ -19,7 +60,7 @@ export class OrdersTableComponent implements OnInit {
 
   searchValue: string = '';
   selectValue: string = '';
-  users: ITableUser[] = [];
+  orders: ITableOrder[] = [];
   displayedColumns: string[] = [
     '_id',
     'email',
@@ -57,7 +98,7 @@ export class OrdersTableComponent implements OnInit {
           }
 
           this.store.dispatch(
-            loadUsersStart({
+            loadOrdersStart({
               page: this.paginator.pageIndex,
               limit: this.paginator.pageSize,
               sort: this.sort.active,
@@ -68,23 +109,23 @@ export class OrdersTableComponent implements OnInit {
           );
         }),
         switchMap(() =>
-          this.users$.pipe(
-            map((users) => users.map((u) => ({ ...u, isExpanded: false })))
+          this.orders$.pipe(
+            map((orders) => orders.map((o) => ({ ...o, isExpanded: false })))
           )
         )
       )
-      .subscribe((users: ITableUser[]) => (this.users = users));
+      .subscribe((orders: ITableOrder[]) => (this.orders = orders));
   }
 
-  onExpand(userId: string) {
-    this.users = this.users.map((u) =>
-      u._id === userId ? u : { ...u, isExpanded: false }
+  onExpand(orderId: string) {
+    this.orders = this.orders.map((o) =>
+      o._id === orderId ? o : { ...o, isExpanded: false }
     );
-    this.store.dispatch(loadUserStart({ userId }));
+    this.store.dispatch(loadOrderStart({ orderId }));
   }
 
   ngOnDestroy(): void {
-    this.store.dispatch(clearUsers());
+    this.store.dispatch(clearOrders());
     if (this.subscription) {
       this.subscription.unsubscribe();
     }

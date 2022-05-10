@@ -1,1 +1,82 @@
-<p>orders-table works!</p>
+<div class="table-container mat-elevation-z8">
+  <div class="loading-shade" *ngIf="(ordersIsLoading$ | async)">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="loading-shade" *ngIf="(ordersCount$ | async) === 0 && !(ordersIsLoading$ | async)">
+    No results was found.
+  </div>
+  <div class="table-wrapper" [ngClass]="{hidden:(ordersCount$ | async) === 0}">
+    <table mat-table [dataSource]="orders" matSort matSortActive="createdAt" matSortDisableClear matSortDirection="desc"
+      multiTemplateDataRows>
+
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Order Id</th>
+        <td mat-cell *matCellDef="let row">{{row?._id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
+        <td mat-cell *matCellDef="let row">{{row?.user?.email}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef>FullName</th>
+        <td mat-cell *matCellDef="let row"> {{row?.user?.firstName}} {{row?.user?.lastName}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+        <td mat-cell *matCellDef="let row"> {{row?.user?.country}}, {{row?.user?.city}}, {{row?.user?.street}} №
+          {{row?.user?.streetNumber}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalProducts">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Products</th>
+        <td mat-cell *matCellDef="let row"> {{row?.totalProducts}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Price</th>
+        <td mat-cell *matCellDef="let row"> {{row?.totalPrice}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Created
+        </th>
+        <td mat-cell *matCellDef="let row">{{row?.createdAt | date: 'dd/MM/YYYY'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef disableClear>
+          Actions
+        </th>
+        <td mat-cell *matCellDef="let row; let i = index">
+          <button mat-button (click)="row.isExpanded = !row.isExpanded">
+            <mat-icon *ngIf="row.isExpanded">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="!row.isExpanded" (click)="onExpand(row._id)">keyboard_arrow_up</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+
+        <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+          <div class="expanded-content" [@detailExpand]="row.isExpanded ? 'expanded' : 'collapsed'">
+            <!-- <app-user-table-detail [roles]="(usersRoles$|async) || []"></app-user-table-detail> -->
+          </div>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="expanded-detail"></tr>
+    </table>
+  </div>
+  <mat-paginator [length]="(ordersCount$ | async)" [pageSizeOptions]="[5,10, 20, 30]" showFirstLastButtons
+    aria-label="Select page of Orders results">
+  </mat-paginator>
+</div>
