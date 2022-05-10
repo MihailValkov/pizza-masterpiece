@@ -39,7 +39,10 @@ interface ITableOrder extends IBaseAdminOrder {
 @Component({
   selector: 'app-orders-table',
   templateUrl: './orders-table.component.html',
-  styleUrls: ['../../styles/table.css', './orders-table.component.css'],
+  styleUrls: [
+    '../../../shared/styles/table.css',
+    './orders-table.component.css',
+  ],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),

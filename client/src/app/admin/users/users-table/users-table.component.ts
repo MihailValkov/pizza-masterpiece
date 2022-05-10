@@ -99,7 +99,7 @@ export class UsersTableComponent implements AfterViewInit {
       .subscribe();
   }
 
-  showUserInfo(userId: string) {
+  showUserDetail(userId: string) {
     this.store.dispatch(loadUserStart({ userId }));
     this.dialog.open(UserTableDetailComponent);
   }
