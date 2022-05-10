@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   IAccountStatus,
+  IAdminOrder,
   IAdminUser,
+  IBaseAdminOrder,
   IBaseAdminUser,
   IRoles,
 } from '../shared/interfaces/admin';
@@ -60,5 +62,24 @@ export class AdminService {
       accountStatus: IAccountStatus;
       email: string;
     }>(`/admin/users/${userId}`, { role, accountStatus });
+  }
+
+  loadOrder(orderId: string): Observable<{ order: IAdminOrder }> {
+    return this.http.get<{ order: IAdminOrder }>(`/admin/orders/${orderId}`);
+  }
+
+  loadOrders(
+    page: number,
+    limit: number,
+    sort: string,
+    order: '' | 'asc' | 'desc',
+    searchValue: string,
+    selectValue: string
+  ): Observable<{ orders: IBaseAdminOrder[]; count: number }> {
+    return this.http.get<{ orders: IBaseAdminOrder[]; count: number }>(
+      `/admin/orders?page=${
+        page + 1
+      }&limit=${limit}&sort=${sort}&order=${order}&searchValue=${searchValue}&selectValue=${selectValue}`
+    );
   }
 }

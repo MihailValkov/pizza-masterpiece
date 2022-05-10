@@ -36,3 +36,25 @@ export interface IAdminUser extends IBaseAdminUser {
     streetNumber: number;
   };
 }
+
+export interface IBaseAdminOrder {
+  _id: string;
+  createdAt: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    imageUrl: string;
+    country: string;
+    city: string;
+    street: string;
+    streetNumber: number;
+  };
+  status: string;
+  paymentMethod: string;
+  price: number;
+  taxes: number;
+  totalProducts: number;
+}
+
+export interface IAdminOrder extends IBaseAdminOrder {}
