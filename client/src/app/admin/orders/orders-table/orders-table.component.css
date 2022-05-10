@@ -1,0 +1,18 @@
+.table-wrapper {
+  width: 100%;
+}
+
+td,
+th {
+  width: 11%;
+  text-align: center;
+}
+
+@media (min-width: 1001px) {
+  .table-wrapper {
+    width: calc(92vw - 302px) !important;
+  }
+  table {
+    width: 100%;
+  }
+}
