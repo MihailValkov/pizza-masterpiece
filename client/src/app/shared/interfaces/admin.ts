@@ -37,6 +37,12 @@ export interface IAdminUser extends IBaseAdminUser {
   };
 }
 
+export enum IOrderStatus {
+  'Pending' = 'Pending',
+  'Processing' = 'Processing',
+  'Completed' = 'Completed',
+}
+
 export interface IBaseAdminOrder {
   _id: string;
   createdAt: string;
@@ -50,7 +56,7 @@ export interface IBaseAdminOrder {
     street: string;
     streetNumber: number;
   };
-  status: string;
+  status: IOrderStatus;
   paymentMethod: string;
   price: number;
   taxes: number;

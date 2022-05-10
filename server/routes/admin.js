@@ -1,16 +1,18 @@
 const router = require('express').Router();
 const controller = require('../controllers/admin');
 const { uploadProductImage } = require('../controllers/upload');
-
-const { isAdmin } = require('../middlewares/authentication');
 const { single } = require('../middlewares/file-upload');
 
-router.get('/users', isAdmin(), controller.getUsers);
-router.get('/users/:id', isAdmin(), controller.getUser);
-router.patch('/users/:id', isAdmin(), controller.changeUserSettings);
+router.get('/users', controller.getUsers);
+router.get('/users/:id', controller.getUser);
 
-router.get('/products/:id', isAdmin(), controller.getProductById);
+router.get('/orders', controller.getOrders);
+router.get('/orders/:id', controller.getOrder);
 
-router.post('/products', isAdmin(), single(), uploadProductImage, controller.createProduct);
+router.get('/products/:id', controller.getProductById);
+
+router.patch('/users/:id', controller.changeUserSettings);
+
+router.post('/products', single(), uploadProductImage, controller.createProduct);
 
 module.exports = router;

@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+const orderStatuses = ['Pending', 'Processing', 'Completed'];
+
 const orderSchema = new Schema(
   {
     user: {
@@ -41,7 +43,11 @@ const orderSchema = new Schema(
     },
     status: {
       type: String,
-      default: 'Pending',
+      enum: {
+        values: orderStatuses,
+        message: `Order status is one of the following: ${orderStatuses.join(', ')}.`,
+      },
+      default: orderStatuses[0],
     },
     paymentMethod: { type: String, required: [true, 'Payment method is required!'] },
     taxes: { type: Number, default: 0, min: [0, 'Taxes should be positive number!'] },
@@ -87,4 +93,9 @@ const orderSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = model('Order', orderSchema);
+const orderModel = model('Order', orderSchema);
+
+module.exports = {
+  orderModel,
+  orderStatuses,
+};

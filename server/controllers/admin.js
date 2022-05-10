@@ -6,6 +6,7 @@ const {
   extraModel,
 } = require('../models/Product');
 const { userModel, roles } = require('../models/User');
+const { orderModel, orderStatuses } = require('../models/Order');
 
 const { errorHandler } = require('../utils/errorHandler');
 
@@ -104,10 +105,59 @@ const changeUserSettings = async (req, res, next) => {
   }
 };
 
+const getOrders = async (req, res, next) => {
+  const page = parseInt(req?.query?.page);
+  const limit = parseInt(req?.query?.limit);
+  const sort = req?.query?.sort;
+  const order = req?.query?.order;
+  const searchValue = req?.query?.searchValue;
+  const selectValue = req?.query?.selectValue;
+  const skipIndex = (page - 1) * limit;
+
+  let query = {};
+  let sortCriteria = { [sort]: order };
+
+  if (searchValue && selectValue) {
+    if (selectValue == '_id') {
+      query = { [selectValue]: searchValue.trim() };
+    } else {
+      query = { [selectValue]: new RegExp(searchValue.trim() || '', 'i') };
+    }
+  }
+
+  try {
+    const count = await orderModel.countDocuments(query);
+    let orders = await orderModel
+      .find(query)
+      .limit(limit)
+      .skip(skipIndex)
+      .sort(sortCriteria)
+      .lean();
+
+    return res.status(200).json({ orders, count, orderStatuses });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
+const getOrder = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const order = await orderModel.findById(id).lean();
+
+    return res.status(200).json({ order });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
 module.exports = {
   createProduct,
   getProductById,
   getUsers,
   getUser,
   changeUserSettings,
+  getOrders,
+  getOrder,
 };

@@ -1,4 +1,4 @@
-const orderModel = require('../models/Order');
+const { orderModel } = require('../models/Order');
 const { productModel } = require('../models/Product');
 const { userModel } = require('../models/User');
 const { ValidationError } = require('../utils/createValidationError');
