@@ -49,7 +49,7 @@
               <mat-icon matPrefix *ngIf="currentUser?.role === 'Admin'">admin_panel_settings</mat-icon>
               <mat-icon matPrefix *ngIf="currentUser?.role === 'Member'">person</mat-icon>
               <mat-select name="role" [ngModel]="currentUser?.role" required>
-                <mat-option *ngFor="let role of roles" [value]="role" sel>{{role}}</mat-option>
+                <mat-option *ngFor="let role of usersRoles$|async" [value]="role">{{role}}</mat-option>
               </mat-select>
             </mat-form-field>
 

@@ -39,7 +39,6 @@ import { UserTableDetailComponent } from './user-table-detail/user-table-detail.
 export class UsersTableComponent implements AfterViewInit {
   users$ = this.store.pipe(select(selectAdminUsersList));
   usersCount$ = this.store.pipe(select(selectAdminUsersListCount));
-  usersRoles$ = this.store.pipe(select(selectAdminUsersRoles));
   usersIsLoading$ = this.store.pipe(select(selectAdminUsersIsLoading));
   errorMessage$ = this.store.pipe(select(selectAdminUsersErrorMessage));
   subscription!: Subscription;
@@ -101,7 +100,7 @@ export class UsersTableComponent implements AfterViewInit {
 
   showUserDetail(userId: string) {
     this.store.dispatch(loadUserStart({ userId }));
-    this.dialog.open(UserTableDetailComponent);
+    this.dialog.open(UserTableDetailComponent, { autoFocus: false });
   }
 
   ngOnDestroy(): void {

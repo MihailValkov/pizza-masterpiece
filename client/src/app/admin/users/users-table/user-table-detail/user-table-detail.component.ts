@@ -6,6 +6,7 @@ import { changeUserInfoStart } from 'src/app/admin/+store/users/actions';
 import {
   selectAdminCurrentUser,
   selectAdminCurrentUserIsLoading,
+  selectAdminUsersRoles,
 } from 'src/app/admin/+store/users/selectors';
 import { IRoles } from 'src/app/shared/interfaces/admin';
 
@@ -21,6 +22,7 @@ export class UserTableDetailComponent implements OnInit {
   currentUserIsLoading$ = this.store.pipe(
     select(selectAdminCurrentUserIsLoading)
   );
+  usersRoles$ = this.store.pipe(select(selectAdminUsersRoles));
 
   constructor(private store: Store<IAdminModuleState>) {}
 
