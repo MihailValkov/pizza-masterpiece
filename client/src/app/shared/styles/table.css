@@ -8,7 +8,7 @@ mat-toolbar {
 
 .table-wrapper {
   position: relative;
-  height: 405px;
+  height: 385px;
   overflow-y: scroll;
   background: white;
   overflow: auto;
