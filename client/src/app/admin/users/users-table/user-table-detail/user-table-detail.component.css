@@ -80,7 +80,7 @@
   height: 33px !important;
 }
 
-@media (max-width: 1000px) {
+@media (min-width: 680px) and (max-width: 1000px) {
   .container {
     height: 66vh;
   }
@@ -98,11 +98,13 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 680px) {
   ::ng-deep .mat-dialog-content {
     padding: 5px;
   }
   .container {
+    min-width: 66vw;
+    min-height: 75vh;
     width: 100%;
     height: auto;
   }
@@ -129,5 +131,14 @@
   .left {
     text-align: center;
     margin-left: 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    min-width: 66vw;
+    min-height: 70vh;
+    width: 100%;
+    height: auto;
   }
 }
