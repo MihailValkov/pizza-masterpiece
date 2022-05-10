@@ -1,12 +1,30 @@
 mat-toolbar {
   height: 50px;
 }
+.table-container {
+  position: relative;
+  z-index: 10;
+}
+
 .table-wrapper {
   position: relative;
   height: 405px;
   overflow-y: scroll;
   background: white;
   overflow: auto;
+}
+
+.loading-shade {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 table {
@@ -43,6 +61,7 @@ th:first-child.mat-header-cell {
 
 .mat-header-cell {
   text-align: center;
+  padding: 0 10px;
 }
 
 .product-link {
@@ -61,6 +80,12 @@ th:first-child.mat-header-cell {
 }
 
 @media (max-width: 410px) {
+  ::ng-deep .mat-paginator-range-label {
+    margin: 0px 5px 0 5px !important;
+  }
+}
+
+@media (max-width: 500px) {
   ::ng-deep .mat-paginator-page-size-label {
     display: none !important;
   }

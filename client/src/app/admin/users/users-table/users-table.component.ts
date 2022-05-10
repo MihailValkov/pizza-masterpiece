@@ -1,11 +1,5 @@
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
@@ -33,24 +27,13 @@ import {
   selectAdminUsersListCount,
   selectAdminUsersRoles,
 } from '../../+store/users/selectors';
-
-interface ITableUser extends IBaseAdminUser {
-  isExpanded: boolean;
-}
-
+import { UserTableDetailComponent } from './user-table-detail/user-table-detail.component';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
-  styleUrls: ['../../styles/table.css', './users-table.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0' })),
-      state('expanded', style({ height: '*' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
-      ),
-    ]),
+  styleUrls: [
+    '../../../shared/styles/table.css',
+    './users-table.component.css',
   ],
 })
 export class UsersTableComponent implements AfterViewInit {
@@ -63,7 +46,6 @@ export class UsersTableComponent implements AfterViewInit {
 
   searchValue: string = '';
   selectValue: string = '';
-  users: ITableUser[] = [];
   displayedColumns: string[] = [
     '_id',
     'email',
@@ -81,7 +63,8 @@ export class UsersTableComponent implements AfterViewInit {
 
   constructor(
     private store: Store<IAdminModuleState>,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngAfterViewInit() {
@@ -111,21 +94,14 @@ export class UsersTableComponent implements AfterViewInit {
               selectValue: this.selectValue,
             })
           );
-        }),
-        switchMap(() =>
-          this.users$.pipe(
-            map((users) => users.map((u) => ({ ...u, isExpanded: false })))
-          )
-        )
+        })
       )
-      .subscribe((users: ITableUser[]) => (this.users = users));
+      .subscribe();
   }
 
-  onExpand(userId: string) {
-    this.users = this.users.map((u) =>
-      u._id === userId ? u : { ...u, isExpanded: false }
-    );
+  showUserInfo(userId: string) {
     this.store.dispatch(loadUserStart({ userId }));
+    this.dialog.open(UserTableDetailComponent);
   }
 
   ngOnDestroy(): void {

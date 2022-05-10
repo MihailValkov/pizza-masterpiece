@@ -85,7 +85,7 @@ export const usersReducer = createReducer<IUsersState>(
     return {
       ...state,
       currentUser: {
-        ...state.currentUser,
+        user: null,
         isLoading: true,
         errorMessage: null,
       },

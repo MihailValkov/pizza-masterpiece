@@ -1,18 +1,39 @@
-:host {
+::ng-deep .mat-dialog-container {
+  padding-top: 0px !important;
+}
+
+.container {
+  width: 70vw;
+  height: 40vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 5px 0px;
+}
+
+.header h2 {
+  margin-bottom: 0px;
+}
+
+.content {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  margin: 20px;
+  margin-top: 20px;
 }
 
 .image-container {
   margin-right: 20px;
 }
+
 .image-container img {
-  width: 100%;
-  height: auto;
-  max-width: 210px;
-  max-height: 210px;
+  border-radius: 50%;
+  width: 210px;
+  height: 210px;
   object-fit: cover;
   flex: 4;
 }
@@ -30,6 +51,7 @@
 
 .left {
   flex: 4;
+  margin-right: 20px;
 }
 .right {
   flex: 4;
@@ -56,4 +78,56 @@
 ::ng-deep .loading svg {
   width: 33px !important;
   height: 33px !important;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    height: 66vh;
+  }
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .image-container {
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+  .image-container img {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 650px) {
+  ::ng-deep .mat-dialog-content {
+    padding: 5px;
+  }
+  .container {
+    width: 100%;
+    height: auto;
+  }
+  .content {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+  }
+  .image-container {
+    margin-right: 0px;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px;
+  }
+  .image-container img {
+    width: 120px;
+    height: 120px;
+  }
+  .user-details {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .left {
+    text-align: center;
+    margin-left: 0px;
+  }
 }
