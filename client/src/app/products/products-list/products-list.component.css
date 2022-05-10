@@ -25,4 +25,7 @@
     padding: 0px;
     padding-bottom: 20px;
   }
+  .products-list li:last-of-type {
+    padding-bottom: 0px;
+  }
 }
