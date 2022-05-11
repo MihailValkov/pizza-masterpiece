@@ -11,19 +11,16 @@ export enum IAccountStatus {
 export interface IBaseAdminUser {
   _id: string;
   email: string;
+  firstName: string;
+  lastName: string;
   role: IRoles.Admin | IRoles.Member;
   accountStatus: IAccountStatus.Active | IAccountStatus.Inactive;
-  orders: string[];
   ordersCount: string[];
-  ratedProducts: number;
   ratedProductsCount: number;
   createdAt: string;
-  updatedAt: string;
 }
 
 export interface IAdminUser extends IBaseAdminUser {
-  firstName: string;
-  lastName: string;
   phoneNumber: string;
   image: {
     _id: string;
@@ -35,6 +32,7 @@ export interface IAdminUser extends IBaseAdminUser {
     street: string;
     streetNumber: number;
   };
+  updatedAt: string;
 }
 
 export enum IOrderStatus {
@@ -43,23 +41,36 @@ export enum IOrderStatus {
   'Completed' = 'Completed',
 }
 
+// export interface IBaseAdminOrder {
+//   _id: string;
+//   createdAt: string;
+//   user: {
+//     firstName: string;
+//     lastName: string;
+//     phoneNumber: string;
+//     imageUrl: string;
+//     country: string;
+//     city: string;
+//     street: string;
+//     streetNumber: number;
+//   };
+//   status: IOrderStatus;
+//   paymentMethod: string;
+//   price: number;
+//   taxes: number;
+//   totalProducts: number;
+// }
 export interface IBaseAdminOrder {
   _id: string;
   createdAt: string;
   user: {
     firstName: string;
     lastName: string;
-    phoneNumber: string;
-    imageUrl: string;
-    country: string;
-    city: string;
-    street: string;
-    streetNumber: number;
+    email: string;
   };
   status: IOrderStatus;
   paymentMethod: string;
-  price: number;
-  taxes: number;
+  totalPrice: number;
   totalProducts: number;
 }
 

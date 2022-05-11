@@ -68,7 +68,15 @@ const getUsers = async (req, res, next) => {
 
   try {
     const count = await userModel.countDocuments(query);
-    let users = await userModel.find(query).limit(limit).skip(skipIndex).sort(sortCriteria).lean();
+    let users = await userModel
+      .find(query)
+      .select(
+        'email firstName lastName ordersCount ratedProductsCount accountStatus role createdAt'
+      )
+      .limit(limit)
+      .skip(skipIndex)
+      .sort(sortCriteria)
+      .lean();
 
     return res.status(200).json({ users, count, roles });
   } catch (error) {
@@ -80,7 +88,9 @@ const getUser = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const user = await userModel.findById(id).lean();
+    const user = await userModel
+      .findById(id, '-__v -password -orders -ratedProducts')
+      .lean();
 
     return res.status(200).json({ user });
   } catch (error) {
@@ -129,6 +139,7 @@ const getOrders = async (req, res, next) => {
     const count = await orderModel.countDocuments(query);
     let orders = await orderModel
       .find(query)
+      .select('createdAt status paymentMethod totalPrice totalProducts user.firstName user.lastName user.email')
       .limit(limit)
       .skip(skipIndex)
       .sort(sortCriteria)

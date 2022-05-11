@@ -33,8 +33,13 @@ export class SearchComponent implements AfterViewInit {
 
   constructor() {}
 
-  get searchCriterionsLength() {
-    return this.searchCriterions.length;
+  get currentSelectedOption() {
+    if (this?.selectElement?.value) {
+      return this.searchCriterions.find(
+        (o) => o.prop === this.selectElement.value
+      )?.value;
+    }
+    return this.searchCriterions[0].value;
   }
 
   ngAfterViewInit(): void {

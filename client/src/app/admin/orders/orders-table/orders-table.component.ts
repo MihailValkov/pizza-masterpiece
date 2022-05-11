@@ -43,12 +43,13 @@ export class OrdersTableComponent {
   searchValue: string = '';
   selectValue: string = '';
   displayedColumns: string[] = [
-    '_id',
     'email',
     'firstName',
-    'address',
+    'lastName',
     'totalProducts',
     'totalPrice',
+    'status',
+    'paymentMethod',
     'createdAt',
     'actions',
   ];

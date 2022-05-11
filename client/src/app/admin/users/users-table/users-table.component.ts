@@ -46,9 +46,9 @@ export class UsersTableComponent implements AfterViewInit {
   searchValue: string = '';
   selectValue: string = '';
   displayedColumns: string[] = [
-    '_id',
     'email',
     'firstName',
+    'lastName',
     'ordersCount',
     'ratedProductsCount',
     'accountStatus',

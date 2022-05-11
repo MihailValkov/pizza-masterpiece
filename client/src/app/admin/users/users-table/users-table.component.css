@@ -2,12 +2,6 @@
   width: 100%;
 }
 
-td,
-th {
-  width: 11%;
-  text-align: center;
-}
-
 @media (min-width: 1001px) {
   .table-wrapper {
     width: calc(92vw - 302px) !important;
@@ -19,6 +13,6 @@ th {
 
 @media (max-width: 1000px) {
   .table-wrapper {
-    height: calc(100vh - 9rem - 180px) !important;
+    height: calc(100vh - 9rem - 121px) !important;
   }
 }

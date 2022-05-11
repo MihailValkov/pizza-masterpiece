@@ -9,14 +9,14 @@
     <table mat-table [dataSource]="(users$ | async) || []" matSort matSortActive="createdAt" matSortDisableClear
       matSortDirection="desc" multiTemplateDataRows>
 
-      <ng-container matColumnDef="_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>User Id</th>
-        <td mat-cell *matCellDef="let row">{{row?._id}}</td>
+      <ng-container matColumnDef="firstName" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+        <td mat-cell *matCellDef="let row"> {{row?.firstName}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="firstName" >
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</th>
-        <td mat-cell *matCellDef="let row"> {{row?.firstName}} {{row?.lastName}}</td>
+      <ng-container matColumnDef="lastName" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+        <td mat-cell *matCellDef="let row"> {{row?.lastName}}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">

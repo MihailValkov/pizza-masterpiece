@@ -4,7 +4,7 @@
 
 td,
 th {
-  width: 11%;
+  width: 20%;
   text-align: center;
 }
 
@@ -19,23 +19,18 @@ th {
 
 @media (max-width: 1000px) {
   .table-wrapper {
-    height: calc(100vh - 13rem - 125px) !important;
+    height: calc(100vh - 13rem - 66px) !important;
   }
 }
 
 @media (max-width: 660px) {
   .table-wrapper {
-    height: calc(100vh - 13rem - 180px) !important;
+    height: calc(100vh - 13rem - 121px) !important;
   }
 }
 
 @media (max-width: 650px) {
   .table-wrapper {
-    height: calc(100vh - 9rem - 180px) !important;
+    height: calc(100vh - 9rem - 121px) !important;
   }
 }
-
-
-
-
-

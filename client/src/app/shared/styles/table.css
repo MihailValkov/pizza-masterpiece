@@ -46,21 +46,22 @@ td.mat-cell:first-child {
   z-index: 2 !important;
 }
 
-th:first-child.mat-header-cell {
+th:first-child.mat-header-cell,
+:host ::ng-deep .mat-sort-header-content {
   text-align: left;
 }
+
 :host ::ng-deep .mat-sort-header-container {
-  justify-content: center;
-}
-:host ::ng-deep th:first-child .mat-sort-header-container {
   justify-content: flex-start;
 }
+
 :host ::ng-deep th:last-child .mat-sort-header-container {
   justify-content: flex-end;
 }
 
-.mat-header-cell {
-  text-align: center;
+.mat-header-cell,
+.mat-cell {
+  text-align: left;
   padding: 0 10px;
 }
 

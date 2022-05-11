@@ -1,6 +1,7 @@
 :host {
   width: 100%;
 }
+
 .search {
   font-size: 14px;
   display: flex;
@@ -21,20 +22,12 @@
 .icon {
   margin-right: 10px;
 }
-.hidden {
-  display: none;
+
+.mat-select {
+  width: 0px !important;
 }
 
 @media (max-width: 660px) {
-  .search {
-    flex-direction: column;
-  }
-  .search-input {
-    max-width: auto;
-  }
-}
-
-@media (max-width: 450px) {
   .icon {
     display: none;
   }
