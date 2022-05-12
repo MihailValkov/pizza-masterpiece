@@ -1,10 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import { IBaseAdminOrder, IAdminOrder } from 'src/app/shared/interfaces/admin';
+import {
+  IBaseAdminOrder,
+  IAdminOrder,
+  IAdminOrderBaseUserInfo,
+} from 'src/app/shared/interfaces/admin';
 import * as ordersActions from './actions';
 
 export interface IOrdersState {
   orders: {
-    ordersList: IBaseAdminOrder[];
+    ordersList: IBaseAdminOrder<IAdminOrderBaseUserInfo>[];
     count: number;
     isLoading: boolean;
     errorMessage: null | string;
@@ -76,7 +80,7 @@ export const ordersReducer = createReducer<IOrdersState>(
     return {
       ...state,
       currentOrder: {
-        ...state.currentOrder,
+        order: null,
         isLoading: true,
         errorMessage: null,
       },

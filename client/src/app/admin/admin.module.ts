@@ -17,6 +17,7 @@ import { UserTableDetailComponent } from './users/user-detail/user-detail.compon
 import { OrdersComponent } from './orders/orders.component';
 import { OrdersTableComponent } from './orders/orders-table/orders-table.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
+import { ProductItemComponent } from './orders/order-detail/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { OrderDetailComponent } from './orders/order-detail/order-detail.compone
     OrdersComponent,
     OrdersTableComponent,
     OrderDetailComponent,
+    ProductItemComponent,
   ],
   imports: [
     CommonModule,

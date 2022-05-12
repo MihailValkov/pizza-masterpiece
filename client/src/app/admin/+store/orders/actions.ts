@@ -1,5 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { IAdminOrder, IBaseAdminOrder } from 'src/app/shared/interfaces/admin';
+import {
+  IAdminOrder,
+  IAdminOrderBaseUserInfo,
+  IBaseAdminOrder,
+} from 'src/app/shared/interfaces/admin';
 
 const adminOrdersNamespace = '[Admin - Orders]';
 
@@ -18,7 +22,7 @@ export const loadOrdersStart = createAction(
 
 export const loadOrdersSuccess = createAction(
   `${adminOrdersNamespace} Load Orders Success`,
-  props<{ orders: IBaseAdminOrder[]; count: number }>()
+  props<{ orders: IBaseAdminOrder<IAdminOrderBaseUserInfo>[]; count: number }>()
 );
 
 export const loadOrdersFailure = createAction(

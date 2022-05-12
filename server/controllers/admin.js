@@ -162,8 +162,37 @@ const getOrder = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const order = await orderModel.findById(id).lean();
+    const data = await orderModel
+      .findById(id, '-__v')
+      .populate({
+        path: 'products',
+        populate: {
+          path: 'productId',
+          select: 'image name ingredients',
+          populate: {
+            path: 'ingredients',
+            select: 'ingredient',
+          },
+        },
+      })
+      .lean();
 
+    const transformedProducts = data.products.map((product) => {
+      const currentProduct = {
+        ...product,
+        _id: product.productId._id,
+        name: product.productId.name,
+        imageUrl: product.productId.image.url,
+        ingredients: product.productId.ingredients.map((i) => i.ingredient),
+      };
+      delete currentProduct.productId;
+      return currentProduct;
+    });
+
+    const order = {
+      ...data,
+      products: transformedProducts,
+    };
     return res.status(200).json({ order });
   } catch (error) {
     errorHandler(error, res, req);

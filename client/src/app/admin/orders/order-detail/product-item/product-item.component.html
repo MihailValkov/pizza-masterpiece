@@ -1,0 +1,44 @@
+<mat-card class="product-card">
+    <div class="image-container">
+      <img [src]="product?.imageUrl" [alt]="product.name">
+      <h3>{{product?.name}}</h3>
+    </div>
+
+    <mat-card-content class="content">
+      <div class="left">
+        <div>
+          <h3>Size:</h3>
+          <p>{{(product?.selectedSize || '') | firstCapitalLetter}}</p>
+          <h3>Dough:</h3>
+          <p>{{(product?.selectedDough || '') | firstCapitalLetter}}</p>
+          <h3>Weight:</h3>
+          <p>{{product?.gr }} g</p>
+        </div>
+        <div>
+          <h3>Ingredients:</h3>
+          <p *ngFor="let ingredient of product?.ingredients">
+            {{ingredient | firstCapitalLetter}}
+          </p>
+        </div>
+
+      </div>
+      <div class="right">
+        <div>
+          <h3>Extras:</h3>
+          <p *ngFor="let extra of product?.selectedExtras">
+            {{extra | firstCapitalLetter}}
+          </p>
+          <p *ngIf="product.selectedExtras.length === 0">None</p>
+        </div>
+        <div>
+          <h3>Quantity:</h3>
+          <p>{{(product?.quantity || 0) | decimalFixed}}</p>
+          <h3>Price:</h3>
+          <p>{{(product?.price || 0) | decimalFixed}} BGN</p>
+          <h3>Total price:</h3>
+          <p>{{(product?.totalPrice || 0) | decimalFixed}} BGN</p>
+        </div>
+
+      </div>
+    </mat-card-content>
+</mat-card>

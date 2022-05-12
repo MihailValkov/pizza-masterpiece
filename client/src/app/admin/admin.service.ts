@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {
   IAccountStatus,
   IAdminOrder,
+  IAdminOrderBaseUserInfo,
   IAdminUser,
   IBaseAdminOrder,
   IBaseAdminUser,
@@ -75,8 +76,14 @@ export class AdminService {
     order: '' | 'asc' | 'desc',
     searchValue: string,
     selectValue: string
-  ): Observable<{ orders: IBaseAdminOrder[]; count: number }> {
-    return this.http.get<{ orders: IBaseAdminOrder[]; count: number }>(
+  ): Observable<{
+    orders: IBaseAdminOrder<IAdminOrderBaseUserInfo>[];
+    count: number;
+  }> {
+    return this.http.get<{
+      orders: IBaseAdminOrder<IAdminOrderBaseUserInfo>[];
+      count: number;
+    }>(
       `/admin/orders?page=${
         page + 1
       }&limit=${limit}&sort=${sort}&order=${order}&searchValue=${searchValue}&selectValue=${selectValue}`
