@@ -13,9 +13,10 @@ import { AdminService } from './admin.service';
 import { EffectsModule } from '@ngrx/effects';
 import { UsersComponent } from './users/users.component';
 import { UsersTableComponent } from './users/users-table/users-table.component';
-import { UserTableDetailComponent } from './users/users-table/user-table-detail/user-table-detail.component';
+import { UserTableDetailComponent } from './users/user-detail/user-detail.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrdersTableComponent } from './orders/orders-table/orders-table.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { OrdersTableComponent } from './orders/orders-table/orders-table.compone
     UserTableDetailComponent,
     OrdersComponent,
     OrdersTableComponent,
+    OrderDetailComponent,
   ],
   imports: [
     CommonModule,

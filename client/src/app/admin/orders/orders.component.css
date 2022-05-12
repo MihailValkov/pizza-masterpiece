@@ -15,8 +15,18 @@ app-aside-menu {
   top: 3rem;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
 .icon {
-  margin-right: 10px;
+  height: 10px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.title {
+  font-size: 18px;
 }
 
 .spacer {
@@ -26,13 +36,10 @@ app-aside-menu {
 @media (max-width: 400px) {
   .title,
   .icon {
-    display: none;
-  }
-}
-
-@media (max-width: 660px) {
-  .title {
     font-size: 14px;
+  }
+  .icon {
+    margin-bottom: 0px;
   }
 }
 

@@ -1,12 +1,12 @@
 <div class="search">
   <mat-form-field class="control search-input">
     <mat-icon matPrefix class="icon">search</mat-icon>
-    <input type="search" matInput #searchElement
-      [placeholder]="'Search by '+ currentSelectedOption">
-    <mat-select [value]="searchCriterions[0]?.prop" #selectElement>
-      <mat-option *ngFor="let criteria of searchCriterions" [value]="criteria.prop">{{criteria.value|
-        firstCapitalLetter}}
-      </mat-option>
-    </mat-select>
+    <mat-icon matSuffix class="icon" (click)="clearInput()" *ngIf="searchElement.value !== ''">close</mat-icon>
+    <input type="search" matInput #searchElement [placeholder]="'Search by '+ currentSelectedOption">
   </mat-form-field>
+  <mat-select [value]="searchCriterions[0]?.prop" #selectElement>
+    <mat-option *ngFor="let criteria of searchCriterions" [value]="criteria.prop">{{criteria.value|
+      firstCapitalLetter}}
+    </mat-option>
+  </mat-select>
 </div>

@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
   searchCriterions = [
+    { prop: '_id', value: 'User Id' },
     { prop: 'firstName', value: 'First Name' },
     { prop: 'lastName', value: 'Last Name' },
     { prop: 'email', value: 'Email' },

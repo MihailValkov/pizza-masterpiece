@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
@@ -25,6 +26,7 @@ import {
   selectAdminOrdersIsLoading,
   selectAdminOrdersErrorMessage,
 } from '../../+store/orders/selectors';
+import { OrderDetailComponent } from '../order-detail/order-detail.component';
 @Component({
   selector: 'app-orders-table',
   templateUrl: './orders-table.component.html',
@@ -59,7 +61,8 @@ export class OrdersTableComponent {
 
   constructor(
     private store: Store<IAdminModuleState>,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngAfterViewInit() {
@@ -96,6 +99,7 @@ export class OrdersTableComponent {
 
   showOrderDetail (orderId: string) {
     this.store.dispatch(loadOrderStart({ orderId }));
+    this.dialog.open(OrderDetailComponent, { autoFocus: false });
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,15 @@
+<app-loading-spinner *ngIf="(currentOrderIsLoading$ | async)"></app-loading-spinner>
+<section class="container">
+  <header class="header">
+    <h2 mat-dialog-title> Order Detail</h2>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+  <mat-divider></mat-divider>
+  <mat-dialog-content class="mat-typography content">
+    <ng-container *ngIf="(currentOrder$ |async) as currentOrder">
+      {{currentOrder._id}}
+    </ng-container>
+  </mat-dialog-content>
+</section>

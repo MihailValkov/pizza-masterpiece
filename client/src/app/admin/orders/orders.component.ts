@@ -8,12 +8,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OrdersComponent implements OnInit {
   searchCriterions = [
-    { prop: '_id', value: 'User Id' },
-    { prop: 'firstName', value: 'First Name' },
-    { prop: 'lastName', value: 'Last Name' },
-    { prop: 'email', value: 'Email' },
-    { prop: 'role', value: 'Role' },
-    { prop: 'accountStatus', value: 'Account Status' },
+    { prop: '_id', value: 'Order Id' },
+    { prop: 'user.email', value: 'User Email' },
+    { prop: 'user.firstName', value: 'First Name' },
+    { prop: 'user.lastName', value: 'Last Name' },
+    { prop: 'totalProducts', value: 'Total Products' },
+    { prop: 'totalPrice', value: 'Total Price' },
+    { prop: 'status', value: 'Order Status' },
+    { prop: 'paymentMethod', value: 'Payment Method' },
   ];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}

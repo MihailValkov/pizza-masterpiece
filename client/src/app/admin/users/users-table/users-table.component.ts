@@ -25,9 +25,8 @@ import {
   selectAdminUsersIsLoading,
   selectAdminUsersList,
   selectAdminUsersListCount,
-  selectAdminUsersRoles,
 } from '../../+store/users/selectors';
-import { UserTableDetailComponent } from './user-table-detail/user-table-detail.component';
+import { UserTableDetailComponent } from '../user-detail/user-detail.component';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',

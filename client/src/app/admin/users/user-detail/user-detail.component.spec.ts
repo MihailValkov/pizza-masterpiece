@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserTableDetailComponent } from './user-table-detail.component';
+import { UserTableDetailComponent } from './user-detail.component';
 
 describe('UserTableDetailComponent', () => {
   let component: UserTableDetailComponent;

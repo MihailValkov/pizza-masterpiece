@@ -12,8 +12,8 @@ import { IRoles } from 'src/app/shared/interfaces/admin';
 
 @Component({
   selector: 'app-user-table-detail',
-  templateUrl: './user-table-detail.component.html',
-  styleUrls: ['./user-table-detail.component.css'],
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.css'],
 })
 export class UserTableDetailComponent implements OnInit {
   @Input() roles!: IRoles[];

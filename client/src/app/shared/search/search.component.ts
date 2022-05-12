@@ -42,6 +42,14 @@ export class SearchComponent implements AfterViewInit {
     return this.searchCriterions[0].value;
   }
 
+  clearInput() {
+    this.searchElement.nativeElement.value = '';
+    this.onSearch.next({
+      searchValue: '',
+      selectValue: this.selectElement.value,
+    });
+  }
+
   ngAfterViewInit(): void {
     const searchEvent = fromEvent(
       this.searchElement.nativeElement,
