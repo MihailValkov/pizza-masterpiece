@@ -56,6 +56,11 @@
   }
   .image-container {
     margin-right: 0px;
+    margin-bottom: 5px;
+  }
+  .image-container img {
+    width: 200px;
+    height: 150px;
   }
   .chip-list-content > div:first-of-type {
     margin-right: 5px;
