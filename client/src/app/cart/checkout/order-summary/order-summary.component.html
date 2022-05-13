@@ -31,14 +31,14 @@
           <span>{{(cartPrice$ | async) || 0 | decimalFixed}} BGN</span>
         </p>
         <p>
-          <span>Delivery Tax:</span>
-          <span>{{(cartTaxes$ | async) || 0 | decimalFixed}} BGN</span>
+          <span>Delivery price:</span>
+          <span>{{(cartDeliveryPrice$ | async) || 0 | decimalFixed}} BGN</span>
         </p>
         <mat-divider></mat-divider>
 
         <div class="total-price">
           <h2>Total price:</h2>
-          <h2>{{((cartPrice$ | async) || 0) + ((cartTaxes$ | async) || 0) | decimalFixed}} BGN</h2>
+          <h2>{{((cartPrice$ | async) || 0) + ((cartDeliveryPrice$ | async) || 0) | decimalFixed}} BGN</h2>
         </div>
       </mat-card>
     </div>

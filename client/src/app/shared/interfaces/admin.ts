@@ -63,7 +63,7 @@ export interface IBaseAdminOrderProduct {
   selectedSize: string;
   selectedDough: string;
   selectedExtras: string[];
-  gr: number;
+  weight: number;
   price: number;
   quantity: number;
   totalPrice: number;
@@ -81,7 +81,7 @@ export interface IBaseAdminOrder<T> {
 
 export interface IAdminOrder extends IBaseAdminOrder<IAdminOrderUserInfo> {
   updatedAt: string;
-  taxes: number;
+  deliveryPrice: number;
   price: number;
   products: IBaseAdminOrderProduct[];
 }

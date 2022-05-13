@@ -5,6 +5,7 @@
 td,
 th {
   width: 20%;
+  text-align: center;
 }
 
 .mat-chip-list-stacked {
@@ -12,22 +13,17 @@ th {
   justify-content: center;
   align-items: center;
 }
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 66px;
-  width: auto;
-}
-.actions button:first-of-type {
-  margin-right: 10px;
+::ng-deep .mat-standard-chip {
+  margin: 0px !important;
 }
 
-@media (max-width: 650px) {
-  .actions {
-    height: 86px;
-  }
+::ng-deep .mat-sort-header-container {
+  justify-content: center!important;
+}
+
+
+td:last-child , th:last-child {
+  text-align: right;
 }
 
 @media (min-width: 1001px) and (max-width: 1150px) {

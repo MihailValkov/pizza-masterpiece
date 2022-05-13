@@ -18,7 +18,7 @@ export const selectTotalProducts = createSelector(
   (state) => state.totalProducts
 );
 export const selectPrice = createSelector(selectCart, (state) => state.price);
-export const selectTaxes = createSelector(selectCart, (state) => state.taxes);
+export const selectDeliveryPrice = createSelector(selectCart, (state) => state.deliveryPrice);
 
 export const selectCheckoutIsLoading = createSelector(
   selectCart,

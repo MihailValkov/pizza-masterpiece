@@ -12,7 +12,7 @@ export class FavoritesEffects {
       ofType(favoritesActions.addProductToFavorites),
       map(({ product }) => {
         this.notificationService.showMessage(
-          `${product.name} has been added to your Favorites!`,
+          `${product.name} has been added to your favorites!`,
           'success',
           'end',
           'top'
@@ -27,8 +27,8 @@ export class FavoritesEffects {
       ofType(favoritesActions.removeProductFromFavorites),
       map(() => {
         this.notificationService.showMessage(
-          'Product has been removed from your Favorites!',
-          'error',
+          'Product has been removed from your favorites!',
+          'success',
           'end',
           'top'
         );

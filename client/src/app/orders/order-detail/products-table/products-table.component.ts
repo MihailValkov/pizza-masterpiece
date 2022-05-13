@@ -1,11 +1,4 @@
 import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
-import {
   AfterViewInit,
   Component,
   Input,
@@ -18,21 +11,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
 import { RateProductComponent } from '../rate-product/rate-product.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @Component({
   selector: 'app-products-table',
   templateUrl: './products-table.component.html',
   styleUrls: ['./products-table.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0' })),
-      state('expanded', style({ height: '*' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
-      ),
-    ]),
-  ],
 })
 export class ProductsTableComponent implements OnInit, AfterViewInit {
   @Input() products!: IOrderProductDetail[];
@@ -53,8 +37,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    const products = this.products.map((p) => ({ ...p, isExpanded: false }));
-    this.dataSource = new MatTableDataSource(products);
+    this.dataSource = new MatTableDataSource(this.products);
   }
 
   ngAfterViewInit() {
@@ -62,9 +45,15 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  openDialog(productId: string, productName: string, imageUrl: string) {
+  showRateModal(productId: string, productName: string, imageUrl: string) {
     this.dialog.open(RateProductComponent, {
       data: { orderId: this.orderId, productId, productName, imageUrl },
+    });
+  }
+
+  showProductDetail(product: IOrderProductDetail) {
+    this.dialog.open(ProductDetailComponent, {
+      data: product,
     });
   }
 }

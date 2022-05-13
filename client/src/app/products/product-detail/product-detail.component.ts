@@ -80,7 +80,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   addToFavorites() {
-    const { _id, name, imageUrl, rating, size, dough, gr } =
+    const { _id, name, imageUrl, rating, size, dough,weight } =
       this.selectedProduct;
     const product: IFavoriteProduct = {
       _id,
@@ -89,7 +89,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       rating,
       size,
       dough,
-      gr,
+      weight,
     };
     this.store.dispatch(addProductToFavorites({ product }));
   }
@@ -139,7 +139,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
               size: selectedSize,
               dough: selectedDough,
               extras: selectedExtras,
-              gr: selectedSize.pieces * 85,
+              weight: selectedSize.pieces * 85,
               rating: product!.rating,
               quantity,
               price: 0,

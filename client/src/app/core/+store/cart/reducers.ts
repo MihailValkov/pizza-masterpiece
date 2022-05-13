@@ -6,7 +6,7 @@ export interface ICartState {
   cartList: ICartProduct[];
   totalProducts: number;
   price: number;
-  taxes: number;
+  deliveryPrice: number;
   isLoading: boolean;
   errorMessage: string | null;
   lastCreatedOrderId: string | null;
@@ -16,7 +16,7 @@ const initialCartState: ICartState = {
   cartList: [],
   totalProducts: 0,
   price: 0,
-  taxes: 0,
+  deliveryPrice: 0,
   isLoading: false,
   errorMessage: null,
   lastCreatedOrderId: null,
@@ -42,14 +42,14 @@ export const cartReducer = createReducer<ICartState>(
       totalProducts += product.quantity;
     }
     const price = state.price + product.totalPrice;
-    const taxes = price > 0 && price < 30 ? 5 : 0;
+    const deliveryPrice = price > 0 && price < 30 ? 5 : 0;
 
     return {
       ...state,
       cartList,
       price,
       totalProducts,
-      taxes,
+      deliveryPrice,
     };
   }),
   on(cartActions.removeProductFromCart, (state, { index }) => {
@@ -59,13 +59,13 @@ export const cartReducer = createReducer<ICartState>(
       price = 0;
     }
     const cartList = state.cartList.filter((_, i) => i !== index);
-    const taxes = price > 0 && price < 30 && cartList.length !== 0 ? 5 : 0;
+    const deliveryPrice = price > 0 && price < 30 && cartList.length !== 0 ? 5 : 0;
     return {
       ...state,
       cartList,
       totalProducts: state.totalProducts - existingProduct.quantity,
       price,
-      taxes,
+      deliveryPrice,
     };
   }),
   on(cartActions.updateProductQuantity, (state, { index, actionType }) => {
@@ -86,7 +86,7 @@ export const cartReducer = createReducer<ICartState>(
       price = 0;
     }
 
-    const taxes = price > 0 && price < 30 && quantity !== 0 ? 5 : 0;
+    const deliveryPrice = price > 0 && price < 30 && quantity !== 0 ? 5 : 0;
     let cartList = [];
     if (quantity === 0) {
       cartList = [
@@ -104,7 +104,7 @@ export const cartReducer = createReducer<ICartState>(
       ...state,
       cartList,
       price,
-      taxes,
+      deliveryPrice,
       totalProducts:
         actionType === 'increase'
           ? state.totalProducts + 1

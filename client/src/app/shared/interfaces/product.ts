@@ -50,7 +50,6 @@ export interface IProduct extends IBaseProduct {
   rate: {
     [prop: string]: number;
   };
-  author: string;
 }
 
 export interface ICartProduct {
@@ -62,7 +61,7 @@ export interface ICartProduct {
   dough: IDough;
   extras: IExtra[];
   rating: number;
-  gr: number;
+  weight: number;
   quantity: number;
   price: number;
   totalPrice: number;
@@ -75,5 +74,5 @@ export interface IFavoriteProduct {
   size: ISize;
   dough: IDough;
   rating: number;
-  gr: number;
+  weight: number;
 }

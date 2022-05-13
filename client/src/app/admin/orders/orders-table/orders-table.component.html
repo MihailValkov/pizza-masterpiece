@@ -41,7 +41,7 @@
 
       <ng-container matColumnDef="paymentMethod">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment Method</th>
-        <td mat-cell *matCellDef="let row"> {{row?.paymentMethod }}</td>
+        <td mat-cell *matCellDef="let row"> {{row?.paymentMethod | firstCapitalLetter }}</td>
       </ng-container>
 
       <ng-container matColumnDef="createdAt">

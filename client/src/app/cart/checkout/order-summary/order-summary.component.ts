@@ -6,12 +6,10 @@ import { combineLatest, map, startWith, Subscription } from 'rxjs';
 import { IUserDataState } from 'src/app/core/+store';
 import { completeCheckoutStart } from 'src/app/core/+store/cart/actions';
 import {
-  selectTaxes,
+  selectDeliveryPrice,
   selectPrice,
   selectTotalProducts,
   selectCartList,
-  selectCheckoutIsLoading,
-  selectCheckoutErrorMessage,
 } from 'src/app/core/+store/cart/selectors';
 
 import { IOrder } from 'src/app/shared/interfaces/order';
@@ -29,7 +27,7 @@ export class OrderSummaryComponent implements OnDestroy {
 
   cartTotalProducts$ = this.store.pipe(select(selectTotalProducts));
   cartPrice$ = this.store.pipe(select(selectPrice));
-  cartTaxes$ = this.store.pipe(select(selectTaxes));
+  cartDeliveryPrice$ = this.store.pipe(select(selectDeliveryPrice));
   products$ = this.transformProducts();
   subscription!: Subscription;
   orderInfo!: IOrder;
@@ -58,7 +56,7 @@ export class OrderSummaryComponent implements OnDestroy {
               extra: e.extra,
               _id: e._id,
             })),
-            gr: p.gr,
+            weight: p.weight,
             quantity: p.quantity,
             price: p.price,
             totalPrice: p.totalPrice,
@@ -75,7 +73,7 @@ export class OrderSummaryComponent implements OnDestroy {
       this.userFormService.userForm$,
       this.cartTotalProducts$,
       this.cartPrice$,
-      this.cartTaxes$,
+      this.cartDeliveryPrice$,
       this.products$,
     ]).pipe(
       map(
@@ -85,7 +83,7 @@ export class OrderSummaryComponent implements OnDestroy {
           userForm,
           totalProducts,
           price,
-          taxes,
+          deliveryPrice,
           products,
         ]) =>
           (this.orderInfo = {
@@ -95,8 +93,8 @@ export class OrderSummaryComponent implements OnDestroy {
             },
             totalProducts,
             price,
-            taxes,
-            totalPrice: price + taxes,
+            deliveryPrice,
+            totalPrice: price + deliveryPrice,
             products,
             paymentMethod,
           })

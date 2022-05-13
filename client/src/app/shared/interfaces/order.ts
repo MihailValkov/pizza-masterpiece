@@ -6,7 +6,7 @@ export interface IOrderProduct {
   selectedSize: { size: string; _id: string };
   selectedDough: { dough: string; _id: string };
   selectedExtras: { extra: string; _id: string }[];
-  gr: number;
+  weight: number;
   quantity: number;
   price: number;
   totalPrice: number;
@@ -16,10 +16,10 @@ export interface IOrder {
   user: IUserForm & IAddressForm;
   products: IOrderProduct[];
   totalProducts: number;
-  price: number;
-  taxes: number;
-  totalPrice: number;
   paymentMethod: string;
+  price: number;
+  deliveryPrice: number;
+  totalPrice: number;
 }
 
 export interface IOrderProductDetail {
@@ -27,7 +27,7 @@ export interface IOrderProductDetail {
   selectedExtras: string[];
   selectedSize: string;
   selectedDough: string;
-  gr: number;
+  weight: number;
   quantity: number;
   price: number;
   totalPrice: number;
@@ -37,17 +37,17 @@ export interface IOrderProductDetail {
   ingredients: string[];
   rating: number;
   rates: number[];
-  isExpanded: boolean;
 }
 
 export interface IOrderDetail {
   _id: string;
   createdAt: string;
   status: string;
-  taxes: number;
   user: IUserForm & IAddressForm;
   paymentMethod: string;
+  deliveryPrice: number;
   price: number;
+  totalPrice: number;
   totalProducts: number;
   products: IOrderProductDetail[];
 }

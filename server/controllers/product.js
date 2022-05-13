@@ -55,12 +55,12 @@ const rateProduct = async (req, res, next) => {
     const product = await productModel.findById(id);
 
     if (!product) {
-      throw new ValidationError('Product with provided id is not found', 404);
+      throw new ValidationError('Product with provided ID is not found', 404);
     }
 
-    // if (product.toObject().comments.find((comment) => comment.user == userId)) {
-    //   throw new ValidationError('You have already rated this product!', 403);
-    // }
+    if (product.toObject().comments.find((comment) => comment.user == userId)) {
+      throw new ValidationError('You have already rated this product!', 403);
+    }
 
     product.comments.push({
       user: userId,

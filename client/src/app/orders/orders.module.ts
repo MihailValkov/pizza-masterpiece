@@ -19,6 +19,7 @@ import { ReviewFormComponent } from './orders-list/rate-product/review-form/revi
 import { RateProductFormService } from './order-detail/rate-product/rate-product-form.service';
 import { RateProductComponent } from './order-detail/rate-product/rate-product.component';
 import { RatingDiagramComponent } from './order-detail/rate-product/rating-diagram/rating-diagram.component';
+import { ProductDetailComponent } from './order-detail/products-table/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { RatingDiagramComponent } from './order-detail/rate-product/rating-diagr
     DiagramItemComponent,
     RateComponent,
     ReviewFormComponent,
+    ProductDetailComponent,
   ],
   imports: [
     CommonModule,

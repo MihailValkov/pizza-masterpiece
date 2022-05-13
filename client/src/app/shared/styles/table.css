@@ -84,6 +84,14 @@ th:first-child.mat-header-cell,
   ::ng-deep .mat-paginator-range-label {
     margin: 0px 5px 0 5px !important;
   }
+
+  ::ng-deep .mat-paginator-container {
+    justify-content: center !important;
+  }
+
+  ::ng-deep .mat-paginator-range-actions button {
+    width: 30px !important;
+  }
 }
 
 @media (max-width: 500px) {

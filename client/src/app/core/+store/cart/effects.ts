@@ -16,7 +16,7 @@ export class CartEffects {
       ofType(cartActions.addProductToCart),
       map(({ product }) => {
         this.notificationService.showMessage(
-          `${product.name} has been added to your Cart!`,
+          `${product.name} has been added to your cart!`,
           'success',
           'end',
           'top'
@@ -31,8 +31,8 @@ export class CartEffects {
       ofType(cartActions.removeProductFromCart),
       map(() => {
         this.notificationService.showMessage(
-          'Product has been removed from your Cart!',
-          'error',
+          'Product has been removed from your cart!',
+          'success',
           'end',
           'top'
         );
