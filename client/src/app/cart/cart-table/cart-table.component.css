@@ -1,13 +1,9 @@
 :host {
   width: 100%;
 }
-.table-wrapper {
-  width: 100%;
-}
 
-td,
-th {
-  width: 26%;
+::ng-deep .mat-column-quantity .mat-sort-header-container {
+  justify-content: center!important;
 }
 
 .quantity {
@@ -16,6 +12,11 @@ th {
   text-align: center;
   width: 60px;
   margin: 0px 10px 0px 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
 }
 
 @media (min-width: 1001px) and (max-width: 1150px) {

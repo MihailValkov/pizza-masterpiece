@@ -14,6 +14,7 @@ import { OrderSummaryComponent } from './checkout/order-summary/order-summary.co
 import { AddressFormService } from './checkout/address-form.service';
 import { UserFormService } from './checkout/user-form.service';
 import { CheckoutCompleteComponent } from './checkout/checkout-complete/checkout-complete.component';
+import { CartProductDetailComponent } from './cart-table/cart-product-detail/cart-product-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CheckoutCompleteComponent } from './checkout/checkout-complete/checkout
     UserFormComponent,
     OrderSummaryComponent,
     CheckoutCompleteComponent,
+    CartProductDetailComponent,
   ],
   imports: [
     CommonModule,

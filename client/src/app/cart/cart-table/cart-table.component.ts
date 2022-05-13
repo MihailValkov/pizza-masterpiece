@@ -7,6 +7,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,11 +18,12 @@ import {
   updateProductQuantity,
 } from 'src/app/core/+store/cart/actions';
 import { ICartProduct } from 'src/app/shared/interfaces/product';
+import { CartProductDetailComponent } from './cart-product-detail/cart-product-detail.component';
 
 @Component({
   selector: 'app-cart-table',
   templateUrl: './cart-table.component.html',
-  styleUrls: ['./cart-table.component.css', '../../shared/styles/table.css'],
+  styleUrls: ['../../shared/styles/table.css', './cart-table.component.css'],
 })
 export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
   @Input() products!: ICartProduct[];
@@ -37,7 +39,10 @@ export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private store: Store<IUserDataState>) {}
+  constructor(
+    private store: Store<IUserDataState>,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.products);
@@ -52,6 +57,10 @@ export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  showProductDetail(productId: string) {
+    this.dialog.open(CartProductDetailComponent);
   }
 
   updateQuantity(index: number, actionType: 'increase' | 'decrease') {

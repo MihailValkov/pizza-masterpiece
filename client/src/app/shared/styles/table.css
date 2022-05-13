@@ -12,6 +12,7 @@ mat-toolbar {
   overflow-y: scroll;
   background: white;
   overflow: auto;
+  width: 100%;
 }
 
 .loading-shade {
@@ -55,14 +56,14 @@ th:first-child.mat-header-cell,
   justify-content: flex-start;
 }
 
-:host ::ng-deep th:last-child .mat-sort-header-container {
-  justify-content: flex-end;
-}
-
 .mat-header-cell,
 .mat-cell {
   text-align: left;
   padding: 0 10px;
+}
+
+.mat-header-cell:last-child {
+  text-align: center;
 }
 
 .product-link {
