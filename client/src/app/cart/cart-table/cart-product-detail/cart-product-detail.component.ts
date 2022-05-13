@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ICartProduct } from 'src/app/shared/interfaces/product';
 
 @Component({
   selector: 'app-cart-product-detail',
   templateUrl: './cart-product-detail.component.html',
-  styleUrls: ['./cart-product-detail.component.css']
+  styleUrls: ['./cart-product-detail.component.css'],
 })
 export class CartProductDetailComponent implements OnInit {
+  constructor(
+    public dialogRef: MatDialogRef<CartProductDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ICartProduct
+  ) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

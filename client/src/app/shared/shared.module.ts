@@ -15,6 +15,7 @@ import { ModalComponent } from './modal/modal.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
 import { TextLengthPipe } from './pipes/text-length.pipe';
+import { MatChipItemComponent } from './mat-chip-item/mat-chip-item.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TextLengthPipe } from './pipes/text-length.pipe';
     ModalComponent,
     SearchComponent,
     TextLengthPipe,
+    MatChipItemComponent,
   ],
   imports: [CommonModule, MaterialModule, RouterModule, FormsModule],
   exports: [
@@ -43,6 +45,7 @@ import { TextLengthPipe } from './pipes/text-length.pipe';
     AsideMenuComponent,
     ModalComponent,
     SearchComponent,
+    MatChipItemComponent
   ],
 })
 export class SharedModule {}

@@ -59,8 +59,11 @@ export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
     this.dataSource.sort = this.sort;
   }
 
-  showProductDetail(productId: string) {
-    this.dialog.open(CartProductDetailComponent);
+  showProductDetail(product: ICartProduct) {
+    this.dialog.open(CartProductDetailComponent, {
+      data: product,
+      disableClose: true,
+    });
   }
 
   updateQuantity(index: number, actionType: 'increase' | 'decrease') {

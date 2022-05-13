@@ -57,6 +57,7 @@ export interface ICartProduct {
   uniqueId: null | string;
   name: string;
   imageUrl: string;
+  ingredients: IIngredient[];
   size: ISize;
   dough: IDough;
   extras: IExtra[];

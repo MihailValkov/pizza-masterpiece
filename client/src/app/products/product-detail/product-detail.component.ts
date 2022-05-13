@@ -80,7 +80,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   addToFavorites() {
-    const { _id, name, imageUrl, rating, size, dough,weight } =
+    const { _id, name, imageUrl, rating, size, dough, weight } =
       this.selectedProduct;
     const product: IFavoriteProduct = {
       _id,
@@ -136,6 +136,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
               }-${selectedExtras.map((e) => e.extra).join('-')}`,
               name: product!.name,
               imageUrl: product!.image.url,
+              ingredients: product!.ingredients,
               size: selectedSize,
               dough: selectedDough,
               extras: selectedExtras,
