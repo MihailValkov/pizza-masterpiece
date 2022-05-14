@@ -7,6 +7,7 @@ import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
 })
 export class NotificationService {
   constructor(private snackBar: MatSnackBar) {}
+
   showMessage(
     message: string,
     status: 'error' | 'success',

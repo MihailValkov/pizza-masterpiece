@@ -32,7 +32,12 @@ import {
   IFavoriteProduct,
 } from 'src/app/shared/interfaces/product';
 import { addProductToCart } from 'src/app/core/+store/cart/actions';
-import { addProductToFavorites } from 'src/app/core/+store/favorites/actions';
+import {
+  addProductToFavorites,
+  removeProductFromFavorites,
+} from 'src/app/core/+store/favorites/actions';
+import { selectFavoritesUniqueIds } from 'src/app/core/+store/favorites/selectors';
+import { IUserDataState } from 'src/app/core/+store';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -41,18 +46,20 @@ import { addProductToFavorites } from 'src/app/core/+store/favorites/actions';
 export class ProductDetailComponent implements OnInit, OnDestroy {
   @ViewChild('extrasInput') extrasInput!: ElementRef<HTMLInputElement>;
 
-  separatorKeysCodes: number[] = [ENTER, COMMA];
   product$ = this.store.pipe(select(selectCurrentProduct));
+  favoritesProductsIds$ = this.store.pipe(select(selectFavoritesUniqueIds));
+  separatorKeysCodes: number[] = [ENTER, COMMA];
   sizeControl = new FormControl('', Validators.required);
   doughControl = new FormControl('', Validators.required);
   quantityControl = new FormControl(1, Validators.min(1));
   extrasControl = new FormControl([]);
   extras: string[] = [];
   selectedProduct!: ICartProduct;
+  favoriteProductsIds!: string[];
   subscription: Subscription = new Subscription();
 
   constructor(
-    private store: Store<IRootState>,
+    private store: Store<IRootState & IUserDataState>,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -61,6 +68,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       this.calculateTotalPrice().subscribe((price) => {
         this.selectedProduct.price = price;
         this.selectedProduct.totalPrice = price * this.quantityControl.value;
+      })
+    );
+
+    this.subscription.add(
+      this.favoritesProductsIds$.subscribe((ids) => {
+        this.favoriteProductsIds = ids;
       })
     );
 
@@ -79,19 +92,22 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     this.store.dispatch(addProductToCart({ product: this.selectedProduct }));
   }
 
-  addToFavorites() {
-    const { _id, name, imageUrl, rating, size, dough, weight } =
-      this.selectedProduct;
-    const product: IFavoriteProduct = {
-      _id,
-      name,
-      imageUrl,
-      rating,
-      size,
-      dough,
-      weight,
-    };
-    this.store.dispatch(addProductToFavorites({ product }));
+  addOrRemoveFromFavorites() {
+    const { uniqueId, name, price } = this.selectedProduct;
+    if (this.checkIsFavorite(uniqueId)) {
+      this.store.dispatch(removeProductFromFavorites({ uniqueId, name }));
+    } else {
+      const product: ICartProduct = {
+        ...this.selectedProduct,
+        quantity: 1,
+        totalPrice: price,
+      };
+      this.store.dispatch(addProductToFavorites({ product }));
+    }
+  }
+
+  checkIsFavorite(uniqueId: string) {
+    return this.favoriteProductsIds.includes(uniqueId);
   }
 
   setAmountValue(type: 'increase' | 'decrease'): void {

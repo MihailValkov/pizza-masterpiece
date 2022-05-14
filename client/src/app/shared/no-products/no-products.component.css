@@ -3,7 +3,7 @@
 }
 .no-products {
   text-align: center;
-  height: calc(80vh - 10rem);
+  height: calc(100vh - 13rem - 32px);
 }
 
 .icon {

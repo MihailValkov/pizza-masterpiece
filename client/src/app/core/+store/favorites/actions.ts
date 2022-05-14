@@ -1,11 +1,11 @@
 import { createAction, props } from '@ngrx/store';
-import { IFavoriteProduct } from 'src/app/shared/interfaces/product';
+import { ICartProduct } from 'src/app/shared/interfaces/product';
 
 const favoritesNamespace = '[Favorites]';
 
 export const addProductToFavorites = createAction(
   `${favoritesNamespace} Add product start`,
-  props<{ product: IFavoriteProduct }>()
+  props<{ product: ICartProduct }>()
 );
 
 export const addProductToFavoritesSuccess = createAction(
@@ -14,7 +14,7 @@ export const addProductToFavoritesSuccess = createAction(
 
 export const removeProductFromFavorites = createAction(
   `${favoritesNamespace} Remove product start`,
-  props<{ index: number }>()
+  props<{ uniqueId: string; name: string }>()
 );
 
 export const removeProductFromFavoritesSuccess = createAction(

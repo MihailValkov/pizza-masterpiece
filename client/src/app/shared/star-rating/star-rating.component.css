@@ -5,7 +5,7 @@
 .rating-container.center {
   display: block;
 }
-.rating-container > span {
+.text {
   margin-left: 5px;
   font-size: 1rem;
   display: block;

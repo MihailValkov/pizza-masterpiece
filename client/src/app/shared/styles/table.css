@@ -1,6 +1,7 @@
 mat-toolbar {
   height: 50px;
 }
+
 .table-container {
   position: relative;
   z-index: 10;
@@ -50,20 +51,27 @@ td.mat-cell:first-child {
 th:first-child.mat-header-cell,
 :host ::ng-deep .mat-sort-header-content {
   text-align: left;
+  margin-left: 18px;
+}
+
+:host ::ng-deep .mat-sort-header-content {
+  text-align: center;
+  margin-left: 18px;
+}
+:host ::ng-deep th:first-of-type .mat-sort-header-content,
+:host ::ng-deep th:first-of-type .mat-sort-header-container {
+  text-align: left;
+  justify-content: flex-start;
 }
 
 :host ::ng-deep .mat-sort-header-container {
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .mat-header-cell,
 .mat-cell {
-  text-align: left;
-  padding: 0 10px;
-}
-
-.mat-header-cell:last-child {
   text-align: center;
+  padding: 0 10px;
 }
 
 .product-link {

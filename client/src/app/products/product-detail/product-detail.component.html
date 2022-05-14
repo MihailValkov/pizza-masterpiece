@@ -106,9 +106,10 @@
           <mat-icon>shopping_cart_checkout</mat-icon>
           <span>Add to Cart</span>
         </button>
-        <button mat-flat-button color="accent" (click)="addToFavorites()">
-          <mat-icon>favorite</mat-icon>
-          <span>Add to Favorites</span>
+        <button mat-raised-button color="accent" (click)="addOrRemoveFromFavorites()">
+          <mat-icon matPrefix>favorite</mat-icon>
+          <span *ngIf="checkIsFavorite(selectedProduct.uniqueId)">Remove from Favorites</span>
+          <span *ngIf="!checkIsFavorite(selectedProduct.uniqueId)">Add to Favorites</span>
         </button>
       </div>
     </div>

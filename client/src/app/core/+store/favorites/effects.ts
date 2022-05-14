@@ -25,9 +25,9 @@ export class FavoritesEffects {
   removeProductFromFavorites$ = createEffect(() =>
     this.actions$.pipe(
       ofType(favoritesActions.removeProductFromFavorites),
-      map(() => {
+      map(({ name }) => {
         this.notificationService.showMessage(
-          'Product has been removed from your favorites!',
+          `${name} has been removed from your favorites!`,
           'success',
           'end',
           'top'

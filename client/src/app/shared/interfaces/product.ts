@@ -54,7 +54,7 @@ export interface IProduct extends IBaseProduct {
 
 export interface ICartProduct {
   _id: string;
-  uniqueId: null | string;
+  uniqueId: string;
   name: string;
   imageUrl: string;
   ingredients: IIngredient[];

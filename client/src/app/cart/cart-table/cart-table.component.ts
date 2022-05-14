@@ -27,13 +27,8 @@ import { CartProductDetailComponent } from './cart-product-detail/cart-product-d
 })
 export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
   @Input() products!: ICartProduct[];
-  displayedColumns: string[] = [
-    'name',
-    'price',
-    'quantity',
-    'totalPrice',
-    'action',
-  ];
+
+  displayedColumns = ['name', 'price', 'quantity', 'totalPrice', 'actions'];
   dataSource!: MatTableDataSource<ICartProduct>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -62,15 +57,15 @@ export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
   showProductDetail(product: ICartProduct) {
     this.dialog.open(CartProductDetailComponent, {
       data: product,
-      disableClose: true,
+      autoFocus: false,
     });
   }
 
-  updateQuantity(index: number, actionType: 'increase' | 'decrease') {
-    this.store.dispatch(updateProductQuantity({ index, actionType }));
+  updateQuantity(uniqueId: string, actionType: 'increase' | 'decrease') {
+    this.store.dispatch(updateProductQuantity({ uniqueId, actionType }));
   }
 
-  removeFromCart(index: number) {
-    this.store.dispatch(removeProductFromCart({ index }));
+  removeFromCart(uniqueId: string) {
+    this.store.dispatch(removeProductFromCart({ uniqueId }));
   }
 }

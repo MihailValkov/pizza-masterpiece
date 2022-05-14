@@ -25,21 +25,18 @@ const initialCartState: ICartState = {
 export const cartReducer = createReducer<ICartState>(
   initialCartState,
   on(cartActions.addProductToCart, (state, { product }) => {
-    const index = state.cartList.findIndex(
+    let cartList = [...state.cartList];
+    const existingProductIndex = state.cartList.findIndex(
       (p) => p.uniqueId === product.uniqueId
     );
-    let cartList = [...state.cartList];
-    let totalProducts = state.totalProducts;
-    if (index !== -1) {
-      const existingProduct = { ...cartList[index] };
+    if (existingProductIndex !== -1) {
+      const existingProduct = { ...cartList[existingProductIndex] };
       existingProduct.quantity += product.quantity;
       existingProduct.totalPrice =
         existingProduct.quantity * existingProduct.price;
-      cartList[index] = existingProduct;
-      totalProducts += product.quantity;
+      cartList[existingProductIndex] = existingProduct;
     } else {
       cartList.push(product);
-      totalProducts += product.quantity;
     }
     const price = state.price + product.totalPrice;
     const deliveryPrice = price > 0 && price < 30 ? 5 : 0;
@@ -48,18 +45,25 @@ export const cartReducer = createReducer<ICartState>(
       ...state,
       cartList,
       price,
-      totalProducts,
+      totalProducts: state.totalProducts + product.quantity,
       deliveryPrice,
     };
   }),
-  on(cartActions.removeProductFromCart, (state, { index }) => {
-    const existingProduct: ICartProduct = state.cartList[index];
+  on(cartActions.removeProductFromCart, (state, { uniqueId }) => {
+    const existingProductIndex = state.cartList.findIndex(
+      (p) => p.uniqueId === uniqueId
+    );
+    if (existingProductIndex === -1) {
+      return state;
+    }
+    const existingProduct: ICartProduct = state.cartList[existingProductIndex];
     let price = state.price - existingProduct.totalPrice;
     if (price < 0) {
       price = 0;
     }
-    const cartList = state.cartList.filter((_, i) => i !== index);
-    const deliveryPrice = price > 0 && price < 30 && cartList.length !== 0 ? 5 : 0;
+    const cartList = state.cartList.filter((p) => p.uniqueId !== uniqueId);
+    const deliveryPrice =
+      price > 0 && price < 30 && cartList.length !== 0 ? 5 : 0;
     return {
       ...state,
       cartList,
@@ -68,8 +72,15 @@ export const cartReducer = createReducer<ICartState>(
       deliveryPrice,
     };
   }),
-  on(cartActions.updateProductQuantity, (state, { index, actionType }) => {
-    const cartProduct: ICartProduct = { ...state.cartList[index] };
+  on(cartActions.updateProductQuantity, (state, { uniqueId, actionType }) => {
+    const existingProductIndex = state.cartList.findIndex(
+      (p) => p.uniqueId === uniqueId
+    );
+    if (existingProductIndex === -1) {
+      return state;
+    }
+    const existingProduct = state.cartList[existingProductIndex];
+    const cartProduct: ICartProduct = { ...existingProduct };
     const quantity =
       actionType === 'increase'
         ? cartProduct.quantity + 1
@@ -90,14 +101,14 @@ export const cartReducer = createReducer<ICartState>(
     let cartList = [];
     if (quantity === 0) {
       cartList = [
-        ...state.cartList.slice(0, index),
-        ...state.cartList.slice(index + 1),
+        ...state.cartList.slice(0, existingProductIndex),
+        ...state.cartList.slice(existingProductIndex + 1),
       ];
     } else {
       cartList = [
-        ...state.cartList.slice(0, index),
+        ...state.cartList.slice(0, existingProductIndex),
         cartProduct,
-        ...state.cartList.slice(index + 1),
+        ...state.cartList.slice(existingProductIndex + 1),
       ];
     }
     return {

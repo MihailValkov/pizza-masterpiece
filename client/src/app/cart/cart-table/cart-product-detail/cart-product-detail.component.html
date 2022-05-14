@@ -55,10 +55,9 @@
 
 
 
-      <!-- <p><span>Rating:</span>
-          <app-star-rating [rating]="data?.rating || 0" [showRatingInfo]="true"></app-star-rating>
-        </p> -->
-
     </ng-container>
   </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <app-star-rating [rating]="data?.rating || 0" [showRatingInfo]="true"></app-star-rating>
+  </mat-dialog-actions>
 </section>

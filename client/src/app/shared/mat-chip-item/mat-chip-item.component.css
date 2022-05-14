@@ -1,14 +1,14 @@
-.mat-container {
+.chip-item-container {
   display: flex;
   flex-direction: column;
 }
 
-.mat-container span {
+.chip-item-container span {
   display: block;
   margin: auto;
 }
 
-::ng-deep .mat-container .mat-standard-chip {
-  justify-content: center;
-  width: 100%;
+.chip-item-container .mat-standard-chip {
+  justify-content: center!important;
+  width: 100%!important;
 }

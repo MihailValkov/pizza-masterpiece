@@ -2,7 +2,7 @@
   My Cart
 </mat-toolbar>
 
-<div class="table-container mat-elevation-z8">
+<div class="mat-elevation-z8">
   <div class="table-wrapper">
     <table mat-table [dataSource]="dataSource" matSort>
 
@@ -23,12 +23,12 @@
 
       <ng-container matColumnDef="quantity">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
-        <td mat-cell *matCellDef="let row; let i = index">
-          <button mat-mini-fab color="primary" (click)="updateQuantity(i,'increase');">
+        <td mat-cell *matCellDef="let row;">
+          <button mat-button color="primary" (click)="updateQuantity(row.uniqueId,'increase');">
             <mat-icon>add</mat-icon>
           </button>
           <input class="quantity" matInput type="number" [value]="row.quantity" readonly="true" />
-          <button mat-mini-fab color="primary" (click)="updateQuantity(i,'decrease');">
+          <button mat-button color="warn" (click)="updateQuantity(row.uniqueId,'decrease');">
             <mat-icon>remove</mat-icon>
           </button>
         </td>
@@ -39,14 +39,14 @@
         <td mat-cell *matCellDef="let row"> {{row.totalPrice | decimalFixed}} BGN</td>
       </ng-container>
 
-      <ng-container matColumnDef="action">
+      <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let row; let i = index">
+        <td mat-cell *matCellDef="let row;">
           <div class="actions">
             <button mat-button (click)="showProductDetail(row)">
               <mat-icon>info</mat-icon>
             </button>
-            <button mat-button color="warn" (click)="removeFromCart(i)">
+            <button mat-button color="warn" (click)="removeFromCart(row.uniqueId)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>

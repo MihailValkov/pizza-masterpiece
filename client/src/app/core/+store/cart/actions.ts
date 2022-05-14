@@ -15,12 +15,12 @@ export const addProductToCartSuccess = createAction(
 
 export const updateProductQuantity = createAction(
   `${cartNamespace} Update product quantity start`,
-  props<{ index: number; actionType: 'increase' | 'decrease' }>()
+  props<{ uniqueId: string; actionType: 'increase' | 'decrease' }>()
 );
 
 export const removeProductFromCart = createAction(
   `${cartNamespace} Remove from cart start`,
-  props<{ index: number }>()
+  props<{ uniqueId: string }>()
 );
 
 export const removeProductFromCartSuccess = createAction(

@@ -3,7 +3,7 @@
 }
 
 ::ng-deep .mat-column-quantity .mat-sort-header-container {
-  justify-content: center!important;
+  justify-content: center !important;
 }
 
 .quantity {
@@ -19,11 +19,11 @@
   justify-content: center;
 }
 
-@media (min-width: 1001px) and (max-width: 1150px) {
-  .mat-table-sticky-border-elem-left {
-    border-right: 1px solid #e0e0e0;
-  }
+.table-wrapper {
+  min-height: calc(100vh - 13rem - 106px);
+}
 
+@media (min-width: 1001px) and (max-width: 1150px) {
   .table-wrapper {
     width: calc(92vw - 302px) !important;
   }

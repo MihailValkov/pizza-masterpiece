@@ -128,6 +128,10 @@ mat-card-content {
   width: 33%;
 }
 
+.actions button span{
+  margin-left: 10px;
+}
+
 @media (max-width: 1000px) {
   .select-options,
   mat-card-content {

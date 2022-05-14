@@ -47,8 +47,8 @@
 
 @media (max-width: 700px) {
   .content {
-    width: 60vw;
-    padding: 20px 0px;
+    width: 62vw;
+    padding: 20px 5px;
   }
   .content main {
     flex-direction: column;
