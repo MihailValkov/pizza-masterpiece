@@ -10,8 +10,10 @@ mat-toolbar {
   text-align: center;
   justify-content: center;
 }
+
 .total-price h2 {
-  margin-bottom: 5px;
+  padding: 5px 0px;
+  margin-bottom: 0px;
 }
 .mat-card > p {
   display: flex;

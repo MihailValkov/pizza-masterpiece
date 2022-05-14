@@ -35,14 +35,14 @@
             </div>
           </mat-chip-list>
         </main>
-        <h3>Ingredients:</h3>
+        <h3 class="ingredients-title">Ingredients:</h3>
         <mat-chip-list>
           <mat-chip *ngFor="let ingredient of data?.ingredients">
             {{(ingredient.ingredient || '') | firstCapitalLetter}}
           </mat-chip>
         </mat-chip-list>
         <ng-container *ngIf="data?.extras?.length !== 0">
-          <h3>Extras:</h3>
+          <h3 class="extras-title">Extras:</h3>
           <mat-chip-list>
             <mat-chip *ngFor="let extra of data?.extras">
               {{(extra.extra || '') | firstCapitalLetter}}

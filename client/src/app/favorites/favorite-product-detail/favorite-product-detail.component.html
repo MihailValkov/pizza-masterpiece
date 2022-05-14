@@ -34,7 +34,7 @@
         <div class="description">
           <p>{{data?.description}}</p>
         </div>
-        <h3>Ingredients:</h3>
+        <h3 class="ingredients-title">Ingredients:</h3>
         <mat-chip-list>
           <mat-chip *ngFor="let ingredient of data?.ingredients">
             {{(ingredient.ingredient || '') | firstCapitalLetter}}

@@ -37,3 +37,15 @@ td {
     width: 800px !important;
   }
 }
+
+@media (max-width: 1000px) {
+  .table-wrapper {
+    height: calc(100vh - 13rem - 111px);
+  }
+}
+
+@media (max-width: 650px) {
+  .table-wrapper {
+    height: calc(100vh - 9rem - 111px);
+  }
+}
