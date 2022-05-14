@@ -61,3 +61,9 @@
     padding: 0;
   }
 }
+
+@media (max-width: 650px) {
+  mat-panel-description {
+    display: none;
+  }
+}
