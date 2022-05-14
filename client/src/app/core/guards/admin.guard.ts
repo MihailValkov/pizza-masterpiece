@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 
 import { IRootState } from 'src/app/+store';
@@ -21,6 +21,14 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.user$.pipe(map((user) => user?.role === 'Admin'));
+    return this.user$.pipe(
+      map((user) => user?.role === 'Admin'),
+      tap((canContinue) => {
+        if (canContinue) {
+          return;
+        }
+        this.router.navigateByUrl('/');
+      })
+    );
   }
 }
