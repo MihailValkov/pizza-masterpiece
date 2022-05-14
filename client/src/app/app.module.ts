@@ -23,7 +23,6 @@ import { ProductsEffects } from './+store/products/effects';
 import { ProductService } from './products/product.service';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({

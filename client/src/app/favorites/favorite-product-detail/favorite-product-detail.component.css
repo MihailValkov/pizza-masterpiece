@@ -21,6 +21,7 @@
 .content main {
   display: flex;
   align-items: flex-end;
+  margin-bottom: 10px;
 }
 
 .content h3 {
@@ -32,22 +33,35 @@
 }
 
 .image-container img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
-  border-radius: 20px;
+  border: 5px solid #e0e0e0;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
-.chip-list-content {
-  display: flex;
+::ng-deep .product-info .mat-chip-list-wrapper {
+  justify-content: flex-start;
 }
-.chip-list-content > div:first-of-type {
+
+::ng-deep .mat-chip-list-wrapper {
+  max-width: 400px;
+}
+
+.left {
   margin-right: 10px;
 }
+.description {
+  max-width: 370px;
+}
 
+.extras-title {
+  margin-top: 12px;
+}
 @media (max-width: 700px) {
   .content {
-    width: 62vw;
+    width: 60vw;
     padding: 20px 5px;
   }
   .content main {
@@ -62,7 +76,22 @@
     width: 200px;
     height: 150px;
   }
-  .chip-list-content > div:first-of-type {
-    margin-right: 5px;
+  .description {
+    margin-top: 0px;
+  }
+  ::ng-deep .product-info .mat-chip-list-wrapper {
+    justify-content: center;
+  }
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 450px) {
+  .description {
+    max-width: 100%;
+    text-align: justify;
   }
 }

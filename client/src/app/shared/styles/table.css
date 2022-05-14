@@ -45,6 +45,7 @@ td:not(first-child) {
 }
 td.mat-cell:first-child {
   padding-right: 10px;
+  text-align: left;
   z-index: 2 !important;
 }
 

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +8,7 @@ import { IUserDataState } from 'src/app/core/+store';
 import { addProductToCart } from 'src/app/core/+store/cart/actions';
 import { removeProductFromFavorites } from 'src/app/core/+store/favorites/actions';
 import { ICartProduct } from 'src/app/shared/interfaces/product';
+import { FavoriteProductDetailComponent } from '../favorite-product-detail/favorite-product-detail.component';
 
 @Component({
   selector: 'app-favorites-table',
@@ -25,7 +27,10 @@ export class FavoritesTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private store: Store<IUserDataState>) {}
+  constructor(
+    private store: Store<IUserDataState>,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.products);
@@ -47,7 +52,12 @@ export class FavoritesTableComponent implements OnInit {
     this.store.dispatch(addProductToCart({ product }));
   }
 
-  showProductDetail(product: ICartProduct) {}
+  showProductDetail(product: ICartProduct) {
+    this.dialog.open(FavoriteProductDetailComponent, {
+      data: product,
+      autoFocus: false,
+    });
+  }
 
   removeFromFavorites(uniqueId: string, name: string) {
     this.store.dispatch(removeProductFromFavorites({ uniqueId, name }));

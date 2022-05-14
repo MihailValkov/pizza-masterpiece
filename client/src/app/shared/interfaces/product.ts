@@ -56,6 +56,7 @@ export interface ICartProduct {
   _id: string;
   uniqueId: string;
   name: string;
+  description?: string;
   imageUrl: string;
   ingredients: IIngredient[];
   size: ISize;
@@ -66,14 +67,4 @@ export interface ICartProduct {
   quantity: number;
   price: number;
   totalPrice: number;
-}
-
-export interface IFavoriteProduct {
-  _id: string;
-  name: string;
-  imageUrl: string;
-  size: ISize;
-  dough: IDough;
-  rating: number;
-  weight: number;
 }

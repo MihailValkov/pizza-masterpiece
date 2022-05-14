@@ -27,10 +27,7 @@ import {
   clearProduct,
   loadProductStart,
 } from 'src/app/+store/products/actions';
-import {
-  ICartProduct,
-  IFavoriteProduct,
-} from 'src/app/shared/interfaces/product';
+import { ICartProduct } from 'src/app/shared/interfaces/product';
 import { addProductToCart } from 'src/app/core/+store/cart/actions';
 import {
   addProductToFavorites,
@@ -151,6 +148,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
                 selectedDough.dough
               }-${selectedExtras.map((e) => e.extra).join('-')}`,
               name: product!.name,
+              description: product!.description,
               imageUrl: product!.image.url,
               ingredients: product!.ingredients,
               size: selectedSize,

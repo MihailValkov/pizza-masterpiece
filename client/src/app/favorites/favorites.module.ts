@@ -7,9 +7,10 @@ import { FavoritesRoutingModule } from './favorites-routing.module';
 import { FavoritesTableComponent } from './favorites-table/favorites-table.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
+import { FavoriteProductDetailComponent } from './favorite-product-detail/favorite-product-detail.component';
 
 @NgModule({
-  declarations: [FavoritesComponent, FavoritesTableComponent],
+  declarations: [FavoritesComponent, FavoritesTableComponent, FavoriteProductDetailComponent],
   imports: [
     CommonModule,
     CoreModule,
