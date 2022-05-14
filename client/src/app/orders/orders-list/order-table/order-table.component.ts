@@ -1,20 +1,12 @@
-import {
-  Component,
-  ViewChild,
-  AfterViewInit,
-  OnDestroy,
-  Input,
-} from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { select, Store } from '@ngrx/store';
-import { merge } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 import { startWith, tap } from 'rxjs/operators';
-import { IOrder } from 'src/app/shared/interfaces/order';
 import { IOrderModuleState } from '../../+store';
 import { clearOrders, loadOrdersStart } from '../../+store/actions';
 import {
-  selectOrderErrorMessage,
   selectOrderIsLoading,
   selectOrders,
   selectOrdersCount,
@@ -29,7 +21,7 @@ export class OrderTableComponent implements AfterViewInit, OnDestroy {
   orders$ = this.store.pipe(select(selectOrders));
   ordersCount$ = this.store.pipe(select(selectOrdersCount));
   isLoading$ = this.store.pipe(select(selectOrderIsLoading));
-  errorMessage$ = this.store.pipe(select(selectOrderErrorMessage));
+  subscription!: Subscription;
 
   displayedColumns: string[] = [
     '_id',
@@ -46,7 +38,7 @@ export class OrderTableComponent implements AfterViewInit, OnDestroy {
   constructor(private store: Store<IOrderModuleState>) {}
 
   ngAfterViewInit() {
-    merge(this.sort.sortChange, this.paginator.page)
+    this.subscription = merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         startWith(null),
         tap(() => {
@@ -60,9 +52,12 @@ export class OrderTableComponent implements AfterViewInit, OnDestroy {
           );
         })
       )
-      .subscribe((x) => console.log(x));
+      .subscribe();
   }
   ngOnDestroy(): void {
     this.store.dispatch(clearOrders());
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

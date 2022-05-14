@@ -1,3 +1,4 @@
+<app-loading-spinner *ngIf="isLoading$ |async"></app-loading-spinner>
 <mat-card *ngIf="(product$|async) as product">
   <mat-card-header>
     <mat-card-title>{{product.name}}</mat-card-title>

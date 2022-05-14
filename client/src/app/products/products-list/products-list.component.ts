@@ -7,10 +7,9 @@ import {
   loadProductsStart,
 } from '../../+store/products/actions';
 import {
-  selectErrorMessage,
+  selectProductIsLoading,
   selectProductsList,
   selectProductsListCount,
-  selectIsLoading,
 } from '../../+store/products/selectors';
 @Component({
   selector: 'app-products-list',
@@ -20,8 +19,7 @@ import {
 export class ProductsListComponent implements OnInit, OnDestroy {
   products$ = this.store.pipe(select(selectProductsList));
   productsCount$ = this.store.pipe(select(selectProductsListCount));
-  errorMessage$ = this.store.pipe(select(selectErrorMessage));
-  isLoading$ = this.store.pipe(select(selectIsLoading));
+  isLoading$ = this.store.pipe(select(selectProductIsLoading));
 
   page = 0;
   limit = 8;

@@ -22,7 +22,10 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { select, Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { IRootState } from 'src/app/+store';
-import { selectCurrentProduct } from 'src/app/+store/products/selectors';
+import {
+  selectCurrentProduct,
+  selectProductIsLoading,
+} from 'src/app/+store/products/selectors';
 import {
   clearProduct,
   loadProductStart,
@@ -45,6 +48,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   product$ = this.store.pipe(select(selectCurrentProduct));
   favoritesProductsIds$ = this.store.pipe(select(selectFavoritesUniqueIds));
+  isLoading$ = this.store.pipe(select(selectProductIsLoading));
   separatorKeysCodes: number[] = [ENTER, COMMA];
   sizeControl = new FormControl('', Validators.required);
   doughControl = new FormControl('', Validators.required);

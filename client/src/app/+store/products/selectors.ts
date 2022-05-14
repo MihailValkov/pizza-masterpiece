@@ -12,11 +12,11 @@ export const selectCurrentProduct = createSelector(
   (state) => state.currentProduct
 );
 
-export const selectIsLoading = createSelector(
+export const selectProductIsLoading = createSelector(
   selectProduct,
   (state) => state.isLoading
 );
-export const selectErrorMessage = createSelector(
+export const selectProductErrorMessage = createSelector(
   selectProduct,
   (state) => state.message
 );
