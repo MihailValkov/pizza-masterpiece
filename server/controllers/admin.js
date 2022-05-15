@@ -132,6 +132,8 @@ const getOrders = async (req, res, next) => {
   if (searchValue && selectValue) {
     if (selectValue == '_id') {
       query = { [selectValue]: searchValue.trim() };
+    } else if (selectValue === 'totalProducts' || selectValue === 'totalPrice') {
+      query = { [selectValue]: {$gte: searchValue} };
     } else {
       query = { [selectValue]: new RegExp(searchValue.trim() || '', 'i') };
     }
