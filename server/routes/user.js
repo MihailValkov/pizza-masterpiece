@@ -17,7 +17,7 @@ router.patch(
 );
 router.patch('/update-user-info', isAuthNeeded(), controller.updateUserInfo);
 router.patch('/update-user-address', isAuthNeeded(), controller.updateUserAddress);
-router.patch('/update-user-password', controller.updateUserPassword);
+router.patch('/update-user-password', isAuthNeeded(), controller.updateUserPassword);
 
 router.get('/authenticate', isAuthNeeded(), controller.authenticate);
 

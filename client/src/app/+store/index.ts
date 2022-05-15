@@ -1,7 +1,7 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { authReducer, IAuthState } from './reducers';
+import { authReducer, IAuthState } from './auth/reducers';
 import { productsReducer, IProductsState } from './products/reducers';
-import { AuthEffects } from './effects';
+import { AuthEffects } from './auth/effects';
 import { ProductsEffects } from './products/effects';
 
 export interface IRootState {

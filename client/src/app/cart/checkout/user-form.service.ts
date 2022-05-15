@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IRootState } from 'src/app/+store';
-import { selectUser } from 'src/app/+store/selectors';
+import { selectUser } from 'src/app/+store/auth/selectors';
 
 export interface IUserForm {
   firstName: string;

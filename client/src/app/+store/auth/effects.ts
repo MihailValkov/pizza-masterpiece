@@ -3,14 +3,15 @@ import { Router } from '@angular/router';
 import { catchError, map, switchMap, takeUntil } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { ILoginUser, IRegisterUser, IUser } from '../shared/interfaces/user';
-import { AuthService } from '../core/auth.service';
+import { ILoginUser, IRegisterUser, IUser } from '../../shared/interfaces/user';
+import { AuthService } from '../../core/auth.service';
 import * as authActions from './actions';
-import { IErrorResponse } from '../shared/interfaces/error-response';
-import { NotificationService } from '../core/notification.service';
+import { IErrorResponse } from '../../shared/interfaces/error-response';
+import { NotificationService } from '../../core/notification.service';
 
 @Injectable()
 export class AuthEffects {
+  
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.loginStart),
@@ -19,7 +20,7 @@ export class AuthEffects {
           takeUntil(this.actions$.pipe(ofType(authActions.loginCancel))),
           map((user: IUser) => {
             this.notificationService.showMessage(
-              'Your image has been changed successfully!',
+              'You are successfully logged in!',
               'success'
             );
             this.router.navigateByUrl('/');
@@ -43,7 +44,7 @@ export class AuthEffects {
           takeUntil(this.actions$.pipe(ofType(authActions.registerCancel))),
           map((user: IUser) => {
             this.notificationService.showMessage(
-              'Thanks for signing up. Your account has been created.',
+              'Thanks for signing up. Your account has been created and successfully logged in!',
               'success'
             );
             this.router.navigateByUrl('/');
@@ -81,7 +82,7 @@ export class AuthEffects {
         this.authService.logout().pipe(
           map(() => {
             this.notificationService.showMessage(
-              'Logout successfully!',
+              'You are successfully logged out!',
               'success'
             );
             this.router.navigateByUrl('/');
@@ -160,7 +161,7 @@ export class AuthEffects {
           ),
           map((userAddress) => {
             this.notificationService.showMessage(
-              'Your address has been changed successfully!',
+              'Your delivery address has been changed successfully!',
               'success'
             );
             return authActions.updateUserAddressSuccess({ userAddress });

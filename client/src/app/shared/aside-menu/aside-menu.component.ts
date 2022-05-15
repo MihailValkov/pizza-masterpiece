@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { select, Store } from '@ngrx/store';
 import { IRootState } from 'src/app/+store';
-import { selectUserImage, selectUser } from 'src/app/+store/selectors';
+import { selectUserImage, selectUser } from 'src/app/+store/auth/selectors';
 
 @Component({
   selector: 'app-aside-menu',

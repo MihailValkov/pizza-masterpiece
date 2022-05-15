@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 
 import { IRootState } from 'src/app/+store';
-import { registerStart, registerClearError } from 'src/app/+store/actions';
-import { selectIsLoading } from 'src/app/+store/selectors';
+import { registerStart, registerClearError } from 'src/app/+store/auth/actions';
+import { selectIsLoading } from 'src/app/+store/auth/selectors';
 import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwords';
 @Component({
   selector: 'app-register',

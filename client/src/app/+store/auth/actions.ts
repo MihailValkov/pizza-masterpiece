@@ -6,7 +6,7 @@ import {
   IUpdateUserInfo,
   IUpdateUserPassword,
   IUser,
-} from '../shared/interfaces/user';
+} from '../../shared/interfaces/user';
 const authNamespace = '[Auth]';
 
 export const loginStart = createAction(

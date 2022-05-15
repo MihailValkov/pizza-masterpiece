@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { IRootState } from 'src/app/+store';
-import { updateUserAddressStart } from 'src/app/+store/actions';
+import { updateUserAddressStart } from 'src/app/+store/auth/actions';
 import {
   selectUpdateUserAddressIsLoading,
   selectUser,
-} from 'src/app/+store/selectors';
+} from 'src/app/+store/auth/selectors';
 
 @Component({
   selector: 'app-user-address-form',
@@ -17,11 +18,12 @@ export class UserAddressFormComponent implements OnInit {
   @Input() position: 'horizontal' | 'vertical' = 'horizontal';
   @Input() readOnly: boolean = false;
 
-  addressForm!: FormGroup;
   user$ = this.store.pipe(select(selectUser));
   updateUserAddressIsLoading$ = this.store.pipe(
     select(selectUpdateUserAddressIsLoading)
   );
+  addressForm!: FormGroup;
+  subscription!: Subscription;
 
   constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
 
@@ -32,7 +34,7 @@ export class UserAddressFormComponent implements OnInit {
       street: ['', [Validators.required, Validators.minLength(3)]],
       streetNumber: ['', [Validators.required, Validators.min(1)]],
     });
-    this.user$.subscribe((user) => {
+    this.subscription = this.user$.subscribe((user) => {
       this.addressForm.setValue(user!.address);
     });
   }
@@ -50,5 +52,11 @@ export class UserAddressFormComponent implements OnInit {
         streetNumber,
       })
     );
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

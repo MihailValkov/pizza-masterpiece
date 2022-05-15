@@ -9,7 +9,7 @@ import { map, Observable, tap } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 
 import { IRootState } from 'src/app/+store';
-import { selectUser } from 'src/app/+store/selectors';
+import { selectUser } from 'src/app/+store/auth/selectors';
 
 @Injectable()
 export class AdminGuard implements CanActivate {

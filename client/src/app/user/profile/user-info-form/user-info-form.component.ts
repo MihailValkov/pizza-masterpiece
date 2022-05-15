@@ -1,21 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { IRootState } from 'src/app/+store';
-import { updateUserInfoStart } from 'src/app/+store/actions';
-import { selectUpdateUserInfoIsLoading, selectUser } from 'src/app/+store/selectors';
+import { updateUserInfoStart } from 'src/app/+store/auth/actions';
+import {
+  selectUpdateUserInfoIsLoading,
+  selectUser,
+} from 'src/app/+store/auth/selectors';
 
 @Component({
   selector: 'app-user-info-form',
   templateUrl: './user-info-form.component.html',
   styleUrls: ['./user-info-form.component.css'],
 })
-export class UserInfoFormComponent implements OnInit {
+export class UserInfoFormComponent implements OnInit, OnDestroy {
   @Input() position: 'horizontal' | 'vertical' = 'horizontal';
   @Input() readOnly: boolean = false;
-  userForm!: FormGroup;
+
   user$ = this.store.pipe(select(selectUser));
-  updateUserInfoIdLoading$ = this.store.pipe(select(selectUpdateUserInfoIsLoading))
+  updateUserInfoIdLoading$ = this.store.pipe(
+    select(selectUpdateUserInfoIsLoading)
+  );
+  userForm!: FormGroup;
+  subscription!: Subscription;
 
   constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
 
@@ -29,7 +37,7 @@ export class UserInfoFormComponent implements OnInit {
         [Validators.required, Validators.pattern(/^0[1-9]{1}[0-9]{8}$/)],
       ],
     });
-    this.user$.subscribe((user) => {
+    this.subscription = this.user$.subscribe((user) => {
       this.userForm.setValue({
         firstName: user?.firstName,
         lastName: user?.lastName,
@@ -44,6 +52,14 @@ export class UserInfoFormComponent implements OnInit {
       return;
     }
     const { firstName, lastName, phoneNumber } = this.userForm.value;
-    this.store.dispatch(updateUserInfoStart({ firstName, lastName, phoneNumber }));
+    this.store.dispatch(
+      updateUserInfoStart({ firstName, lastName, phoneNumber })
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

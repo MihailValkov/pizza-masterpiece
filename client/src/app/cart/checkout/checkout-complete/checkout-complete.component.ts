@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { selectUserIsLogged } from 'src/app/+store/selectors';
+import { selectUserIsLogged } from 'src/app/+store/auth/selectors';
 import { IUserDataState } from 'src/app/core/+store';
 import {
   selectCheckoutIsLoading,

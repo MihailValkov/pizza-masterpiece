@@ -5,11 +5,11 @@ import { IRootState } from 'src/app/+store';
 import {
   updateUserInfoStart,
   updateUserPasswordStart,
-} from 'src/app/+store/actions';
+} from 'src/app/+store/auth/actions';
 import {
   selectUser,
   selectUpdateUserPasswordIsLoading,
-} from 'src/app/+store/selectors';
+} from 'src/app/+store/auth/selectors';
 import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwords';
 
 @Component({
@@ -18,16 +18,17 @@ import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwor
   styleUrls: ['./user-password-form.component.css'],
 })
 export class UserPasswordFormComponent implements OnInit {
-  oldPasswordHide = true;
-  passwordHide = true;
-  rePasswordHide = true;
   @Input() position: 'horizontal' | 'vertical' = 'horizontal';
   @Input() readOnly: boolean = false;
-  passwordForm!: FormGroup;
   user$ = this.store.pipe(select(selectUser));
   updateUserPasswordIsLoading$ = this.store.pipe(
     select(selectUpdateUserPasswordIsLoading)
   );
+
+  oldPasswordHide = true;
+  passwordHide = true;
+  rePasswordHide = true;
+  passwordForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
 
@@ -43,9 +44,9 @@ export class UserPasswordFormComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.passwordForm.invalid) {
-    //   return;
-    // }
+    if (this.passwordForm.invalid) {
+      return;
+    }
     const { oldPassword, password, repeatPassword } = this.passwordForm.value;
     this.store.dispatch(
       updateUserPasswordStart({ oldPassword, password, repeatPassword })

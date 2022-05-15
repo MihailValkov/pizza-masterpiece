@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs';
 import { NotificationService } from '../../notification.service';
 import * as favoritesActions from './actions';
-import { logoutSuccess } from '../../../+store/actions';
+import { logoutSuccess } from '../../../+store/auth/actions';
 
 @Injectable()
 export class FavoritesEffects {

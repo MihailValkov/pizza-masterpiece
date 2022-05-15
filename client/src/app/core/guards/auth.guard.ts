@@ -10,8 +10,8 @@ import { filter, last, map, Observable, take, tap } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 
 import { IRootState } from 'src/app/+store';
-import { selectUser } from 'src/app/+store/selectors';
-import { authenticateStart } from 'src/app/+store/actions';
+import { selectUser } from 'src/app/+store/auth/selectors';
+import { authenticateStart } from 'src/app/+store/auth/actions';
 
 import { IUser } from 'src/app/shared/interfaces/user';
 

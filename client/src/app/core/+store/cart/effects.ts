@@ -3,10 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '../../notification.service';
 
-import { logoutSuccess } from 'src/app/+store/actions';
+import { logoutSuccess } from 'src/app/+store/auth/actions';
 import * as cartActions from './actions';
 import { HttpClient } from '@angular/common/http';
-import { IOrder } from 'src/app/shared/interfaces/order';
+
 import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
 
 @Injectable()

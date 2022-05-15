@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { IRootState } from 'src/app/+store';
-import { updateUserImageStart } from 'src/app/+store/actions';
-import * as selectors from 'src/app/+store/selectors';
+import { updateUserImageStart } from 'src/app/+store/auth/actions';
+import * as selectors from 'src/app/+store/auth/selectors';
 import { IFileImageUpload } from 'src/app/shared/interfaces/image-upload';
 @Component({
   selector: 'app-profile',

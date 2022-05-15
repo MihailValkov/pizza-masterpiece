@@ -14,11 +14,10 @@ import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { reducers } from './+store';
+import { Effects, reducers } from './+store';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { SharedModule } from './shared/shared.module';
-import { AuthEffects } from './+store/effects';
 import { ProductsEffects } from './+store/products/effects';
 import { ProductService } from './products/product.service';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
@@ -44,7 +43,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CoreModule,
     SharedModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, ProductsEffects]),
+    EffectsModule.forRoot(Effects),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   providers: [ProductService],

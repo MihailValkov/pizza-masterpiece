@@ -4,12 +4,11 @@ import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
 
 import { IRootState } from 'src/app/+store';
-import { logoutStart } from 'src/app/+store/actions';
+import { logoutStart } from 'src/app/+store/auth/actions';
 import {
-  selectUser,
   selectUserIsAdmin,
   selectUserIsLogged,
-} from 'src/app/+store/selectors';
+} from 'src/app/+store/auth/selectors';
 import { IUserDataState } from '../+store';
 import { selectTotalProducts } from '../+store/cart/selectors';
 import { selectFavoritesList } from '../+store/favorites/selectors';
@@ -24,7 +23,7 @@ export class NavigationComponent {
 
   isLogged$ = this.store.pipe(select(selectUserIsLogged));
   isAdmin$ = this.store.pipe(select(selectUserIsAdmin));
-  
+
   favoritesListCounter = this.store.pipe(
     select(selectFavoritesList),
     map((x) => x.length)
