@@ -4,7 +4,7 @@
 
 .container {
   width: 460px;
-  height: 80vh;
+  height: 78vh;
 }
 .mat-typography {
   height: 70vh;
@@ -63,7 +63,6 @@
   }
   .container {
     width: 60vw;
-    height: 78vh;
   }
   .mat-typography {
     height: 75vh;

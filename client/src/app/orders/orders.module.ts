@@ -15,7 +15,7 @@ import { ProductsTableComponent } from './order-detail/products-table/products-t
 import { ReactiveFormsModule } from '@angular/forms';
 import { DiagramItemComponent } from './order-detail/rate-product/rating-diagram/diagram-item/diagram-item.component';
 import { RateComponent } from './order-detail/rate-product/rate/rate.component';
-import { ReviewFormComponent } from './orders-list/rate-product/review-form/review-form.component';
+import { ReviewFormComponent } from './order-detail/rate-product/review-form/review-form.component';
 import { RateProductFormService } from './order-detail/rate-product/rate-product-form.service';
 import { RateProductComponent } from './order-detail/rate-product/rate-product.component';
 import { RatingDiagramComponent } from './order-detail/rate-product/rating-diagram/rating-diagram.component';

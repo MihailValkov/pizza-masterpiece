@@ -1,11 +1,13 @@
 <section class="order-detail-container">
   <app-aside-menu></app-aside-menu>
   <div class="order-detail-content">
+    <app-loading-spinner position="fixed" *ngIf="(isLoading$|async) && !(currentOrder$ | async)">
+    </app-loading-spinner>
     <mat-toolbar color="primary">
       My Order Details
     </mat-toolbar>
     <mat-card *ngIf="currentOrder$ | async as currentOrder">
-      <mat-card-title>Order number: <strong>{{currentOrder._id}}</strong></mat-card-title>
+      <h3>Order number: <strong>{{currentOrder._id}}</strong></h3>
       <mat-card-header>
         <div>
           <p><span class="order-created">Created:</span> <strong>{{currentOrder?.createdAt | date:'short'}}</strong></p>

@@ -3,9 +3,14 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
 }
 .order-detail-content {
+
   width: 100%;
+}
+app-loading-spinner {
+  margin-top: 5rem;
 }
 
 app-aside-menu {
@@ -20,7 +25,7 @@ app-aside-menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border:1px solid #ccc;
+  border: 1px solid #ccc;
   box-shadow: 1px 2px 5px #ccc;
   padding: 10px;
   margin: 20px auto;
