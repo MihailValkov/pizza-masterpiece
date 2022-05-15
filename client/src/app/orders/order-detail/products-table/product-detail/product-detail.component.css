@@ -1,6 +1,10 @@
 ::ng-deep .mat-dialog-container {
   padding-top: 0px !important;
 }
+.container {
+  width: 460px;
+  height: 80vh;
+}
 
 .header {
   display: flex;
@@ -40,36 +44,30 @@
   border-bottom-left-radius: 20px;
 }
 
-.description {
-  max-width: 370px;
-  margin-top: 10px;
-}
-
 .extras-title {
   margin-top: 12px;
 }
 ::ng-deep .mat-chip-list-wrapper {
   max-width: 400px;
 }
+.description {
+  max-width: 370px;
+}
 
 .chip-list-content {
   display: flex;
   width: 100%;
-  justify-content: flex-start;
-  flex-direction: column;
+  justify-content: space-around;
 }
 .chip-list-content > div:first-of-type {
   margin-right: 10px;
 }
 
-.chip-list-content > div {
-  display: flex;
-}
-app-mat-chip-item {
-  margin: 10px;
-}
-
 @media (max-width: 700px) {
+  .container {
+    width: 65vw;
+    height: 80vh;
+  }
   .header h2 {
     font-size: 18px;
   }
@@ -91,15 +89,11 @@ app-mat-chip-item {
     width: 200px;
     height: 150px;
   }
-  .chip-list-content > div {
-    justify-content: center;
+  .description {
+    margin-top: 5px;
   }
   .chip-list-content > div:first-of-type {
     margin-right: 5px;
-  }
-  .description {
-    margin-top: 5px;
-    text-align: center;
   }
   .extras-title,
   .ingredients-title {
@@ -114,24 +108,14 @@ app-mat-chip-item {
 }
 
 @media (max-width: 450px) {
-  .content {
+  .container {
+    width: 65vw;
     min-width: 250px;
-  }
-  .chip-list-content {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .chip-list-content > div {
-    display: block;
-  }
-  .description {
-    max-width: 100%;
-    text-align: justify;
   }
 }
 
 @media (max-width: 400px) {
-  .content {
+  .container {
     min-width: 200px;
   }
 }
