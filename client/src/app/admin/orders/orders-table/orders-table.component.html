@@ -5,7 +5,7 @@
   <div class="loading-shade" *ngIf="(ordersCount$ | async) === 0 && !(ordersIsLoading$ | async)">
     No results was found.
   </div>
-  <div class="table-wrapper" [ngClass]="{hidden:(ordersCount$ | async) === 0}">
+  <div class="table-wrapper">
     <table mat-table [dataSource]="(orders$| async) || []" matSort matSortActive="createdAt" matSortDisableClear
       matSortDirection="desc">
 

@@ -9,27 +9,30 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
+import { IOrderBaseProduct } from 'src/app/shared/interfaces/order';
 import { RateProductComponent } from '../rate-product/rate-product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @Component({
   selector: 'app-products-table',
   templateUrl: './products-table.component.html',
-  styleUrls: ['./products-table.component.css'],
+  styleUrls: [
+    '../../../shared/styles/table.css',
+    './products-table.component.css',
+  ],
 })
 export class ProductsTableComponent implements OnInit, AfterViewInit {
-  @Input() products!: IOrderProductDetail[];
+  @Input() products!: IOrderBaseProduct[];
   @Input() orderId!: string;
 
   displayedColumns: string[] = [
-    'product',
-    'price',
+    'name',
     'quantity',
-    'total',
-    'action',
+    'price',
+    'totalPrice',
+    'actions',
   ];
-  dataSource!: MatTableDataSource<IOrderProductDetail>;
+  dataSource!: MatTableDataSource<IOrderBaseProduct>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -51,9 +54,9 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     });
   }
 
-  showProductDetail(product: IOrderProductDetail) {
+  showProductDetail(_id: string) {
     this.dialog.open(ProductDetailComponent, {
-      data: product,
+      data: { _id, orderId: this.orderId },
     });
   }
 }

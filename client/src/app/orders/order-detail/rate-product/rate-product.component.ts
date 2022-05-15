@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 import { IOrderModuleState } from '../../+store';
 import { rateOrdererProductStart } from '../../+store/actions';
 import {
-  selectCurrentOrderProducts,
+  selectCurrentProductRates,
   selectOrderErrorMessage,
   selectOrderIsLoading,
 } from '../../+store/selectors';
@@ -29,9 +29,7 @@ export class RateProductComponent {
   form!: FormGroup;
 
   currentProductRates$ = this.store.pipe(
-    select(selectCurrentOrderProducts),
-    map((products) => products.find((p) => p._id == this.data.productId)),
-    map((p) => p!.rates)
+    select(selectCurrentProductRates)
   );
   isLoading$ = this.store.pipe(select(selectOrderIsLoading));
   errorMessage$ = this.store.pipe(select(selectOrderErrorMessage));

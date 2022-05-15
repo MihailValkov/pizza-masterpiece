@@ -1,5 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { select, Store } from '@ngrx/store';
+import { IOrderModuleState } from 'src/app/orders/+store';
+import { loadOrderProductStart } from 'src/app/orders/+store/actions';
+import {
+  selectCurrentProduct,
+  selectOrderIsLoading,
+} from 'src/app/orders/+store/selectors';
 import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
 
 @Component({
@@ -8,10 +15,18 @@ import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
   styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent implements OnInit {
+  currentProduct$ = this.store.pipe(select(selectCurrentProduct));
+  isLoading$ = this.store.pipe(select(selectOrderIsLoading));
+
   constructor(
     public dialogRef: MatDialogRef<ProductDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IOrderProductDetail
+    @Inject(MAT_DIALOG_DATA) private data: { _id: string; orderId: string },
+    private store: Store<IOrderModuleState>
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(
+      loadOrderProductStart({ _id: this.data._id, orderId: this.data.orderId })
+    );
+  }
 }

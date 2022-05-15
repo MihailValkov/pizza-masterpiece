@@ -1,5 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { IOrder, IOrderDetail } from 'src/app/shared/interfaces/order';
+import {
+  IOrder,
+  IOrderDetail,
+  IOrderProductDetail,
+} from 'src/app/shared/interfaces/order';
 import * as orderActions from './actions';
 
 export interface IOrderState {
@@ -8,6 +12,7 @@ export interface IOrderState {
     count: number;
   };
   currentOrder: IOrderDetail | null;
+  currentProduct: IOrderProductDetail | null;
   isLoading: boolean;
   errorMessage: null | string;
 }
@@ -18,6 +23,7 @@ const initialOrdersState: IOrderState = {
     count: 0,
   },
   currentOrder: null,
+  currentProduct: null,
   isLoading: true,
   errorMessage: null,
 };
@@ -41,22 +47,22 @@ export const ordersReducer = createReducer<IOrderState>(
   initialOrdersState,
   on(orderActions.loadOrderStart, startFetching),
   on(orderActions.loadOrderSuccess, (state, { order }) => {
-    const transformedOrderProducts = order.products.map((p) => ({
-      ...p,
-      isExpanded: false,
-    }));
-
     return {
       ...state,
       isLoading: false,
       errorMessage: null,
-      currentOrder: {
-        ...order,
-        products: transformedOrderProducts,
-      },
+      currentOrder: order,
     };
   }),
   on(orderActions.loadOrderFailure, setErrorMessage),
+  on(orderActions.clearOrder, (state) => {
+    return {
+      ...state,
+      currentOrder: null,
+      errorMessage: null,
+      isLoading: true,
+    };
+  }),
   on(orderActions.loadOrdersStart, startFetching),
   on(orderActions.loadOrdersSuccess, (state, { ordersList, count }) => {
     return {
@@ -75,28 +81,35 @@ export const ordersReducer = createReducer<IOrderState>(
       isLoading: true,
     };
   }),
-  on(orderActions.rateOrdererProductStart, startFetching),
-  on(orderActions.rateOrdererProductSuccess, (state, { productId, rating }) => {
-    const products = state.currentOrder!.products.slice();
-    const existingProductId = products.findIndex((p) => p._id == productId);
-
-    if (existingProductId && existingProductId !== -1 && products.length > 0) {
-      const currentProduct = {
-        ...products[existingProductId],
-      };
-      currentProduct.rating = rating;
-      products[existingProductId] = currentProduct;
-    }
-
+  on(orderActions.loadOrderProductStart, startFetching),
+  on(orderActions.loadOrderProductSuccess, (state, { product }) => {
     return {
       ...state,
       isLoading: false,
       errorMessage: null,
-      currentOrder: {
-        ...state.currentOrder!,
-        products,
-      },
+      currentProduct: product,
     };
+  }),
+  on(orderActions.loadOrdersFailure, setErrorMessage),
+  on(orderActions.clearOrderProduct, (state) => {
+    return {
+      ...state,
+      errorMessage: null,
+      isLoading: true,
+      currentProduct: null,
+    };
+  }),
+  on(orderActions.rateOrdererProductStart, startFetching),
+  on(orderActions.rateOrdererProductSuccess, (state, { rating }) => {
+    if (state.currentProduct) {
+      return {
+        ...state,
+        isLoading: false,
+        errorMessage: null,
+        currentProduct: { ...state.currentProduct, rating },
+      };
+    }
+    return state;
   }),
   on(orderActions.rateOrdererProductFailure, setErrorMessage)
 );

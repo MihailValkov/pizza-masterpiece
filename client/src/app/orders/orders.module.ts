@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrdersListComponent } from './orders-list/orders-list.component';
-import { OrderTableComponent } from './orders-list/order-table/order-table.component';
+import { OrderTableComponent } from './orders-list/orders-table/orders-table.component';
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { OrderRoutingModule } from './order-routing.module';

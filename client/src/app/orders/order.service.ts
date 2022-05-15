@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IOrder, IOrderDetail } from '../shared/interfaces/order';
+import {
+  IOrder,
+  IOrderDetail,
+  IOrderProductDetail,
+} from '../shared/interfaces/order';
 
 @Injectable()
 export class OrderService {
@@ -20,6 +24,15 @@ export class OrderService {
 
   getMyOrder(orderId: string): Observable<IOrderDetail> {
     return this.http.get<IOrderDetail>(`/orders/${orderId}`);
+  }
+
+  getCurrentProduct(
+    orderId: string,
+    _id: string
+  ): Observable<{ product: IOrderProductDetail }> {
+    return this.http.get<{ product: IOrderProductDetail }>(
+      `/orders/${orderId}/${_id}`
+    );
   }
 
   rateProduct(

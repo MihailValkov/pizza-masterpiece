@@ -1,29 +1,33 @@
 <div class="content">
   <div class="image-container">
-    <img [src]="data?.imageUrl" class="product-img" [alt]="data?.name" mat-card-xl-image />
+    <img [src]="(currentProduct$|async)?.imageUrl" class="product-img" [alt]="(currentProduct$|async)?.name"
+      mat-card-xl-image />
   </div>
   <mat-chip-list class="mat-chip-list-stacked">
     <p><span>Size:</span>
-      <mat-chip color="primary" class="mat-chip" selected>{{(data?.selectedSize || '') | firstCapitalLetter}}</mat-chip>
+      <mat-chip color="primary" class="mat-chip" selected>{{((currentProduct$|async)?.selectedSize || '') |
+        firstCapitalLetter}}</mat-chip>
     </p>
     <p><span>Dough:</span>
-      <mat-chip color="primary" class="mat-chip" selected>{{(data?.selectedDough || '') | firstCapitalLetter}}
+      <mat-chip color="primary" class="mat-chip" selected>{{((currentProduct$|async)?.selectedDough || '') |
+        firstCapitalLetter}}
       </mat-chip>
     </p>
     <p><span>Weight:</span>
-      <mat-chip color="primary" class="mat-chip" selected>{{data?.weight}} g</mat-chip>
+      <mat-chip color="primary" class="mat-chip" selected>{{(currentProduct$|async)?.weight}} g</mat-chip>
     </p>
     <p><span>Ingredients:</span>
-      <mat-chip *ngFor="let ingredient of data?.ingredients" color="primary" class="mat-chip" selected>
+      <mat-chip *ngFor="let ingredient of (currentProduct$|async)?.ingredients" color="primary" class="mat-chip"
+        selected>
         {{ingredient | firstCapitalLetter}}
       </mat-chip>
     </p>
-    <p *ngIf="data?.selectedExtras?.length !== 0"><span>Extras:</span>
-      <mat-chip *ngFor="let extra of data?.selectedExtras" color="primary" class="mat-chip" selected>
+    <p *ngIf="(currentProduct$|async)?.selectedExtras?.length !== 0"><span>Extras:</span>
+      <mat-chip *ngFor="let extra of (currentProduct$|async)?.selectedExtras" color="primary" class="mat-chip" selected>
         {{extra | firstCapitalLetter}}
       </mat-chip>
     </p>
     <p><span>Rating:</span>
-      <app-star-rating [rating]="data?.rating || 0" [showRatingInfo]="true"></app-star-rating>
+      <app-star-rating [rating]="(currentProduct$|async)?.rating || 0" [showRatingInfo]="true"></app-star-rating>
     </p>
   </mat-chip-list>

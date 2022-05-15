@@ -1,53 +1,52 @@
 import { IAddressForm } from 'src/app/cart/checkout/address-form.service';
 import { IUserForm } from 'src/app/cart/checkout/user-form.service';
-
-export interface IOrderProduct {
+export interface IOrder {
+  _id: string;
+  totalProducts: number;
+  totalPrice: number;
+  status: string;
+  paymentMethod: string;
+  createdAt: string;
+}
+export interface IOrderBaseProduct {
+  _id?: string;
   productId: string;
-  selectedSize: { size: string; _id: string };
-  selectedDough: { dough: string; _id: string };
-  selectedExtras: { extra: string; _id: string }[];
+  name?: string;
+  imageUrl?: string;
   weight: number;
   quantity: number;
   price: number;
   totalPrice: number;
 }
-
-export interface IOrder {
+export interface IOrderDetail extends IOrder {
   user: IUserForm & IAddressForm;
-  products: IOrderProduct[];
-  totalProducts: number;
-  paymentMethod: string;
-  price: number;
   deliveryPrice: number;
-  totalPrice: number;
+  price: number;
+  products: IOrderBaseProduct[];
 }
 
-export interface IOrderProductDetail {
-  _id: string;
+export interface IOrderProductDetail extends IOrderBaseProduct {
   selectedExtras: string[];
   selectedSize: string;
   selectedDough: string;
-  weight: number;
-  quantity: number;
-  price: number;
-  totalPrice: number;
-  name: string;
   description: string;
-  imageUrl: string;
   ingredients: string[];
   rating: number;
   rates: number[];
 }
 
-export interface IOrderDetail {
-  _id: string;
-  createdAt: string;
-  status: string;
+export interface IOrderCreateProduct extends IOrderBaseProduct {
+  productId: string;
+  selectedSize: { size: string; _id: string };
+  selectedDough: { dough: string; _id: string };
+  selectedExtras: { extra: string; _id: string }[];
+}
+export interface IOrderCreate {
   user: IUserForm & IAddressForm;
-  paymentMethod: string;
-  deliveryPrice: number;
-  price: number;
-  totalPrice: number;
+  products: IOrderCreateProduct[];
   totalProducts: number;
-  products: IOrderProductDetail[];
+  price: number;
+  deliveryPrice: number;
+  totalPrice: number;
+  paymentMethod: string;
 }

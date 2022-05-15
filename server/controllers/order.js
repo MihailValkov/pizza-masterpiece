@@ -6,7 +6,8 @@ const { errorHandler } = require('../utils/errorHandler');
 
 const createOrder = async (req, res, next) => {
   const userId = req?.user?._id;
-  const { user, products, totalProducts, totalPrice, price, deliveryPrice, paymentMethod } = req.body;
+  const { user, products, totalProducts, totalPrice, price, deliveryPrice, paymentMethod } =
+    req.body;
   const ids = products.map((p) => p.productId);
 
   try {
@@ -92,6 +93,7 @@ const getOrders = async (req, res, next) => {
     const count = await orderModel.countDocuments({ 'user._id': req.user._id });
     const ordersList = await orderModel
       .find({ 'user._id': req.user._id })
+      .select('status paymentMethod createdAt totalProducts totalPrice')
       .limit(limit)
       .skip(skipIndex)
       .sort({ [sort]: order })
@@ -112,32 +114,22 @@ const getOrder = async (req, res, next) => {
         path: 'products',
         populate: {
           path: 'productId',
-          select: 'description image name ingredients rating rate comments',
-          populate: {
-            path: 'ingredients',
-            select: 'ingredient',
-          },
+          select: 'name image',
         },
       })
       .lean();
 
     const transformedProducts = data.products.map((product) => {
-      const rates = Object.values(product.productId.rate)
-        .map((v) => (v / product.productId.comments.length) * 100)
-        .slice(0, 5);
-
-      const currentProduct = {
-        ...product,
-        _id: product.productId._id,
+      return {
+        _id: product._id,
+        productId: product.productId._id,
         name: product.productId.name,
-        description: product.productId.description,
         imageUrl: product.productId.image.url,
-        ingredients: product.productId.ingredients.map((i) => i.ingredient),
-        rating: product.productId.rating,
-        rates,
+        weight: product.weight,
+        quantity: product.quantity,
+        price: product.price,
+        totalPrice: product.totalPrice,
       };
-      delete currentProduct.productId;
-      return currentProduct;
     });
 
     const order = {
@@ -150,8 +142,57 @@ const getOrder = async (req, res, next) => {
   }
 };
 
+const getOrderProduct = async (req, res, next) => {
+  const { orderId, productId } = req.params;
+  try {
+    const data = await orderModel
+      .findOne({
+        _id: orderId,
+        'user.email': req.user.email,
+      })
+      .populate({
+        path: 'products',
+        populate: {
+          path: 'productId',
+          select: 'description image name ingredients rating rate comments',
+          populate: {
+            path: 'ingredients',
+            select: 'ingredient',
+          },
+        },
+      })
+      .lean();
+
+    const existingProduct = data.products.find((p) => p._id.toString() === productId);
+    if (!existingProduct) {
+      throw new ValidationError('Product with provided ID is not found!');
+    }
+
+    const rates = Object.values(existingProduct.productId.rate)
+      .map((v) => (v / existingProduct.productId.comments.length) * 100)
+      .slice(0, 5);
+
+    const currentProduct = {
+      ...existingProduct,
+      rates,
+      _id: existingProduct._id,
+      name: existingProduct.productId.name,
+      description: existingProduct.productId.description,
+      imageUrl: existingProduct.productId.image.url,
+      ingredients: existingProduct.productId.ingredients.map((i) => i.ingredient),
+      rating: existingProduct.productId.rating,
+      productId: existingProduct.productId._id,
+    };
+
+    return res.status(200).json({ product: currentProduct });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
 module.exports = {
   createOrder,
   getOrders,
   getOrder,
+  getOrderProduct,
 };

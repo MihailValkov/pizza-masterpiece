@@ -21,8 +21,8 @@
         <div>
           <p><span class="order-products-count">Total products:</span> <strong>{{currentOrder?.totalProducts}}</strong>
           </p>
-          <p><span class="order-price">Total price:</span> <strong>{{(currentOrder?.deliveryPrice||0) + (currentOrder?.price||0)
-              | decimalFixed}} BGN</strong></p>
+          <p><span class="order-price">Total price:</span> <strong>{{(currentOrder?.totalPrice||0) | decimalFixed}}
+              BGN</strong></p>
         </div>
       </mat-card-header>
       <mat-card-content>

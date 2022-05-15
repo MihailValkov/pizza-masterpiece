@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IOrder } from 'src/app/shared/interfaces/order';
+import { IOrderCreate } from 'src/app/shared/interfaces/order';
 import { ICartProduct } from 'src/app/shared/interfaces/product';
 
 const cartNamespace = '[Cart]';
@@ -30,7 +30,7 @@ export const removeProductFromCartSuccess = createAction(
 // Create new order
 export const completeCheckoutStart = createAction(
   `${cartNamespace} Complete checkout Start`,
-  props<{ order: IOrder }>()
+  props<{ order: IOrderCreate }>()
 );
 
 export const completeCheckoutSuccess = createAction(

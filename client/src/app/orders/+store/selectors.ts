@@ -5,31 +5,43 @@ interface ISelectState {
   order: IOrderState;
 }
 
-export const selectProducts = (state: ISelectState) => state.order;
+export const selectOrders = (state: ISelectState) => state.order;
 
 export const selectCurrentOrder = createSelector(
-  selectProducts,
+  selectOrders,
   (state) => state.currentOrder
 );
 
+export const selectCurrentProduct = createSelector(
+  selectOrders,
+  (state) => state.currentProduct
+);
+
+export const selectCurrentProductRates = createSelector(
+  selectOrders,
+  (state) => state.currentProduct?.rates
+);
+
 export const selectCurrentOrderProducts = createSelector(
-  selectProducts,
+  selectOrders,
   (state) => state.currentOrder!.products
 );
 
-export const selectOrders = createSelector(
-  selectProducts,
+export const selectOrdersList = createSelector(
+  selectOrders,
   (state) => state.orders.ordersList
 );
+
 export const selectOrdersCount = createSelector(
-  selectProducts,
+  selectOrders,
   (state) => state.orders.count
 );
+
 export const selectOrderIsLoading = createSelector(
-  selectProducts,
+  selectOrders,
   (state) => state.isLoading
 );
 export const selectOrderErrorMessage = createSelector(
-  selectProducts,
+  selectOrders,
   (state) => state.errorMessage
 );

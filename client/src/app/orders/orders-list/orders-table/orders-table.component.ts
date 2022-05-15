@@ -8,28 +8,32 @@ import { IOrderModuleState } from '../../+store';
 import { clearOrders, loadOrdersStart } from '../../+store/actions';
 import {
   selectOrderIsLoading,
-  selectOrders,
+  selectOrdersList,
   selectOrdersCount,
 } from '../../+store/selectors';
 
 @Component({
   selector: 'app-order-table',
-  templateUrl: './order-table.component.html',
-  styleUrls: ['./order-table.component.css'],
+  templateUrl: './orders-table.component.html',
+  styleUrls: [
+    '../../../shared/styles/table.css',
+    './orders-table.component.css',
+  ],
 })
 export class OrderTableComponent implements AfterViewInit, OnDestroy {
-  orders$ = this.store.pipe(select(selectOrders));
+  orders$ = this.store.pipe(select(selectOrdersList));
   ordersCount$ = this.store.pipe(select(selectOrdersCount));
   isLoading$ = this.store.pipe(select(selectOrderIsLoading));
   subscription!: Subscription;
 
   displayedColumns: string[] = [
     '_id',
-    'createdAt',
-    'address',
-    'status',
     'totalProducts',
     'totalPrice',
+    'status',
+    'paymentMethod',
+    'createdAt',
+    'actions',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

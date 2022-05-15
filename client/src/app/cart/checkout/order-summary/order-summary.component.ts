@@ -12,7 +12,7 @@ import {
   selectCartList,
 } from 'src/app/core/+store/cart/selectors';
 
-import { IOrder } from 'src/app/shared/interfaces/order';
+import { IOrderCreate } from 'src/app/shared/interfaces/order';
 import { AddressFormService, IAddressForm } from '../address-form.service';
 import { CheckoutCompleteComponent } from '../checkout-complete/checkout-complete.component';
 import { IUserForm, UserFormService } from '../user-form.service';
@@ -30,7 +30,7 @@ export class OrderSummaryComponent implements OnDestroy {
   cartDeliveryPrice$ = this.store.pipe(select(selectDeliveryPrice));
   products$ = this.transformProducts();
   subscription!: Subscription;
-  orderInfo!: IOrder;
+  orderInfo!: IOrderCreate;
 
   constructor(
     private addressFormService: AddressFormService,

@@ -5,38 +5,12 @@ import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { switchMap, takeUntil, map, catchError } from 'rxjs';
 import { NotificationService } from 'src/app/core/notification.service';
 import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
-import { IOrder } from 'src/app/shared/interfaces/order';
 
 import { OrderService } from '../order.service';
 import * as orderActions from './actions';
 
 @Injectable()
 export class OrdersEffects {
-  // createOrder$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(orderActions.createOrderStart),
-  //     switchMap(({ order }) =>
-  //       this.orderService.createNewOrder(order).pipe(
-  //         takeUntil(this.actions$.pipe(ofType(orderActions.createOrderCancel))),
-  //         map((order: IOrder) => {
-  //           this.notificationService.showMessage(
-  //             'Your order is completed!',
-  //             'success'
-  //           );
-  //           return orderActions.createOrderSuccess({ order });
-  //         }),
-  //         catchError((err: IErrorResponse) => {
-  //           const message = err.error.message;
-  //           this.notificationService.showMessage(message, 'error');
-  //           return [
-  //             orderActions.createOrderFailure({ message: err.error.message }),
-  //           ];
-  //         })
-  //       )
-  //     )
-  //   )
-  // );
-
   getMyOrders$ = createEffect(() =>
     this.actions$.pipe(
       ofType(orderActions.loadOrdersStart),
@@ -87,10 +61,9 @@ export class OrdersEffects {
               'Thank you for your review.',
               'success'
             );
-            
-            this.dialog.closeAll()
+
+            this.dialog.closeAll();
             return orderActions.rateOrdererProductSuccess({
-              productId,
               rating,
             });
           }),
@@ -99,6 +72,33 @@ export class OrdersEffects {
             this.notificationService.showMessage(message, 'error');
             return [
               orderActions.rateOrdererProductFailure({
+                message: err.error.message,
+              }),
+            ];
+          })
+        )
+      )
+    )
+  );
+
+  getCurrentProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(orderActions.loadOrderProductStart),
+      switchMap(({ orderId, _id }) =>
+        this.orderService.getCurrentProduct(orderId, _id).pipe(
+          takeUntil(
+            this.actions$.pipe(ofType(orderActions.loadOrderProductCancel))
+          ),
+          map(({ product }) => {
+            return orderActions.loadOrderProductSuccess({
+              product,
+            });
+          }),
+          catchError((err: IErrorResponse) => {
+            const message = err.error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [
+              orderActions.loadOrderProductFailure({
                 message: err.error.message,
               }),
             ];

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IOrder, IOrderDetail } from 'src/app/shared/interfaces/order';
+import { IOrder, IOrderDetail, IOrderProductDetail } from 'src/app/shared/interfaces/order';
 
 const orderNamespace = '[Orders]';
 
@@ -29,7 +29,7 @@ export const loadOrdersCancel = createAction(
 );
 
 export const clearOrders = createAction(
-  `${orderNamespace} Clear Order`
+  `${orderNamespace} Clear Orders`
 );
 
 // Load order
@@ -52,6 +52,34 @@ export const loadOrderCancel = createAction(
   `${orderNamespace} Load Order Cancel`
 );
 
+export const clearOrder = createAction(
+  `${orderNamespace} Clear Order`
+);
+
+// Load order product
+export const loadOrderProductStart = createAction(
+  `${orderNamespace} Load Order Product Start`,
+  props<{ orderId: string, _id:string }>()
+);
+
+export const loadOrderProductSuccess = createAction(
+  `${orderNamespace} Load Order Product Success`,
+  props<{ product: IOrderProductDetail }>()
+);
+
+export const loadOrderProductFailure = createAction(
+  `${orderNamespace} Load Order Product Failure`,
+  props<{ message: string }>()
+);
+
+export const loadOrderProductCancel = createAction(
+  `${orderNamespace} Load Order Product Cancel`
+);
+
+export const clearOrderProduct = createAction(
+  `${orderNamespace} Clear Order Product`
+);
+
 // Rate ordered product
 export const rateOrdererProductStart = createAction(
   `${orderNamespace} Rate Product Start`,
@@ -65,7 +93,7 @@ export const rateOrdererProductStart = createAction(
 
 export const rateOrdererProductSuccess = createAction(
   `${orderNamespace} Rate Product Success`,
-  props<{ productId: string; rating: number }>()
+  props<{ rating: number }>()
 );
 
 export const rateOrdererProductFailure = createAction(

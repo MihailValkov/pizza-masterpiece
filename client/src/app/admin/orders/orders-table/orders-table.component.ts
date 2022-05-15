@@ -11,9 +11,7 @@ import {
   map,
   startWith,
   tap,
-  switchMap,
 } from 'rxjs';
-import { IBaseAdminOrder } from 'src/app/shared/interfaces/admin';
 import { IAdminModuleState } from '../../+store';
 import {
   loadOrdersStart,
