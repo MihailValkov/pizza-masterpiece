@@ -1,34 +1,37 @@
-<div class="rate-product-container">
-  <div class="header">
+<app-loading-spinner *ngIf="(isLoading$ | async)"></app-loading-spinner>
+<section class="container">
+  <header class="header">
     <h2 mat-dialog-title>Rate this product</h2>
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
-  </div>
+  </header>
   <mat-divider></mat-divider>
-  <mat-dialog-content class="mat-typography" *ngIf="currentProduct$|async as currentProduct">
-    <app-loading-spinner *ngIf="isLoading$ | async"></app-loading-spinner>
-      <header>
-        <div class="image-container">
-          <img [src]="currentProduct?.imageUrl" [alt]="currentProduct?.name">
-          <mat-card-subtitle>{{currentProduct?.name}}</mat-card-subtitle>
-        </div>
-        <app-rating-diagram [rates]="currentProduct?.rates || []"></app-rating-diagram>
-      </header>
-      <mat-divider></mat-divider>
+  <mat-dialog-content class="mat-typography">
+    <ng-container *ngIf="(currentProduct$|async) as currentProduct">
+      <div class="content">
+        <main>
+          <div class="image-container">
+            <h3>{{(currentProduct$|async)?.name}}</h3>
+            <img [src]="currentProduct?.imageUrl" class="product-img" [alt]="currentProduct?.name" />
+          </div>
+          <app-rating-diagram [rates]="currentProduct?.rates || []"></app-rating-diagram>
+        </main>
+        <mat-divider></mat-divider>
 
-      <form [formGroup]="form">
-        <div class="rate">
-          <h2>Your rating</h2>
-          <app-rate></app-rate>
-        </div>
-        <h2>Write a review</h2>
-        <app-review-form></app-review-form>
-      </form>
+        <form [formGroup]="form">
+          <div class="rate">
+            <h2>Your rating</h2>
+            <app-rate></app-rate>
+          </div>
+          <h2>Write a review</h2>
+          <app-review-form></app-review-form>
+        </form>
+      </div>
+    </ng-container>
   </mat-dialog-content>
-
   <mat-dialog-actions align="end">
     <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
     <button mat-raised-button color="primary" (click)="onRateProduct()" [disabled]="form.invalid">Rate</button>
   </mat-dialog-actions>
-</div>
+</section>

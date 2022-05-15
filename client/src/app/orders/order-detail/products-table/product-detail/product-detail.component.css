@@ -25,6 +25,7 @@
 .content main {
   display: flex;
   align-items: flex-end;
+  margin-bottom: 10px;
 }
 
 .content h3 {
@@ -66,7 +67,7 @@
 @media (max-width: 700px) {
   .container {
     width: 65vw;
-    height: 80vh;
+    height: 78vh;
   }
   .header h2 {
     font-size: 18px;
