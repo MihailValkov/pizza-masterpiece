@@ -1,33 +1,66 @@
-<div class="content">
-  <div class="image-container">
-    <img [src]="(currentProduct$|async)?.imageUrl" class="product-img" [alt]="(currentProduct$|async)?.name"
-      mat-card-xl-image />
-  </div>
-  <mat-chip-list class="mat-chip-list-stacked">
-    <p><span>Size:</span>
-      <mat-chip color="primary" class="mat-chip" selected>{{((currentProduct$|async)?.selectedSize || '') |
-        firstCapitalLetter}}</mat-chip>
-    </p>
-    <p><span>Dough:</span>
-      <mat-chip color="primary" class="mat-chip" selected>{{((currentProduct$|async)?.selectedDough || '') |
-        firstCapitalLetter}}
-      </mat-chip>
-    </p>
-    <p><span>Weight:</span>
-      <mat-chip color="primary" class="mat-chip" selected>{{(currentProduct$|async)?.weight}} g</mat-chip>
-    </p>
-    <p><span>Ingredients:</span>
-      <mat-chip *ngFor="let ingredient of (currentProduct$|async)?.ingredients" color="primary" class="mat-chip"
-        selected>
-        {{ingredient | firstCapitalLetter}}
-      </mat-chip>
-    </p>
-    <p *ngIf="(currentProduct$|async)?.selectedExtras?.length !== 0"><span>Extras:</span>
-      <mat-chip *ngFor="let extra of (currentProduct$|async)?.selectedExtras" color="primary" class="mat-chip" selected>
-        {{extra | firstCapitalLetter}}
-      </mat-chip>
-    </p>
-    <p><span>Rating:</span>
-      <app-star-rating [rating]="(currentProduct$|async)?.rating || 0" [showRatingInfo]="true"></app-star-rating>
-    </p>
-  </mat-chip-list>
+<section class="container">
+  <header class="header">
+    <h2 mat-dialog-title>Product Detail</h2>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+  <mat-divider></mat-divider>
+  <mat-dialog-content class="mat-typography">
+    <ng-container *ngIf="(currentProduct$|async) as currentProduct">
+      <div class="content">
+        <main>
+          <div class="image-container">
+            <h3>{{(currentProduct$|async)?.name}}</h3>
+            <img [src]="currentProduct?.imageUrl" class="product-img" [alt]="currentProduct?.name" />
+          </div>
+          <app-rating-diagram [rates]="currentProduct?.rates || []"></app-rating-diagram>
+        </main>
+        <div class="description">
+          <p>{{currentProduct?.description}}</p>
+        </div>
+        <mat-chip-list>
+          <div class="chip-list-content">
+            <div>
+              <app-mat-chip-item label="Size:"
+                [value]="(currentProduct?.selectedSize || '') | firstCapitalLetter">
+              </app-mat-chip-item>
+              <app-mat-chip-item label="Dough:"
+                [value]="(currentProduct?.selectedDough || '') | firstCapitalLetter">
+              </app-mat-chip-item>
+              <app-mat-chip-item label="Weight:" [value]="(currentProduct?.weight || 0) + ' g'">
+              </app-mat-chip-item>
+            </div>
+            <div>
+              <app-mat-chip-item label="Quantity:" [value]="(currentProduct?.quantity || 0) | decimalFixed">
+              </app-mat-chip-item>
+              <app-mat-chip-item label="Price:"
+                [value]="((currentProduct?.price || 0) | decimalFixed) + ' BGN'">
+              </app-mat-chip-item>
+              <app-mat-chip-item label="Total price:"
+                [value]="((currentProduct?.totalPrice || 0) | decimalFixed) + ' BGN'">
+              </app-mat-chip-item>
+            </div>
+          </div>
+        </mat-chip-list> 
+        <h3 class="ingredients-title">Ingredients:</h3>
+        <mat-chip-list>
+          <mat-chip *ngFor="let ingredient of currentProduct?.ingredients">
+            {{(ingredient || '') | firstCapitalLetter}}
+          </mat-chip>
+        </mat-chip-list>
+        <ng-container *ngIf="currentProduct?.selectedExtras?.length !== 0">
+          <h3 class="extras-title">Extras:</h3>
+          <mat-chip-list>
+            <mat-chip *ngFor="let extra of currentProduct?.selectedExtras">
+              {{(extra || '') | firstCapitalLetter}}
+            </mat-chip>
+          </mat-chip-list>
+        </ng-container>
+      </div>
+    </ng-container>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center" *ngIf="(currentProduct$|async) as currentProduct">
+    <app-star-rating [rating]="currentProduct?.rating || 0" [showRatingInfo]="true"></app-star-rating>
+  </mat-dialog-actions>
+</section>

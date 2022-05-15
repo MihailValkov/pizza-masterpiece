@@ -48,15 +48,17 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  showRateModal(productId: string, productName: string, imageUrl: string) {
-    this.dialog.open(RateProductComponent, {
-      data: { orderId: this.orderId, productId, productName, imageUrl },
-    });
-  }
-
   showProductDetail(_id: string) {
     this.dialog.open(ProductDetailComponent, {
       data: { _id, orderId: this.orderId },
+      autoFocus: false,
+    });
+  }
+
+  showRateModal(_id: string, productId: string) {
+    this.dialog.open(RateProductComponent, {
+      data: { orderId: this.orderId, _id, productId },
+      autoFocus: false,
     });
   }
 }

@@ -1,25 +1,30 @@
 <div class="rate-product-container">
-  <h2 mat-dialog-title>Rate this product</h2>
+  <div class="header">
+    <h2 mat-dialog-title>Rate this product</h2>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
   <mat-divider></mat-divider>
-  <mat-dialog-content class="mat-typography">
+  <mat-dialog-content class="mat-typography" *ngIf="currentProduct$|async as currentProduct">
     <app-loading-spinner *ngIf="isLoading$ | async"></app-loading-spinner>
-    <header>
-      <div class="image-container">
-        <img [src]="data.imageUrl" [alt]="data.productName + '-image'">
-        <mat-card-subtitle>{{data.productName}}</mat-card-subtitle>
-      </div>
-      <app-rating-diagram [rates]="(currentProductRates$ | async) || []"></app-rating-diagram>
-    </header>
-    <mat-divider></mat-divider>
+      <header>
+        <div class="image-container">
+          <img [src]="currentProduct?.imageUrl" [alt]="currentProduct?.name">
+          <mat-card-subtitle>{{currentProduct?.name}}</mat-card-subtitle>
+        </div>
+        <app-rating-diagram [rates]="currentProduct?.rates || []"></app-rating-diagram>
+      </header>
+      <mat-divider></mat-divider>
 
-    <form [formGroup]="form">
-      <div class="rate">
-        <h2>Your rating</h2>
-        <app-rate></app-rate>
-      </div>
-      <h2>Write a review</h2>
-      <app-review-form></app-review-form>
-    </form>
+      <form [formGroup]="form">
+        <div class="rate">
+          <h2>Your rating</h2>
+          <app-rate></app-rate>
+        </div>
+        <h2>Write a review</h2>
+        <app-review-form></app-review-form>
+      </form>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">

@@ -1,7 +1,19 @@
-.rate-product-container {
-  max-width: 500px;
-  width: max-content;
+::ng-deep .mat-dialog-container {
+  padding-top: 0px !important;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 5px 0px;
+}
+
+.header h2 {
+  margin-bottom: 0px;
+}
+
 header {
   display: flex;
   margin: 10px auto;
@@ -30,18 +42,30 @@ h2 {
   margin-bottom: 0px;
 }
 
+@media (max-width: 700px) {
+  .rate-product-container {
+    width: 70vw;
+  }
+  .header h2 {
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 550px) {
   header {
     flex-direction: column;
     align-items: center;
-  }
-  .rate-product-container {
-    width: 100%;
   }
   .rate {
     flex-direction: column;
   }
   .image-container {
     margin-right: 0px;
+  }
+}
+
+@media (max-width: 400px) {
+  .rate-product-container {
+    width: 63vw;
   }
 }

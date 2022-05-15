@@ -1,20 +1,25 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { IOrderModuleState } from 'src/app/orders/+store';
-import { loadOrderProductStart } from 'src/app/orders/+store/actions';
+import {
+  clearOrderProduct,
+  loadOrderProductStart,
+} from 'src/app/orders/+store/actions';
 import {
   selectCurrentProduct,
   selectOrderIsLoading,
 } from 'src/app/orders/+store/selectors';
-import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css'],
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
   currentProduct$ = this.store.pipe(select(selectCurrentProduct));
   isLoading$ = this.store.pipe(select(selectOrderIsLoading));
 
@@ -28,5 +33,9 @@ export class ProductDetailComponent implements OnInit {
     this.store.dispatch(
       loadOrderProductStart({ _id: this.data._id, orderId: this.data.orderId })
     );
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(clearOrderProduct());
   }
 }
