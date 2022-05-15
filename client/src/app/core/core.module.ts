@@ -14,9 +14,15 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers, Effects } from './+store';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '../shared/shared.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [FooterComponent, NavigationComponent, AsideNavComponent],
+  declarations: [
+    FooterComponent,
+    NavigationComponent,
+    AsideNavComponent,
+    NotFoundComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -26,6 +32,6 @@ import { SharedModule } from '../shared/shared.module';
     EffectsModule.forFeature(Effects),
   ],
   providers: [AppInterceptorProvider, AuthGuard, AdminGuard, AuthService],
-  exports: [AsideNavComponent],
+  exports: [AsideNavComponent, NotFoundComponent],
 })
 export class CoreModule {}

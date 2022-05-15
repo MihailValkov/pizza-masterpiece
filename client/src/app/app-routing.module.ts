@@ -2,7 +2,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { AdminGuard } from './core/guards/admin.guard';
 import { AuthGuard } from './core/guards/auth.guard';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 
