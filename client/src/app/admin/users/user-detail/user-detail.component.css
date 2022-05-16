@@ -45,24 +45,24 @@
   margin-left: 0px !important;
 }
 
-.left {
+.user-details .left {
   flex: 4;
   margin-right: 20px;
 }
-.right {
+.user-details .right {
   flex: 4;
 }
 
-.left fieldset > p:last-of-type {
+.user-details .left fieldset > p:last-of-type {
   margin-bottom: 0px;
 }
 
-.left,
-.right h2 {
+.user-details .left,
+.user-details .right h2 {
   text-align: left;
 }
 
-@media (min-width: 680px) and (max-width: 1000px) {
+@media (min-width: 681px) and (max-width: 1000px) {
   .container {
     height: 66vh;
   }
@@ -111,20 +111,17 @@
     margin-bottom: 20px;
     max-width: 400px;
   }
-  .left {
+  .user-details .left {
     text-align: left;
     margin-left: 0px;
     margin-right: 0px;
-  }
-  .left,
-  .right {
-    width: 100%;
+    padding: 0px;
   }
 }
 
 @media (max-width: 600px) {
   .container {
-    min-width: 66vw;
+    min-width: 63vw;
     min-height: 70vh;
     width: 100%;
     height: auto;
@@ -132,11 +129,13 @@
   .user-details {
     align-items: stretch;
   }
-  .left {
+  .user-details .left {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0px 10px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
   }
 }
 
@@ -144,10 +143,10 @@
   .container {
     min-width: 63vw;
   }
-  .left {
+  .user-details .left {
     align-items: center;
   }
-  .left > p {
+  .user-details .left > p {
     display: flex;
     flex-direction: column;
     align-items: center;

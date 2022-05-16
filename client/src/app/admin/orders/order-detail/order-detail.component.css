@@ -21,6 +21,7 @@
 
 .order-number {
   margin-top: 10px;
+  margin-bottom: 0px;
 }
 .order-information {
   display: flex;
@@ -29,7 +30,7 @@
   border: 1px solid #ccc;
   box-shadow: 1px 2px 5px #ccc;
   padding: 10px;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .order-information .center {
@@ -63,29 +64,39 @@
   .container {
     width: 70vw;
   }
+  .order-number {
+    margin: 0px;
+  }
   .order-information {
     flex-direction: column;
-    padding: 10px 20px;
+    padding: 10px;
   }
-  .left,
-  .right {
+  .order-information .left {
     width: 100%;
+  }
+}
+@media (max-width: 680px) {
+  ::ng-deep .mat-dialog-content {
+    padding: 10px;
   }
 }
 
 @media (max-width: 650px) {
+  .container {
+    width: 63vw;
+  }
   .order-information .center {
     margin: 0px;
   }
   .order-information > div > p {
     flex-direction: row;
   }
+  .order-number {
+    margin-left: 10px;
+  }
 }
 
 @media (max-width: 450px) {
-  .container {
-    width: 65vw;
-  }
   .order-information {
     align-items: center;
   }

@@ -49,14 +49,14 @@
   max-width: 400px;
 }
 
-.left {
+.favorite-container .left {
   margin-right: 10px;
 }
-.description {
+.favorite-container .description {
   max-width: 370px;
 }
 
-.extras-title {
+.favorite-container .extras-title {
   margin-top: 12px;
 }
 @media (max-width: 700px) {
@@ -88,16 +88,16 @@
   ::ng-deep .product-info .mat-chip-list-wrapper {
     justify-content: space-between;
   }
-  .left,
-  .right {
+  .favorite-container .left,
+  .favorite-container .right {
     display: flex;
     flex-direction: column;
   }
-  .extras-title,
-  .ingredients-title {
+  .favorite-container .extras-title,
+  .favorite-container .ingredients-title {
     text-align: center;
   }
-  .mat-chip-list {
+  .favorite-container .mat-chip-list {
     width: 100%;
   }
   ::ng-deep .product-info .mat-chip-list-wrapper {
@@ -109,7 +109,7 @@
 }
 
 @media (max-width: 450px) {
-  .description {
+  .favorite-container .description {
     max-width: 100%;
     text-align: justify;
   }
