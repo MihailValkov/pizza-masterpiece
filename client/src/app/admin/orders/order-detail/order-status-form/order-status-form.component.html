@@ -1,0 +1,19 @@
+<form #form="ngForm" (ngSubmit)="submitHandler(form)">
+  <fieldset>
+    <legend>Order settings:</legend>
+    <mat-form-field appearance="outline" class="control">
+      <mat-label>Change order status</mat-label>
+      <mat-select name="status" [ngModel]="currentStatus" required>
+        <mat-option *ngFor="let status of orderStatuses" [value]="status">{{status}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="actions">
+      <mat-spinner class="loading" *ngIf="(currentOrderIsLoading$|async)"></mat-spinner>
+      <button mat-raised-button [disabled]="form.invalid || !form.touched || (currentOrderIsLoading$|async)">
+        <mat-icon>save</mat-icon>
+        Save changes
+      </button>
+    </div>
+  </fieldset>
+</form>

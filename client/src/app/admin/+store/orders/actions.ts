@@ -3,6 +3,7 @@ import {
   IAdminOrder,
   IAdminOrderBaseUserInfo,
   IBaseAdminOrder,
+  IOrderStatus,
 } from 'src/app/shared/interfaces/admin';
 
 const adminOrdersNamespace = '[Admin - Orders]';
@@ -22,7 +23,11 @@ export const loadOrdersStart = createAction(
 
 export const loadOrdersSuccess = createAction(
   `${adminOrdersNamespace} Load Orders Success`,
-  props<{ orders: IBaseAdminOrder<IAdminOrderBaseUserInfo>[]; count: number }>()
+  props<{
+    orders: IBaseAdminOrder<IAdminOrderBaseUserInfo>[];
+    count: number;
+    orderStatuses: IOrderStatus[];
+  }>()
 );
 
 export const loadOrdersFailure = createAction(
@@ -59,3 +64,26 @@ export const loadOrderCancel = createAction(
 );
 
 export const clearOrder = createAction(`${adminOrdersNamespace} Clear Order`);
+
+// Change order status
+export const changeOrderStatusStart = createAction(
+  `${adminOrdersNamespace} Change Order Status Start`,
+  props<{
+    orderId: string;
+    status: IOrderStatus;
+  }>()
+);
+
+export const changeOrderStatusSuccess = createAction(
+  `${adminOrdersNamespace} Change Order Status Success`,
+  props<{ status: IOrderStatus }>()
+);
+
+export const changeOrderStatusFailure = createAction(
+  `${adminOrdersNamespace} Change Order Status Failure`,
+  props<{ message: string }>()
+);
+
+export const changeOrderStatusCancel = createAction(
+  `${adminOrdersNamespace} Change Order Status Cancel`
+);

@@ -3,7 +3,7 @@
 }
 
 .container {
-  width: 75vw;
+  width: 73vw;
   height: 77vh;
 }
 
@@ -61,18 +61,15 @@
 
 @media (max-width: 800px) {
   .container {
-    width: 72vw;
-  }
-}
-
-@media (max-width: 650px) {
-  .container {
     width: 70vw;
   }
   .order-information {
     flex-direction: column;
     padding: 10px 20px;
   }
+}
+
+@media (max-width: 650px) {
   .order-information .center {
     margin: 0px;
   }

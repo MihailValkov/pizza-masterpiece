@@ -12,6 +12,7 @@ router.get('/orders/:id', controller.getOrder);
 router.get('/products/:id', controller.getProductById);
 
 router.patch('/users/:id', controller.changeUserSettings);
+router.patch('/orders/:id', controller.changeOrderStatus);
 
 router.post('/products', single(), uploadProductImage, controller.createProduct);
 

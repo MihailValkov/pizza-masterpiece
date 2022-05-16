@@ -133,7 +133,7 @@ const getOrders = async (req, res, next) => {
     if (selectValue == '_id') {
       query = { [selectValue]: searchValue.trim() };
     } else if (selectValue === 'totalProducts' || selectValue === 'totalPrice') {
-      query = { [selectValue]: {$gte: searchValue} };
+      query = { [selectValue]: { $gte: searchValue } };
     } else {
       query = { [selectValue]: new RegExp(searchValue.trim() || '', 'i') };
     }
@@ -201,6 +201,19 @@ const getOrder = async (req, res, next) => {
   }
 };
 
+const changeOrderStatus = async (req, res, next) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    await orderModel.findByIdAndUpdate(id, { status }, { new: true, runValidators: true });
+
+    res.status(200).json({ status });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
 module.exports = {
   createProduct,
   getProductById,
@@ -209,4 +222,5 @@ module.exports = {
   changeUserSettings,
   getOrders,
   getOrder,
+  changeOrderStatus,
 };

@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { IAdminModuleState } from '../../+store';
-import { selectAdminCurrentOrder, selectAdminCurrentOrderIsLoading } from '../../+store/orders/selectors';
+import {
+  selectAdminCurrentOrder,
+  selectAdminCurrentOrderIsLoading,
+  selectAdminOrdersStatuses,
+} from '../../+store/orders/selectors';
 
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
-  styleUrls: ['./order-detail.component.css']
+  styleUrls: ['./order-detail.component.css'],
 })
 export class OrderDetailComponent implements OnInit {
-  currentOrder$ = this.store.pipe(select(selectAdminCurrentOrder))
-  currentOrderIsLoading$ = this.store.pipe(select(selectAdminCurrentOrderIsLoading))
+  currentOrder$ = this.store.pipe(select(selectAdminCurrentOrder));
+  currentOrderIsLoading$ = this.store.pipe(
+    select(selectAdminCurrentOrderIsLoading)
+  );
+  ordersStatuses$ = this.store.pipe(select(selectAdminOrdersStatuses));
 
-  constructor(private store:Store<IAdminModuleState>) { }
+  constructor(private store: Store<IAdminModuleState>) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

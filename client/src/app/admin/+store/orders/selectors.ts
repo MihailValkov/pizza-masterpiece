@@ -29,6 +29,11 @@ export const selectAdminOrdersErrorMessage = createSelector(
   (state) => state.orders.errorMessage
 );
 
+export const selectAdminOrdersStatuses = createSelector(
+  selectOrders,
+  (state) => state.orders.orderStatuses
+);
+
 export const selectAdminCurrentOrder = createSelector(
   selectOrders,
   (state) => state.currentOrder.order

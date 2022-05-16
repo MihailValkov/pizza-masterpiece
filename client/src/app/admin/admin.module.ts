@@ -18,6 +18,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrdersTableComponent } from './orders/orders-table/orders-table.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { ProductItemComponent } from './orders/order-detail/product-item/product-item.component';
+import { OrderStatusFormComponent } from './orders/order-detail/order-status-form/order-status-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ProductItemComponent } from './orders/order-detail/product-item/product
     OrdersTableComponent,
     OrderDetailComponent,
     ProductItemComponent,
+    OrderStatusFormComponent,
   ],
   imports: [
     CommonModule,

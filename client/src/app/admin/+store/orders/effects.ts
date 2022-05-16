@@ -20,13 +20,17 @@ export class AdminOrdersEffects {
             takeUntil(
               this.actions$.pipe(ofType(ordersActions.loadOrdersCancel))
             ),
-            map(({ orders, count }) => {
+            map(({ orders, count, orderStatuses }) => {
               this.router.navigateByUrl(
                 `/admin/orders?page=${
                   page + 1
                 }&limit=${limit}&sort=${sort}&order=${order}&searchValue=${searchValue}&selectValue=${selectValue}`
               );
-              return ordersActions.loadOrdersSuccess({ orders, count });
+              return ordersActions.loadOrdersSuccess({
+                orders,
+                count,
+                orderStatuses,
+              });
             }),
             catchError(({ error }: IErrorResponse) => {
               const message = error.message;
@@ -51,6 +55,31 @@ export class AdminOrdersEffects {
             const message = error.message;
             this.notificationService.showMessage(message, 'error');
             return [ordersActions.loadOrderFailure({ message })];
+          })
+        )
+      )
+    )
+  );
+
+  changeOrderStatus$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ordersActions.changeOrderStatusStart),
+      switchMap(({ orderId, status }) =>
+        this.adminService.changeOrderStatus(orderId, status).pipe(
+          takeUntil(
+            this.actions$.pipe(ofType(ordersActions.changeOrderStatusCancel))
+          ),
+          map(({ status }) => {
+            this.notificationService.showMessage(
+              `The order "${orderId}" has been updated to status: ${status}.`,
+              'success'
+            );
+            return ordersActions.changeOrderStatusSuccess({ status });
+          }),
+          catchError(({ error }: IErrorResponse) => {
+            const message = error.message;
+            this.notificationService.showMessage(message, 'error');
+            return [ordersActions.changeOrderStatusFailure({ message })];
           })
         )
       )

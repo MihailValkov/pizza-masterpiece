@@ -1,0 +1,14 @@
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+::ng-deep .loading {
+  width: 36px !important;
+  height: 36px !important;
+  margin-right: 20px;
+}
+::ng-deep .loading svg {
+  width: 33px !important;
+  height: 33px !important;
+}

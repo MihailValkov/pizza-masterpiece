@@ -8,6 +8,7 @@ import {
   IAdminUser,
   IBaseAdminOrder,
   IBaseAdminUser,
+  IOrderStatus,
   IRoles,
 } from '../shared/interfaces/admin';
 import { IProduct } from '../shared/interfaces/product';
@@ -69,6 +70,17 @@ export class AdminService {
     return this.http.get<{ order: IAdminOrder }>(`/admin/orders/${orderId}`);
   }
 
+  changeOrderStatus(
+    orderId: string,
+    status: IOrderStatus
+  ): Observable<{
+    status: IOrderStatus;
+  }> {
+    return this.http.patch<{
+      status: IOrderStatus;
+    }>(`/admin/orders/${orderId}`, { status });
+  }
+
   loadOrders(
     page: number,
     limit: number,
@@ -79,10 +91,12 @@ export class AdminService {
   ): Observable<{
     orders: IBaseAdminOrder<IAdminOrderBaseUserInfo>[];
     count: number;
+    orderStatuses: IOrderStatus[];
   }> {
     return this.http.get<{
       orders: IBaseAdminOrder<IAdminOrderBaseUserInfo>[];
       count: number;
+      orderStatuses: IOrderStatus[];
     }>(
       `/admin/orders?page=${
         page + 1
