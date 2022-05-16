@@ -67,6 +67,10 @@
     flex-direction: column;
     padding: 10px 20px;
   }
+  .left,
+  .right {
+    width: 100%;
+  }
 }
 
 @media (max-width: 650px) {

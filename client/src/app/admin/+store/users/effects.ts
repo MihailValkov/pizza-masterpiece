@@ -18,13 +18,18 @@ export class AdminUsersEffects {
           .loadUsers(page, limit, sort, order, searchValue, selectValue)
           .pipe(
             takeUntil(this.actions$.pipe(ofType(usersActions.loadUsersCancel))),
-            map(({ users, count, roles }) => {
+            map(({ users, count, roles, accountStatuses }) => {
               this.router.navigateByUrl(
                 `/admin/users?page=${
                   page + 1
                 }&limit=${limit}&sort=${sort}&order=${order}&searchValue=${searchValue}&selectValue=${selectValue}`
               );
-              return usersActions.loadUsersSuccess({ users, count, roles });
+              return usersActions.loadUsersSuccess({
+                users,
+                count,
+                roles,
+                accountStatuses,
+              });
             }),
             catchError(({ error }: IErrorResponse) => {
               const message = error.message;
@@ -55,27 +60,36 @@ export class AdminUsersEffects {
     )
   );
 
-  changeUserInformation$ = createEffect(() =>
+  changeUserAccountSettings$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(usersActions.changeUserInfoStart),
+      ofType(usersActions.changeUserAccountSettingsStart),
       switchMap(({ userId, role, accountStatus }) =>
-        this.adminService.changeUserInfo(userId, role, accountStatus).pipe(
-          takeUntil(
-            this.actions$.pipe(ofType(usersActions.changeUserInfoCancel))
-          ),
-          map(({ role, accountStatus, email }) => {
-            this.notificationService.showMessage(
-              `The account of user with email "${email}" has been updated.`,
-              'success'
-            );
-            return usersActions.changeUserInfoSuccess({ role, accountStatus });
-          }),
-          catchError(({ error }: IErrorResponse) => {
-            const message = error.message;
-            this.notificationService.showMessage(message, 'error');
-            return [usersActions.loadUserFailure({ message })];
-          })
-        )
+        this.adminService
+          .changeUserAccountSettings(userId, role, accountStatus)
+          .pipe(
+            takeUntil(
+              this.actions$.pipe(
+                ofType(usersActions.changeUserAccountSettingsCancel)
+              )
+            ),
+            map(({ role, accountStatus, email }) => {
+              this.notificationService.showMessage(
+                `The account of user with email "${email}" has been updated.`,
+                'success'
+              );
+              return usersActions.changeUserAccountSettingsSuccess({
+                role,
+                accountStatus,
+              });
+            }),
+            catchError(({ error }: IErrorResponse) => {
+              const message = error.message;
+              this.notificationService.showMessage(message, 'error');
+              return [
+                usersActions.changeUserAccountSettingsFailure({ message }),
+              ];
+            })
+          )
       )
     )
   );
@@ -84,6 +98,6 @@ export class AdminUsersEffects {
     private adminService: AdminService,
     private actions$: Actions,
     private notificationService: NotificationService,
-    private router: Router,
+    private router: Router
   ) {}
 }

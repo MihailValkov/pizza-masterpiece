@@ -38,10 +38,6 @@
   flex: 4;
 }
 
-.control {
-  width: auto;
-  display: block;
-}
 .user-details {
   flex: 8;
   display: flex;
@@ -64,20 +60,6 @@
 .left,
 .right h2 {
   text-align: left;
-}
-.actions {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-::ng-deep .loading {
-  width: 36px !important;
-  height: 36px !important;
-  margin-right: 20px;
-}
-::ng-deep .loading svg {
-  width: 33px !important;
-  height: 33px !important;
 }
 
 @media (min-width: 680px) and (max-width: 1000px) {
@@ -133,6 +115,10 @@
     text-align: left;
     margin-left: 0px;
     margin-right: 0px;
+  }
+  .left,
+  .right {
+    width: 100%;
   }
 }
 

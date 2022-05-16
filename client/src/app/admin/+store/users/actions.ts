@@ -3,10 +3,8 @@ import {
   IAccountStatus,
   IAdminUser,
   IBaseAdminUser,
-  IRoles,
+  IRole,
 } from 'src/app/shared/interfaces/admin';
-import { IUser } from 'src/app/shared/interfaces/user';
-
 const adminUsersNamespace = '[Admin - Users]';
 
 // Load Users
@@ -24,7 +22,12 @@ export const loadUsersStart = createAction(
 
 export const loadUsersSuccess = createAction(
   `${adminUsersNamespace} Load Users Success`,
-  props<{ users: IBaseAdminUser[]; count: number; roles: IRoles[] }>()
+  props<{
+    users: IBaseAdminUser[];
+    count: number;
+    roles: IRole[];
+    accountStatuses: IAccountStatus[];
+  }>()
 );
 
 export const loadUsersFailure = createAction(
@@ -63,25 +66,25 @@ export const loadUserCancel = createAction(
 export const clearUser = createAction(`${adminUsersNamespace} Clear User`);
 
 // Change user information
-export const changeUserInfoStart = createAction(
-  `${adminUsersNamespace} Change User Info Start`,
+export const changeUserAccountSettingsStart = createAction(
+  `${adminUsersNamespace} Change User Account Settings Start`,
   props<{
     userId: string;
-    role: IRoles;
+    role: IRole;
     accountStatus: IAccountStatus;
   }>()
 );
 
-export const changeUserInfoSuccess = createAction(
-  `${adminUsersNamespace} Change User Info Success`,
-  props<{ role: IRoles; accountStatus: IAccountStatus }>()
+export const changeUserAccountSettingsSuccess = createAction(
+  `${adminUsersNamespace} Change User Account Settings Success`,
+  props<{ role: IRole; accountStatus: IAccountStatus }>()
 );
 
-export const changeUserInfoFailure = createAction(
-  `${adminUsersNamespace} Change User Info Failure`,
+export const changeUserAccountSettingsFailure = createAction(
+  `${adminUsersNamespace} Change User Account Settings Failure`,
   props<{ message: string }>()
 );
 
-export const changeUserInfoCancel = createAction(
-  `${adminUsersNamespace} Change User Info Cancel`
+export const changeUserAccountSettingsCancel = createAction(
+  `${adminUsersNamespace} Change User Account Settings Cancel`
 );

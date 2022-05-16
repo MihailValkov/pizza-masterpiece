@@ -24,6 +24,11 @@ export const selectAdminUsersRoles = createSelector(
   (state) => state.users.roles
 );
 
+export const selectAdminUsersAccountStatuses = createSelector(
+  selectUsers,
+  (state) => state.users.accountStatuses
+);
+
 export const selectAdminUsersIsLoading = createSelector(
   selectUsers,
   (state) => state.users.isLoading

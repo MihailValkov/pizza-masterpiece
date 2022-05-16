@@ -1,0 +1,33 @@
+<form #form="ngForm" (ngSubmit)="submitHandler(form)">
+  <fieldset>
+    <legend>Account settings:</legend>
+
+    <mat-form-field appearance="outline" class="control">
+      <mat-label>Change user role</mat-label>
+      <mat-icon matPrefix *ngIf="currentUserRole === 'Admin'">admin_panel_settings</mat-icon>
+      <mat-icon matPrefix *ngIf="currentUserRole === 'Member'">person</mat-icon>
+      <mat-select name="role" [ngModel]="currentUserRole" required>
+        <mat-option *ngFor="let role of (usersRoles$ | async)" [value]="role">{{role}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="control">
+      <mat-label>Change account status</mat-label>
+      <mat-icon matPrefix *ngIf="currentAccountStatus === 'Active'">personal_injury</mat-icon>
+      <mat-icon matPrefix *ngIf="currentAccountStatus === 'Inactive'">lock_person</mat-icon>
+      <mat-select [ngModel]="currentAccountStatus" name="accountStatus" required>
+        <mat-option *ngFor="let accountStatus of (accountStatuses$ | async)" [value]="accountStatus">{{accountStatus}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <div class="actions">
+      <mat-spinner class="loading" *ngIf="currentUserIsLoading$|async"></mat-spinner>
+      <button mat-raised-button [disabled]="form.invalid || !form.touched || (currentUserIsLoading$ | async)">
+        <mat-icon>save</mat-icon>
+        Save changes
+      </button>
+    </div>
+    
+  </fieldset>
+</form>

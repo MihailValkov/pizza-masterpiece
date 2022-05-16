@@ -10,10 +10,8 @@ import {
   merge,
   startWith,
   Subscription,
-  switchMap,
   tap,
 } from 'rxjs';
-import { IBaseAdminUser } from 'src/app/shared/interfaces/admin';
 import { IAdminModuleState } from '../../+store';
 import {
   clearUsers,

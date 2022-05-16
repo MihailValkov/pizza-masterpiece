@@ -5,7 +5,7 @@ const {
   doughModel,
   extraModel,
 } = require('../models/Product');
-const { userModel, roles } = require('../models/User');
+const { userModel, roles, accountStatuses } = require('../models/User');
 const { orderModel, orderStatuses } = require('../models/Order');
 
 const { errorHandler } = require('../utils/errorHandler');
@@ -78,10 +78,10 @@ const getUsers = async (req, res, next) => {
       .sort(sortCriteria)
       .lean();
 
-    return res.status(200).json({ users, count, roles });
+    return res.status(200).json({ users, count, roles, accountStatuses });
   } catch (error) {
     if (error.kind === 'ObjectId') {
-      return res.status(200).json({ users: [], count: 0, roles });
+      return res.status(200).json({ users: [], count: 0, roles, accountStatuses });
     }
 
     errorHandler(error, res, req);

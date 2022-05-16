@@ -1,4 +1,4 @@
-export enum IRoles {
+export enum IRole {
   'Member' = 'Member',
   'Admin' = 'Admin',
 }
@@ -13,7 +13,7 @@ export interface IBaseAdminUser {
   email: string;
   firstName: string;
   lastName: string;
-  role: IRoles.Admin | IRoles.Member;
+  role: IRole.Admin | IRole.Member;
   accountStatus: IAccountStatus.Active | IAccountStatus.Inactive;
   ordersCount: string[];
   ratedProductsCount: number;

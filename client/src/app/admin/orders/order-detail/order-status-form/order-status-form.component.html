@@ -1,6 +1,7 @@
 <form #form="ngForm" (ngSubmit)="submitHandler(form)">
   <fieldset>
     <legend>Order settings:</legend>
+
     <mat-form-field appearance="outline" class="control">
       <mat-label>Change order status</mat-label>
       <mat-select name="status" [ngModel]="currentStatus" required>
@@ -15,5 +16,6 @@
         Save changes
       </button>
     </div>
+    
   </fieldset>
 </form>

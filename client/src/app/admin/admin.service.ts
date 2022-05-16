@@ -9,7 +9,7 @@ import {
   IBaseAdminOrder,
   IBaseAdminUser,
   IOrderStatus,
-  IRoles,
+  IRole,
 } from '../shared/interfaces/admin';
 import { IProduct } from '../shared/interfaces/product';
 
@@ -38,11 +38,17 @@ export class AdminService {
     order: '' | 'asc' | 'desc',
     searchValue: string,
     selectValue: string
-  ): Observable<{ users: IBaseAdminUser[]; count: number; roles: IRoles[] }> {
+  ): Observable<{
+    users: IBaseAdminUser[];
+    count: number;
+    roles: IRole[];
+    accountStatuses: IAccountStatus[];
+  }> {
     return this.http.get<{
       users: IBaseAdminUser[];
       count: number;
-      roles: IRoles[];
+      roles: IRole[];
+      accountStatuses: IAccountStatus[];
     }>(
       `/admin/users?page=${
         page + 1
@@ -50,17 +56,17 @@ export class AdminService {
     );
   }
 
-  changeUserInfo(
+  changeUserAccountSettings(
     userId: string,
-    role: IRoles,
+    role: IRole,
     accountStatus: IAccountStatus
   ): Observable<{
-    role: IRoles;
+    role: IRole;
     accountStatus: IAccountStatus;
     email: string;
   }> {
     return this.http.patch<{
-      role: IRoles;
+      role: IRole;
       accountStatus: IAccountStatus;
       email: string;
     }>(`/admin/users/${userId}`, { role, accountStatus });

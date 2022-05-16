@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   IBaseAdminUser,
-  IRoles,
+  IRole,
   IAdminUser,
+  IAccountStatus,
 } from 'src/app/shared/interfaces/admin';
 
 import * as usersActions from './actions';
@@ -11,7 +12,8 @@ export interface IUsersState {
   users: {
     usersList: IBaseAdminUser[];
     count: number;
-    roles: IRoles[];
+    roles: IRole[];
+    accountStatuses: IAccountStatus[];
     isLoading: boolean;
     errorMessage: null | string;
   };
@@ -27,6 +29,7 @@ const initialUsersState: IUsersState = {
     usersList: [],
     count: 0,
     roles: [],
+    accountStatuses: [],
     isLoading: true,
     errorMessage: null,
   },
@@ -47,13 +50,14 @@ export const usersReducer = createReducer<IUsersState>(
   }),
   on(
     usersActions.loadUsersSuccess,
-    (state: IUsersState, { users, count, roles }) => {
+    (state: IUsersState, { users, count, roles, accountStatuses }) => {
       return {
         ...state,
         users: {
           usersList: users,
           count,
           roles,
+          accountStatuses,
           isLoading: false,
           errorMessage: null,
         },
@@ -76,6 +80,7 @@ export const usersReducer = createReducer<IUsersState>(
         usersList: [],
         count: 0,
         roles: [],
+        accountStatuses: [],
         isLoading: true,
         errorMessage: null,
       },
@@ -125,7 +130,7 @@ export const usersReducer = createReducer<IUsersState>(
       },
     };
   }),
-  on(usersActions.changeUserInfoStart, (state: IUsersState) => {
+  on(usersActions.changeUserAccountSettingsStart, (state: IUsersState) => {
     return {
       ...state,
       currentUser: {
@@ -136,14 +141,24 @@ export const usersReducer = createReducer<IUsersState>(
     };
   }),
   on(
-    usersActions.changeUserInfoSuccess,
+    usersActions.changeUserAccountSettingsSuccess,
     (state: IUsersState, { role, accountStatus }) => {
-      if (!state.currentUser.user) {
+      if (!state?.currentUser?.user || !state?.users?.usersList) {
         return state;
       }
+      const userId = state.currentUser.user._id;
+      const copiedUsers = [
+        ...state.users.usersList.map((u) =>
+          u._id === userId ? { ...u, role, accountStatus } : u
+        ),
+      ];
 
       return {
         ...state,
+        users: {
+          ...state.users,
+          usersList: copiedUsers,
+        },
         currentUser: {
           user: {
             ...state.currentUser.user,
@@ -157,7 +172,7 @@ export const usersReducer = createReducer<IUsersState>(
     }
   ),
   on(
-    usersActions.changeUserInfoFailure,
+    usersActions.changeUserAccountSettingsFailure,
     (state: IUsersState, { message }: { message: string }) => {
       return {
         ...state,
