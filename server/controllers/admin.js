@@ -40,12 +40,6 @@ const createProduct = async (req, res) => {
   }
 };
 
-const getProductById = async (req, res, next) => {
-  const { id } = req.params;
-
-  res.status(200).json({ _id: 'test' });
-};
-
 const getUsers = async (req, res, next) => {
   const page = parseInt(req?.query?.page);
   const limit = parseInt(req?.query?.limit);
@@ -191,11 +185,7 @@ const getOrder = async (req, res, next) => {
       return currentProduct;
     });
 
-    const order = {
-      ...data,
-      products: transformedProducts,
-    };
-    return res.status(200).json({ order });
+    return res.status(200).json({ order: { ...data, products: transformedProducts } });
   } catch (error) {
     errorHandler(error, res, req);
   }
@@ -216,7 +206,6 @@ const changeOrderStatus = async (req, res, next) => {
 
 module.exports = {
   createProduct,
-  getProductById,
   getUsers,
   getUser,
   changeUserSettings,
