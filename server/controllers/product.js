@@ -40,7 +40,7 @@ const getProductById = async (req, res, next) => {
     if (!product) {
       throw new Error('There is no such product with provided ID - ' + id);
     }
-    res.status(200).json(product.toObject());
+    res.status(200).json({ product: product.toObject() });
   } catch (error) {
     errorHandler(error, res, req);
   }

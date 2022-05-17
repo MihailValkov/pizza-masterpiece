@@ -40,7 +40,7 @@ export class OrderService {
     rate: number,
     comment: string
   ): Observable<{ rating: number }> {
-    return this.http.patch<{ rating: number }>(`/products/rate/${productId}`, {
+    return this.http.patch<{ rating: number }>(`/products/${productId}`, {
       rate,
       comment,
     });

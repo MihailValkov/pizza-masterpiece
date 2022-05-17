@@ -172,3 +172,27 @@ In case of a validation error, the service will respond with an error status cod
   message: string
 }
 ```
+
+# Endpoints: Products
+
+- `/products` -- get all products;
+- `/products/:productId` -- get/update product by provided id;
+
+## Get all product
+
+Send a `GET` request to `/products`. The service will respond with an object containing properties `products` (an array) and `count` (number of all records). This route can accept queries `page` and `limit` for lazy loading data from the service.
+
+Send a `GET` request to `/products?page=1&&limit=10`. The service will respond with an object, containing properties `products` (an array with maximum 10 records) and `count` (number of all records).
+## Get product by Id
+
+Send a `GET` request to `/products/{productId}`. The service will respond with an product object.
+
+## Rate product
+
+Send an authorized `PATCH` request to `/products/{productId}` with properties `rate` and `comment`. The service will respond with an object, containing newly calculated rating.
+### Body
+```
+{
+  rate: number,
+  comment: string,
+}

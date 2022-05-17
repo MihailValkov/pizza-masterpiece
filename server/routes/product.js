@@ -5,6 +5,6 @@ const { isAuthNeeded } = require('../middlewares/authentication');
 router.get('', controller.getAllProducts);
 router.get('/:id', controller.getProductById);
 
-router.patch('/rate/:id', isAuthNeeded(), controller.rateProduct);
+router.patch('/:id', isAuthNeeded(), controller.rateProduct);
 
 module.exports = router;

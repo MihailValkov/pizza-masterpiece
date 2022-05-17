@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import {
   ILoginUser,
@@ -17,15 +16,19 @@ export class AuthService {
   login(userData: ILoginUser): Observable<IUser> {
     return this.http.post<IUser>('/auth/login', userData);
   }
+
   register(userData: IRegisterUser): Observable<IUser> {
     return this.http.post<IUser>('/auth/register', userData);
   }
+
   logout(): Observable<{ message: string }> {
     return this.http.post<{ message: string }>('/auth/logout', {});
   }
+
   authenticate(): Observable<IUser> {
     return this.http.get<IUser>('/auth/authenticate');
   }
+
   updateUserImage(
     formData: FormData
   ): Observable<{ url: string; _id: string }> {

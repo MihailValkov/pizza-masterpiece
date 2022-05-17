@@ -4,12 +4,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from 'src/app/core/notification.service';
 import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
-import { IProduct } from 'src/app/shared/interfaces/product';
 import { ProductService } from '../../products/product.service';
 import * as productsActions from './actions';
 
 @Injectable()
 export class ProductsEffects {
+
   loadProduct$ = createEffect(() =>
     this.actions$.pipe(
       ofType(productsActions.loadProductStart),
@@ -18,7 +18,7 @@ export class ProductsEffects {
           takeUntil(
             this.actions$.pipe(ofType(productsActions.loadProductCancel))
           ),
-          map((product) => productsActions.loadProductSuccess({ product })),
+          map(({product}) => productsActions.loadProductSuccess({ product })),
           catchError(({ error }: IErrorResponse) => {
             const message = error.message;
             this.notificationService.showMessage(message, 'error');

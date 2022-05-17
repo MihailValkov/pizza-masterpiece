@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 export class ProductService {
   constructor(private http: HttpClient) {}
 
-  loadProductById(id: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`/products/${id}`);
+  loadProductById(id: string): Observable<{ product: IProduct }> {
+    return this.http.get<{ product: IProduct }>(`/products/${id}`);
   }
 
   loadAllProducts(
