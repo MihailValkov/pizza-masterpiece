@@ -132,11 +132,7 @@ const getOrder = async (req, res, next) => {
       };
     });
 
-    const order = {
-      ...data,
-      products: transformedProducts,
-    };
-    return res.status(200).json(order);
+    return res.status(200).json({ order: { ...data, products: transformedProducts } });
   } catch (error) {
     errorHandler(error, res, req);
   }

@@ -22,8 +22,8 @@ export class OrderService {
     );
   }
 
-  getMyOrder(orderId: string): Observable<IOrderDetail> {
-    return this.http.get<IOrderDetail>(`/orders/${orderId}`);
+  getMyOrder(orderId: string): Observable<{ order: IOrderDetail }> {
+    return this.http.get<{ order: IOrderDetail }>(`/orders/${orderId}`);
   }
 
   getCurrentProduct(

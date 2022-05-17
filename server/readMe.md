@@ -178,12 +178,12 @@ In case of a validation error, the service will respond with an error status cod
 - `/products` -- get all products;
 - `/products/:productId` -- get/update product by provided id;
 
-## Get all product
+## Get all products
 
-Send a `GET` request to `/products`. The service will respond with an object containing properties `products` (an array) and `count` (number of all records). This route can accept queries `page` and `limit` for lazy loading data from the service.
+Send a `GET` request to `/products`. The service will respond with an object containing properties `products` (an array) and `count` (number of all records). This endpoint can accept queries `page` and `limit` for lazy loading the data from the service.
 
 Send a `GET` request to `/products?page=1&&limit=10`. The service will respond with an object, containing properties `products` (an array with maximum 10 records) and `count` (number of all records).
-## Get product by Id
+## Get product by id
 
 Send a `GET` request to `/products/{productId}`. The service will respond with an product object.
 
@@ -196,3 +196,26 @@ Send an authorized `PATCH` request to `/products/{productId}` with properties `r
   rate: number,
   comment: string,
 }
+```
+
+# Endpoints: Orders
+
+- `/orders` -- get all orders for the currently logged in user;
+- `/orders/:orderId` -- get specific order for the currently logged in user by provided order ID;
+- `/orders/:orderId/:productId` -- get an ordered product for a specific order using the provided order ID and product ID for the currently logged in user.
+
+## Get all orders
+
+Send an authorized `GET` request to `/orders`. The service will respond with an object containing properties `ordersList` (an array) and `count` (number of all records). This endpoint can accept queries `page`, `limit`, `sort` and `order`.
+
+Send an authorized `GET` request to `/orders?page=1&limit=5&sort=createdAt&order=desc`. The service will respond with an object, containing properties `ordersList` (an array with a maximum of 5 records, sorted in descending order by createdAt - creation date) and `count` (number of all records).
+
+## Get order
+
+Send an authorized `GET` request to `/orders/{orderId}`. The service will respond with an order object.
+
+## Get product
+
+Send an authorized `GET` request to `/orders/{orderId}/{productId}`. The service will respond with an object, containing information about the desired product.
+
+
