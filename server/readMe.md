@@ -1,6 +1,7 @@
 # Custom Server
 
 ## 🛠 Libraries and tools used
+
 - [Express](https://expressjs.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [JsonWebToken](https://github.com/auth0/node-jsonwebtoken)
@@ -18,26 +19,23 @@ Clone this repository and install dependencies
 > git clone https://github.com/MihailValkov/pizza-masterpiece.git
 > cd server
 > npm install
-> create '.env' file.
-> npm run dev
 ```
-### Create '.env' file in the main directory and populate the following data:
+### Create '.env' file in the main directory and populate the following information:
 
-* `USER` -- MongoDB Cloud user;
-* `PASSWORD` -- MongoDB Cloud password;
-* `DB_NAME` -- Database name;
-* `SECRET` -- Secret for JWT;
-* `AUTH_COOKIE` -- Name of the cookie;
-* `ROUNDS` -- Number of bcrypt rounds for hashing a password;
-* `CLOUDINARY_NAME` -- Your cloudinary name;
-* `CLOUDINARY_API_KEY` -- Your cloudinary api key;
-* `CLOUDINARY_API_SECRET` -- Your cloudinary api secret;
+- `USER` -- MongoDB Cloud user;
+- `PASSWORD` -- MongoDB Cloud password;
+- `DB_NAME` -- Database name;
+- `SECRET` -- Secret for JWT;
+- `AUTH_COOKIE` -- Name of the cookie;
+- `ROUNDS` -- Number of bcrypt rounds for hashing a password;
+- `CLOUDINARY_NAME` -- Your cloudinary name;
+- `CLOUDINARY_API_KEY` -- Your cloudinary api key;
+- `CLOUDINARY_API_SECRET` -- Your cloudinary api secret;
 
 If you do not have a MongoDB Cloud account, you can set the value of the `dbConnection` variable to `'mongodb://localhost:27017/{DB_NAME}'`
 
-If you do not have a [cloudinary](https://cloudinary.com/) account, you need to register. After successful registration you need to visit Account Details to get the information about `Cloud Name`,` API Key` and `API Secret`.
+If you do not have a [cloudinary](https://cloudinary.com/) account, you need to register one. After successful registration you need to visit Account Details to get the information about `Cloud Name`,` API Key` and `API Secret`.
 You need to create "Upload presets". To do this you need to click on the "Settings" button in the navigation, then select "Upload" and at the end of the page you will find a link "Add upload preset". After clicking on this link, it will take you to the required page and you will be able to create "Upload presets"
-
 
 You need to create the following `Upload presets`:
 
@@ -53,21 +51,124 @@ Signing Mode: Signed
 Folder: pizza-masterpiece/images/users
 ```
 
+To start the server, you must run the following command in your terminal:
+```
+> npm run dev
+```
+
 ## Base URL
 
 The Base URL for the API is:
 
-```https://localhost:3005/api```
+`https://localhost:3005/api`
 
 The documentation below assumes you are pre-pending the Base URL to the endpoints in order to make requests.
 
 # Endpoints: Users
 
-* ```/auth/register``` -- signing up;
-* ```/auth/login``` -- signing in;
-* ```/auth/logout``` -- logging out;
-* ```/auth/edit-profile``` -- edit `user` information;
-* ```/auth/edit-user-photo``` -- edit `user` **cover** or **avatar** photo;
+- `/auth/register` -- signing up;
+- `/auth/login` -- signing in;
+- `/auth/logout` -- logging out;
+- `/auth/authenticate` -- authenticate the user;
+- `/auth/update-user-image` -- add/update user avatar photo;
+- `/auth/update-user-info` -- update user personal information;
+- `/auth/update-user-address` -- update user delivery address;
+- `/auth/update-user-password` -- change user password;
 
 ## Register
-Create a new user by sending a `POST` request to `/auth/register` with properties `email`, `password`, `repeatPassword` and `gender`.
+
+Create a new user by sending a `POST` request to `/auth/register` with properties `email`, `password`, `repeatPassword`. The service will respond with an object, containing newly created user and set http only cookie to the user browser.
+
+### Body
+
+```
+{
+  email: string,
+  password: string,
+  repeatPassword: string
+}
+```
+
+## Login
+
+Login by sending a `POST` request with `email` and `password` to `/auth/login`. The service will respond with an user object.
+
+### Body
+
+```
+{
+  email: string,
+  password: string
+}
+```
+
+## Logout
+
+Send an authorized `POST` request with empty object to `/auth/logout`. The service will respond with an object `{ message: 'Logout is successful' }`, clear a user session, and an HTTP-only cookie.
+
+### Body
+
+```
+{}
+```
+
+## Authenticate
+
+Send an authorized `GET` request to `/auth/authenticate`. The service will respond with an user object.
+
+## Upload user image
+
+Update current user image by sending an authorized `POST` request to `/auth/update-user-image` with property `image`. The service will respond with an object `{ _id: string, url: string }`
+
+### Body
+```
+{
+  image: File
+}
+```
+
+## Update personal information
+
+Update current user personal information by sending an authorized `POST` request to `/auth/update-user-info` with properties `firstName`, `lastName` and `phoneNumber`. The service will respond with an object containing newly updated properties.
+
+### Body
+```
+{
+  firstName: string,
+  lastName: string,
+  phoneNumber:string
+}
+```
+
+## Update user address
+
+Update current user address by sending an authorized `POST` request to `/auth/update-user-address` with properties `country`, `city`, `street` and `streetNumber`. The service will respond with an object containing newly updated properties.
+
+### Body
+```
+{
+  country: string,
+  city: string,
+  street: string,
+  streetNumber: number
+}
+```
+## Update user password
+
+Update current user password by sending an authorized `POST` request to `/auth/update-user-password` with properties `oldPassword`, `password`, and `repeatPassword`. The service will respond with an object `{ message: 'Password has been changed successfully!' }`.
+
+### Body
+```
+{
+  oldPassword: string,
+  password: string,
+  repeatPassword: string,
+}
+```
+
+In case of a validation error, the service will respond with an error status code and an object containing the error message.
+```
+{
+  message: string
+}
+```
