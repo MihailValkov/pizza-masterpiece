@@ -39,7 +39,7 @@ export class OrdersEffects {
       switchMap(({ orderId }) =>
         this.orderService.getMyOrder(orderId).pipe(
           takeUntil(this.actions$.pipe(ofType(orderActions.loadOrderCancel))),
-          map(({order}) => orderActions.loadOrderSuccess({ order })),
+          map(({ order }) => orderActions.loadOrderSuccess({ order })),
           catchError((err: IErrorResponse) => [
             orderActions.loadOrderFailure({ message: err.error.message }),
           ])
@@ -64,6 +64,7 @@ export class OrdersEffects {
 
             this.dialog.closeAll();
             return orderActions.rateOrdererProductSuccess({
+              productId,
               rating,
             });
           }),

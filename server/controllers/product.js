@@ -79,7 +79,7 @@ const rateProduct = async (req, res, next) => {
     currentUser.ratedProductsCount = currentUser.ratedProducts.length;
     await currentUser.save();
 
-    res.status(200).json({ rating: product.rating });
+    res.status(200).json({ productId: product._id, rating: product.rating });
   } catch (error) {
     errorHandler(error, res, req);
   }
