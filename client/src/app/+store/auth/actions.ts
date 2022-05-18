@@ -141,3 +141,8 @@ export const updateUserPasswordFailure = createAction(
 export const updateUserPasswordCancel = createAction(
   `${authNamespace} Update User Password Cancel`
 );
+
+export const rateProductSuccess = createAction(
+  `${authNamespace} Rating product Success`,
+  props<{ productId: string }>()
+);

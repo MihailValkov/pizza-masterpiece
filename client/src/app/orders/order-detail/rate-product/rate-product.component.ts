@@ -3,8 +3,6 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { IOrderProductDetail } from 'src/app/shared/interfaces/order';
-
 import { IOrderModuleState } from '../../+store';
 import {
   clearOrderProduct,

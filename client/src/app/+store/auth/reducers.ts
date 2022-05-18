@@ -6,7 +6,6 @@ export interface IAuthState {
   user: IUser | undefined | null;
   isLoading: boolean;
   message: string | null;
-  success: boolean;
   updateUserImageLoading: boolean;
   updateUserInfoLoading: boolean;
   updateUserAddressLoading: boolean;
@@ -17,7 +16,6 @@ const initialAuthState: IAuthState = {
   user: undefined,
   isLoading: false,
   message: null,
-  success: false,
   updateUserImageLoading: false,
   updateUserInfoLoading: false,
   updateUserAddressLoading: false,
@@ -36,7 +34,6 @@ const setUser = (
   user,
   message: null,
   isLoading: false,
-  success: true,
 });
 
 const setErrorMessage = (
@@ -45,7 +42,6 @@ const setErrorMessage = (
 ) => ({
   ...state,
   message,
-  success: false,
   isLoading: false,
   updateUserImageLoading: false,
   updateUserInfoLoading: false,
@@ -67,7 +63,6 @@ export const authReducer = createReducer<IAuthState>(
   on(authActions.loginClearError, (state) => ({
     ...state,
     message: null,
-    success: false,
   })),
   on(authActions.registerStart, startFetching),
   on(authActions.registerSuccess, setUser),
@@ -75,14 +70,12 @@ export const authReducer = createReducer<IAuthState>(
   on(authActions.registerClearError, (state) => ({
     ...state,
     message: null,
-    success: false,
   })),
   on(authActions.authenticateStart, startFetching),
   on(authActions.authenticateSuccess, (state, { user }) => {
     return {
       ...state,
       user,
-      message: null,
       isLoading: false,
     };
   }),
@@ -96,7 +89,6 @@ export const authReducer = createReducer<IAuthState>(
     ...state,
     user: null,
     isLoading: false,
-    success: false,
   })),
   on(authActions.updateUserImageStart, (state) => ({
     ...state,
@@ -156,5 +148,17 @@ export const authReducer = createReducer<IAuthState>(
     }
     return state;
   }),
-  on(authActions.updateUserPasswordFailure, setErrorMessage)
+  on(authActions.updateUserPasswordFailure, setErrorMessage),
+  on(authActions.rateProductSuccess, (state: IAuthState, { productId }) => {
+    if (state?.user) {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ratedProducts: [...state.user?.ratedProducts, productId],
+        },
+      };
+    }
+    return state;
+  })
 );

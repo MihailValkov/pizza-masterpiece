@@ -24,6 +24,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 export class ProductsTableComponent implements OnInit, AfterViewInit {
   @Input() products!: IOrderBaseProduct[];
   @Input() orderId!: string;
+  @Input() ratedProducts!: string[];
 
   displayedColumns: string[] = [
     'name',
@@ -60,5 +61,9 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
       data: { orderId: this.orderId, _id, productId },
       autoFocus: false,
     });
+  }
+
+  isAlreadyRated(productId: string) {
+    return this.ratedProducts.includes(productId);
   }
 }

@@ -165,7 +165,7 @@ const getOrderProduct = async (req, res, next) => {
     }
 
     const rates = Object.values(existingProduct.productId.rate)
-      .map((v) => (v / existingProduct.productId.comments.length) * 100)
+      .map((v) => (v / existingProduct.productId.comments.length) * 100 || 0)
       .slice(0, 5);
 
     const currentProduct = {

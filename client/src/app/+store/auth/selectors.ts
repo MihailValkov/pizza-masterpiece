@@ -21,6 +21,10 @@ export const selectUserImage = createSelector(
   selectAuth,
   (state) => state.user?.image
 );
+export const selectRatedProducts = createSelector(
+  selectAuth,
+  (state) => state.user?.ratedProducts
+);
 export const selectIsLoading = createSelector(
   selectAuth,
   (state) => state.isLoading
@@ -45,8 +49,4 @@ export const selectUpdateUserPasswordIsLoading = createSelector(
 export const selectErrorMessage = createSelector(
   selectAuth,
   (state) => state.message
-);
-export const selectSuccess = createSelector(
-  selectAuth,
-  (state) => state.success
 );

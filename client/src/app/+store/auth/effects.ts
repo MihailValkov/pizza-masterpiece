@@ -8,10 +8,10 @@ import { AuthService } from '../../core/auth.service';
 import * as authActions from './actions';
 import { IErrorResponse } from '../../shared/interfaces/error-response';
 import { NotificationService } from '../../core/notification.service';
+import { rateOrdererProductStart } from 'src/app/orders/+store/actions';
 
 @Injectable()
 export class AuthEffects {
-  
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.loginStart),
@@ -203,6 +203,13 @@ export class AuthEffects {
           })
         )
       )
+    )
+  );
+
+  rateProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(rateOrdererProductStart),
+      map(({ productId }) => authActions.rateProductSuccess({ productId }))
     )
   );
 

@@ -140,7 +140,7 @@ Update current user personal information by sending an authorized `POST` request
 {
   firstName: string,
   lastName: string,
-  phoneNumber:string
+  phoneNumber: string
 }
 ```
 

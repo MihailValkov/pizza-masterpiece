@@ -36,9 +36,11 @@
           <button mat-icon-button (click)="showProductDetail(row._id)">
           <mat-icon>zoom_in</mat-icon>
         </button>
-        <button mat-icon-button color="primary" (click)="showRateModal(row._id, row.productId)">
-          <mat-icon>star_outline</mat-icon>
-        </button>
+        <ng-container *ngIf="!isAlreadyRated(row.productId)">
+          <button mat-icon-button color="primary" (click)="showRateModal(row._id, row.productId)">
+            <mat-icon>star_outline</mat-icon>
+          </button>
+        </ng-container>
         </td>
       </ng-container>
 
