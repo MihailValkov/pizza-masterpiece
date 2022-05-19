@@ -8,14 +8,18 @@ import { completeCheckoutStart } from 'src/app/core/+store/cart/actions';
 import {
   selectDeliveryPrice,
   selectPrice,
-  selectTotalProducts,
+  selectCartListCount,
   selectCartList,
 } from 'src/app/core/+store/cart/selectors';
 
 import { IOrderCreate } from 'src/app/shared/interfaces/order';
-import { AddressFormService, IAddressForm } from '../address-form.service';
+import {
+  IUserAddress,
+  IUserPersonalInfo,
+} from 'src/app/shared/interfaces/user';
+import { AddressFormService } from '../address-form.service';
 import { CheckoutCompleteComponent } from '../checkout-complete/checkout-complete.component';
-import { IUserForm, UserFormService } from '../user-form.service';
+import { UserFormService } from '../user-form.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -25,7 +29,7 @@ import { IUserForm, UserFormService } from '../user-form.service';
 export class OrderSummaryComponent implements OnDestroy {
   paymentMethodControl = new FormControl('', [Validators.required]);
 
-  cartTotalProducts$ = this.store.pipe(select(selectTotalProducts));
+  cartTotalProducts$ = this.store.pipe(select(selectCartListCount));
   cartPrice$ = this.store.pipe(select(selectPrice));
   cartDeliveryPrice$ = this.store.pipe(select(selectDeliveryPrice));
   products$ = this.transformProducts();
@@ -88,8 +92,8 @@ export class OrderSummaryComponent implements OnDestroy {
         ]) =>
           (this.orderInfo = {
             user: {
-              ...(userForm.value as IUserForm),
-              ...(addressForm.value as IAddressForm),
+              ...(userForm.value as IUserPersonalInfo),
+              ...(addressForm.value as IUserAddress),
             },
             totalProducts,
             price,

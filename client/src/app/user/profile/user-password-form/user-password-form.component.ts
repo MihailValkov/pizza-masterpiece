@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { IRootState } from 'src/app/+store';
 import {
-  updateUserInfoStart,
   updateUserPasswordStart,
 } from 'src/app/+store/auth/actions';
 import {
@@ -20,6 +19,7 @@ import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwor
 export class UserPasswordFormComponent implements OnInit {
   @Input() position: 'horizontal' | 'vertical' = 'horizontal';
   @Input() readOnly: boolean = false;
+  
   user$ = this.store.pipe(select(selectUser));
   updateUserPasswordIsLoading$ = this.store.pipe(
     select(selectUpdateUserPasswordIsLoading)

@@ -17,6 +17,7 @@ export class ReviewFormComponent implements OnDestroy {
       (form) => (this.form = form)
     );
   }
+  
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();

@@ -34,12 +34,13 @@ export interface ILoginUser {
   password: string;
 }
 
-export interface IUpdateUserInfo {
+export interface IUserPersonalInfo {
   firstName: string;
   lastName: string;
+  email?: string;
   phoneNumber: string;
 }
-export interface IUpdateUserAddress {
+export interface IUserAddress {
   country: string;
   city: string;
   street: string;

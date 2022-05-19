@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent {
   searchCriterion = [
     { prop: 'email', value: 'Email' },
     { prop: 'firstName', value: 'First Name' },
@@ -15,8 +15,6 @@ export class UsersComponent implements OnInit {
     { prop: 'accountStatus', value: 'Account Status' },
   ];
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
-
-  ngOnInit(): void {}
 
   onSearchHandler(queryParams: { searchValue: string; selectValue: string }) {
     this.router.navigate([], {

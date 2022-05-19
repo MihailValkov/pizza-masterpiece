@@ -51,8 +51,9 @@ mat-tab-group {
 .image-container img {
   width: 100%;
   display: block;
-  height: auto;
+  height: 100%;
   max-width: 250px;
+  max-height: 250px;
   margin: auto;
   object-fit: cover;
 }

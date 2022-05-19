@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" sticky>
-  <button mat-icon-button (click)="drawer.toggle()" class="menu-btn">
+  <button mat-icon-button (click)="drawer?.toggle()" class="menu-btn">
     <mat-icon>menu</mat-icon>
   </button>
   <span class="logo">Pizza Masterpiece</span>
@@ -14,16 +14,16 @@
       </li>
       <li>
         <a mat-button routerLink="/cart">
-          <mat-icon routerLinkActive="active" [matBadge]="(cartListCounter | async)" matBadgeColor="warn"
-            [matBadgeHidden]="(cartListCounter | async) === 0">shopping_cart
+          <mat-icon routerLinkActive="active" [matBadge]="(cartListCounter$ | async)" matBadgeColor="warn"
+            [matBadgeHidden]="(cartListCounter$ | async) === 0">shopping_cart
           </mat-icon>
           <span>Your Cart</span>
         </a>
       </li>
       <li>
         <a mat-button routerLink="/favorites">
-          <mat-icon routerLinkActive="active" [matBadge]="favoritesListCounter | async" matBadgeColor="warn"
-            [matBadgeHidden]="(favoritesListCounter | async) === 0">
+          <mat-icon routerLinkActive="active" [matBadge]="favoritesListCounter$ | async" matBadgeColor="warn"
+            [matBadgeHidden]="(favoritesListCounter$ | async) === 0">
             favorites</mat-icon>
           <span>Your Favorites</span>
         </a>

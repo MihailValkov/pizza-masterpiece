@@ -34,8 +34,11 @@ export class UserAddressFormComponent implements OnInit {
       street: ['', [Validators.required, Validators.minLength(3)]],
       streetNumber: ['', [Validators.required, Validators.min(1)]],
     });
+    
     this.subscription = this.user$.subscribe((user) => {
-      this.addressForm.setValue(user!.address);
+      if (user) {
+        this.addressForm.setValue(user.address);
+      }
     });
   }
 

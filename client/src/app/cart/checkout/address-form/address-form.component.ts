@@ -10,6 +10,7 @@ export class AddressFormComponent {
   @Input() hideActions: boolean = false;
   addressForm$ = this.addressFormService.addressForm$;
   isFormFulfilled = this.addressFormService.formIsFulfilled;
+  
   constructor(private addressFormService: AddressFormService) {}
 
   setFormValue() {

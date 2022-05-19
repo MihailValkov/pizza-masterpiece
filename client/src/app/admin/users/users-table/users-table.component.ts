@@ -1,17 +1,10 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import {
-  filter,
-  map,
-  merge,
-  startWith,
-  Subscription,
-  tap,
-} from 'rxjs';
+import { filter, map, merge, startWith, Subscription, tap } from 'rxjs';
 import { IAdminModuleState } from '../../+store';
 import {
   clearUsers,
@@ -33,7 +26,7 @@ import { UserTableDetailComponent } from '../user-detail/user-detail.component';
     './users-table.component.css',
   ],
 })
-export class UsersTableComponent implements AfterViewInit {
+export class UsersTableComponent implements AfterViewInit, OnDestroy {
   users$ = this.store.pipe(select(selectAdminUsersList));
   usersCount$ = this.store.pipe(select(selectAdminUsersListCount));
   usersIsLoading$ = this.store.pipe(select(selectAdminUsersIsLoading));

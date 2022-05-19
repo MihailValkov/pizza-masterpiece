@@ -11,17 +11,16 @@ import { IOrderStatus } from 'src/app/shared/interfaces/admin';
   templateUrl: './order-status-form.component.html',
   styleUrls: ['./order-status-form.component.css'],
 })
-export class OrderStatusFormComponent implements OnInit {
+export class OrderStatusFormComponent {
   @Input() orderId!: string;
   @Input() currentStatus!: IOrderStatus;
   @Input() orderStatuses!: IOrderStatus[];
+
   currentOrderIsLoading$ = this.store.pipe(
     select(selectAdminCurrentOrderIsLoading)
   );
 
   constructor(private store: Store<IAdminModuleState>) {}
-
-  ngOnInit(): void {}
 
   submitHandler(form: NgForm) {
     if (form.invalid || !this.orderId) {

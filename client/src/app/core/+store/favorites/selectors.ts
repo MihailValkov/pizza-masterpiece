@@ -16,6 +16,11 @@ export const selectFavoritesList = createSelector(
   (state) => state.favoritesList
 );
 
+export const selectFavoritesListCount = createSelector(
+  selectFavorites,
+  (state) => state.favoritesList?.length
+);
+
 export const selectFavoritesUniqueIds = createSelector(
   selectFavorites,
   (state) => state.favoritesList.map((p) => p.uniqueId)

@@ -50,7 +50,6 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     }
 
     const productFormData = this.createNewFormData();
-
     this.store.dispatch(createProductStart({ productFormData }));
   }
 
@@ -67,6 +66,8 @@ export class CreateProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

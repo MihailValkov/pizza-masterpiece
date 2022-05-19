@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   MatSnackBarRef,
   MAT_SNACK_BAR_DATA,
@@ -9,13 +9,10 @@ import {
   templateUrl: './snack-bar.component.html',
   styleUrls: ['./snack-bar.component.css'],
 })
-export class SnackBarComponent implements OnInit {
-  message = '';
-  action = '';
-  status = 'error';
+export class SnackBarComponent {
   constructor(
     @Inject(MAT_SNACK_BAR_DATA)
-    private data: {
+    public data: {
       message: string;
       action: string;
       status: 'success' | 'error';
@@ -23,13 +20,7 @@ export class SnackBarComponent implements OnInit {
     private snackBarRef: MatSnackBarRef<SnackBarComponent>
   ) {}
 
-  ngOnInit(): void {
-    this.message = this.data.message;
-    this.action = this.data.action;
-    this.status = this.data.status;
-  }
-
   actionHandler(): void {
-    this.snackBarRef.dismiss();
+    this.snackBarRef?.dismiss();
   }
 }

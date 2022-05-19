@@ -27,7 +27,6 @@ import { CartProductDetailComponent } from './cart-product-detail/cart-product-d
 })
 export class CartTableComponent implements AfterViewInit, OnInit, OnChanges {
   @Input() products!: ICartProduct[];
-
   displayedColumns = ['name', 'price', 'quantity', 'totalPrice', 'actions'];
   dataSource!: MatTableDataSource<ICartProduct>;
 

@@ -3,7 +3,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map } from 'rxjs';
 import { NotificationService } from '../../notification.service';
 import * as favoritesActions from './actions';
-import { logoutSuccess } from '../../../+store/auth/actions';
+import {
+  loginSuccess,
+  logoutSuccess,
+  registerSuccess,
+} from '../../../+store/auth/actions';
 
 @Injectable()
 export class FavoritesEffects {
@@ -39,7 +43,7 @@ export class FavoritesEffects {
 
   clearFavorites$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(logoutSuccess),
+      ofType(logoutSuccess, loginSuccess, registerSuccess),
       map(() => favoritesActions.clearFavorites())
     )
   );

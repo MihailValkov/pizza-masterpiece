@@ -29,7 +29,7 @@ const initialProductsState: IProductsState = {
   products: {
     productsList: [],
     count: 0,
-    isLoading: false,
+    isLoading: true,
     errorMessage: null,
   },
   isLoading: false,
@@ -142,7 +142,7 @@ export const productsReducer = createReducer<IProductsState>(
       products: {
         productsList: [],
         count: 0,
-        isLoading: false,
+        isLoading: true,
         errorMessage: null,
       },
     };

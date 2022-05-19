@@ -2,10 +2,10 @@ import { createAction, props } from '@ngrx/store';
 import {
   ILoginUser,
   IRegisterUser,
-  IUpdateUserAddress,
-  IUpdateUserInfo,
   IUpdateUserPassword,
   IUser,
+  IUserAddress,
+  IUserPersonalInfo,
 } from '../../shared/interfaces/user';
 const authNamespace = '[Auth]';
 
@@ -88,12 +88,12 @@ export const updateUserImageCancel = createAction(
 
 export const updateUserInfoStart = createAction(
   `${authNamespace} Update User Info Start`,
-  props<IUpdateUserInfo>()
+  props<IUserPersonalInfo>()
 );
 
 export const updateUserInfoSuccess = createAction(
   `${authNamespace} Update User Info Success`,
-  props<{ userInfo: IUpdateUserInfo }>()
+  props<{ userInfo: IUserPersonalInfo }>()
 );
 
 export const updateUserInfoFailure = createAction(
@@ -107,12 +107,12 @@ export const updateUserInfoCancel = createAction(
 
 export const updateUserAddressStart = createAction(
   `${authNamespace} Update User Address Start`,
-  props<IUpdateUserAddress>()
+  props<IUserAddress>()
 );
 
 export const updateUserAddressSuccess = createAction(
   `${authNamespace} Update User Address Success`,
-  props<{ userAddress: IUpdateUserAddress }>()
+  props<{ userAddress: IUserAddress }>()
 );
 
 export const updateUserAddressFailure = createAction(

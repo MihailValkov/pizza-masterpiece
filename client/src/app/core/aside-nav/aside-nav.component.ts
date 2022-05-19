@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-aside-nav',
   templateUrl: './aside-nav.component.html',
-  styleUrls: ['./aside-nav.component.css']
+  styleUrls: ['./aside-nav.component.css'],
 })
-export class AsideNavComponent implements OnInit {
+export class AsideNavComponent {
   showFiller = true;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

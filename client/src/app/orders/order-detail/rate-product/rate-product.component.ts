@@ -11,7 +11,6 @@ import {
 } from '../../+store/actions';
 import {
   selectCurrentProduct,
-  selectCurrentProductRates,
   selectOrderErrorMessage,
   selectOrderIsLoading,
 } from '../../+store/selectors';
@@ -60,6 +59,7 @@ export class RateProductComponent implements OnInit, OnDestroy {
       })
     );
   }
+  
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();

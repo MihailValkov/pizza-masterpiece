@@ -10,8 +10,8 @@ import {
   selectUserIsLogged,
 } from 'src/app/+store/auth/selectors';
 import { IUserDataState } from '../+store';
-import { selectTotalProducts } from '../+store/cart/selectors';
-import { selectFavoritesList } from '../+store/favorites/selectors';
+import { selectCartListCount } from '../+store/cart/selectors';
+import { selectFavoritesListCount } from '../+store/favorites/selectors';
 
 @Component({
   selector: 'app-navigation',
@@ -23,12 +23,8 @@ export class NavigationComponent {
 
   isLogged$ = this.store.pipe(select(selectUserIsLogged));
   isAdmin$ = this.store.pipe(select(selectUserIsAdmin));
-
-  favoritesListCounter = this.store.pipe(
-    select(selectFavoritesList),
-    map((x) => x.length)
-  );
-  cartListCounter = this.store.pipe(select(selectTotalProducts));
+  favoritesListCounter$ = this.store.pipe(select(selectFavoritesListCount));
+  cartListCounter$ = this.store.pipe(select(selectCartListCount));
 
   constructor(private store: Store<IRootState & IUserDataState>) {}
 

@@ -22,7 +22,6 @@ export class ProfileComponent {
   updateUserAddressIsLoading$ = this.store.pipe(
     select(selectors.selectUpdateUserAddressIsLoading)
   );
-
   updateUserPasswordIsLoading$ = this.store.pipe(
     select(selectors.selectUpdateUserPasswordIsLoading)
   );

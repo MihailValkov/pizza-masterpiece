@@ -8,11 +8,12 @@ import { IFileImageUpload } from '../interfaces/image-upload';
   styleUrls: ['./file-upload.component.css'],
 })
 export class FileUploadComponent {
+  @Input() isLoading: boolean = false;
+  @Output() onPickFile: EventEmitter<IFileImageUpload> = new EventEmitter();
+
   inputControl: AbstractControl = this.fb.control(null, {
     validators: Validators.required,
   });
-  @Input() isLoading: boolean = false;
-  @Output() onPickFile: EventEmitter<IFileImageUpload> = new EventEmitter();
 
   constructor(private fb: FormBuilder) {}
 
@@ -35,12 +36,14 @@ export class FileUploadComponent {
       reader.readAsDataURL(file);
     }
   }
+
   setUploadedFile({ file, imageUrl }: IFileImageUpload) {
     this.onPickFile.emit({
       file,
       imageUrl,
     });
   }
+  
   uploadHandler(inputRef: HTMLInputElement) {
     inputRef.click();
     this.inputControl.markAsTouched();

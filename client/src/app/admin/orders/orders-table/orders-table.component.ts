@@ -1,17 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import {
-  Subscription,
-  merge,
-  filter,
-  map,
-  startWith,
-  tap,
-} from 'rxjs';
+import { Subscription, merge, filter, map, startWith, tap } from 'rxjs';
 import { IAdminModuleState } from '../../+store';
 import {
   loadOrdersStart,
@@ -33,7 +26,7 @@ import { OrderDetailComponent } from '../order-detail/order-detail.component';
     './orders-table.component.css',
   ],
 })
-export class OrdersTableComponent {
+export class OrdersTableComponent implements AfterViewInit, OnDestroy {
   orders$ = this.store.pipe(select(selectAdminOrdersList));
   ordersCount$ = this.store.pipe(select(selectAdminOrdersListCount));
   ordersIsLoading$ = this.store.pipe(select(selectAdminOrdersIsLoading));
@@ -95,7 +88,7 @@ export class OrdersTableComponent {
       .subscribe();
   }
 
-  showOrderDetail (orderId: string) {
+  showOrderDetail(orderId: string) {
     this.store.dispatch(loadOrderStart({ orderId }));
     this.dialog.open(OrderDetailComponent, { autoFocus: false });
   }

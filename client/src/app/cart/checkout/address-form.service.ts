@@ -5,12 +5,6 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IRootState } from 'src/app/+store';
 import { selectUser } from 'src/app/+store/auth/selectors';
 
-export interface IAddressForm {
-  country: string;
-  city: string;
-  street: string;
-  streetNumber: number;
-}
 @Injectable()
 export class AddressFormService implements OnDestroy {
   private form = this.initForm();

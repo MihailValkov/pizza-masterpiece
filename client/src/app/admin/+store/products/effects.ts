@@ -3,12 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, switchMap, takeUntil, map } from 'rxjs';
 import { NotificationService } from 'src/app/core/notification.service';
-import {
-  IAdminBaseProduct,
-  IAdminProduct,
-} from 'src/app/shared/interfaces/admin';
 import { IErrorResponse } from 'src/app/shared/interfaces/error-response';
-
 import { AdminService } from '../../admin.service';
 import * as productActions from './actions';
 

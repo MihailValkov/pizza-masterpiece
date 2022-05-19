@@ -19,6 +19,6 @@ export class AsideMenuComponent {
   constructor(private store: Store<IRootState>) {}
 
   onLinkClick() {
-    this.drawer.close();
+    this.drawer?.close();
   }
 }

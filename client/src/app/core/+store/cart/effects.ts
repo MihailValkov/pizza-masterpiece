@@ -3,7 +3,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '../../notification.service';
 
-import { logoutSuccess } from 'src/app/+store/auth/actions';
+import {
+  loginSuccess,
+  logoutSuccess,
+  registerSuccess,
+} from 'src/app/+store/auth/actions';
 import * as cartActions from './actions';
 import { HttpClient } from '@angular/common/http';
 
@@ -63,7 +67,12 @@ export class CartEffects {
 
   clearCart$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(logoutSuccess, cartActions.completeCheckoutSuccess),
+      ofType(
+        logoutSuccess,
+        loginSuccess,
+        registerSuccess,
+        cartActions.completeCheckoutSuccess
+      ),
       map(() => cartActions.clearCart())
     )
   );

@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { IUserDataState } from 'src/app/core/+store';
 import {
   selectPrice,
-  selectTotalProducts,
+  selectCartListCount,
   selectDeliveryPrice,
 } from 'src/app/core/+store/cart/selectors';
 
@@ -15,7 +15,7 @@ import {
 export class CartInformationComponent {
   @Input() canContinue: boolean = false;
   totalPrice$ = this.store.pipe(select(selectPrice));
-  totalProducts$ = this.store.pipe(select(selectTotalProducts));
+  totalProducts$ = this.store.pipe(select(selectCartListCount));
   deliveryPrice$ = this.store.pipe(select(selectDeliveryPrice));
 
   constructor(private store: Store<IUserDataState>) {}

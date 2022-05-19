@@ -37,13 +37,16 @@ export class UserInfoFormComponent implements OnInit, OnDestroy {
         [Validators.required, Validators.pattern(/^0[1-9]{1}[0-9]{8}$/)],
       ],
     });
+    
     this.subscription = this.user$.subscribe((user) => {
-      this.userForm.setValue({
-        firstName: user?.firstName,
-        lastName: user?.lastName,
-        email: user?.email,
-        phoneNumber: user?.phoneNumber,
-      });
+      if (user) {
+        this.userForm.setValue({
+          firstName: user?.firstName,
+          lastName: user?.lastName,
+          email: user?.email,
+          phoneNumber: user?.phoneNumber,
+        });
+      }
     });
   }
 

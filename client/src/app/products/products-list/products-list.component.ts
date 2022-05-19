@@ -20,7 +20,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   products$ = this.store.pipe(select(selectProductsList));
   productsCount$ = this.store.pipe(select(selectProductsListCount));
   isLoading$ = this.store.pipe(select(selectProductIsLoading));
-
   page = 0;
   limit = 8;
 
@@ -43,6 +42,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
       );
     }
   }
+
   ngOnDestroy(): void {
     this.store.dispatch(clearProducts());
   }

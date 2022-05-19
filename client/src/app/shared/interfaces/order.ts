@@ -1,5 +1,5 @@
-import { IAddressForm } from 'src/app/cart/checkout/address-form.service';
-import { IUserForm } from 'src/app/cart/checkout/user-form.service';
+import { IUserPersonalInfo, IUserAddress } from './user';
+
 export interface IOrder {
   _id: string;
   totalProducts: number;
@@ -19,7 +19,7 @@ export interface IOrderBaseProduct {
   totalPrice: number;
 }
 export interface IOrderDetail extends IOrder {
-  user: IUserForm & IAddressForm;
+  user: IUserPersonalInfo & IUserAddress;
   deliveryPrice: number;
   price: number;
   products: IOrderBaseProduct[];
@@ -42,7 +42,7 @@ export interface IOrderCreateProduct extends IOrderBaseProduct {
   selectedExtras: { extra: string; _id: string }[];
 }
 export interface IOrderCreate {
-  user: IUserForm & IAddressForm;
+  user: IUserPersonalInfo & IUserAddress;
   products: IOrderCreateProduct[];
   totalProducts: number;
   price: number;

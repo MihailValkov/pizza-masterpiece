@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { IAdminModuleState } from '../../+store';
 import {
@@ -13,7 +12,7 @@ import {
   templateUrl: './order-detail.component.html',
   styleUrls: ['./order-detail.component.css'],
 })
-export class OrderDetailComponent implements OnInit {
+export class OrderDetailComponent {
   currentOrder$ = this.store.pipe(select(selectAdminCurrentOrder));
   currentOrderIsLoading$ = this.store.pipe(
     select(selectAdminCurrentOrderIsLoading)
@@ -21,7 +20,4 @@ export class OrderDetailComponent implements OnInit {
   ordersStatuses$ = this.store.pipe(select(selectAdminOrdersStatuses));
 
   constructor(private store: Store<IAdminModuleState>) {}
-
-  ngOnInit(): void {}
-
 }

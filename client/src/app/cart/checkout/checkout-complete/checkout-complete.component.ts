@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { selectUserIsLogged } from 'src/app/+store/auth/selectors';
 import { IUserDataState } from 'src/app/core/+store';
@@ -13,7 +13,7 @@ import {
   templateUrl: './checkout-complete.component.html',
   styleUrls: ['./checkout-complete.component.css'],
 })
-export class CheckoutCompleteComponent implements OnInit {
+export class CheckoutCompleteComponent {
   isLoading$ = this.store.pipe(select(selectCheckoutIsLoading));
   errorMessage$ = this.store.pipe(select(selectCheckoutErrorMessage));
   orderId$ = this.store.pipe(select(selectCheckoutLastOrderId));
@@ -21,5 +21,4 @@ export class CheckoutCompleteComponent implements OnInit {
 
   constructor(private store: Store<IUserDataState>) {}
 
-  ngOnInit(): void {}
 }

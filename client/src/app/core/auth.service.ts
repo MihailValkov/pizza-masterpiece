@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import {
   ILoginUser,
   IRegisterUser,
-  IUpdateUserAddress,
-  IUpdateUserInfo,
   IUpdateUserPassword,
   IUser,
+  IUserAddress,
+  IUserPersonalInfo,
 } from '../shared/interfaces/user';
 @Injectable()
 export class AuthService {
@@ -38,14 +38,14 @@ export class AuthService {
     );
   }
 
-  updateUserInfo(userInfo: IUpdateUserInfo): Observable<IUpdateUserInfo> {
-    return this.http.patch<IUpdateUserInfo>('/auth/update-user-info', userInfo);
+  updateUserInfo(userInfo: IUserPersonalInfo): Observable<IUserPersonalInfo> {
+    return this.http.patch<IUserPersonalInfo>('/auth/update-user-info', userInfo);
   }
 
   updateUserAddress(
-    userAddress: IUpdateUserAddress
-  ): Observable<IUpdateUserAddress> {
-    return this.http.patch<IUpdateUserAddress>(
+    userAddress: IUserAddress
+  ): Observable<IUserAddress> {
+    return this.http.patch<IUserAddress>(
       '/auth/update-user-address',
       userAddress
     );

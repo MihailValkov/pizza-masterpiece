@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { IAdminModuleState } from 'src/app/admin/+store';
@@ -15,7 +15,7 @@ import { IAccountStatus, IRole } from 'src/app/shared/interfaces/admin';
   templateUrl: './change-user-settings-form.component.html',
   styleUrls: ['./change-user-settings-form.component.css'],
 })
-export class ChangeUserSettingsFormComponent implements OnInit {
+export class ChangeUserSettingsFormComponent {
   @Input() userId!: string;
   @Input() currentAccountStatus!: IAccountStatus;
   @Input() currentUserRole!: IRole;
@@ -28,7 +28,6 @@ export class ChangeUserSettingsFormComponent implements OnInit {
 
   constructor(private store: Store<IAdminModuleState>) {}
 
-  ngOnInit(): void {}
   submitHandler(form: NgForm) {
     if (form.invalid) {
       return;

@@ -13,7 +13,7 @@ export const selectCartList = createSelector(
   selectCart,
   (state) => state.cartList
 );
-export const selectTotalProducts = createSelector(
+export const selectCartListCount = createSelector(
   selectCart,
   (state) => state.totalProducts
 );

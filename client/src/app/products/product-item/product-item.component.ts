@@ -8,6 +8,4 @@ import { IProduct } from 'src/app/shared/interfaces/product';
 })
 export class ProductItemComponent {
   @Input() product!: IProduct;
-
-  constructor() {}
 }

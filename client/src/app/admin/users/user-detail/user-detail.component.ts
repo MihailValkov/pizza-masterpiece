@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { IAdminModuleState } from 'src/app/admin/+store';
 import {
@@ -10,7 +10,7 @@ import {
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css'],
 })
-export class UserTableDetailComponent implements OnInit {
+export class UserTableDetailComponent {
   noAvatarImagePath = '../../../../../assets/images/anonymous-user-circle.png';
   currentUser$ = this.store.pipe(select(selectAdminCurrentUser));
   currentUserIsLoading$ = this.store.pipe(
@@ -18,6 +18,4 @@ export class UserTableDetailComponent implements OnInit {
   );
 
   constructor(private store: Store<IAdminModuleState>) {}
-
-  ngOnInit(): void {}
 }

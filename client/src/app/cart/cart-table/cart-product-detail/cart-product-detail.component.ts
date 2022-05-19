@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ICartProduct } from 'src/app/shared/interfaces/product';
 
@@ -7,11 +7,9 @@ import { ICartProduct } from 'src/app/shared/interfaces/product';
   templateUrl: './cart-product-detail.component.html',
   styleUrls: ['./cart-product-detail.component.css'],
 })
-export class CartProductDetailComponent implements OnInit {
+export class CartProductDetailComponent {
   constructor(
     public dialogRef: MatDialogRef<CartProductDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ICartProduct
   ) {}
-
-  ngOnInit(): void {}
 }

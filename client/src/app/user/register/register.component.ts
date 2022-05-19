@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 
@@ -14,7 +14,7 @@ import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwor
     './register.component.css',
   ],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   registerLogoPath = './../../../assets/images/register.png';
   passwordHide = true;
