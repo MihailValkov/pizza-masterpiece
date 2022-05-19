@@ -1,11 +1,13 @@
 .table-wrapper {
   width: 100%;
 }
-.hidden .table-wrapper {
-  display: none;
-}
+.hidden .table-wrapper,
 .hidden mat-paginator {
   display: none;
+}
+
+.hidden.mat-elevation-z8 {
+  box-shadow: none;
 }
 
 td,
