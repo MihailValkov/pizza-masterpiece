@@ -10,4 +10,4 @@
 
 ## Documentation
 - [Client](https://github.com/MihailValkov/pizza-masterpiece/blob/main/client/README.md)
-- [Server](https://github.com/MihailValkov/pizza-masterpiece/blob/main/server/readMe.md)
+- [Server](https://github.com/MihailValkov/pizza-masterpiece/blob/main/server/README.md)
