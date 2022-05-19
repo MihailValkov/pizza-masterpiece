@@ -36,9 +36,9 @@ export class OrdersTableComponent implements AfterViewInit, OnDestroy {
   searchValue: string = '';
   selectValue: string = '';
   displayedColumns: string[] = [
-    'email',
-    'firstName',
-    'lastName',
+    'user.email',
+    'user.firstName',
+    'user.lastName',
     'totalProducts',
     'totalPrice',
     'status',
