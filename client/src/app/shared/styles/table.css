@@ -118,6 +118,7 @@ th:first-child.mat-header-cell,
   .product-link {
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 5px;
   }
 }
 

@@ -84,11 +84,18 @@ const createOrder = async (req, res, next) => {
 };
 
 const getOrders = async (req, res, next) => {
-  const page = parseInt(req?.query?.page);
-  const limit = parseInt(req?.query?.limit);
+  const page = parseInt(req?.query?.page) || 1;
+  const limit = parseInt(req?.query?.limit) || 8;
   const sort = req?.query?.sort;
   const order = req?.query?.order;
   const skipIndex = (page - 1) * limit;
+
+  let sortCriteria = {};
+
+  if (sort && order) {
+    sortCriteria = { [sort]: order };
+  }
+
   try {
     const count = await orderModel.countDocuments({ 'user._id': req.user._id });
     const ordersList = await orderModel
@@ -96,7 +103,7 @@ const getOrders = async (req, res, next) => {
       .select('status paymentMethod createdAt totalProducts totalPrice')
       .limit(limit)
       .skip(skipIndex)
-      .sort({ [sort]: order })
+      .sort(sortCriteria)
       .lean();
 
     return res.status(200).json({ ordersList, count });

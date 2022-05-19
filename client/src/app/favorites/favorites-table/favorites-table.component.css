@@ -2,17 +2,6 @@
   width: 100%;
 }
 
-th,
-td {
-  width: 17%;
-}
-
-::ng-deep td .mat-chip-list-wrapper,
-::ng-deep td .mat-chip-list-wrapper .mat-standard-chip {
-  justify-content: center;
-  margin: 0px;
-}
-
 ::ng-deep .mat-column-rating .mat-sort-header-container,
 ::ng-deep .mat-column-size .mat-sort-header-container,
 ::ng-deep .mat-column-dough .mat-sort-header-container,

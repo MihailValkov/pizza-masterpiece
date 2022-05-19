@@ -1,6 +1,12 @@
 .table-wrapper {
   width: 100%;
 }
+.hidden .table-wrapper {
+  display: none;
+}
+.hidden mat-paginator {
+  display: none;
+}
 
 td,
 th {

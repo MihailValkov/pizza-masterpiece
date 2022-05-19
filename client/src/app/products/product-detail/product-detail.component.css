@@ -15,7 +15,7 @@ mat-card-content {
   height: auto;
   max-width: 480px;
   max-height: 400px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .product-content {
@@ -128,7 +128,7 @@ mat-card-content {
   width: 33%;
 }
 
-.actions button span{
+.actions button span {
   margin-left: 10px;
 }
 
@@ -178,6 +178,10 @@ mat-card-content {
 @media (max-width: 600px) {
   .image-container {
     padding: 0;
+  }
+  .image-container img{
+    max-width: 300px;
+    max-height: 250px;
   }
   .mat-card-header {
     justify-content: center;

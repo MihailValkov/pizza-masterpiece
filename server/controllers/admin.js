@@ -50,7 +50,11 @@ const getUsers = async (req, res, next) => {
   const skipIndex = (page - 1) * limit;
 
   let query = {};
-  let sortCriteria = { [sort]: order };
+  let sortCriteria = {};
+
+  if (sort && order) {
+    sortCriteria = { [sort]: order };
+  }
 
   if (searchValue && selectValue) {
     if (selectValue == '_id') {
@@ -121,7 +125,11 @@ const getOrders = async (req, res, next) => {
   const skipIndex = (page - 1) * limit;
 
   let query = {};
-  let sortCriteria = { [sort]: order };
+  let sortCriteria = {};
+
+  if (sort && order) {
+    sortCriteria = { [sort]: order };
+  }
 
   if (searchValue && selectValue) {
     if (selectValue == '_id') {

@@ -50,15 +50,16 @@ mat-tab-group {
 
 .image-container img {
   width: 100%;
+  display: block;
   height: auto;
-  max-width: 300px;
-  max-height: 238px;
+  max-width: 250px;
+  margin: auto;
   object-fit: cover;
 }
 app-file-upload {
   width: 100%;
-  max-width: 300px;
-  margin: 0px;
+  max-width: 250px;
+  margin: 0px auto;
   margin-top: 10px;
 }
 
@@ -72,7 +73,7 @@ app-file-upload {
     display: none;
   }
   ::ng-deep .mat-tab-labels {
-    justify-content: center!important;
+    justify-content: center !important;
   }
 }
 

@@ -50,9 +50,16 @@ const orderSchema = new Schema(
       default: orderStatuses[0],
     },
     paymentMethod: { type: String, required: [true, 'Payment method is required!'] },
-    deliveryPrice: { type: Number, default: 0, min: [0, 'Delivery price should be positive number!'] },
+    deliveryPrice: {
+      type: Number,
+      default: 0,
+      min: [0, 'Delivery price should be positive number!'],
+    },
     price: { type: Number, min: [1, 'Price should be positive number and greater than zero!'] },
-    totalPrice: { type: Number, min: [1, 'Total Price should be positive number and greater than zero!'] },
+    totalPrice: {
+      type: Number,
+      min: [1, 'Total Price should be positive number and greater than zero!'],
+    },
     products: [
       {
         productId: {
@@ -68,7 +75,7 @@ const orderSchema = new Schema(
         selectedExtras: {
           type: Array,
         },
-        gr: {
+        weight: {
           type: Number,
           min: [1, 'Product weight should be positive number and greater than zero!'],
         },
