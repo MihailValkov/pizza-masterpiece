@@ -266,6 +266,7 @@ Send an authorized `GET` request to `/orders/{orderId}/{productId}`. The service
 - `/admin/users/:userId` -- get specific user by provided ID / update user account settings;
 - `/admin/orders` -- get all orders;
 - `/admin/orders/:orderId` -- get specific order by provided ID / update order settings;
+- `/admin/products` -- get all products;
 
 ## Create a new product
 
@@ -289,7 +290,7 @@ Send an authorized `POST` request to `/admin/products` with properties `name`, `
 
 Send an authorized `GET` request to `/admin/users`. The service will respond with an object containing properties `users` (an array of user objects), `count` (number of all records), `roles` (an array of possible roles) and `accountStatuses` (an array of possible statuses). This endpoint can accept queries `page`, `limit`, `sort`, `order`,`searchValue` and `selectValue`.
 
-Send an authorized `GET` request to `/admin/users?page=1&limit=5&sort=createdAt&order=desc&searchValue=mail.bg&selectValue=email`. The service will respond with an object, containing properties `users` (an array with a maximum of 5 records, sorted in descending order by createdAt - date of creation and filtered by email address, which includes the searched string `"@mail.bg"`), `count` (number of all records), `roles` (an array of possible roles) and `accountStatuses` (an array of possible statuses).
+Send an authorized `GET` request to `/admin/users?page=1&limit=5&sort=createdAt&order=desc&searchValue=mail.bg&selectValue=email`. The service will respond with an object, containing properties `users` (an array with a maximum of 5 records, sorted in descending order by createdAt - date of creation and filtered by email address, which includes the searched string `"@mail.bg"`), `count` (number of all records that match this criterion), `roles` (an array of possible roles) and `accountStatuses` (an array of possible statuses).
 
 ## Get a user by id
 
@@ -312,7 +313,7 @@ Send an authorized `PATCH` request to `/admin/users/{userId}` with properties `r
 
 Send an authorized `GET` request to `/admin/orders`. The service will respond with an object containing properties `orders` (an array of order objects), `count` (number of all records) and `orderStatuses` (an array of possible statuses). This endpoint can accept queries `page`, `limit`, `sort`, `order`,`searchValue` and `selectValue`.
 
-Send an authorized `GET` request to `/admin/orders?page=1&limit=5&sort=totalProducts&order=desc&searchValue=mail&selectValue=user.email`. The service will respond with an object, containing properties `orders` (an array with a maximum of 5 records, sorted in descending order by totalProducts - count of total ordered products and filtered by email address, which includes the searched string `"mail"`), `count` (number of all records) and `orderStatuses` (an array of possible statuses).
+Send an authorized `GET` request to `/admin/orders?page=1&limit=5&sort=totalProducts&order=desc&searchValue=mail&selectValue=user.email`. The service will respond with an object, containing properties `orders` (an array with a maximum of 5 records, sorted in descending order by totalProducts - count of total ordered products and filtered by email address, which includes the searched string `"mail"`), `count` (number of all records that match this criterion) and `orderStatuses` (an array of possible statuses).
 
 ## Get order by id
 
@@ -330,6 +331,11 @@ Send an authorized `PATCH` request to `/admin/orders/{orderId}` with property `s
 }
 ```
 
+## Get all products
+
+Send an authorized `GET` request to `/admin/products`. The service will respond with an object containing properties `products` (an array of product objects) and `count` (number of all records). This endpoint can accept queries `page`, `limit`, `sort`, `order`,`searchValue` and `selectValue`.
+
+Send an authorized `GET` request to `/admin/products?page=1&limit=5&sort=createdAt&order=desc&searchValue=Bacon&selectValue=name`. The service will respond with an object, containing properties `products` (an array with a maximum of 5 records, sorted in descending order by createdAt - date of creation and filtered by name, which includes the searched string `"Bacon"`) and `count` (number of all records that match this criterion)
 
 **In case of a validation error, the service will respond with an error status code and an object containing the error message**.
 

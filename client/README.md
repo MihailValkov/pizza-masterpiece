@@ -26,7 +26,7 @@ Clone this repository and install dependencies
 > ng serve
 > cd ../server
 > npm install
-> read the server documentation and make the necessary configuration before starting it
+> read the server documentation and make the necessary configuration
 > npm run dev
 > go to http://localhost:4200
 ```
@@ -37,7 +37,7 @@ Clone this repository and install dependencies
 
 The application allows visitors to browse through the catalog (list of products).
 Guest and logged-in users can save products to wishlist (favorites) or cart and can make orders.
-Guest users may register with an email and password which allows them to view their own profile by clicking [Account -> Your Profile] in the navigation bar and the opportunity to edit their own profile information. Also can access their own orders page and add review to product. Admin users can access the "Administrator" menu and they can create a new product, update users or orders information.
+Guest users may register with an email and password which allows them to view their own profile by clicking [Account -> Your Profile] in the navigation bar and the opportunity to edit their own profile information. Also can access their own orders page and add review to the products. Admin users can access the "Administrator" menu and they can create a new product, update users and orders information.
 
 # Permissions:
 
@@ -63,7 +63,7 @@ Guest users may register with an email and password which allows them to view th
 - Catalog (Home page) - This page is `loading lazily`. When the user open the page for the first time, up to 8 products from the database are displayed and the data will continue to load when the user reaches the bottom of the content.
 - Login - allows a user to gain access to an application by entering their `email` and `password`;
 - Register - allows a visitors to create a new account by entering their `email`, `password` and `repeat password`;
-- Product detail - A product detail page provides information on for a specific product. This information includes `size`, `dough`, `ingredients`, `possible extras`, `price`, and other relevant information customers want to know before purchasing;
+- Product detail - A product detail page provides information for a specific product. This information includes `size`, `dough`, `ingredients`, `possible extras`, `final price`, and other relevant information customers want to know before purchasing;
 - Cart - The shopping cart is a place where customers can store the products they can buy after viewing the goods.
 - Favorites - A wishlist of products that a customer can save to transfer to the cart later;
 - Checkout - This process starts the moment a customer decides they've filled their cart with everything they wanted and are ready to place their order;
@@ -82,3 +82,4 @@ Guest users may register with an email and password which allows them to view th
 - User detail - Detail information about the current user and opportunity to update user status/role;
 - All Orders - Table of all created orders;
 - Order detail - Detail information about the current order and opportunity to update order status;
+- All Products - Table of all created products;
