@@ -20,6 +20,9 @@ import { OrderDetailComponent } from './orders/order-detail/order-detail.compone
 import { ProductItemComponent } from './orders/order-detail/product-item/product-item.component';
 import { OrderStatusFormComponent } from './orders/order-detail/order-status-form/order-status-form.component';
 import { ChangeUserSettingsFormComponent } from './users/user-detail/change-user-settings-form/change-user-settings-form.component';
+import { ProductsComponent } from './products/products/products.component';
+import { ProductsTableComponent } from './products/products/products-table/products-table.component';
+import { ProductDetailComponent } from './products/products/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { ChangeUserSettingsFormComponent } from './users/user-detail/change-user
     ProductItemComponent,
     OrderStatusFormComponent,
     ChangeUserSettingsFormComponent,
+    ProductsComponent,
+    ProductsTableComponent,
+    ProductDetailComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,29 @@
+.table-wrapper {
+  width: 100%;
+  height: 400px;
+}
+th,
+td {
+  width: 20%;
+}
+
+@media (min-width: 1001px) {
+  .table-wrapper {
+    width: calc(92vw - 302px) !important;
+  }
+  table {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .table-wrapper {
+    height: calc(100vh - 13rem - 125px);
+  }
+}
+
+@media (max-width: 650px) {
+  .table-wrapper {
+    height: calc(100vh - 13rem - 66px);
+  }
+}

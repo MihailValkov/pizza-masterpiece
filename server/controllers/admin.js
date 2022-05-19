@@ -24,7 +24,7 @@ const createProduct = async (req, res) => {
     const createdSizes = await Promise.all([...sizes.map((x) => sizeModel.create(x))]);
     const createdDoughs = await Promise.all([...doughs.map((x) => doughModel.create(x))]);
     const createdExtras = await Promise.all([...extras.map((x) => extraModel.create(x))]);
-    const product = await productModel.create({
+    const createdProduct = await productModel.create({
       name,
       description,
       sizes: createdSizes,
@@ -34,7 +34,74 @@ const createProduct = async (req, res) => {
       image: req.image,
       author: req.user._id,
     });
-    return res.status(200).json(product.toObject());
+
+    const product = {
+      _id: createdProduct._id,
+      name: createdProduct.name,
+      image: createdProduct.image,
+      rating: createdProduct.rating,
+      createdAt: createdProduct.createdAt,
+      updatedAt: createdProduct.updatedAt,
+    };
+
+    return res.status(200).json({ product });
+  } catch (error) {
+    errorHandler(error, res, req);
+  }
+};
+
+const getProducts = async (req, res, next) => {
+  const page = parseInt(req?.query?.page);
+  const limit = parseInt(req?.query?.limit);
+  const sort = req?.query?.sort;
+  const order = req?.query?.order;
+  const searchValue = req?.query?.searchValue;
+  const selectValue = req?.query?.selectValue;
+  const skipIndex = (page - 1) * limit;
+
+  let query = {};
+  let sortCriteria = {};
+
+  if (sort && order) {
+    sortCriteria = { [sort]: order };
+  }
+
+  if (searchValue && selectValue) {
+    if (selectValue == '_id') {
+      query = { [selectValue]: searchValue.trim() };
+    } else if (selectValue === 'rating') {
+      query = { [selectValue]: { $gte: searchValue } };
+    } else {
+      query = { [selectValue]: new RegExp(searchValue.trim() || '', 'i') };
+    }
+  }
+
+  try {
+    const count = await productModel.countDocuments(query);
+    let products = await productModel
+      .find(query)
+      .select('name image rating createdAt updatedAt')
+      .limit(limit)
+      .skip(skipIndex)
+      .sort(sortCriteria)
+      .lean();
+
+    return res.status(200).json({ products, count });
+  } catch (error) {
+    if (error.kind === 'ObjectId') {
+      return res.status(200).json({ products: [], count: 0 });
+    }
+    errorHandler(error, res, req);
+  }
+};
+
+const getProduct = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const user = await userModel.findById(id, '-__v -password -orders -ratedProducts').lean();
+
+    return res.status(200).json({ user });
   } catch (error) {
     errorHandler(error, res, req);
   }
@@ -59,6 +126,8 @@ const getUsers = async (req, res, next) => {
   if (searchValue && selectValue) {
     if (selectValue == '_id') {
       query = { [selectValue]: searchValue.trim() };
+    } else if (selectValue === 'ordersCount' || selectValue === 'ratedProductsCount') {
+      query = { [selectValue]: { $gte: searchValue } };
     } else {
       query = { [selectValue]: new RegExp(searchValue.trim() || '', 'i') };
     }
@@ -214,6 +283,8 @@ const changeOrderStatus = async (req, res, next) => {
 
 module.exports = {
   createProduct,
+  getProducts,
+  getProduct,
   getUsers,
   getUser,
   changeUserSettings,

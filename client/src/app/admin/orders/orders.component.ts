@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./orders.component.css'],
 })
 export class OrdersComponent implements OnInit {
-  searchCriterions = [
+  searchCriterion = [
     { prop: '_id', value: 'Order Id' },
     { prop: 'user.email', value: 'User Email' },
     { prop: 'user.firstName', value: 'First Name' },

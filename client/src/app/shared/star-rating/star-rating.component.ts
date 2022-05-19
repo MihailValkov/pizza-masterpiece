@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class StarRatingComponent {
   @Input() rating = 0;
-  @Input() position: 'vertical' | 'horizontal' = 'horizontal';
+  @Input() position: 'vertical' | 'horizontal' | 'vertical-center' = 'horizontal';
   @Input() showRatingInfo = false;
 
   constructor() {}

@@ -1,11 +1,12 @@
-<div [class]="{ 'rating-container':true, vertical:position === 'vertical'}">
+<div
+  [class]="{ 'rating-container': true, vertical: position === 'vertical' , 'vertical-center' : position === 'vertical-center'}">
   <div class="rating">
     <mat-icon class="icon">star_rate</mat-icon>
     <mat-icon class="icon">star_rate</mat-icon>
     <mat-icon class="icon">star_rate</mat-icon>
     <mat-icon class="icon">star_rate</mat-icon>
     <mat-icon class="icon">star_rate</mat-icon>
-    <p class="rating-inner" [ngStyle]="{width: (rating*20 || 0)+'%'}">
+    <p class="rating-inner" [ngStyle]="{ width: (rating * 20 || 0) + '%' }">
       <mat-icon class="icon-overlay">star_rate</mat-icon>
       <mat-icon class="icon-overlay">star_rate</mat-icon>
       <mat-icon class="icon-overlay">star_rate</mat-icon>

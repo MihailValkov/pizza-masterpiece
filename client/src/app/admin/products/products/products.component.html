@@ -1,14 +1,14 @@
-<section class="admin-orders-container">
+<section class="admin-products-container">
   <app-aside-menu></app-aside-menu>
-  <div class="orders-content">
+  <div class="products-content">
     <mat-toolbar color="primary">
       <div class="header">
-        <mat-icon matPrefix class="icon">list_alt</mat-icon>
-        <span class="title">Orders</span>
+        <mat-icon matPrefix class="icon">card_giftcard</mat-icon>
+        <span class="title">Products</span>
       </div>
       <span class="spacer"></span>
       <app-search [searchCriterion]="searchCriterion" (onSearch)="onSearchHandler($event)"></app-search>
     </mat-toolbar>
-    <app-orders-table></app-orders-table>
+    <app-products-table></app-products-table>
   </div>
 </section>

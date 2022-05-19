@@ -22,7 +22,7 @@ import {
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements AfterViewInit {
-  @Input() searchCriterions: { prop: string; value: string }[] = [];
+  @Input() searchCriterion: { prop: string; value: string }[] = [];
   @Output() onSearch = new EventEmitter<{
     searchValue: string;
     selectValue: string;
@@ -35,11 +35,11 @@ export class SearchComponent implements AfterViewInit {
 
   get currentSelectedOption() {
     if (this?.selectElement?.value) {
-      return this.searchCriterions.find(
+      return this.searchCriterion.find(
         (o) => o.prop === this.selectElement.value
       )?.value;
     }
-    return this.searchCriterions[0].value;
+    return this.searchCriterion[0].value;
   }
 
   clearInput() {

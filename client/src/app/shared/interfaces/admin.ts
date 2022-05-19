@@ -85,3 +85,16 @@ export interface IAdminOrder extends IBaseAdminOrder<IAdminOrderUserInfo> {
   price: number;
   products: IBaseAdminOrderProduct[];
 }
+
+export interface IAdminBaseProduct {
+  _id: string;
+  name: string;
+  image: {
+    _id: string;
+    url: string;
+  };
+  rating: number;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface IAdminProduct extends IAdminBaseProduct {}

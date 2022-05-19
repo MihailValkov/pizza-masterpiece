@@ -1,17 +1,37 @@
 import { createReducer, on } from '@ngrx/store';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import {
+  IAdminBaseProduct,
+  IAdminProduct,
+} from 'src/app/shared/interfaces/admin';
 import * as productActions from './actions';
-
 export interface IProductsState {
-  currentProduct: IProduct | null;
-  productsList: IProduct[];
+  product: {
+    currentProduct: IAdminProduct | null;
+    isLoading: boolean;
+    errorMessage: null | string;
+  };
+  products: {
+    productsList: IAdminBaseProduct[];
+    count: number;
+    isLoading: boolean;
+    errorMessage: null | string;
+  };
   isLoading: boolean;
   errorMessage: null | string;
 }
 
 const initialProductsState: IProductsState = {
-  currentProduct: null,
-  productsList: [],
+  product: {
+    currentProduct: null,
+    isLoading: false,
+    errorMessage: null,
+  },
+  products: {
+    productsList: [],
+    count: 0,
+    isLoading: false,
+    errorMessage: null,
+  },
   isLoading: false,
   errorMessage: null,
 };
@@ -23,12 +43,13 @@ export const productsReducer = createReducer<IProductsState>(
   }),
   on(
     productActions.createProductSuccess,
-    (state: IProductsState, { product }: { product: IProduct }) => {
+    (state: IProductsState, { product }) => {
       return {
         ...state,
-        isLoading: false,
-        errorMessage: null,
-        productsList: state.productsList.concat(product),
+        products: {
+          ...state.products,
+          productsList: state.products.productsList.concat(product),
+        },
       };
     }
   ),
@@ -39,23 +60,91 @@ export const productsReducer = createReducer<IProductsState>(
     }
   ),
   on(productActions.loadProductStart, (state: IProductsState) => {
-    return { ...state, isLoading: true, errorMessage: null };
+    return {
+      ...state,
+      product: { ...state.product, isLoading: true, errorMessage: null },
+    };
   }),
   on(
     productActions.loadProductSuccess,
-    (state: IProductsState, { product }: { product: IProduct }) => {
+    (state: IProductsState, { product }) => {
       return {
         ...state,
-        isLoading: false,
-        errorMessage: null,
-        currentProduct: product,
+        product: {
+          ...state.product,
+          currentProduct: product,
+          isLoading: false,
+          errorMessage: null,
+        },
       };
     }
   ),
   on(
     productActions.loadProductFailure,
     (state: IProductsState, { message }: { message: string }) => {
-      return { ...state, isLoading: false, errorMessage: message };
+      return {
+        ...state,
+        product: { ...state.product, isLoading: false, errorMessage: message },
+      };
     }
-  )
+  ),
+  on(productActions.clearProduct, (state: IProductsState) => {
+    return {
+      ...state,
+      product: {
+        currentProduct: null,
+        isLoading: false,
+        errorMessage: null,
+      },
+    };
+  }),
+  on(productActions.loadProductsStart, (state: IProductsState) => {
+    return {
+      ...state,
+      products: {
+        ...state.products,
+        isLoading: true,
+        errorMessage: null,
+      },
+    };
+  }),
+  on(
+    productActions.loadProductsSuccess,
+    (state: IProductsState, { products, count }) => {
+      return {
+        ...state,
+        products: {
+          ...state.products,
+          productsList: products,
+          count,
+          isLoading: false,
+          errorMessage: null,
+        },
+      };
+    }
+  ),
+  on(
+    productActions.loadProductsFailure,
+    (state: IProductsState, { message }: { message: string }) => {
+      return {
+        ...state,
+        products: {
+          ...state.products,
+          isLoading: false,
+          errorMessage: message,
+        },
+      };
+    }
+  ),
+  on(productActions.clearProducts, (state: IProductsState) => {
+    return {
+      ...state,
+      products: {
+        productsList: [],
+        count: 0,
+        isLoading: false,
+        errorMessage: null,
+      },
+    };
+  })
 );

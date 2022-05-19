@@ -15,6 +15,10 @@
   align-items: flex-start;
   flex-direction: column;
 }
+.rating-container.vertical-center {
+  align-items: center;
+  flex-direction: column;
+}
 
 .rating {
   display: inline-block;

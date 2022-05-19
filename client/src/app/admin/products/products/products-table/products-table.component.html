@@ -1,0 +1,58 @@
+<div class="table-container mat-elevation-z8">
+  <div class="loading-shade" *ngIf="(productsIsLoading$ | async)">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="loading-shade" *ngIf="(productsCount$ | async) === 0 && !(productsIsLoading$ | async)">
+    No results was found.
+  </div>
+  <div class="table-wrapper" [ngClass]="{hidden:(productsCount$ | async) === 0}">
+    <table mat-table [dataSource]="(products$ | async) || []" matSort matSortActive="createdAt" matSortDisableClear
+      matSortDirection="desc" multiTemplateDataRows>
+
+      <ng-container matColumnDef="name" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
+        <td mat-cell *matCellDef="let row">
+          <a [routerLink]="['/admin/products',row?._id]" class="product-link">
+            <img [src]="row?.image?.url" class="product-img" [alt]="row.name" />
+            <span>{{row?.name}}</span>
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rating">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rating </th>
+        <td mat-cell *matCellDef="let row">
+          <app-star-rating [rating]="row?.rating" [showRatingInfo]="false" position="vertical-center"></app-star-rating>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Created</th>
+        <td mat-cell *matCellDef="let row">{{row?.createdAt | date: 'short'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Updated</th>
+        <td mat-cell *matCellDef="let row">{{row?.updatedAt | date: 'short'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef disableClear>
+          Actions
+        </th>
+        <td mat-cell *matCellDef="let row; let i = index">
+          <button mat-button (click)="showProductDetail(row._id)">
+            <mat-icon>zoom_in</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  </div>
+  <mat-paginator [length]="(productsCount$ | async)" [pageSizeOptions]="[5,10, 20, 30]" showFirstLastButtons
+    aria-label="Select page of Users results">
+  </mat-paginator>
+</div>

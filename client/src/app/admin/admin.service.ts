@@ -3,26 +3,55 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   IAccountStatus,
+  IAdminBaseProduct,
   IAdminOrder,
   IAdminOrderBaseUserInfo,
+  IAdminProduct,
   IAdminUser,
   IBaseAdminOrder,
   IBaseAdminUser,
   IOrderStatus,
   IRole,
 } from '../shared/interfaces/admin';
-import { IProduct } from '../shared/interfaces/product';
 
 @Injectable()
 export class AdminService {
   constructor(private http: HttpClient) {}
 
-  createProduct(formData: FormData): Observable<IProduct> {
-    return this.http.post<IProduct>('/admin/products', formData);
+  createProduct(
+    formData: FormData
+  ): Observable<{ product: IAdminBaseProduct }> {
+    return this.http.post<{ product: IAdminBaseProduct }>(
+      '/admin/products',
+      formData
+    );
   }
 
-  loadProduct(id: string): Observable<IProduct> {
-    return this.http.get<IProduct>(`/admin/products/${id}`);
+  loadProduct(productId: string): Observable<{ product: IAdminProduct }> {
+    return this.http.get<{ product: IAdminProduct }>(
+      `/admin/products/${productId}`
+    );
+  }
+
+  loadProducts(
+    page: number,
+    limit: number,
+    sort: string,
+    order: '' | 'asc' | 'desc',
+    searchValue: string,
+    selectValue: string
+  ): Observable<{
+    products: IAdminBaseProduct[];
+    count: number;
+  }> {
+    return this.http.get<{
+      products: IAdminBaseProduct[];
+      count: number;
+    }>(
+      `/admin/products?page=${
+        page + 1
+      }&limit=${limit}&sort=${sort}&order=${order}&searchValue=${searchValue}&selectValue=${selectValue}`
+    );
   }
 
   loadUser(userId: string): Observable<{ user: IAdminUser }> {

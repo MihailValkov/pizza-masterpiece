@@ -1,0 +1,56 @@
+.admin-products-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.products-content {
+  width: 100%;
+}
+
+app-aside-menu {
+  flex: 2 1;
+  position: sticky;
+  top: 3rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  height: 10px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.title {
+  font-size: 18px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 400px) {
+  .title,
+  .icon {
+    font-size: 14px;
+  }
+  .icon {
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 1000px) {
+  app-aside-menu {
+    display: none;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1121px) {
+  .products-content {
+    margin-left: 20px;
+  }
+}
