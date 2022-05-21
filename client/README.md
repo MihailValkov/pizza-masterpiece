@@ -13,7 +13,7 @@
 - [Cloudinary](https://cloudinary.com/)
 - [Rxjs](https://rxjs.dev/guide/overview)
 - [Angular Infinite Scroll](https://www.npmjs.com/package/ngx-infinite-scroll)
-- [Custom API]()
+- [Custom API](https://github.com/MihailValkov/pizza-masterpiece/blob/main/client/README.md)
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ Clone this repository and install dependencies
 > cd client
 > npm install
 > ng serve
-> open a new terminal and navigate to folder `server`
+> open a new terminal and navigate to folder `server`.
 > npm install
 > read the server documentation and make the necessary configuration
 > npm run dev
@@ -41,8 +41,8 @@ Guest users may register with an email and password which allows them to view th
 
 # Permissions:
 
-| **Permissions** | Guest | Logged in User | Admin |
-| --------------- | ----- | -------------- | ----- |
+| **Permissions** | Guest  | Logged in User | Admin  |
+| --------------- | -----  | -------------- | -----  |
 | Login/ Register | ✅    | ❌             | ❌    |
 | Home page       | ✅    | ✅             | ✅    |
 | Details         | ✅    | ✅             | ✅    |
