@@ -138,7 +138,7 @@ const getUsers = async (req, res, next) => {
     let users = await userModel
       .find(query)
       .select(
-        'email firstName lastName ordersCount ratedProductsCount accountStatus role createdAt'
+        'email firstName lastName image ordersCount ratedProductsCount accountStatus role createdAt'
       )
       .limit(limit)
       .skip(skipIndex)

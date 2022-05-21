@@ -10,6 +10,10 @@ export enum IAccountStatus {
 
 export interface IBaseAdminUser {
   _id: string;
+  image: {
+    _id: string;
+    url: string;
+  };
   email: string;
   firstName: string;
   lastName: string;
@@ -22,10 +26,6 @@ export interface IBaseAdminUser {
 
 export interface IAdminUser extends IBaseAdminUser {
   phoneNumber: string;
-  image: {
-    _id: string;
-    url: string;
-  };
   address: {
     country: string;
     city: string;

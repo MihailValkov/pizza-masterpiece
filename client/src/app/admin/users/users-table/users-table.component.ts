@@ -27,6 +27,7 @@ import { UserTableDetailComponent } from '../user-detail/user-detail.component';
   ],
 })
 export class UsersTableComponent implements AfterViewInit, OnDestroy {
+  noAvatarImagePath = '../../../../../assets/images/anonymous-user-circle.png';
   users$ = this.store.pipe(select(selectAdminUsersList));
   usersCount$ = this.store.pipe(select(selectAdminUsersListCount));
   usersIsLoading$ = this.store.pipe(select(selectAdminUsersIsLoading));

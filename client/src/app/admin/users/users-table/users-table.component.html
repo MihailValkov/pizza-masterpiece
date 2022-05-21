@@ -9,19 +9,24 @@
     <table mat-table [dataSource]="(users$ | async) || []" matSort matSortActive="createdAt" matSortDisableClear
       matSortDirection="desc" multiTemplateDataRows>
 
-      <ng-container matColumnDef="firstName" >
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="link">
+            <img [src]="row.image?.url || noAvatarImagePath" [alt]="row?.name" />
+            <span>{{row?.email}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
         <td mat-cell *matCellDef="let row"> {{row?.firstName}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="lastName" >
+      <ng-container matColumnDef="lastName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
         <td mat-cell *matCellDef="let row"> {{row?.lastName}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
-        <td mat-cell *matCellDef="let row">{{row?.email}}</td>
       </ng-container>
 
       <ng-container matColumnDef="accountStatus">

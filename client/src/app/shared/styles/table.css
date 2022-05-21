@@ -75,12 +75,12 @@ th:first-child.mat-header-cell,
   padding: 0 10px;
 }
 
-.product-link {
+.link {
   display: flex;
   align-items: center;
 }
 
-.product-link img {
+.link img {
   width: 50px;
   height: 50px;
   object-fit: cover;
@@ -115,7 +115,7 @@ th:first-child.mat-header-cell,
   th:first-of-type {
     width: 12%;
   }
-  .product-link {
+  .link {
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 5px;

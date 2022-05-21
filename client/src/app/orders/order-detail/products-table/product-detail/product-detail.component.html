@@ -13,7 +13,7 @@
         <main>
           <div class="image-container">
             <h3>{{(currentProduct$|async)?.name}}</h3>
-            <img [src]="currentProduct?.imageUrl" class="product-img" [alt]="currentProduct?.name" />
+            <img [src]="currentProduct?.imageUrl" [alt]="currentProduct?.name" />
           </div>
           <app-rating-diagram [rates]="currentProduct?.rates || []"></app-rating-diagram>
         </main>
