@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import {
@@ -50,10 +50,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   favoritesProductsIds$ = this.store.pipe(select(selectFavoritesUniqueIds));
   isLoading$ = this.store.pipe(select(selectProductIsLoading));
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  sizeControl = new FormControl('', Validators.required);
-  doughControl = new FormControl('', Validators.required);
-  quantityControl = new FormControl(1, Validators.min(1));
-  extrasControl = new FormControl([]);
+  sizeControl = new UntypedFormControl('', Validators.required);
+  doughControl = new UntypedFormControl('', Validators.required);
+  quantityControl = new UntypedFormControl(1, Validators.min(1));
+  extrasControl = new UntypedFormControl([]);
   extras: string[] = [];
   selectedProduct!: ICartProduct;
   favoriteProductsIds!: string[];

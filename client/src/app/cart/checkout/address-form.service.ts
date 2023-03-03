@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IRootState } from 'src/app/+store';
@@ -8,15 +8,15 @@ import { selectUser } from 'src/app/+store/auth/selectors';
 @Injectable()
 export class AddressFormService implements OnDestroy {
   private form = this.initForm();
-  private addressForm: BehaviorSubject<FormGroup> = new BehaviorSubject(
+  private addressForm: BehaviorSubject<UntypedFormGroup> = new BehaviorSubject(
     this.form
   );
-  addressForm$: Observable<FormGroup> = this.addressForm.asObservable();
+  addressForm$: Observable<UntypedFormGroup> = this.addressForm.asObservable();
   user$ = this.store.pipe(select(selectUser));
   formIsFulfilled: boolean = false;
   subscription!: Subscription;
 
-  constructor(private fb: FormBuilder, private store: Store<IRootState>) {
+  constructor(private fb: UntypedFormBuilder, private store: Store<IRootState>) {
     this.subscription = this.user$.subscribe((user) => {
       if (user?.address) {
         const { country, city, street, streetNumber } = user.address;

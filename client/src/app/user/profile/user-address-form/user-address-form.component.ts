@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { IRootState } from 'src/app/+store';
@@ -22,10 +22,10 @@ export class UserAddressFormComponent implements OnInit {
   updateUserAddressIsLoading$ = this.store.pipe(
     select(selectUpdateUserAddressIsLoading)
   );
-  addressForm!: FormGroup;
+  addressForm!: UntypedFormGroup;
   subscription!: Subscription;
 
-  constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
+  constructor(private fb: UntypedFormBuilder, private store: Store<IRootState>) {}
 
   ngOnInit(): void {
     this.addressForm = this.fb.group({

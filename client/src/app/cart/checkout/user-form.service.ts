@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, Validators, UntypedFormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { IRootState } from 'src/app/+store';
@@ -7,13 +7,13 @@ import { selectUser } from 'src/app/+store/auth/selectors';
 @Injectable()
 export class UserFormService implements OnDestroy {
   private form = this.initForm();
-  private userForm: BehaviorSubject<FormGroup> = new BehaviorSubject(this.form);
-  userForm$: Observable<FormGroup> = this.userForm.asObservable();
+  private userForm: BehaviorSubject<UntypedFormGroup> = new BehaviorSubject(this.form);
+  userForm$: Observable<UntypedFormGroup> = this.userForm.asObservable();
   user$ = this.store.pipe(select(selectUser));
   formIsFulfilled: boolean = false;
   subscription!: Subscription;
 
-  constructor(private fb: FormBuilder, private store: Store<IRootState>) {
+  constructor(private fb: UntypedFormBuilder, private store: Store<IRootState>) {
     this.subscription = this.user$.subscribe((user) => {
       if (user) {
         const { firstName, lastName, email, phoneNumber } = user;

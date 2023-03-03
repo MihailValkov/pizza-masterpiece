@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { IRootState } from 'src/app/+store';
@@ -22,10 +22,10 @@ export class UserInfoFormComponent implements OnInit, OnDestroy {
   updateUserInfoIdLoading$ = this.store.pipe(
     select(selectUpdateUserInfoIsLoading)
   );
-  userForm!: FormGroup;
+  userForm!: UntypedFormGroup;
   subscription!: Subscription;
 
-  constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
+  constructor(private fb: UntypedFormBuilder, private store: Store<IRootState>) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({

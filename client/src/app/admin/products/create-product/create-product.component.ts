@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { IFileImageUpload } from 'src/app/shared/interfaces/image-upload';
@@ -18,7 +18,7 @@ import { ProductFormService } from '../product-form.service';
   styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent implements OnInit, OnDestroy {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   subscription: Subscription = new Subscription();
   imagePreview = '../../../../assets/images/no-image.png';
   isLoading$ = this.store.pipe(select(selectAdminProductsIsLoading));

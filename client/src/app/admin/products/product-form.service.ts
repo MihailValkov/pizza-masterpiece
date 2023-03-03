@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormArray } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class ProductFormService {
-  private form: BehaviorSubject<FormGroup> = new BehaviorSubject(
+  private form: BehaviorSubject<UntypedFormGroup> = new BehaviorSubject(
     this.initForm()
   );
-  form$: Observable<FormGroup> = this.form.asObservable();
+  form$: Observable<UntypedFormGroup> = this.form.asObservable();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
-  initForm(): FormGroup {
+  initForm(): UntypedFormGroup {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       image: [null, [Validators.required]],
@@ -31,13 +31,13 @@ export class ProductFormService {
       ),
     });
   }
-  getControl(type: 'sizes' | 'doughs' | 'extras' | 'ingredients'): FormArray {
-    return this.form.getValue().get(type) as FormArray;
+  getControl(type: 'sizes' | 'doughs' | 'extras' | 'ingredients'): UntypedFormArray {
+    return this.form.getValue().get(type) as UntypedFormArray;
   }
 
   createControl(
     type: 'sizes' | 'doughs' | 'extras' | 'ingredients'
-  ): FormGroup {
+  ): UntypedFormGroup {
     if (type === 'sizes') {
       return this.fb.group({
         size: ['', [Validators.required, Validators.minLength(3)]],

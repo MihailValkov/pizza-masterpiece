@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 
 import { IRootState } from 'src/app/+store';
@@ -15,13 +15,13 @@ import { passwordsMatchValidator } from 'src/app/shared/validators/match-passwor
   ],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   registerLogoPath = './../../../assets/images/register.png';
   passwordHide = true;
   rePasswordHide = true;
   isLoading$ = this.store.pipe(select(selectIsLoading));
 
-  constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
+  constructor(private fb: UntypedFormBuilder, private store: Store<IRootState>) {}
 
   ngOnInit(): void {
     this.form = this.fb.group(

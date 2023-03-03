@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ import { RateProductFormService } from './rate-product-form.service';
   styleUrls: ['./rate-product.component.css'],
 })
 export class RateProductComponent implements OnInit, OnDestroy {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   subscription!: Subscription;
   currentProduct$ = this.store.pipe(select(selectCurrentProduct));
   isLoading$ = this.store.pipe(select(selectOrderIsLoading));

@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, map, startWith, Subscription } from 'rxjs';
@@ -27,7 +27,7 @@ import { UserFormService } from '../user-form.service';
   styleUrls: ['./order-summary.component.css'],
 })
 export class OrderSummaryComponent implements OnDestroy {
-  paymentMethodControl = new FormControl('', [Validators.required]);
+  paymentMethodControl = new UntypedFormControl('', [Validators.required]);
 
   cartTotalProducts$ = this.store.pipe(select(selectCartListCount));
   cartPrice$ = this.store.pipe(select(selectPrice));

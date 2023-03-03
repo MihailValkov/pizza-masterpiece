@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { IRootState } from 'src/app/+store';
 import {
@@ -28,9 +28,9 @@ export class UserPasswordFormComponent implements OnInit {
   oldPasswordHide = true;
   passwordHide = true;
   rePasswordHide = true;
-  passwordForm!: FormGroup;
+  passwordForm!: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
+  constructor(private fb: UntypedFormBuilder, private store: Store<IRootState>) {}
 
   ngOnInit(): void {
     this.passwordForm = this.fb.group(

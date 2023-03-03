@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 
 import { IRootState } from 'src/app/+store';
@@ -14,13 +14,13 @@ import { selectIsLoading } from 'src/app/+store/auth/selectors';
   ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   loginLogoPath = './../../../assets/images/login.png';
   passwordHide = true;
   rePasswordHide = true;
   isLoading$ = this.store.pipe(select(selectIsLoading));
 
-  constructor(private fb: FormBuilder, private store: Store<IRootState>) {}
+  constructor(private fb: UntypedFormBuilder, private store: Store<IRootState>) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormArray,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormGroup,
 } from '@angular/forms';
 import { ProductFormService } from '../product-form.service';
 
@@ -16,7 +16,7 @@ export class ExpansionPanelComponent implements OnInit {
   @Input() iconName!: string;
   @Input() formArrayName!: 'sizes' | 'doughs' | 'extras' | 'ingredients';
 
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   constructor(private productFormService: ProductFormService) {}
 
   ngOnInit(): void {
@@ -25,16 +25,16 @@ export class ExpansionPanelComponent implements OnInit {
     });
   }
 
-  get getFormArray(): FormArray {
-    return this.form.get(this.formArrayName) as FormArray;
+  get getFormArray(): UntypedFormArray {
+    return this.form.get(this.formArrayName) as UntypedFormArray;
   }
   
   get controlNames(): string[] {
-    return Object.keys((this.getFormArray.controls[0] as FormGroup).controls);
+    return Object.keys((this.getFormArray.controls[0] as UntypedFormGroup).controls);
   }
 
   getErrorMessage(controlName: string, index: number): string | null {
-    const control = (this.getFormArray.controls[index] as FormGroup).controls[
+    const control = (this.getFormArray.controls[index] as UntypedFormGroup).controls[
       controlName
     ];
     const errors = control.errors;

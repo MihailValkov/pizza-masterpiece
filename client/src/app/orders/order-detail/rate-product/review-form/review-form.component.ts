@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { RateProductFormService } from '../rate-product-form.service';
 
@@ -9,7 +9,7 @@ import { RateProductFormService } from '../rate-product-form.service';
   styleUrls: ['./review-form.component.css'],
 })
 export class ReviewFormComponent implements OnDestroy {
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   subscription!: Subscription;
 
   constructor(private rateProductFormService: RateProductFormService) {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { IFileImageUpload } from '../interfaces/image-upload';
 
 @Component({
@@ -15,7 +15,7 @@ export class FileUploadComponent {
     validators: Validators.required,
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   uploadFile(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
