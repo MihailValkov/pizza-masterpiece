@@ -22,7 +22,6 @@ export class FileUploadComponent {
     const file: File | null = element.files && element.files[0];
 
     if (!file?.type.includes("image")) {
-      this.setUploadedFile({ file: null, imageUrl: "" });
       return this.inputControl?.setErrors({ type: true });
     }
     if (file) {
@@ -46,6 +45,6 @@ export class FileUploadComponent {
 
   uploadHandler(inputRef: HTMLInputElement) {
     inputRef.click();
-    this.inputControl.markAsTouched();
+    setTimeout(() => this.inputControl.markAsTouched(), 1000);
   }
 }
