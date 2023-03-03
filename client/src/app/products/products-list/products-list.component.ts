@@ -1,20 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { select, Store } from "@ngrx/store";
 
-import { IRootState } from 'src/app/+store';
-import {
-  clearProducts,
-  loadProductsStart,
-} from '../../+store/products/actions';
-import {
-  selectProductIsLoading,
-  selectProductsList,
-  selectProductsListCount,
-} from '../../+store/products/selectors';
+import { IRootState } from "src/app/+store";
+import { clearProducts, loadProductsStart } from "../../+store/products/actions";
+import { selectProductIsLoading, selectProductsList, selectProductsListCount } from "../../+store/products/selectors";
 @Component({
-  selector: 'app-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css'],
+  selector: "app-products-list",
+  templateUrl: "./products-list.component.html",
+  styleUrls: ["./products-list.component.css"],
 })
 export class ProductsListComponent implements OnInit, OnDestroy {
   products$ = this.store.pipe(select(selectProductsList));

@@ -1,52 +1,35 @@
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { ActivatedRoute } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { Subscription, merge, filter, map, startWith, tap } from 'rxjs';
-import { IAdminModuleState } from 'src/app/admin/+store';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { ActivatedRoute } from "@angular/router";
+import { select, Store } from "@ngrx/store";
+import { Subscription, merge, filter, map, startWith, tap } from "rxjs";
+import { IAdminModuleState } from "src/app/admin/+store";
 import {
   selectAdminProductsProductList,
   selectAdminProductsProductListCount,
   selectAdminProductsProductListErrorMessage,
   selectAdminProductsProductListIsLoading,
-} from 'src/app/admin/+store/products/selectors';
-import {
-  clearProducts,
-  loadProductsStart,
-  loadProductStart,
-} from 'src/app/admin/+store/products/actions';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
+} from "src/app/admin/+store/products/selectors";
+import { clearProducts, loadProductsStart, loadProductStart } from "src/app/admin/+store/products/actions";
+import { ProductDetailComponent } from "../product-detail/product-detail.component";
 
 @Component({
-  selector: 'app-products-table',
-  templateUrl: './products-table.component.html',
-  styleUrls: [
-    '../../../../shared/styles/table.css',
-    './products-table.component.css',
-  ],
+  selector: "app-products-table",
+  templateUrl: "./products-table.component.html",
+  styleUrls: ["../../../../shared/styles/table.css", "./products-table.component.css"],
 })
 export class ProductsTableComponent implements AfterViewInit, OnDestroy {
   products$ = this.store.pipe(select(selectAdminProductsProductList));
   productsCount$ = this.store.pipe(select(selectAdminProductsProductListCount));
-  productsIsLoading$ = this.store.pipe(
-    select(selectAdminProductsProductListIsLoading)
-  );
-  productsErrorMessage$ = this.store.pipe(
-    select(selectAdminProductsProductListErrorMessage)
-  );
+  productsIsLoading$ = this.store.pipe(select(selectAdminProductsProductListIsLoading));
+  productsErrorMessage$ = this.store.pipe(select(selectAdminProductsProductListErrorMessage));
   subscription!: Subscription;
 
-  searchValue: string = '';
-  selectValue: string = '';
-  displayedColumns: string[] = [
-    'name',
-    'rating',
-    'createdAt',
-    'updatedAt',
-    'actions',
-  ];
+  searchValue: string = "";
+  selectValue: string = "";
+  displayedColumns: string[] = ["name", "rating", "createdAt", "updatedAt", "actions"];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -62,13 +45,13 @@ export class ProductsTableComponent implements AfterViewInit, OnDestroy {
       this.sort.sortChange,
       this.paginator.page,
       this.activatedRoute.queryParams.pipe(
-        filter((params) => params['searchValue'] || params['selectValue']),
+        filter(params => params["searchValue"] || params["selectValue"]),
         map(({ searchValue, selectValue }) => [searchValue, selectValue])
       )
     )
       .pipe(
         startWith({}),
-        tap((params) => {
+        tap(params => {
           if (Array.isArray(params)) {
             this.searchValue = params[0];
             this.selectValue = params[1];

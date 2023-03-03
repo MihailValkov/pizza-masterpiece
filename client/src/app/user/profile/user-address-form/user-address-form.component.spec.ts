@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { UserAddressFormComponent } from './user-address-form.component';
+import { UserAddressFormComponent } from "./user-address-form.component";
 
-describe('UserAddressFormComponent', () => {
+describe("UserAddressFormComponent", () => {
   let component: UserAddressFormComponent;
   let fixture: ComponentFixture<UserAddressFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserAddressFormComponent ]
-    })
-    .compileComponents();
+      declarations: [UserAddressFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('UserAddressFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

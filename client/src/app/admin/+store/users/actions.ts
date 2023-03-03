@@ -1,18 +1,13 @@
-import { createAction, props } from '@ngrx/store';
-import {
-  IAccountStatus,
-  IAdminUser,
-  IBaseAdminUser,
-  IRole,
-} from 'src/app/shared/interfaces/admin';
-const adminUsersNamespace = '[Admin - Users]';
+import { createAction, props } from "@ngrx/store";
+import { IAccountStatus, IAdminUser, IBaseAdminUser, IRole } from "src/app/shared/interfaces/admin";
+const adminUsersNamespace = "[Admin - Users]";
 
 // Load Users
 export const loadUsersStart = createAction(
   `${adminUsersNamespace} Load Users Start`,
   props<{
     sort: string;
-    order: '' | 'asc' | 'desc';
+    order: "" | "asc" | "desc";
     limit: number;
     page: number;
     searchValue: string;
@@ -30,14 +25,9 @@ export const loadUsersSuccess = createAction(
   }>()
 );
 
-export const loadUsersFailure = createAction(
-  `${adminUsersNamespace} Load Users Failure`,
-  props<{ message: string }>()
-);
+export const loadUsersFailure = createAction(`${adminUsersNamespace} Load Users Failure`, props<{ message: string }>());
 
-export const loadUsersCancel = createAction(
-  `${adminUsersNamespace} Load Users Cancel`
-);
+export const loadUsersCancel = createAction(`${adminUsersNamespace} Load Users Cancel`);
 
 export const clearUsers = createAction(`${adminUsersNamespace} Clear Users`);
 
@@ -49,19 +39,11 @@ export const loadUserStart = createAction(
   }>()
 );
 
-export const loadUserSuccess = createAction(
-  `${adminUsersNamespace} Load User Success`,
-  props<{ user: IAdminUser }>()
-);
+export const loadUserSuccess = createAction(`${adminUsersNamespace} Load User Success`, props<{ user: IAdminUser }>());
 
-export const loadUserFailure = createAction(
-  `${adminUsersNamespace} Load User Failure`,
-  props<{ message: string }>()
-);
+export const loadUserFailure = createAction(`${adminUsersNamespace} Load User Failure`, props<{ message: string }>());
 
-export const loadUserCancel = createAction(
-  `${adminUsersNamespace} Load User Cancel`
-);
+export const loadUserCancel = createAction(`${adminUsersNamespace} Load User Cancel`);
 
 export const clearUser = createAction(`${adminUsersNamespace} Clear User`);
 

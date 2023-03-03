@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
-import { UserRoutingModule } from './user-routing.module';
-import { MaterialModule } from '../material/material.module';
-import { SharedModule } from '../shared/shared.module';
+import { UserRoutingModule } from "./user-routing.module";
+import { MaterialModule } from "../material/material.module";
+import { SharedModule } from "../shared/shared.module";
 
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UserInfoFormComponent } from './profile/user-info-form/user-info-form.component';
-import { UserAddressFormComponent } from './profile/user-address-form/user-address-form.component';
-import { UserPasswordFormComponent } from './profile/user-password-form/user-password-form.component';
+import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { UserInfoFormComponent } from "./profile/user-info-form/user-info-form.component";
+import { UserAddressFormComponent } from "./profile/user-address-form/user-address-form.component";
+import { UserPasswordFormComponent } from "./profile/user-password-form/user-password-form.component";
 @NgModule({
   declarations: [
     LoginComponent,
@@ -21,12 +21,6 @@ import { UserPasswordFormComponent } from './profile/user-password-form/user-pas
     UserAddressFormComponent,
     UserPasswordFormComponent,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    UserRoutingModule,
-    SharedModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, UserRoutingModule, SharedModule],
 })
 export class UserModule {}

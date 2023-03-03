@@ -1,13 +1,10 @@
-import { createAction, props } from '@ngrx/store';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { createAction, props } from "@ngrx/store";
+import { IProduct } from "src/app/shared/interfaces/product";
 
-const productsNamespace = '[Product]';
+const productsNamespace = "[Product]";
 
 // Load Product
-export const loadProductStart = createAction(
-  `${productsNamespace} Load Product Start`,
-  props<{ id: string }>()
-);
+export const loadProductStart = createAction(`${productsNamespace} Load Product Start`, props<{ id: string }>());
 
 export const loadProductSuccess = createAction(
   `${productsNamespace} Load Product Success`,
@@ -19,9 +16,7 @@ export const loadProductFailure = createAction(
   props<{ message: string }>()
 );
 
-export const loadProductCancel = createAction(
-  `${productsNamespace} Load Product Cancel`
-);
+export const loadProductCancel = createAction(`${productsNamespace} Load Product Cancel`);
 
 export const clearProduct = createAction(`${productsNamespace} Clear Product`);
 
@@ -41,10 +36,6 @@ export const loadProductsFailure = createAction(
   props<{ message: string }>()
 );
 
-export const loadProductsCancel = createAction(
-  `${productsNamespace} Load Products Cancel`
-);
+export const loadProductsCancel = createAction(`${productsNamespace} Load Products Cancel`);
 
-export const clearProducts = createAction(
-  `${productsNamespace} Clear Products`
-);
+export const clearProducts = createAction(`${productsNamespace} Clear Products`);

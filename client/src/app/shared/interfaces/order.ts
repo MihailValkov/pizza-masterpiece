@@ -1,4 +1,4 @@
-import { IUserPersonalInfo, IUserAddress } from './user';
+import { IUserPersonalInfo, IUserAddress } from "./user";
 
 export interface IOrder {
   _id: string;

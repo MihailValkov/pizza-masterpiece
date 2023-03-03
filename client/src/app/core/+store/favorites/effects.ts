@@ -1,13 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map } from 'rxjs';
-import { NotificationService } from '../../notification.service';
-import * as favoritesActions from './actions';
-import {
-  loginSuccess,
-  logoutSuccess,
-  registerSuccess,
-} from '../../../+store/auth/actions';
+import { Injectable } from "@angular/core";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { map } from "rxjs";
+import { NotificationService } from "../../notification.service";
+import * as favoritesActions from "./actions";
+import { loginSuccess, logoutSuccess, registerSuccess } from "../../../+store/auth/actions";
 
 @Injectable()
 export class FavoritesEffects {
@@ -17,9 +13,9 @@ export class FavoritesEffects {
       map(({ product }) => {
         this.notificationService.showMessage(
           `${product.name} has been added to your favorites!`,
-          'success',
-          'end',
-          'top'
+          "success",
+          "end",
+          "top"
         );
         return favoritesActions.addProductToFavoritesSuccess();
       })
@@ -30,12 +26,7 @@ export class FavoritesEffects {
     this.actions$.pipe(
       ofType(favoritesActions.removeProductFromFavorites),
       map(({ name }) => {
-        this.notificationService.showMessage(
-          `${name} has been removed from your favorites!`,
-          'success',
-          'end',
-          'top'
-        );
+        this.notificationService.showMessage(`${name} has been removed from your favorites!`, "success", "end", "top");
         return favoritesActions.removeProductFromFavoritesSuccess();
       })
     )
@@ -48,8 +39,5 @@ export class FavoritesEffects {
     )
   );
 
-  constructor(
-    private actions$: Actions,
-    private notificationService: NotificationService
-  ) {}
+  constructor(private actions$: Actions, private notificationService: NotificationService) {}
 }

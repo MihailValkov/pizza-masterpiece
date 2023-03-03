@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OrderStatusFormComponent } from './order-status-form.component';
+import { OrderStatusFormComponent } from "./order-status-form.component";
 
-describe('OrderStatusFormComponent', () => {
+describe("OrderStatusFormComponent", () => {
   let component: OrderStatusFormComponent;
   let fixture: ComponentFixture<OrderStatusFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrderStatusFormComponent ]
-    })
-    .compileComponents();
+      declarations: [OrderStatusFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('OrderStatusFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

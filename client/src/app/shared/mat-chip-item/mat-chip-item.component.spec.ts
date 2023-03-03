@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MatChipItemComponent } from './mat-chip-item.component';
+import { MatChipItemComponent } from "./mat-chip-item.component";
 
-describe('MatChipItemComponent', () => {
+describe("MatChipItemComponent", () => {
   let component: MatChipItemComponent;
   let fixture: ComponentFixture<MatChipItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MatChipItemComponent ]
-    })
-    .compileComponents();
+      declarations: [MatChipItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('MatChipItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

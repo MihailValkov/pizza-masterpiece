@@ -1,17 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { catchError, map, switchMap, takeUntil } from 'rxjs';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { catchError, map, switchMap, takeUntil } from "rxjs";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 
-import { ILoginUser, IRegisterUser, IUser } from '../../shared/interfaces/user';
-import { AuthService } from '../../core/auth.service';
-import * as authActions from './actions';
-import { IErrorResponse } from '../../shared/interfaces/error-response';
-import { NotificationService } from '../../core/notification.service';
-import {
-  rateOrdererProductStart,
-  rateOrdererProductSuccess,
-} from 'src/app/orders/+store/actions';
+import { ILoginUser, IRegisterUser, IUser } from "../../shared/interfaces/user";
+import { AuthService } from "../../core/auth.service";
+import * as authActions from "./actions";
+import { IErrorResponse } from "../../shared/interfaces/error-response";
+import { NotificationService } from "../../core/notification.service";
+import { rateOrdererProductSuccess } from "src/app/orders/+store/actions";
 
 @Injectable()
 export class AuthEffects {
@@ -22,16 +19,13 @@ export class AuthEffects {
         this.authService.login(data).pipe(
           takeUntil(this.actions$.pipe(ofType(authActions.loginCancel))),
           map((user: IUser) => {
-            this.notificationService.showMessage(
-              'You are successfully logged in!',
-              'success'
-            );
-            this.router.navigateByUrl('/');
+            this.notificationService.showMessage("You are successfully logged in!", "success");
+            this.router.navigateByUrl("/");
             return authActions.loginSuccess({ user });
           }),
           catchError((err: IErrorResponse) => {
             const message = err.error.message;
-            this.notificationService.showMessage(message, 'error');
+            this.notificationService.showMessage(message, "error");
             return [authActions.loginFailure({ message: err.error.message })];
           })
         )
@@ -47,18 +41,16 @@ export class AuthEffects {
           takeUntil(this.actions$.pipe(ofType(authActions.registerCancel))),
           map((user: IUser) => {
             this.notificationService.showMessage(
-              'Thanks for signing up. Your account has been created and successfully logged in!',
-              'success'
+              "Thanks for signing up. Your account has been created and successfully logged in!",
+              "success"
             );
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl("/");
             return authActions.registerSuccess({ user });
           }),
           catchError((err: IErrorResponse) => {
             const message = err.error.message;
-            this.notificationService.showMessage(message, 'error');
-            return [
-              authActions.registerFailure({ message: err.error.message }),
-            ];
+            this.notificationService.showMessage(message, "error");
+            return [authActions.registerFailure({ message: err.error.message })];
           })
         )
       )
@@ -84,11 +76,8 @@ export class AuthEffects {
       switchMap(() =>
         this.authService.logout().pipe(
           map(() => {
-            this.notificationService.showMessage(
-              'You are successfully logged out!',
-              'success'
-            );
-            this.router.navigateByUrl('/');
+            this.notificationService.showMessage("You are successfully logged out!", "success");
+            this.router.navigateByUrl("/");
             return authActions.logoutSuccess();
           })
         )
@@ -101,19 +90,14 @@ export class AuthEffects {
       ofType(authActions.updateUserImageStart),
       switchMap(({ formData }) =>
         this.authService.updateUserImage(formData).pipe(
-          takeUntil(
-            this.actions$.pipe(ofType(authActions.updateUserImageCancel))
-          ),
-          map((image) => {
-            this.notificationService.showMessage(
-              'Your image has been changed successfully!',
-              'success'
-            );
+          takeUntil(this.actions$.pipe(ofType(authActions.updateUserImageCancel))),
+          map(image => {
+            this.notificationService.showMessage("Your image has been changed successfully!", "success");
             return authActions.updateUserImageSuccess({ image });
           }),
           catchError((err: IErrorResponse) => {
             const message = err.error.message;
-            this.notificationService.showMessage(message, 'error');
+            this.notificationService.showMessage(message, "error");
             return [
               authActions.updateUserImageFailure({
                 message,
@@ -128,21 +112,16 @@ export class AuthEffects {
   updateUserInfo$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.updateUserInfoStart),
-      switchMap((userInfo) =>
+      switchMap(userInfo =>
         this.authService.updateUserInfo(userInfo).pipe(
-          takeUntil(
-            this.actions$.pipe(ofType(authActions.updateUserInfoCancel))
-          ),
-          map((userInfo) => {
-            this.notificationService.showMessage(
-              'Your personal information has been changed successfully!',
-              'success'
-            );
+          takeUntil(this.actions$.pipe(ofType(authActions.updateUserInfoCancel))),
+          map(userInfo => {
+            this.notificationService.showMessage("Your personal information has been changed successfully!", "success");
             return authActions.updateUserInfoSuccess({ userInfo });
           }),
           catchError((err: IErrorResponse) => {
             const message = err.error.message;
-            this.notificationService.showMessage(message, 'error');
+            this.notificationService.showMessage(message, "error");
             return [
               authActions.updateUserInfoFailure({
                 message,
@@ -157,21 +136,16 @@ export class AuthEffects {
   updateUserAddress$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.updateUserAddressStart),
-      switchMap((userAddress) =>
+      switchMap(userAddress =>
         this.authService.updateUserAddress(userAddress).pipe(
-          takeUntil(
-            this.actions$.pipe(ofType(authActions.updateUserAddressCancel))
-          ),
-          map((userAddress) => {
-            this.notificationService.showMessage(
-              'Your delivery address has been changed successfully!',
-              'success'
-            );
+          takeUntil(this.actions$.pipe(ofType(authActions.updateUserAddressCancel))),
+          map(userAddress => {
+            this.notificationService.showMessage("Your delivery address has been changed successfully!", "success");
             return authActions.updateUserAddressSuccess({ userAddress });
           }),
           catchError((err: IErrorResponse) => {
             const message = err.error.message;
-            this.notificationService.showMessage(message, 'error');
+            this.notificationService.showMessage(message, "error");
             return [
               authActions.updateUserAddressFailure({
                 message,
@@ -186,18 +160,16 @@ export class AuthEffects {
   updateUserPassword$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.updateUserPasswordStart),
-      switchMap((userPassword) =>
+      switchMap(userPassword =>
         this.authService.updateUserPassword(userPassword).pipe(
-          takeUntil(
-            this.actions$.pipe(ofType(authActions.updateUserPasswordCancel))
-          ),
+          takeUntil(this.actions$.pipe(ofType(authActions.updateUserPasswordCancel))),
           map(({ message }) => {
-            this.notificationService.showMessage(message, 'success');
+            this.notificationService.showMessage(message, "success");
             return authActions.updateUserPasswordSuccess();
           }),
           catchError((err: IErrorResponse) => {
             const message = err.error.message;
-            this.notificationService.showMessage(message, 'error');
+            this.notificationService.showMessage(message, "error");
             return [
               authActions.updateUserPasswordFailure({
                 message,

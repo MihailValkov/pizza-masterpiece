@@ -1,30 +1,21 @@
-import {
-  AfterContentChecked,
-  AfterViewInit,
-  Component,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
-import { AddressFormService } from './address-form.service';
-import { UserFormService } from './user-form.service';
+import { AfterContentChecked, AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
+import { AddressFormService } from "./address-form.service";
+import { UserFormService } from "./user-form.service";
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css'],
+  selector: "app-checkout",
+  templateUrl: "./checkout.component.html",
+  styleUrls: ["./checkout.component.css"],
 })
 export class CheckoutComponent implements AfterViewInit, AfterContentChecked {
-  orientation: 'vertical' | 'horizontal' = 'horizontal';
+  orientation: "vertical" | "horizontal" = "horizontal";
   width!: number;
 
   addressForm$ = this.addressFormService.addressForm$;
   userForm$ = this.userFormService.userForm$;
 
-  @ViewChild('container') container!: ElementRef;
+  @ViewChild("container") container!: ElementRef;
 
-  constructor(
-    private addressFormService: AddressFormService,
-    private userFormService: UserFormService
-  ) {}
+  constructor(private addressFormService: AddressFormService, private userFormService: UserFormService) {}
 
   ngAfterViewInit(): void {
     this.width = this.container.nativeElement.offsetWidth;
@@ -32,7 +23,7 @@ export class CheckoutComponent implements AfterViewInit, AfterContentChecked {
 
   ngAfterContentChecked(): void {
     if (this.width < 600) {
-      this.orientation = 'vertical';
+      this.orientation = "vertical";
     }
   }
 }

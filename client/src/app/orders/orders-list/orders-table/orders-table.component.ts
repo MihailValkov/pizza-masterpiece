@@ -1,24 +1,17 @@
-import { Component, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { select, Store } from '@ngrx/store';
-import { merge, Subscription } from 'rxjs';
-import { startWith, tap } from 'rxjs/operators';
-import { IOrderModuleState } from '../../+store';
-import { clearOrders, loadOrdersStart } from '../../+store/actions';
-import {
-  selectOrderIsLoading,
-  selectOrdersList,
-  selectOrdersCount,
-} from '../../+store/selectors';
+import { Component, ViewChild, AfterViewInit, OnDestroy } from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { select, Store } from "@ngrx/store";
+import { merge, Subscription } from "rxjs";
+import { startWith, tap } from "rxjs/operators";
+import { IOrderModuleState } from "../../+store";
+import { clearOrders, loadOrdersStart } from "../../+store/actions";
+import { selectOrderIsLoading, selectOrdersList, selectOrdersCount } from "../../+store/selectors";
 
 @Component({
-  selector: 'app-order-table',
-  templateUrl: './orders-table.component.html',
-  styleUrls: [
-    '../../../shared/styles/table.css',
-    './orders-table.component.css',
-  ],
+  selector: "app-order-table",
+  templateUrl: "./orders-table.component.html",
+  styleUrls: ["../../../shared/styles/table.css", "./orders-table.component.css"],
 })
 export class OrderTableComponent implements AfterViewInit, OnDestroy {
   orders$ = this.store.pipe(select(selectOrdersList));
@@ -27,13 +20,13 @@ export class OrderTableComponent implements AfterViewInit, OnDestroy {
   subscription!: Subscription;
 
   displayedColumns: string[] = [
-    '_id',
-    'totalProducts',
-    'totalPrice',
-    'status',
-    'paymentMethod',
-    'createdAt',
-    'actions',
+    "_id",
+    "totalProducts",
+    "totalPrice",
+    "status",
+    "paymentMethod",
+    "createdAt",
+    "actions",
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

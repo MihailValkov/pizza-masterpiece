@@ -1,19 +1,14 @@
-import { createAction, props } from '@ngrx/store';
-import {
-  IAdminOrder,
-  IAdminOrderBaseUserInfo,
-  IBaseAdminOrder,
-  IOrderStatus,
-} from 'src/app/shared/interfaces/admin';
+import { createAction, props } from "@ngrx/store";
+import { IAdminOrder, IAdminOrderBaseUserInfo, IBaseAdminOrder, IOrderStatus } from "src/app/shared/interfaces/admin";
 
-const adminOrdersNamespace = '[Admin - Orders]';
+const adminOrdersNamespace = "[Admin - Orders]";
 
 // Load Orders
 export const loadOrdersStart = createAction(
   `${adminOrdersNamespace} Load Orders Start`,
   props<{
     sort: string;
-    order: '' | 'asc' | 'desc';
+    order: "" | "asc" | "desc";
     limit: number;
     page: number;
     searchValue: string;
@@ -35,9 +30,7 @@ export const loadOrdersFailure = createAction(
   props<{ message: string }>()
 );
 
-export const loadOrdersCancel = createAction(
-  `${adminOrdersNamespace} Load Orders Cancel`
-);
+export const loadOrdersCancel = createAction(`${adminOrdersNamespace} Load Orders Cancel`);
 
 export const clearOrders = createAction(`${adminOrdersNamespace} Clear Orders`);
 
@@ -59,9 +52,7 @@ export const loadOrderFailure = createAction(
   props<{ message: string }>()
 );
 
-export const loadOrderCancel = createAction(
-  `${adminOrdersNamespace} Load Order Cancel`
-);
+export const loadOrderCancel = createAction(`${adminOrdersNamespace} Load Order Cancel`);
 
 export const clearOrder = createAction(`${adminOrdersNamespace} Clear Order`);
 
@@ -84,6 +75,4 @@ export const changeOrderStatusFailure = createAction(
   props<{ message: string }>()
 );
 
-export const changeOrderStatusCancel = createAction(
-  `${adminOrdersNamespace} Change Order Status Cancel`
-);
+export const changeOrderStatusCancel = createAction(`${adminOrdersNamespace} Change Order Status Cancel`);

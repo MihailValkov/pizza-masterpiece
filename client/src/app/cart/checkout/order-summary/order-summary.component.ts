@@ -1,33 +1,30 @@
-import { Component, OnDestroy } from '@angular/core';
-import { UntypedFormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { select, Store } from '@ngrx/store';
-import { combineLatest, map, startWith, Subscription } from 'rxjs';
-import { IUserDataState } from 'src/app/core/+store';
-import { completeCheckoutStart } from 'src/app/core/+store/cart/actions';
+import { Component, OnDestroy } from "@angular/core";
+import { UntypedFormControl, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { select, Store } from "@ngrx/store";
+import { combineLatest, map, startWith, Subscription } from "rxjs";
+import { IUserDataState } from "src/app/core/+store";
+import { completeCheckoutStart } from "src/app/core/+store/cart/actions";
 import {
   selectDeliveryPrice,
   selectPrice,
   selectCartListCount,
   selectCartList,
-} from 'src/app/core/+store/cart/selectors';
+} from "src/app/core/+store/cart/selectors";
 
-import { IOrderCreate } from 'src/app/shared/interfaces/order';
-import {
-  IUserAddress,
-  IUserPersonalInfo,
-} from 'src/app/shared/interfaces/user';
-import { AddressFormService } from '../address-form.service';
-import { CheckoutCompleteComponent } from '../checkout-complete/checkout-complete.component';
-import { UserFormService } from '../user-form.service';
+import { IOrderCreate } from "src/app/shared/interfaces/order";
+import { IUserAddress, IUserPersonalInfo } from "src/app/shared/interfaces/user";
+import { AddressFormService } from "../address-form.service";
+import { CheckoutCompleteComponent } from "../checkout-complete/checkout-complete.component";
+import { UserFormService } from "../user-form.service";
 
 @Component({
-  selector: 'app-order-summary',
-  templateUrl: './order-summary.component.html',
-  styleUrls: ['./order-summary.component.css'],
+  selector: "app-order-summary",
+  templateUrl: "./order-summary.component.html",
+  styleUrls: ["./order-summary.component.css"],
 })
 export class OrderSummaryComponent implements OnDestroy {
-  paymentMethodControl = new UntypedFormControl('', [Validators.required]);
+  paymentMethodControl = new UntypedFormControl("", [Validators.required]);
 
   cartTotalProducts$ = this.store.pipe(select(selectCartListCount));
   cartPrice$ = this.store.pipe(select(selectPrice));
@@ -42,21 +39,19 @@ export class OrderSummaryComponent implements OnDestroy {
     private store: Store<IUserDataState>,
     private dialog: MatDialog
   ) {
-    this.subscription = this.getOrderData().subscribe(
-      (orderData) => (this.orderInfo = orderData)
-    );
+    this.subscription = this.getOrderData().subscribe(orderData => (this.orderInfo = orderData));
   }
 
   transformProducts() {
     return this.store.pipe(
       select(selectCartList),
-      map((products) =>
-        products.map((p) => {
+      map(products =>
+        products.map(p => {
           return {
             productId: p._id,
             selectedSize: { size: p.size.size, _id: p.size._id },
             selectedDough: { dough: p.dough.dough, _id: p.dough._id },
-            selectedExtras: p.extras.map((e) => ({
+            selectedExtras: p.extras.map(e => ({
               extra: e.extra,
               _id: e._id,
             })),
@@ -72,7 +67,7 @@ export class OrderSummaryComponent implements OnDestroy {
 
   getOrderData() {
     return combineLatest([
-      this.paymentMethodControl.valueChanges.pipe(startWith('')),
+      this.paymentMethodControl.valueChanges.pipe(startWith("")),
       this.addressFormService.addressForm$,
       this.userFormService.userForm$,
       this.cartTotalProducts$,
@@ -81,15 +76,7 @@ export class OrderSummaryComponent implements OnDestroy {
       this.products$,
     ]).pipe(
       map(
-        ([
-          paymentMethod,
-          addressForm,
-          userForm,
-          totalProducts,
-          price,
-          deliveryPrice,
-          products,
-        ]) =>
+        ([paymentMethod, addressForm, userForm, totalProducts, price, deliveryPrice, products]) =>
           (this.orderInfo = {
             user: {
               ...(userForm.value as IUserPersonalInfo),

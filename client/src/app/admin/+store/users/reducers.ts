@@ -1,12 +1,7 @@
-import { createReducer, on } from '@ngrx/store';
-import {
-  IBaseAdminUser,
-  IRole,
-  IAdminUser,
-  IAccountStatus,
-} from 'src/app/shared/interfaces/admin';
+import { createReducer, on } from "@ngrx/store";
+import { IBaseAdminUser, IRole, IAdminUser, IAccountStatus } from "src/app/shared/interfaces/admin";
 
-import * as usersActions from './actions';
+import * as usersActions from "./actions";
 
 export interface IUsersState {
   users: {
@@ -48,31 +43,25 @@ export const usersReducer = createReducer<IUsersState>(
       users: { ...state.users, isLoading: true, errorMessage: null },
     };
   }),
-  on(
-    usersActions.loadUsersSuccess,
-    (state: IUsersState, { users, count, roles, accountStatuses }) => {
-      return {
-        ...state,
-        users: {
-          usersList: users,
-          count,
-          roles,
-          accountStatuses,
-          isLoading: false,
-          errorMessage: null,
-        },
-      };
-    }
-  ),
-  on(
-    usersActions.loadUsersFailure,
-    (state: IUsersState, { message }: { message: string }) => {
-      return {
-        ...state,
-        users: { ...state.users, isLoading: false, errorMessage: message },
-      };
-    }
-  ),
+  on(usersActions.loadUsersSuccess, (state: IUsersState, { users, count, roles, accountStatuses }) => {
+    return {
+      ...state,
+      users: {
+        usersList: users,
+        count,
+        roles,
+        accountStatuses,
+        isLoading: false,
+        errorMessage: null,
+      },
+    };
+  }),
+  on(usersActions.loadUsersFailure, (state: IUsersState, { message }: { message: string }) => {
+    return {
+      ...state,
+      users: { ...state.users, isLoading: false, errorMessage: message },
+    };
+  }),
   on(usersActions.clearUsers, (state: IUsersState) => {
     return {
       ...state,
@@ -107,19 +96,16 @@ export const usersReducer = createReducer<IUsersState>(
       },
     };
   }),
-  on(
-    usersActions.loadUsersFailure,
-    (state: IUsersState, { message }: { message: string }) => {
-      return {
-        ...state,
-        currentUser: {
-          ...state.currentUser,
-          isLoading: false,
-          errorMessage: message,
-        },
-      };
-    }
-  ),
+  on(usersActions.loadUsersFailure, (state: IUsersState, { message }: { message: string }) => {
+    return {
+      ...state,
+      currentUser: {
+        ...state.currentUser,
+        isLoading: false,
+        errorMessage: message,
+      },
+    };
+  }),
   on(usersActions.clearUsers, (state: IUsersState) => {
     return {
       ...state,
@@ -140,48 +126,38 @@ export const usersReducer = createReducer<IUsersState>(
       },
     };
   }),
-  on(
-    usersActions.changeUserAccountSettingsSuccess,
-    (state: IUsersState, { role, accountStatus }) => {
-      if (!state?.currentUser?.user || !state?.users?.usersList) {
-        return state;
-      }
-      const userId = state.currentUser.user._id;
-      const copiedUsers = [
-        ...state.users.usersList.map((u) =>
-          u._id === userId ? { ...u, role, accountStatus } : u
-        ),
-      ];
+  on(usersActions.changeUserAccountSettingsSuccess, (state: IUsersState, { role, accountStatus }) => {
+    if (!state?.currentUser?.user || !state?.users?.usersList) {
+      return state;
+    }
+    const userId = state.currentUser.user._id;
+    const copiedUsers = [...state.users.usersList.map(u => (u._id === userId ? { ...u, role, accountStatus } : u))];
 
-      return {
-        ...state,
-        users: {
-          ...state.users,
-          usersList: copiedUsers,
+    return {
+      ...state,
+      users: {
+        ...state.users,
+        usersList: copiedUsers,
+      },
+      currentUser: {
+        user: {
+          ...state.currentUser.user,
+          role,
+          accountStatus,
         },
-        currentUser: {
-          user: {
-            ...state.currentUser.user,
-            role,
-            accountStatus,
-          },
-          isLoading: false,
-          errorMessage: null,
-        },
-      };
-    }
-  ),
-  on(
-    usersActions.changeUserAccountSettingsFailure,
-    (state: IUsersState, { message }: { message: string }) => {
-      return {
-        ...state,
-        currentUser: {
-          ...state.currentUser,
-          isLoading: false,
-          errorMessage: message,
-        },
-      };
-    }
-  )
+        isLoading: false,
+        errorMessage: null,
+      },
+    };
+  }),
+  on(usersActions.changeUserAccountSettingsFailure, (state: IUsersState, { message }: { message: string }) => {
+    return {
+      ...state,
+      currentUser: {
+        ...state.currentUser,
+        isLoading: false,
+        errorMessage: message,
+      },
+    };
+  })
 );

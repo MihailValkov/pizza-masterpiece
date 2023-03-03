@@ -1,5 +1,5 @@
-import { ActionReducerMap } from '@ngrx/store';
-import { IOrderState, ordersReducer } from './reducers';
+import { ActionReducerMap } from "@ngrx/store";
+import { IOrderState, ordersReducer } from "./reducers";
 
 export interface IOrderModuleState {
   readonly order: IOrderState;

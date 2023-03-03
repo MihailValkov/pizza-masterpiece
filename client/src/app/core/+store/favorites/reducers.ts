@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import * as favoritesActions from './actions';
-import { ICartProduct } from 'src/app/shared/interfaces/product';
+import { createReducer, on } from "@ngrx/store";
+import * as favoritesActions from "./actions";
+import { ICartProduct } from "src/app/shared/interfaces/product";
 
 export interface IFavoritesState {
   favoritesList: ICartProduct[];
@@ -14,9 +14,7 @@ export const favoritesReducer = createReducer<IFavoritesState>(
   initialFavoritesState,
   on(favoritesActions.addProductToFavorites, (state, { product }) => {
     const favoritesList = [...state.favoritesList];
-    const existingProductIndex = state.favoritesList.findIndex(
-      (p) => p.uniqueId === product.uniqueId
-    );
+    const existingProductIndex = state.favoritesList.findIndex(p => p.uniqueId === product.uniqueId);
 
     if (existingProductIndex === -1) {
       favoritesList.push(product);
@@ -30,7 +28,7 @@ export const favoritesReducer = createReducer<IFavoritesState>(
   on(favoritesActions.removeProductFromFavorites, (state, { uniqueId }) => {
     return {
       ...state,
-      favoritesList: state.favoritesList.filter((p) => p.uniqueId !== uniqueId),
+      favoritesList: state.favoritesList.filter(p => p.uniqueId !== uniqueId),
     };
   }),
   on(favoritesActions.clearFavorites, () => initialFavoritesState)

@@ -1,15 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { UserTableDetailComponent } from './user-detail.component';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { UserTableDetailComponent } from "./user-detail.component";
 
-describe('UserTableDetailComponent', () => {
+describe("UserTableDetailComponent", () => {
   let component: UserTableDetailComponent;
   let fixture: ComponentFixture<UserTableDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserTableDetailComponent ]
-    })
-    .compileComponents();
+      declarations: [UserTableDetailComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -18,7 +17,7 @@ describe('UserTableDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

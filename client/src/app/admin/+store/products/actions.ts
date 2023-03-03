@@ -1,10 +1,7 @@
-import { createAction, props } from '@ngrx/store';
-import {
-  IAdminBaseProduct,
-  IAdminProduct,
-} from 'src/app/shared/interfaces/admin';
+import { createAction, props } from "@ngrx/store";
+import { IAdminBaseProduct, IAdminProduct } from "src/app/shared/interfaces/admin";
 
-const adminProductsNamespace = '[Admin - Products]';
+const adminProductsNamespace = "[Admin - Products]";
 
 // Create a new product
 export const createProductStart = createAction(
@@ -22,9 +19,7 @@ export const createProductFailure = createAction(
   props<{ message: string }>()
 );
 
-export const createProductCancel = createAction(
-  `${adminProductsNamespace} Create Cancel`
-);
+export const createProductCancel = createAction(`${adminProductsNamespace} Create Cancel`);
 
 // Load current product
 export const loadProductStart = createAction(
@@ -42,20 +37,16 @@ export const loadProductFailure = createAction(
   props<{ message: string }>()
 );
 
-export const loadProductCancel = createAction(
-  `${adminProductsNamespace} Load Product Cancel`
-);
+export const loadProductCancel = createAction(`${adminProductsNamespace} Load Product Cancel`);
 
-export const clearProduct = createAction(
-  `${adminProductsNamespace} Clear Product`
-);
+export const clearProduct = createAction(`${adminProductsNamespace} Clear Product`);
 
 // Load all products
 export const loadProductsStart = createAction(
   `${adminProductsNamespace} Load Products Start`,
   props<{
     sort: string;
-    order: '' | 'asc' | 'desc';
+    order: "" | "asc" | "desc";
     limit: number;
     page: number;
     searchValue: string;
@@ -73,10 +64,6 @@ export const loadProductsFailure = createAction(
   props<{ message: string }>()
 );
 
-export const loadProductsCancel = createAction(
-  `${adminProductsNamespace} Load Products Cancel`
-);
+export const loadProductsCancel = createAction(`${adminProductsNamespace} Load Products Cancel`);
 
-export const clearProducts = createAction(
-  `${adminProductsNamespace} Clear Products`
-);
+export const clearProducts = createAction(`${adminProductsNamespace} Clear Products`);

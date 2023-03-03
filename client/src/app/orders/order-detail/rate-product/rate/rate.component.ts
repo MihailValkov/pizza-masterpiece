@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { RateProductFormService } from '../rate-product-form.service';
+import { Component } from "@angular/core";
+import { RateProductFormService } from "../rate-product-form.service";
 
 @Component({
-  selector: 'app-rate',
-  templateUrl: './rate.component.html',
-  styleUrls: ['./rate.component.css'],
+  selector: "app-rate",
+  templateUrl: "./rate.component.html",
+  styleUrls: ["./rate.component.css"],
 })
 export class RateComponent {
   ids = [5, 4, 3, 2, 1];

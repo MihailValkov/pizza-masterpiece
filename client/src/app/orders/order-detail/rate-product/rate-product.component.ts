@@ -1,24 +1,16 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { select, Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
-import { IOrderModuleState } from '../../+store';
-import {
-  clearOrderProduct,
-  loadOrderProductStart,
-  rateOrdererProductStart,
-} from '../../+store/actions';
-import {
-  selectCurrentProduct,
-  selectOrderErrorMessage,
-  selectOrderIsLoading,
-} from '../../+store/selectors';
-import { RateProductFormService } from './rate-product-form.service';
+import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { UntypedFormGroup } from "@angular/forms";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { select, Store } from "@ngrx/store";
+import { Subscription } from "rxjs";
+import { IOrderModuleState } from "../../+store";
+import { clearOrderProduct, loadOrderProductStart, rateOrdererProductStart } from "../../+store/actions";
+import { selectCurrentProduct, selectOrderErrorMessage, selectOrderIsLoading } from "../../+store/selectors";
+import { RateProductFormService } from "./rate-product-form.service";
 @Component({
-  selector: 'app-rate-product',
-  templateUrl: './rate-product.component.html',
-  styleUrls: ['./rate-product.component.css'],
+  selector: "app-rate-product",
+  templateUrl: "./rate-product.component.html",
+  styleUrls: ["./rate-product.component.css"],
 })
 export class RateProductComponent implements OnInit, OnDestroy {
   form!: UntypedFormGroup;
@@ -36,12 +28,8 @@ export class RateProductComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.rateProductFormService.rateForm$.subscribe(
-      (form) => (this.form = form)
-    );
-    this.store.dispatch(
-      loadOrderProductStart({ _id: this.data._id, orderId: this.data.orderId })
-    );
+    this.subscription = this.rateProductFormService.rateForm$.subscribe(form => (this.form = form));
+    this.store.dispatch(loadOrderProductStart({ _id: this.data._id, orderId: this.data.orderId }));
   }
 
   onRateProduct() {
@@ -59,7 +47,7 @@ export class RateProductComponent implements OnInit, OnDestroy {
       })
     );
   }
-  
+
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();

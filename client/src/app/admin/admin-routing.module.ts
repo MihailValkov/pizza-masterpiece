@@ -1,28 +1,28 @@
-import { RouterModule, Routes } from '@angular/router';
-import { OrdersComponent } from './orders/orders.component';
-import { CreateProductComponent } from './products/create-product/create-product.component';
-import { ProductsComponent } from './products/products/products.component';
-import { UsersComponent } from './users/users.component';
+import { RouterModule, Routes } from "@angular/router";
+import { OrdersComponent } from "./orders/orders.component";
+import { CreateProductComponent } from "./products/create-product/create-product.component";
+import { ProductsComponent } from "./products/products/products.component";
+import { UsersComponent } from "./users/users.component";
 
 const routes: Routes = [
   {
-    path: 'users',
+    path: "users",
     component: UsersComponent,
   },
   {
-    path: 'orders',
+    path: "orders",
     component: OrdersComponent,
   },
   {
-    path: 'products',
+    path: "products",
     children: [
       {
-        path: '',
-        pathMatch: 'full',
+        path: "",
+        pathMatch: "full",
         component: ProductsComponent,
       },
       {
-        path: 'create',
+        path: "create",
         component: CreateProductComponent,
       },
     ],

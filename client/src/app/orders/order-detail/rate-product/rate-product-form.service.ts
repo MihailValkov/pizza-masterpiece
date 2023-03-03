@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable()
 export class RateProductFormService {
@@ -12,14 +12,7 @@ export class RateProductFormService {
   initForm(): UntypedFormGroup {
     return this.fb.group({
       rate: [null, [Validators.required]],
-      comment: [
-        null,
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(500),
-        ],
-      ],
+      comment: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(500)]],
     });
   }
 

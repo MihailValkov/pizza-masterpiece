@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { AddressFormService } from './address-form.service';
+import { AddressFormService } from "./address-form.service";
 
-describe('AddressFormService', () => {
+describe("AddressFormService", () => {
   let service: AddressFormService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('AddressFormService', () => {
     service = TestBed.inject(AddressFormService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });
