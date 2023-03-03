@@ -1,5 +1,5 @@
-import { ActionReducerMap } from '@ngrx/store';
-import { usersReducer, IUsersState } from './reducers';
+import { ActionReducerMap } from "@ngrx/store";
+import { usersReducer, IUsersState } from "./reducers";
 
 export interface IAdminUsersState {
   readonly users: IUsersState;

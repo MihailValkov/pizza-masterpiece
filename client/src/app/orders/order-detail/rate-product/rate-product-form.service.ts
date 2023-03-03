@@ -1,25 +1,18 @@
-import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable()
 export class RateProductFormService {
   private form = this.initForm();
-  private rateForm: BehaviorSubject<FormGroup> = new BehaviorSubject(this.form);
-  rateForm$: Observable<FormGroup> = this.rateForm.asObservable();
-  constructor(private fb: FormBuilder) {}
+  private rateForm: BehaviorSubject<UntypedFormGroup> = new BehaviorSubject(this.form);
+  rateForm$: Observable<UntypedFormGroup> = this.rateForm.asObservable();
+  constructor(private fb: UntypedFormBuilder) {}
 
-  initForm(): FormGroup {
+  initForm(): UntypedFormGroup {
     return this.fb.group({
       rate: [null, [Validators.required]],
-      comment: [
-        null,
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(500),
-        ],
-      ],
+      comment: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(500)]],
     });
   }
 

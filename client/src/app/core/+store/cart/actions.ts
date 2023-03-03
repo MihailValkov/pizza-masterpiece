@@ -1,21 +1,16 @@
-import { createAction, props } from '@ngrx/store';
-import { IOrderCreate } from 'src/app/shared/interfaces/order';
-import { ICartProduct } from 'src/app/shared/interfaces/product';
+import { createAction, props } from "@ngrx/store";
+import { IOrderCreate } from "src/app/shared/interfaces/order";
+import { ICartProduct } from "src/app/shared/interfaces/product";
 
-const cartNamespace = '[Cart]';
+const cartNamespace = "[Cart]";
 
-export const addProductToCart = createAction(
-  `${cartNamespace} Add to cart start`,
-  props<{ product: ICartProduct }>()
-);
+export const addProductToCart = createAction(`${cartNamespace} Add to cart start`, props<{ product: ICartProduct }>());
 
-export const addProductToCartSuccess = createAction(
-  `${cartNamespace} Add to cart success`
-);
+export const addProductToCartSuccess = createAction(`${cartNamespace} Add to cart success`);
 
 export const updateProductQuantity = createAction(
   `${cartNamespace} Update product quantity start`,
-  props<{ uniqueId: string; actionType: 'increase' | 'decrease' }>()
+  props<{ uniqueId: string; actionType: "increase" | "decrease" }>()
 );
 
 export const removeProductFromCart = createAction(
@@ -23,9 +18,7 @@ export const removeProductFromCart = createAction(
   props<{ uniqueId: string }>()
 );
 
-export const removeProductFromCartSuccess = createAction(
-  `${cartNamespace} Remove from cart success`
-);
+export const removeProductFromCartSuccess = createAction(`${cartNamespace} Remove from cart success`);
 
 // Create new order
 export const completeCheckoutStart = createAction(
@@ -43,8 +36,6 @@ export const completeCheckoutFailure = createAction(
   props<{ message: string }>()
 );
 
-export const completeCheckoutCancel = createAction(
-  `${cartNamespace} Complete checkout Cancel`
-);
+export const completeCheckoutCancel = createAction(`${cartNamespace} Complete checkout Cancel`);
 
 export const clearCart = createAction(`${cartNamespace} Clear cart`);

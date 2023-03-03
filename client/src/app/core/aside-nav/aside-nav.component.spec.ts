@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AsideNavComponent } from './aside-nav.component';
+import { AsideNavComponent } from "./aside-nav.component";
 
-describe('AsideNavComponent', () => {
+describe("AsideNavComponent", () => {
   let component: AsideNavComponent;
   let fixture: ComponentFixture<AsideNavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AsideNavComponent ]
-    })
-    .compileComponents();
+      declarations: [AsideNavComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('AsideNavComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

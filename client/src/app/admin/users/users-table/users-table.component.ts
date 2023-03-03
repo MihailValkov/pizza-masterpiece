@@ -1,51 +1,44 @@
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { ActivatedRoute } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { filter, map, merge, startWith, Subscription, tap } from 'rxjs';
-import { IAdminModuleState } from '../../+store';
-import {
-  clearUsers,
-  loadUsersStart,
-  loadUserStart,
-} from '../../+store/users/actions';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { ActivatedRoute } from "@angular/router";
+import { select, Store } from "@ngrx/store";
+import { filter, map, merge, startWith, Subscription, tap } from "rxjs";
+import { IAdminModuleState } from "../../+store";
+import { clearUsers, loadUsersStart, loadUserStart } from "../../+store/users/actions";
 import {
   selectAdminUsersErrorMessage,
   selectAdminUsersIsLoading,
   selectAdminUsersList,
   selectAdminUsersListCount,
-} from '../../+store/users/selectors';
-import { UserTableDetailComponent } from '../user-detail/user-detail.component';
+} from "../../+store/users/selectors";
+import { UserTableDetailComponent } from "../user-detail/user-detail.component";
 @Component({
-  selector: 'app-users-table',
-  templateUrl: './users-table.component.html',
-  styleUrls: [
-    '../../../shared/styles/table.css',
-    './users-table.component.css',
-  ],
+  selector: "app-users-table",
+  templateUrl: "./users-table.component.html",
+  styleUrls: ["../../../shared/styles/table.css", "./users-table.component.css"],
 })
 export class UsersTableComponent implements AfterViewInit, OnDestroy {
-  noAvatarImagePath = '../../../../../assets/images/anonymous-user-circle.png';
+  noAvatarImagePath = "../../../../../assets/images/anonymous-user-circle.png";
   users$ = this.store.pipe(select(selectAdminUsersList));
   usersCount$ = this.store.pipe(select(selectAdminUsersListCount));
   usersIsLoading$ = this.store.pipe(select(selectAdminUsersIsLoading));
   errorMessage$ = this.store.pipe(select(selectAdminUsersErrorMessage));
   subscription!: Subscription;
 
-  searchValue: string = '';
-  selectValue: string = '';
+  searchValue: string = "";
+  selectValue: string = "";
   displayedColumns: string[] = [
-    'email',
-    'firstName',
-    'lastName',
-    'ordersCount',
-    'ratedProductsCount',
-    'accountStatus',
-    'role',
-    'createdAt',
-    'actions',
+    "email",
+    "firstName",
+    "lastName",
+    "ordersCount",
+    "ratedProductsCount",
+    "accountStatus",
+    "role",
+    "createdAt",
+    "actions",
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -62,13 +55,13 @@ export class UsersTableComponent implements AfterViewInit, OnDestroy {
       this.sort.sortChange,
       this.paginator.page,
       this.activatedRoute.queryParams.pipe(
-        filter((params) => params['searchValue'] || params['selectValue']),
+        filter(params => params["searchValue"] || params["selectValue"]),
         map(({ searchValue, selectValue }) => [searchValue, selectValue])
       )
     )
       .pipe(
         startWith({}),
-        tap((params) => {
+        tap(params => {
           if (Array.isArray(params)) {
             this.searchValue = params[0];
             this.selectValue = params[1];

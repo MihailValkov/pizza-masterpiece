@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import {
   IAccountStatus,
   IAdminBaseProduct,
@@ -12,32 +12,25 @@ import {
   IBaseAdminUser,
   IOrderStatus,
   IRole,
-} from '../shared/interfaces/admin';
+} from "../shared/interfaces/admin";
 
 @Injectable()
 export class AdminService {
   constructor(private http: HttpClient) {}
 
-  createProduct(
-    formData: FormData
-  ): Observable<{ product: IAdminBaseProduct }> {
-    return this.http.post<{ product: IAdminBaseProduct }>(
-      '/admin/products',
-      formData
-    );
+  createProduct(formData: FormData): Observable<{ product: IAdminBaseProduct }> {
+    return this.http.post<{ product: IAdminBaseProduct }>("/admin/products", formData);
   }
 
   loadProduct(productId: string): Observable<{ product: IAdminProduct }> {
-    return this.http.get<{ product: IAdminProduct }>(
-      `/admin/products/${productId}`
-    );
+    return this.http.get<{ product: IAdminProduct }>(`/admin/products/${productId}`);
   }
 
   loadProducts(
     page: number,
     limit: number,
     sort: string,
-    order: '' | 'asc' | 'desc',
+    order: "" | "asc" | "desc",
     searchValue: string,
     selectValue: string
   ): Observable<{
@@ -64,7 +57,7 @@ export class AdminService {
     page: number,
     limit: number,
     sort: string,
-    order: '' | 'asc' | 'desc',
+    order: "" | "asc" | "desc",
     searchValue: string,
     selectValue: string
   ): Observable<{
@@ -120,7 +113,7 @@ export class AdminService {
     page: number,
     limit: number,
     sort: string,
-    order: '' | 'asc' | 'desc',
+    order: "" | "asc" | "desc",
     searchValue: string,
     selectValue: string
   ): Observable<{

@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { FavoriteProductDetailComponent } from './favorite-product-detail.component';
+import { FavoriteProductDetailComponent } from "./favorite-product-detail.component";
 
-describe('FavoriteProductDetailComponent', () => {
+describe("FavoriteProductDetailComponent", () => {
   let component: FavoriteProductDetailComponent;
   let fixture: ComponentFixture<FavoriteProductDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FavoriteProductDetailComponent ]
-    })
-    .compileComponents();
+      declarations: [FavoriteProductDetailComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('FavoriteProductDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

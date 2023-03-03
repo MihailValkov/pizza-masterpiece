@@ -39,11 +39,11 @@
   position: absolute;
   line-height: inherit;
   height: inherit;
-  top: 0;
+  top: -1px;
   left: 0;
   z-index: 1;
   overflow: hidden;
-  display: flex;
+  display: block;
   align-items: center;
   margin: 0;
 }

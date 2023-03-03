@@ -1,10 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import {
-  IOrder,
-  IOrderDetail,
-  IOrderProductDetail,
-} from 'src/app/shared/interfaces/order';
-import * as orderActions from './actions';
+import { createReducer, on } from "@ngrx/store";
+import { IOrder, IOrderDetail, IOrderProductDetail } from "src/app/shared/interfaces/order";
+import * as orderActions from "./actions";
 
 export interface IOrderState {
   orders: {
@@ -34,10 +30,7 @@ const startFetching = (state: IOrderState) => ({
   errorMessage: null,
 });
 
-const setErrorMessage = (
-  state: IOrderState,
-  { message }: { message: string }
-) => ({
+const setErrorMessage = (state: IOrderState, { message }: { message: string }) => ({
   ...state,
   isLoading: false,
   errorMessage: message,
@@ -55,7 +48,7 @@ export const ordersReducer = createReducer<IOrderState>(
     };
   }),
   on(orderActions.loadOrderFailure, setErrorMessage),
-  on(orderActions.clearOrder, (state) => {
+  on(orderActions.clearOrder, state => {
     return {
       ...state,
       currentOrder: null,
@@ -73,7 +66,7 @@ export const ordersReducer = createReducer<IOrderState>(
     };
   }),
   on(orderActions.loadOrdersFailure, setErrorMessage),
-  on(orderActions.clearOrders, (state) => {
+  on(orderActions.clearOrders, state => {
     return {
       ...state,
       orders: { ordersList: [], count: 0 },
@@ -91,7 +84,7 @@ export const ordersReducer = createReducer<IOrderState>(
     };
   }),
   on(orderActions.loadOrdersFailure, setErrorMessage),
-  on(orderActions.clearOrderProduct, (state) => {
+  on(orderActions.clearOrderProduct, state => {
     return {
       ...state,
       errorMessage: null,

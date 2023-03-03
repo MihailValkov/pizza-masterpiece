@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import { IProduct } from 'src/app/shared/interfaces/product';
-import * as productsActions from './actions';
+import { createReducer, on } from "@ngrx/store";
+import { IProduct } from "src/app/shared/interfaces/product";
+import * as productsActions from "./actions";
 
 export interface IProductsState {
   currentProduct: IProduct | null;
@@ -22,10 +22,7 @@ const initialAuthState: IProductsState = {
   message: null,
 };
 
-const setErrorMessage = (
-  state: IProductsState,
-  { message }: { message: string }
-) => ({
+const setErrorMessage = (state: IProductsState, { message }: { message: string }) => ({
   ...state,
   message,
   isLoading: false,
@@ -40,23 +37,17 @@ const startFetching = (state: IProductsState) => ({
 export const productsReducer = createReducer<IProductsState>(
   initialAuthState,
   on(productsActions.loadProductStart, startFetching),
-  on(
-    productsActions.loadProductSuccess,
-    (state: IProductsState, { product }: { product: IProduct }) => {
-      return { ...state, isLoading: false, currentProduct: product };
-    }
-  ),
+  on(productsActions.loadProductSuccess, (state: IProductsState, { product }: { product: IProduct }) => {
+    return { ...state, isLoading: false, currentProduct: product };
+  }),
   on(productsActions.loadProductFailure, setErrorMessage),
-  on(productsActions.clearProduct, (state) => {
+  on(productsActions.clearProduct, state => {
     return { ...state, currentProduct: null };
   }),
   on(productsActions.loadProductsStart, startFetching),
   on(
     productsActions.loadProductsSuccess,
-    (
-      state: IProductsState,
-      { products, count }: { products: IProduct[]; count: number }
-    ) => {
+    (state: IProductsState, { products, count }: { products: IProduct[]; count: number }) => {
       return {
         ...state,
         isLoading: false,
@@ -68,7 +59,7 @@ export const productsReducer = createReducer<IProductsState>(
     }
   ),
   on(productsActions.loadProductsFailure, setErrorMessage),
-  on(productsActions.clearProducts, (state) => {
+  on(productsActions.clearProducts, state => {
     return { ...state, products: { productsList: [], count: 0 } };
   })
 );

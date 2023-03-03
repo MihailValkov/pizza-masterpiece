@@ -1,11 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import {
-  IBaseAdminOrder,
-  IAdminOrder,
-  IAdminOrderBaseUserInfo,
-  IOrderStatus,
-} from 'src/app/shared/interfaces/admin';
-import * as ordersActions from './actions';
+import { createReducer, on } from "@ngrx/store";
+import { IBaseAdminOrder, IAdminOrder, IAdminOrderBaseUserInfo, IOrderStatus } from "src/app/shared/interfaces/admin";
+import * as ordersActions from "./actions";
 
 export interface IOrdersState {
   orders: {
@@ -45,30 +40,24 @@ export const ordersReducer = createReducer<IOrdersState>(
       orders: { ...state.orders, isLoading: true, errorMessage: null },
     };
   }),
-  on(
-    ordersActions.loadOrdersSuccess,
-    (state: IOrdersState, { orders, count, orderStatuses }) => {
-      return {
-        ...state,
-        orders: {
-          ordersList: orders,
-          count,
-          orderStatuses,
-          isLoading: false,
-          errorMessage: null,
-        },
-      };
-    }
-  ),
-  on(
-    ordersActions.loadOrdersFailure,
-    (state: IOrdersState, { message }: { message: string }) => {
-      return {
-        ...state,
-        orders: { ...state.orders, isLoading: false, errorMessage: message },
-      };
-    }
-  ),
+  on(ordersActions.loadOrdersSuccess, (state: IOrdersState, { orders, count, orderStatuses }) => {
+    return {
+      ...state,
+      orders: {
+        ordersList: orders,
+        count,
+        orderStatuses,
+        isLoading: false,
+        errorMessage: null,
+      },
+    };
+  }),
+  on(ordersActions.loadOrdersFailure, (state: IOrdersState, { message }: { message: string }) => {
+    return {
+      ...state,
+      orders: { ...state.orders, isLoading: false, errorMessage: message },
+    };
+  }),
   on(ordersActions.clearOrders, (state: IOrdersState) => {
     return {
       ...state,
@@ -101,19 +90,16 @@ export const ordersReducer = createReducer<IOrdersState>(
       },
     };
   }),
-  on(
-    ordersActions.loadOrderFailure,
-    (state: IOrdersState, { message }: { message: string }) => {
-      return {
-        ...state,
-        currentOrder: {
-          ...state.currentOrder,
-          isLoading: false,
-          errorMessage: message,
-        },
-      };
-    }
-  ),
+  on(ordersActions.loadOrderFailure, (state: IOrdersState, { message }: { message: string }) => {
+    return {
+      ...state,
+      currentOrder: {
+        ...state.currentOrder,
+        isLoading: false,
+        errorMessage: message,
+      },
+    };
+  }),
   on(ordersActions.clearOrder, (state: IOrdersState) => {
     return {
       ...state,
@@ -134,48 +120,38 @@ export const ordersReducer = createReducer<IOrdersState>(
       },
     };
   }),
-  on(
-    ordersActions.changeOrderStatusSuccess,
-    (state: IOrdersState, { status }) => {
-      if (!state?.currentOrder?.order?._id || !state?.orders?.ordersList) {
-        return state;
-      }
-      const orderId = state.currentOrder.order._id;
-      const copiedOrders = [
-        ...state.orders.ordersList.map((o) =>
-          o._id === orderId ? { ...o, status } : o
-        ),
-      ];
+  on(ordersActions.changeOrderStatusSuccess, (state: IOrdersState, { status }) => {
+    if (!state?.currentOrder?.order?._id || !state?.orders?.ordersList) {
+      return state;
+    }
+    const orderId = state.currentOrder.order._id;
+    const copiedOrders = [...state.orders.ordersList.map(o => (o._id === orderId ? { ...o, status } : o))];
 
-      return {
-        ...state,
-        orders: {
-          ...state.orders,
-          ordersList: copiedOrders,
+    return {
+      ...state,
+      orders: {
+        ...state.orders,
+        ordersList: copiedOrders,
+      },
+      currentOrder: {
+        ...state.currentOrder,
+        order: {
+          ...state.currentOrder.order,
+          status,
         },
-        currentOrder: {
-          ...state.currentOrder,
-          order: {
-            ...state.currentOrder.order,
-            status,
-          },
-          isLoading: false,
-          errorMessage: null,
-        },
-      };
-    }
-  ),
-  on(
-    ordersActions.changeOrderStatusFailure,
-    (state: IOrdersState, { message }: { message: string }) => {
-      return {
-        ...state,
-        currentOrder: {
-          ...state.currentOrder,
-          isLoading: false,
-          errorMessage: message,
-        },
-      };
-    }
-  )
+        isLoading: false,
+        errorMessage: null,
+      },
+    };
+  }),
+  on(ordersActions.changeOrderStatusFailure, (state: IOrdersState, { message }: { message: string }) => {
+    return {
+      ...state,
+      currentOrder: {
+        ...state.currentOrder,
+        isLoading: false,
+        errorMessage: message,
+      },
+    };
+  })
 );

@@ -1,22 +1,18 @@
-import { Component, Input } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
-import { select, Store } from '@ngrx/store';
-import { map } from 'rxjs';
+import { Component, Input } from "@angular/core";
+import { MatDrawer } from "@angular/material/sidenav";
+import { select, Store } from "@ngrx/store";
 
-import { IRootState } from 'src/app/+store';
-import { logoutStart } from 'src/app/+store/auth/actions';
-import {
-  selectUserIsAdmin,
-  selectUserIsLogged,
-} from 'src/app/+store/auth/selectors';
-import { IUserDataState } from '../+store';
-import { selectCartListCount } from '../+store/cart/selectors';
-import { selectFavoritesListCount } from '../+store/favorites/selectors';
+import { IRootState } from "src/app/+store";
+import { logoutStart } from "src/app/+store/auth/actions";
+import { selectUserIsAdmin, selectUserIsLogged } from "src/app/+store/auth/selectors";
+import { IUserDataState } from "../+store";
+import { selectCartListCount } from "../+store/cart/selectors";
+import { selectFavoritesListCount } from "../+store/favorites/selectors";
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css'],
+  selector: "app-navigation",
+  templateUrl: "./navigation.component.html",
+  styleUrls: ["./navigation.component.css"],
 })
 export class NavigationComponent {
   @Input() drawer!: MatDrawer;

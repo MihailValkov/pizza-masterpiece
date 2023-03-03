@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css'],
+  selector: "app-products",
+  templateUrl: "./products.component.html",
+  styleUrls: ["./products.component.css"],
 })
 export class ProductsComponent {
   searchCriterion = [
-    { prop: 'name', value: 'Product name' },
-    { prop: 'rating', value: 'Rating' },
+    { prop: "name", value: "Product name" },
+    { prop: "rating", value: "Rating" },
   ];
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
@@ -17,7 +17,7 @@ export class ProductsComponent {
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: queryParams,
-      queryParamsHandling: 'merge',
+      queryParamsHandling: "merge",
     });
   }
 }

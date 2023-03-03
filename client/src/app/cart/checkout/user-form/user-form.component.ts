@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { UserFormService } from '../user-form.service';
+import { Component, Input } from "@angular/core";
+import { UserFormService } from "../user-form.service";
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css'],
+  selector: "app-user-form",
+  templateUrl: "./user-form.component.html",
+  styleUrls: ["./user-form.component.css"],
 })
 export class UserFormComponent {
   @Input() hideActions: boolean = false;

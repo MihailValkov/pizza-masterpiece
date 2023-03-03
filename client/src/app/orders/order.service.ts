@@ -1,11 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import {
-  IOrder,
-  IOrderDetail,
-  IOrderProductDetail,
-} from '../shared/interfaces/order';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { IOrder, IOrderDetail, IOrderProductDetail } from "../shared/interfaces/order";
 
 @Injectable()
 export class OrderService {
@@ -15,7 +11,7 @@ export class OrderService {
     page: number,
     limit: number,
     sort: string,
-    order: '' | 'asc' | 'desc'
+    order: "" | "asc" | "desc"
   ): Observable<{ ordersList: IOrder[]; count: number }> {
     return this.http.get<{ ordersList: IOrder[]; count: number }>(
       `/orders?page=${page + 1}&limit=${limit}&sort=${sort}&order=${order}`
@@ -26,20 +22,11 @@ export class OrderService {
     return this.http.get<{ order: IOrderDetail }>(`/orders/${orderId}`);
   }
 
-  getCurrentProduct(
-    orderId: string,
-    _id: string
-  ): Observable<{ product: IOrderProductDetail }> {
-    return this.http.get<{ product: IOrderProductDetail }>(
-      `/orders/${orderId}/${_id}`
-    );
+  getCurrentProduct(orderId: string, _id: string): Observable<{ product: IOrderProductDetail }> {
+    return this.http.get<{ product: IOrderProductDetail }>(`/orders/${orderId}/${_id}`);
   }
 
-  rateProduct(
-    productId: string,
-    rate: number,
-    comment: string
-  ): Observable<{ rating: number }> {
+  rateProduct(productId: string, rate: number, comment: string): Observable<{ rating: number }> {
     return this.http.patch<{ rating: number }>(`/products/${productId}`, {
       rate,
       comment,

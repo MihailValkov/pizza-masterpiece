@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { FavoritesTableComponent } from './favorites-table.component';
+import { FavoritesTableComponent } from "./favorites-table.component";
 
-describe('FavoritesTableComponent', () => {
+describe("FavoritesTableComponent", () => {
   let component: FavoritesTableComponent;
   let fixture: ComponentFixture<FavoritesTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FavoritesTableComponent ]
-    })
-    .compileComponents();
+      declarations: [FavoritesTableComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('FavoritesTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,7 +1,7 @@
 interface IBaseUser {
   _id: string;
   email: string;
-  role: 'Member' | 'Admin';
+  role: "Member" | "Admin";
   image: {
     _id: string;
     url: string;

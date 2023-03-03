@@ -1,11 +1,11 @@
 export enum IRole {
-  'Member' = 'Member',
-  'Admin' = 'Admin',
+  "Member" = "Member",
+  "Admin" = "Admin",
 }
 
 export enum IAccountStatus {
-  'Active' = 'Active',
-  'Inactive' = 'Inactive',
+  "Active" = "Active",
+  "Inactive" = "Inactive",
 }
 
 export interface IBaseAdminUser {
@@ -36,9 +36,9 @@ export interface IAdminUser extends IBaseAdminUser {
 }
 
 export enum IOrderStatus {
-  'Pending' = 'Pending',
-  'Processing' = 'Processing',
-  'Completed' = 'Completed',
+  "Pending" = "Pending",
+  "Processing" = "Processing",
+  "Completed" = "Completed",
 }
 export interface IAdminOrderBaseUserInfo {
   _id: string;

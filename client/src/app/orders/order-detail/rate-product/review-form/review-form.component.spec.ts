@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ReviewFormComponent } from './review-form.component';
+import { ReviewFormComponent } from "./review-form.component";
 
-describe('ReviewFormComponent', () => {
+describe("ReviewFormComponent", () => {
   let component: ReviewFormComponent;
   let fixture: ComponentFixture<ReviewFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReviewFormComponent ]
-    })
-    .compileComponents();
+      declarations: [ReviewFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ReviewFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

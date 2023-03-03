@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { UserPasswordFormComponent } from './user-password-form.component';
+import { UserPasswordFormComponent } from "./user-password-form.component";
 
-describe('UserPasswordFormComponent', () => {
+describe("UserPasswordFormComponent", () => {
   let component: UserPasswordFormComponent;
   let fixture: ComponentFixture<UserPasswordFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserPasswordFormComponent ]
-    })
-    .compileComponents();
+      declarations: [UserPasswordFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('UserPasswordFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

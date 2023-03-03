@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import * as cartActions from './actions';
-import { ICartProduct } from 'src/app/shared/interfaces/product';
+import { createReducer, on } from "@ngrx/store";
+import * as cartActions from "./actions";
+import { ICartProduct } from "src/app/shared/interfaces/product";
 
 export interface ICartState {
   cartList: ICartProduct[];
@@ -26,14 +26,11 @@ export const cartReducer = createReducer<ICartState>(
   initialCartState,
   on(cartActions.addProductToCart, (state, { product }) => {
     let cartList = [...state.cartList];
-    const existingProductIndex = state.cartList.findIndex(
-      (p) => p.uniqueId === product.uniqueId
-    );
+    const existingProductIndex = state.cartList.findIndex(p => p.uniqueId === product.uniqueId);
     if (existingProductIndex !== -1) {
       const existingProduct = { ...cartList[existingProductIndex] };
       existingProduct.quantity += product.quantity;
-      existingProduct.totalPrice =
-        existingProduct.quantity * existingProduct.price;
+      existingProduct.totalPrice = existingProduct.quantity * existingProduct.price;
       cartList[existingProductIndex] = existingProduct;
     } else {
       cartList.push(product);
@@ -50,9 +47,7 @@ export const cartReducer = createReducer<ICartState>(
     };
   }),
   on(cartActions.removeProductFromCart, (state, { uniqueId }) => {
-    const existingProductIndex = state.cartList.findIndex(
-      (p) => p.uniqueId === uniqueId
-    );
+    const existingProductIndex = state.cartList.findIndex(p => p.uniqueId === uniqueId);
     if (existingProductIndex === -1) {
       return state;
     }
@@ -61,9 +56,8 @@ export const cartReducer = createReducer<ICartState>(
     if (price < 0) {
       price = 0;
     }
-    const cartList = state.cartList.filter((p) => p.uniqueId !== uniqueId);
-    const deliveryPrice =
-      price > 0 && price < 30 && cartList.length !== 0 ? 5 : 0;
+    const cartList = state.cartList.filter(p => p.uniqueId !== uniqueId);
+    const deliveryPrice = price > 0 && price < 30 && cartList.length !== 0 ? 5 : 0;
     return {
       ...state,
       cartList,
@@ -73,25 +67,17 @@ export const cartReducer = createReducer<ICartState>(
     };
   }),
   on(cartActions.updateProductQuantity, (state, { uniqueId, actionType }) => {
-    const existingProductIndex = state.cartList.findIndex(
-      (p) => p.uniqueId === uniqueId
-    );
+    const existingProductIndex = state.cartList.findIndex(p => p.uniqueId === uniqueId);
     if (existingProductIndex === -1) {
       return state;
     }
     const existingProduct = state.cartList[existingProductIndex];
     const cartProduct: ICartProduct = { ...existingProduct };
-    const quantity =
-      actionType === 'increase'
-        ? cartProduct.quantity + 1
-        : cartProduct.quantity - 1;
+    const quantity = actionType === "increase" ? cartProduct.quantity + 1 : cartProduct.quantity - 1;
 
     cartProduct.totalPrice = cartProduct.price * quantity;
     cartProduct.quantity = quantity;
-    let price =
-      actionType === 'increase'
-        ? state.price + cartProduct.price
-        : state.price - cartProduct.price;
+    let price = actionType === "increase" ? state.price + cartProduct.price : state.price - cartProduct.price;
 
     if (price < 0) {
       price = 0;
@@ -100,10 +86,7 @@ export const cartReducer = createReducer<ICartState>(
     const deliveryPrice = price > 0 && price < 30 && quantity !== 0 ? 5 : 0;
     let cartList = [];
     if (quantity === 0) {
-      cartList = [
-        ...state.cartList.slice(0, existingProductIndex),
-        ...state.cartList.slice(existingProductIndex + 1),
-      ];
+      cartList = [...state.cartList.slice(0, existingProductIndex), ...state.cartList.slice(existingProductIndex + 1)];
     } else {
       cartList = [
         ...state.cartList.slice(0, existingProductIndex),
@@ -116,13 +99,10 @@ export const cartReducer = createReducer<ICartState>(
       cartList,
       price,
       deliveryPrice,
-      totalProducts:
-        actionType === 'increase'
-          ? state.totalProducts + 1
-          : state.totalProducts - 1,
+      totalProducts: actionType === "increase" ? state.totalProducts + 1 : state.totalProducts - 1,
     };
   }),
-  on(cartActions.completeCheckoutStart, (state) => {
+  on(cartActions.completeCheckoutStart, state => {
     return { ...state, isLoading: true, errorMessage: null };
   }),
   on(cartActions.completeCheckoutSuccess, (state, { orderId }) => {
@@ -140,7 +120,7 @@ export const cartReducer = createReducer<ICartState>(
       errorMessage: message,
     };
   }),
-  on(cartActions.clearCart, (state) => ({
+  on(cartActions.clearCart, state => ({
     ...initialCartState,
     lastCreatedOrderId: state.lastCreatedOrderId,
   }))

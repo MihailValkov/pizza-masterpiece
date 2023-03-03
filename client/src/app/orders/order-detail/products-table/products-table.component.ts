@@ -1,38 +1,23 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { IOrderBaseProduct } from 'src/app/shared/interfaces/order';
-import { RateProductComponent } from '../rate-product/rate-product.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+import { IOrderBaseProduct } from "src/app/shared/interfaces/order";
+import { RateProductComponent } from "../rate-product/rate-product.component";
+import { ProductDetailComponent } from "./product-detail/product-detail.component";
 
 @Component({
-  selector: 'app-products-table',
-  templateUrl: './products-table.component.html',
-  styleUrls: [
-    '../../../shared/styles/table.css',
-    './products-table.component.css',
-  ],
+  selector: "app-products-table",
+  templateUrl: "./products-table.component.html",
+  styleUrls: ["../../../shared/styles/table.css", "./products-table.component.css"],
 })
 export class ProductsTableComponent implements OnInit, AfterViewInit {
   @Input() products!: IOrderBaseProduct[];
   @Input() orderId!: string;
   @Input() ratedProducts!: string[];
 
-  displayedColumns: string[] = [
-    'name',
-    'quantity',
-    'price',
-    'totalPrice',
-    'actions',
-  ];
+  displayedColumns: string[] = ["name", "quantity", "price", "totalPrice", "actions"];
   dataSource!: MatTableDataSource<IOrderBaseProduct>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

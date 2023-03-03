@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { RatingDiagramComponent } from './rating-diagram.component';
+import { RatingDiagramComponent } from "./rating-diagram.component";
 
-describe('RatingDiagramComponent', () => {
+describe("RatingDiagramComponent", () => {
   let component: RatingDiagramComponent;
   let fixture: ComponentFixture<RatingDiagramComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RatingDiagramComponent ]
-    })
-    .compileComponents();
+      declarations: [RatingDiagramComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('RatingDiagramComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

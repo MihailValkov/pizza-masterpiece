@@ -1,25 +1,25 @@
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
+import { RouterModule, Routes } from "@angular/router";
+import { LoginComponent } from "./login/login.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { RegisterComponent } from "./register/register.component";
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent,
     data: {
       isLogged: false,
     },
   },
   {
-    path: 'register',
+    path: "register",
     component: RegisterComponent,
     data: {
       isLogged: false,
     },
   },
   {
-    path: 'profile',
+    path: "profile",
     component: ProfileComponent,
     data: {
       isLogged: true,

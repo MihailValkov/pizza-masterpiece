@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { OrderService } from './order.service';
+import { OrderService } from "./order.service";
 
-describe('OrderService', () => {
+describe("OrderService", () => {
   let service: OrderService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('OrderService', () => {
     service = TestBed.inject(OrderService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });
