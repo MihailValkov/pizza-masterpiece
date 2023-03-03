@@ -24,7 +24,7 @@ Clone this repository and install dependencies
 > cd client
 > npm install
 > ng serve
-> open a new terminal and navigate to folder `server`.
+> open a new terminal and navigate to folder "**server**".
 > npm install
 > read the server documentation and make the necessary configuration
 > npm run dev

@@ -2,7 +2,7 @@
 
 ### MEAN stack application - MongoDB; Express; Angular; Node;
 
-<img src="https://www.mindinventory.com/blog/wp-content/uploads/2021/06/mean-stack.png" width="400px;" height="150px;">
+<img src="https://www.mindinventory.com/blog/wp-content/uploads/2021/06/mean-stack.png" width="auto;" height="150px;">
 </br>
 </br>
 
