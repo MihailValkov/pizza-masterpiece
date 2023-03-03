@@ -15,7 +15,7 @@
 }
 .card-description {
   height: 50px;
-  text-align: justify
+  text-align: justify;
 }
 .mat-card-footer {
   display: flex;

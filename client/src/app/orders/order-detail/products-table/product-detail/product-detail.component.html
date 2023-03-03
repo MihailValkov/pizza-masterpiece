@@ -1,4 +1,4 @@
-<app-loading-spinner *ngIf="(isLoading$ | async)"></app-loading-spinner>
+<app-loading-spinner *ngIf="isLoading$ | async"></app-loading-spinner>
 <section class="container">
   <header class="header">
     <h2 mat-dialog-title>Product Detail</h2>
@@ -8,60 +8,57 @@
   </header>
   <mat-divider></mat-divider>
   <mat-dialog-content class="mat-typography">
-    <ng-container *ngIf="(currentProduct$|async) as currentProduct">
+    <ng-container *ngIf="currentProduct$ | async as currentProduct">
       <div class="content">
         <main>
           <div class="image-container">
-            <h3>{{(currentProduct$|async)?.name}}</h3>
+            <h3>{{ (currentProduct$ | async)?.name }}</h3>
             <img [src]="currentProduct?.imageUrl" [alt]="currentProduct?.name" />
           </div>
           <app-rating-diagram [rates]="currentProduct?.rates || []"></app-rating-diagram>
         </main>
         <div class="description">
-          <p>{{currentProduct?.description}}</p>
+          <p>{{ currentProduct?.description }}</p>
         </div>
         <mat-chip-list>
           <div class="chip-list-content">
             <div>
-              <app-mat-chip-item label="Size:"
-                [value]="(currentProduct?.selectedSize || '') | firstCapitalLetter">
+              <app-mat-chip-item label="Size:" [value]="currentProduct?.selectedSize || '' | firstCapitalLetter">
               </app-mat-chip-item>
-              <app-mat-chip-item label="Dough:"
-                [value]="(currentProduct?.selectedDough || '') | firstCapitalLetter">
+              <app-mat-chip-item label="Dough:" [value]="currentProduct?.selectedDough || '' | firstCapitalLetter">
               </app-mat-chip-item>
-              <app-mat-chip-item label="Weight:" [value]="(currentProduct?.weight || 0) + ' g'">
-              </app-mat-chip-item>
+              <app-mat-chip-item label="Weight:" [value]="(currentProduct?.weight || 0) + ' g'"> </app-mat-chip-item>
             </div>
             <div>
-              <app-mat-chip-item label="Quantity:" [value]="(currentProduct?.quantity || 0) | decimalFixed">
+              <app-mat-chip-item label="Quantity:" [value]="currentProduct?.quantity || 0 | decimalFixed">
               </app-mat-chip-item>
-              <app-mat-chip-item label="Price:"
-                [value]="((currentProduct?.price || 0) | decimalFixed) + ' BGN'">
+              <app-mat-chip-item label="Price:" [value]="(currentProduct?.price || 0 | decimalFixed) + ' BGN'">
               </app-mat-chip-item>
-              <app-mat-chip-item label="Total price:"
-                [value]="((currentProduct?.totalPrice || 0) | decimalFixed) + ' BGN'">
+              <app-mat-chip-item
+                label="Total price:"
+                [value]="(currentProduct?.totalPrice || 0 | decimalFixed) + ' BGN'">
               </app-mat-chip-item>
             </div>
           </div>
-        </mat-chip-list> 
+        </mat-chip-list>
         <h3 class="ingredients-title">Ingredients:</h3>
         <mat-chip-list>
           <mat-chip *ngFor="let ingredient of currentProduct?.ingredients">
-            {{(ingredient || '') | firstCapitalLetter}}
+            {{ ingredient || "" | firstCapitalLetter }}
           </mat-chip>
         </mat-chip-list>
         <ng-container *ngIf="currentProduct?.selectedExtras?.length !== 0">
           <h3 class="extras-title">Extras:</h3>
           <mat-chip-list>
             <mat-chip *ngFor="let extra of currentProduct?.selectedExtras">
-              {{(extra || '') | firstCapitalLetter}}
+              {{ extra || "" | firstCapitalLetter }}
             </mat-chip>
           </mat-chip-list>
         </ng-container>
       </div>
     </ng-container>
   </mat-dialog-content>
-  <mat-dialog-actions align="center" *ngIf="(currentProduct$|async) as currentProduct">
+  <mat-dialog-actions align="center" *ngIf="currentProduct$ | async as currentProduct">
     <app-star-rating [rating]="currentProduct?.rating || 0" [showRatingInfo]="true"></app-star-rating>
   </mat-dialog-actions>
 </section>

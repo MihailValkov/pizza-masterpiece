@@ -1,5 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from "@angular/material/legacy-dialog";
+import {
+  MatLegacyDialogRef as MatDialogRef,
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
+} from "@angular/material/legacy-dialog";
 import { select, Store } from "@ngrx/store";
 import { IOrderModuleState } from "src/app/orders/+store";
 import { clearOrderProduct, loadOrderProductStart } from "src/app/orders/+store/actions";

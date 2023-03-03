@@ -1,16 +1,14 @@
 <mat-card class="aside-menu">
   <div class="user-container-info">
-    <img [src]="(userImage$ | async)?.url || noAvatarImagePath" alt="profile-img">
+    <img [src]="(userImage$ | async)?.url || noAvatarImagePath" alt="profile-img" />
     <div class="user-info">
-      <p><strong>{{((user$ | async)?.firstName) || 'Anonymous'}} </strong></p>
+      <p>
+        <strong>{{ (user$ | async)?.firstName || "Anonymous" }} </strong>
+      </p>
       <p class="user-role">
-        <mat-icon *ngIf="(user$ | async)?.role === 'Admin'">
-          admin_panel_settings
-        </mat-icon>
-        <mat-icon *ngIf="(user$ | async)?.role !== 'Admin'">
-          person
-        </mat-icon>
-        <span>{{(user$ | async)?.role || 'Guest'}}</span>
+        <mat-icon *ngIf="(user$ | async)?.role === 'Admin'"> admin_panel_settings </mat-icon>
+        <mat-icon *ngIf="(user$ | async)?.role !== 'Admin'"> person </mat-icon>
+        <span>{{ (user$ | async)?.role || "Guest" }}</span>
       </p>
       <p class="user-status">
         <mat-icon>circle</mat-icon>
@@ -22,12 +20,10 @@
   <mat-accordion multi>
     <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          Account
-        </mat-panel-title>
+        <mat-panel-title> Account </mat-panel-title>
       </mat-expansion-panel-header>
       <ul class="navigation" (click)="onLinkClick()">
-        <li *ngIf="(user$ | async)">
+        <li *ngIf="user$ | async">
           <a mat-menu-item routerLink="/user/profile">
             <mat-icon routerLinkActive="active">personal_injury</mat-icon>
             <span>Profile</span>
@@ -45,7 +41,7 @@
             Favorites
           </a>
         </li>
-        <li *ngIf="(user$ | async)">
+        <li *ngIf="user$ | async">
           <a mat-menu-item routerLink="/orders">
             <mat-icon routerLinkActive="active">list_alt</mat-icon>
             Orders
@@ -55,9 +51,7 @@
     </mat-expansion-panel>
     <mat-expansion-panel *ngIf="(user$ | async)?.role === 'Admin'">
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          Administration
-        </mat-panel-title>
+        <mat-panel-title> Administration </mat-panel-title>
       </mat-expansion-panel-header>
       <ul class="navigation" (click)="onLinkClick()">
         <li>
@@ -87,5 +81,4 @@
       </ul>
     </mat-expansion-panel>
   </mat-accordion>
-
 </mat-card>

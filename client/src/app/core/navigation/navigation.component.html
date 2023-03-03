@@ -14,22 +14,29 @@
       </li>
       <li>
         <a mat-button routerLink="/cart">
-          <mat-icon routerLinkActive="active" [matBadge]="(cartListCounter$ | async)" matBadgeColor="warn"
-            [matBadgeHidden]="(cartListCounter$ | async) === 0">shopping_cart
+          <mat-icon
+            routerLinkActive="active"
+            [matBadge]="cartListCounter$ | async"
+            matBadgeColor="warn"
+            [matBadgeHidden]="(cartListCounter$ | async) === 0"
+            >shopping_cart
           </mat-icon>
           <span>Your Cart</span>
         </a>
       </li>
       <li>
         <a mat-button routerLink="/favorites">
-          <mat-icon routerLinkActive="active" [matBadge]="favoritesListCounter$ | async" matBadgeColor="warn"
+          <mat-icon
+            routerLinkActive="active"
+            [matBadge]="favoritesListCounter$ | async"
+            matBadgeColor="warn"
             [matBadgeHidden]="(favoritesListCounter$ | async) === 0">
-            favorites</mat-icon>
+            favorites</mat-icon
+          >
           <span>Your Favorites</span>
         </a>
       </li>
-      <ng-container [ngTemplateOutlet]="(isLogged$ | async) ? isLogged : isNotLogged">
-      </ng-container>
+      <ng-container [ngTemplateOutlet]="(isLogged$ | async) ? isLogged : isNotLogged"> </ng-container>
     </ul>
   </nav>
 </mat-toolbar>
@@ -69,7 +76,7 @@
       <mat-icon routerLinkActive="active">format_list_bulleted</mat-icon>
       <span>Your Orders</span>
     </a>
-    <a mat-menu-item routerLink="/admin/products/create" *ngIf="(isAdmin$ | async)">
+    <a mat-menu-item routerLink="/admin/products/create" *ngIf="isAdmin$ | async">
       <mat-icon routerLinkActive="active">card_giftcard</mat-icon>
       <span>Create Product</span>
     </a>

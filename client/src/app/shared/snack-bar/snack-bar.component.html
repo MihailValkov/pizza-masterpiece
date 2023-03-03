@@ -1,4 +1,4 @@
-<div class="snackbar-container" [ngClass]="{success:data?.status === 'success',error:data?.status === 'error'}">
-  <span>{{data?.message}}</span>
-  <button mat-stroked-button (click)="actionHandler()">{{data?.action}}</button>
+<div class="snackbar-container" [ngClass]="{ success: data?.status === 'success', error: data?.status === 'error' }">
+  <span>{{ data?.message }}</span>
+  <button mat-stroked-button (click)="actionHandler()">{{ data?.action }}</button>
 </div>

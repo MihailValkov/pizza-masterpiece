@@ -1,51 +1,54 @@
 <mat-card class="container">
   <img class="image" [src]="registerLogoPath" alt="login-image" />
   <form [formGroup]="form" class="form" (ngSubmit)="submitHandler()">
-
     <mat-form-field class="form-control" appearance="outline">
       <mat-label>Email</mat-label>
-      <input color="primary" type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+      <input color="primary" type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" />
       <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
         Please enter a valid email address
       </mat-error>
-      <mat-error *ngIf="form.controls['email'].hasError('required')">
-        Email is required
-      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('required')"> Email is required </mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-control" appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput [type]="passwordHide ? 'password' : 'text'" formControlName="password">
-      <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" aria-label="Hide password" type="button"
-        [attr.aria-pressed]="passwordHide" tabindex="-1">
-        <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input matInput [type]="passwordHide ? 'password' : 'text'" formControlName="password" />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="passwordHide = !passwordHide"
+        aria-label="Hide password"
+        type="button"
+        [attr.aria-pressed]="passwordHide"
+        tabindex="-1">
+        <mat-icon>{{ passwordHide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
       <mat-error
         *ngIf="form.controls['password'].hasError('minlength') && !form.controls['password'].hasError('required')">
         Password should be at least 6 characters
       </mat-error>
-      <mat-error *ngIf="form.controls['password'].hasError('required')">
-        Password is required
-      </mat-error>
+      <mat-error *ngIf="form.controls['password'].hasError('required')"> Password is required </mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-control" appearance="outline">
       <mat-label>Repeat password</mat-label>
-      <input matInput [type]="rePasswordHide ? 'password' : 'text'" formControlName="repeatPassword">
-      <button mat-icon-button matSuffix (click)="rePasswordHide = !rePasswordHide" type="button"
-        aria-label="'rePasswordHide password'" [attr.aria-pressed]="rePasswordHide" tabindex="-1">
-        <mat-icon>{{rePasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input matInput [type]="rePasswordHide ? 'password' : 'text'" formControlName="repeatPassword" />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="rePasswordHide = !rePasswordHide"
+        type="button"
+        aria-label="'rePasswordHide password'"
+        [attr.aria-pressed]="rePasswordHide"
+        tabindex="-1">
+        <mat-icon>{{ rePasswordHide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
-      <mat-error *ngIf="form.controls['repeatPassword'].hasError('required')">
-        Repeat Password is required
-      </mat-error>
-      <mat-error *ngIf="form.controls['repeatPassword'].hasError('isNotSame')">
-        Passwords does't match
-      </mat-error>
-
+      <mat-error *ngIf="form.controls['repeatPassword'].hasError('required')"> Repeat Password is required </mat-error>
+      <mat-error *ngIf="form.controls['repeatPassword'].hasError('isNotSame')"> Passwords does't match </mat-error>
     </mat-form-field>
-    <button mat-flat-button color="primary" class="btn" type="submit"
-      [disabled]="form.invalid || (isLoading$ | async)">Register</button>
+    <button mat-flat-button color="primary" class="btn" type="submit" [disabled]="form.invalid || (isLoading$ | async)">
+      Register
+    </button>
   </form>
   <div class="link-container">
     <span>Already have account?</span>

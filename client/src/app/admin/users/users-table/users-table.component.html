@@ -1,67 +1,66 @@
 <div class="table-container mat-elevation-z8">
-  <div class="loading-shade" *ngIf="(usersIsLoading$ | async)">
+  <div class="loading-shade" *ngIf="usersIsLoading$ | async">
     <mat-spinner></mat-spinner>
   </div>
   <div class="loading-shade" *ngIf="(usersCount$ | async) === 0 && !(usersIsLoading$ | async)">
     No results was found.
   </div>
-  <div class="table-wrapper" [ngClass]="{hidden:(usersCount$ | async) === 0}">
-    <table mat-table [dataSource]="(users$ | async) || []" matSort matSortActive="createdAt" matSortDisableClear
-      matSortDirection="desc" multiTemplateDataRows>
-
+  <div class="table-wrapper" [ngClass]="{ hidden: (usersCount$ | async) === 0 }">
+    <table
+      mat-table
+      [dataSource]="(users$ | async) || []"
+      matSort
+      matSortActive="createdAt"
+      matSortDisableClear
+      matSortDirection="desc"
+      multiTemplateDataRows>
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
         <td mat-cell *matCellDef="let row">
           <div class="link">
             <img [src]="row.image?.url || noAvatarImagePath" [alt]="row?.name" />
-            <span>{{row?.email}}</span>
+            <span>{{ row?.email }}</span>
           </div>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
-        <td mat-cell *matCellDef="let row"> {{row?.firstName}} </td>
+        <td mat-cell *matCellDef="let row">{{ row?.firstName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="lastName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
-        <td mat-cell *matCellDef="let row"> {{row?.lastName}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.lastName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="accountStatus">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Account status</th>
-        <td mat-cell *matCellDef="let row"> {{row?.accountStatus}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.accountStatus }}</td>
       </ng-container>
 
       <ng-container matColumnDef="ordersCount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Orders</th>
-        <td mat-cell *matCellDef="let row"> {{row?.ordersCount | decimalFixed}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.ordersCount | decimalFixed }}</td>
       </ng-container>
 
       <ng-container matColumnDef="ratedProductsCount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Rated Products</th>
-        <td mat-cell *matCellDef="let row"> {{row?.ratedProductsCount | decimalFixed}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.ratedProductsCount | decimalFixed }}</td>
       </ng-container>
 
       <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-          Role
-        </th>
-        <td mat-cell *matCellDef="let row">{{row?.role}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Role</th>
+        <td mat-cell *matCellDef="let row">{{ row?.role }}</td>
       </ng-container>
 
       <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-          Created
-        </th>
-        <td mat-cell *matCellDef="let row">{{row?.createdAt | date: 'dd/MM/YYYY'}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Created</th>
+        <td mat-cell *matCellDef="let row">{{ row?.createdAt | date : "dd/MM/YYYY" }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef disableClear>
-          Actions
-        </th>
+        <th mat-header-cell *matHeaderCellDef disableClear>Actions</th>
         <td mat-cell *matCellDef="let row; let i = index">
           <button mat-button (click)="showUserDetail(row._id)">
             <mat-icon>zoom_in</mat-icon>
@@ -69,12 +68,14 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row">
-      </tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" class="table-row"></tr>
     </table>
   </div>
-  <mat-paginator [length]="(usersCount$ | async)" [pageSizeOptions]="[5,10, 20, 30]" showFirstLastButtons
+  <mat-paginator
+    [length]="usersCount$ | async"
+    [pageSizeOptions]="[5, 10, 20, 30]"
+    showFirstLastButtons
     aria-label="Select page of Users results">
   </mat-paginator>
 </div>
