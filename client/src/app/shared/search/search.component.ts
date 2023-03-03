@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { MatSelect } from "@angular/material/select";
+import { MatLegacySelect as MatSelect } from "@angular/material/legacy-select";
 import { debounceTime, distinctUntilChanged, fromEvent, map, merge } from "rxjs";
 
 @Component({
