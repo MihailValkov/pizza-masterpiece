@@ -1,4 +1,8 @@
+const fs = require('fs');
+const path = require('path');
 const multer = require('multer');
+const { globalDir } = require('../index');
+const UPLOAD_FOLDER_NAME = 'uploads';
 
 const MIME_TYPE_MAP = {
   'image/png': 'png',
@@ -6,11 +10,19 @@ const MIME_TYPE_MAP = {
   'image/jpg': 'jpg',
 };
 
+const createUploadFolder = () => {
+  const isFolderExist = fs.existsSync(UPLOAD_FOLDER_NAME);
+  if (!isFolderExist) {
+    fs.mkdirSync(path.join(globalDir, UPLOAD_FOLDER_NAME))
+  }
+}
+
 const fileUpload = multer({
   limits: 500000,
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'uploads');
+      createUploadFolder();
+      cb(null, UPLOAD_FOLDER_NAME);
     },
     filename: (req, file, cb) => {
       const ext = MIME_TYPE_MAP[file.mimetype];
