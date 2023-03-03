@@ -30,6 +30,9 @@ Clone this repository and install dependencies
 > npm run dev
 > go to http://localhost:4200
 ```
+## Node version
+
+**required node version >= v.16**
 
 **NOTE: Don't forget to read the documentation about the CUSTOM API, you can find it [here](https://github.com/MihailValkov/pizza-masterpiece/blob/main/server/readMe.md).**
 
