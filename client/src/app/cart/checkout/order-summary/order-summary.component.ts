@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from "@angular/core";
 import { UntypedFormControl, Validators } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { select, Store } from "@ngrx/store";
 import { combineLatest, map, startWith, Subscription } from "rxjs";
 import { IUserDataState } from "src/app/core/+store";

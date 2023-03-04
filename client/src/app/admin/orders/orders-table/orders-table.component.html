@@ -1,60 +1,60 @@
 <div class="table-container mat-elevation-z8">
-  <div class="loading-shade" *ngIf="(ordersIsLoading$ | async)">
+  <div class="loading-shade" *ngIf="ordersIsLoading$ | async">
     <mat-spinner></mat-spinner>
   </div>
   <div class="loading-shade" *ngIf="(ordersCount$ | async) === 0 && !(ordersIsLoading$ | async)">
     No results was found.
   </div>
   <div class="table-wrapper">
-    <table mat-table [dataSource]="(orders$| async) || []" matSort matSortActive="createdAt" matSortDisableClear
+    <table
+      mat-table
+      [dataSource]="(orders$ | async) || []"
+      matSort
+      matSortActive="createdAt"
+      matSortDisableClear
       matSortDirection="desc">
-
       <ng-container matColumnDef="user.email">
         <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Email</th>
-        <td mat-cell *matCellDef="let row">{{row?.user?.email}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.user?.email }}</td>
       </ng-container>
 
       <ng-container matColumnDef="user.firstName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
-        <td mat-cell *matCellDef="let row"> {{row?.user?.firstName}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.user?.firstName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="user.lastName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
-        <td mat-cell *matCellDef="let row"> {{row?.user?.lastName}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.user?.lastName }}</td>
       </ng-container>
 
       <ng-container matColumnDef="totalProducts">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Products</th>
-        <td mat-cell *matCellDef="let row"> x {{row?.totalProducts | decimalFixed}} </td>
+        <td mat-cell *matCellDef="let row">x {{ row?.totalProducts | decimalFixed }}</td>
       </ng-container>
 
       <ng-container matColumnDef="totalPrice">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Price</th>
-        <td mat-cell *matCellDef="let row"> {{row?.totalPrice | decimalFixed}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.totalPrice | decimalFixed }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-        <td mat-cell *matCellDef="let row"> {{row?.status}}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.status }}</td>
       </ng-container>
 
       <ng-container matColumnDef="paymentMethod">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment Method</th>
-        <td mat-cell *matCellDef="let row"> {{row?.paymentMethod | firstCapitalLetter }}</td>
+        <td mat-cell *matCellDef="let row">{{ row?.paymentMethod | firstCapitalLetter }}</td>
       </ng-container>
 
       <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-          Created
-        </th>
-        <td mat-cell *matCellDef="let row">{{row?.createdAt | date: 'dd/MM/YYYY'}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Created</th>
+        <td mat-cell *matCellDef="let row">{{ row?.createdAt | date : "dd/MM/YYYY" }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef disableClear>
-          Actions
-        </th>
+        <th mat-header-cell *matHeaderCellDef disableClear>Actions</th>
         <td mat-cell *matCellDef="let row; let i = index">
           <button mat-button (click)="showOrderDetail(row._id)">
             <mat-icon>zoom_in</mat-icon>
@@ -62,12 +62,14 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-      </tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
-  <mat-paginator [length]="(ordersCount$ | async)" [pageSizeOptions]="[6,10, 20, 30]" showFirstLastButtons
+  <mat-paginator
+    [length]="ordersCount$ | async"
+    [pageSizeOptions]="[6, 10, 20, 30]"
+    showFirstLastButtons
     aria-label="Select page of Orders results">
   </mat-paginator>
 </div>

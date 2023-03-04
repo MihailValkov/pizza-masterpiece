@@ -1,14 +1,12 @@
 <section class="profile-container">
   <app-aside-menu></app-aside-menu>
   <div class="profile-content">
-    <mat-toolbar color="primary">
-      Personal Information
-    </mat-toolbar>
+    <mat-toolbar color="primary"> Personal Information </mat-toolbar>
     <mat-card>
       <mat-card-content>
         <div class="image-container">
-          <img [src]="(userImage$ | async)?.url || noAvatarImagePath" alt="user-profile-image">
-          <app-file-upload (onPickFile)="onFileUpload($event)" [isLoading]="(uploadImageIsLoading$|async)|| false">
+          <img [src]="(userImage$ | async)?.url || noAvatarImagePath" alt="user-profile-image" />
+          <app-file-upload (onPickFile)="onFileUpload($event)" [isLoading]="(uploadImageIsLoading$ | async) || false">
           </app-file-upload>
         </div>
         <app-user-info-form position="vertical" [readOnly]="true"></app-user-info-form>
@@ -20,8 +18,8 @@
             <mat-icon class="tab-icon">personal_injury</mat-icon>
             <span class="label">Edit your information</span>
           </ng-template>
-          <div class="form-container" [ngClass]="{'is-loading': (updateUserInfoIsLoading$|async)}">
-            <app-loading-spinner position="absolute" *ngIf="(updateUserInfoIsLoading$|async)"></app-loading-spinner>
+          <div class="form-container" [ngClass]="{ 'is-loading': (updateUserInfoIsLoading$ | async) }">
+            <app-loading-spinner position="absolute" *ngIf="updateUserInfoIsLoading$ | async"></app-loading-spinner>
             <app-user-info-form></app-user-info-form>
           </div>
         </mat-tab>
@@ -31,8 +29,8 @@
             <mat-icon class="tab-icon">edit_location_alt</mat-icon>
             <span class="label">Edit your address</span>
           </ng-template>
-          <div class="form-container" [ngClass]="{'is-loading': (updateUserAddressIsLoading$|async)}">
-            <app-loading-spinner position="absolute" *ngIf="(updateUserAddressIsLoading$|async)"></app-loading-spinner>
+          <div class="form-container" [ngClass]="{ 'is-loading': (updateUserAddressIsLoading$ | async) }">
+            <app-loading-spinner position="absolute" *ngIf="updateUserAddressIsLoading$ | async"></app-loading-spinner>
             <app-user-address-form></app-user-address-form>
           </div>
         </mat-tab>
@@ -42,8 +40,8 @@
             <mat-icon class="tab-icon">password</mat-icon>
             <span class="label">Change your password</span>
           </ng-template>
-          <div class="form-container" [ngClass]="{'is-loading': (updateUserPasswordIsLoading$|async)}">
-            <app-loading-spinner position="absolute" *ngIf="(updateUserPasswordIsLoading$|async)"></app-loading-spinner>
+          <div class="form-container" [ngClass]="{ 'is-loading': (updateUserPasswordIsLoading$ | async) }">
+            <app-loading-spinner position="absolute" *ngIf="updateUserPasswordIsLoading$ | async"></app-loading-spinner>
             <app-user-password-form></app-user-password-form>
           </div>
         </mat-tab>

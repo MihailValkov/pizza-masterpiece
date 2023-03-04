@@ -11,25 +11,23 @@
       <div class="content">
         <main>
           <div class="image-container">
-            <h3>{{data?.name}}</h3>
+            <h3>{{ data?.name }}</h3>
             <img [src]="data?.imageUrl" [alt]="data?.name" />
           </div>
           <mat-chip-list>
             <div class="chip-list-content">
               <div>
-                <app-mat-chip-item label="Size:" [value]="(data?.size?.size || '') | firstCapitalLetter">
+                <app-mat-chip-item label="Size:" [value]="data?.size?.size || '' | firstCapitalLetter">
                 </app-mat-chip-item>
-                <app-mat-chip-item label="Dough:" [value]="(data?.dough?.dough || '') | firstCapitalLetter">
+                <app-mat-chip-item label="Dough:" [value]="data?.dough?.dough || '' | firstCapitalLetter">
                 </app-mat-chip-item>
-                <app-mat-chip-item label="Weight:" [value]="(data?.weight || 0) + ' g'">
-                </app-mat-chip-item>
+                <app-mat-chip-item label="Weight:" [value]="(data?.weight || 0) + ' g'"> </app-mat-chip-item>
               </div>
               <div>
-                <app-mat-chip-item label="Quantity:" [value]="(data?.quantity || 0) | decimalFixed">
+                <app-mat-chip-item label="Quantity:" [value]="data?.quantity || 0 | decimalFixed"> </app-mat-chip-item>
+                <app-mat-chip-item label="Price:" [value]="(data?.price || 0 | decimalFixed) + ' BGN'">
                 </app-mat-chip-item>
-                <app-mat-chip-item label="Price:" [value]="((data?.price || 0) | decimalFixed) + ' BGN'">
-                </app-mat-chip-item>
-                <app-mat-chip-item label="Total price:" [value]="((data?.totalPrice || 0) | decimalFixed) + ' BGN'">
+                <app-mat-chip-item label="Total price:" [value]="(data?.totalPrice || 0 | decimalFixed) + ' BGN'">
                 </app-mat-chip-item>
               </div>
             </div>
@@ -38,14 +36,14 @@
         <h3 class="ingredients-title">Ingredients:</h3>
         <mat-chip-list>
           <mat-chip *ngFor="let ingredient of data?.ingredients">
-            {{(ingredient.ingredient || '') | firstCapitalLetter}}
+            {{ ingredient.ingredient || "" | firstCapitalLetter }}
           </mat-chip>
         </mat-chip-list>
         <ng-container *ngIf="data?.extras?.length !== 0">
           <h3 class="extras-title">Extras:</h3>
           <mat-chip-list>
             <mat-chip *ngFor="let extra of data?.extras">
-              {{(extra.extra || '') | firstCapitalLetter}}
+              {{ extra.extra || "" | firstCapitalLetter }}
             </mat-chip>
           </mat-chip-list>
         </ng-container>

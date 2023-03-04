@@ -1,4 +1,4 @@
-<section class="cart-container" *ngIf="(products$ | async) as products">
+<section class="cart-container" *ngIf="products$ | async as products">
   <app-aside-menu></app-aside-menu>
   <div class="cart-content">
     <app-cart-table [products]="products" *ngIf="products.length > 0"></app-cart-table>

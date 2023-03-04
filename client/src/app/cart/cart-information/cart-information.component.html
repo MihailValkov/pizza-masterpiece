@@ -1,26 +1,23 @@
 <div class="cart-information">
-  <mat-toolbar color="primary">
-    Summary
-  </mat-toolbar>
+  <mat-toolbar color="primary"> Summary </mat-toolbar>
   <mat-card>
     <p>
       <span>Total products:</span>
-      <span>{{((totalProducts$ | async) || 0)}}</span>
+      <span>{{ (totalProducts$ | async) || 0 }}</span>
     </p>
     <p>
       <span>Price:</span>
-      <span>{{((totalPrice$ | async) || 0 | decimalFixed)}} BGN</span>
+      <span>{{ (totalPrice$ | async) || 0 | decimalFixed }} BGN</span>
     </p>
     <p>
       <span>Delivery price:</span>
-      <span>{{((deliveryPrice$ | async)|| 0) | decimalFixed}} BGN</span>
+      <span>{{ (deliveryPrice$ | async) || 0 | decimalFixed }} BGN</span>
     </p>
     <mat-divider></mat-divider>
     <div class="total-price">
       <h2>Total price:</h2>
-      <h2>{{((totalPrice$ | async) || 0) + ((deliveryPrice$ | async) || 0) | decimalFixed}} BGN</h2>
+      <h2>{{ ((totalPrice$ | async) || 0) + ((deliveryPrice$ | async) || 0) | decimalFixed }} BGN</h2>
     </div>
     <a routerLink="/cart/checkout" mat-raised-button color="primary" [disabled]="!canContinue">Checkout</a>
-
   </mat-card>
 </div>

@@ -1,8 +1,7 @@
-<section class="favorites-container" *ngIf="(products$ | async) as products">
+<section class="favorites-container" *ngIf="products$ | async as products">
   <app-aside-menu></app-aside-menu>
   <div class="favorites-content">
     <app-favorites-table [products]="products" *ngIf="products.length > 0"></app-favorites-table>
     <app-no-products *ngIf="products.length === 0" type="favorites"></app-no-products>
   </div>
-
 </section>

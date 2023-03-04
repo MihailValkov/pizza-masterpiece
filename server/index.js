@@ -28,3 +28,5 @@ const start = async () => {
   }
 };
 start();
+
+module.exports.globalDir = __dirname;

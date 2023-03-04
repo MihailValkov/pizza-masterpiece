@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { MatDialog } from "@angular/material/dialog";
+import { MatLegacyDialog as MatDialog } from "@angular/material/legacy-dialog";
 import { createEffect, ofType, Actions } from "@ngrx/effects";
 import { switchMap, takeUntil, map, catchError } from "rxjs";
 import { NotificationService } from "src/app/core/notification.service";

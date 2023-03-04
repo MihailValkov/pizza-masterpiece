@@ -1,47 +1,69 @@
-<app-loading-spinner *ngIf="(currentOrderIsLoading$ | async) && !(currentOrder$ |async)"></app-loading-spinner>
+<app-loading-spinner *ngIf="(currentOrderIsLoading$ | async) && !(currentOrder$ | async)"></app-loading-spinner>
 <section class="container">
   <header class="header">
-    <h2 mat-dialog-title> Order Detail</h2>
+    <h2 mat-dialog-title>Order Detail</h2>
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
   </header>
   <mat-divider></mat-divider>
   <mat-dialog-content class="mat-typography">
-    <ng-container *ngIf="(currentOrder$ |async) as currentOrder">
-      <h3 class="order-number">Order Number: <strong>{{currentOrder._id}}</strong></h3>
+    <ng-container *ngIf="currentOrder$ | async as currentOrder">
+      <h3 class="order-number">
+        Order Number: <strong>{{ currentOrder._id }}</strong>
+      </h3>
 
       <div class="order-information">
         <div class="left">
-          <p><span>Full name:</span> <strong>{{currentOrder?.user?.firstName}}
-              {{currentOrder?.user?.lastName}}</strong></p>
-          <p><span>Email:</span> <strong>{{currentOrder?.user?.email}}</strong></p>
-          <p><span>Phone number:</span> <strong>{{currentOrder?.user?.phoneNumber}}</strong>
+          <p>
+            <span>Full name:</span>
+            <strong>{{ currentOrder?.user?.firstName }} {{ currentOrder?.user?.lastName }}</strong>
           </p>
-          <p><span>Address:</span> <strong>{{currentOrder?.user?.country}},
-              {{currentOrder?.user?.city}}, {{currentOrder?.user?.street}} №
-              {{currentOrder?.user?.streetNumber}}</strong></p>
-          <p><span>Created:</span> <strong>{{currentOrder?.createdAt | date:'short'}}</strong></p>
-          <p><span>Modified:</span> <strong> {{currentOrder?.updatedAt | date:'short'}}</strong>
+          <p>
+            <span>Email:</span> <strong>{{ currentOrder?.user?.email }}</strong>
+          </p>
+          <p>
+            <span>Phone number:</span> <strong>{{ currentOrder?.user?.phoneNumber }}</strong>
+          </p>
+          <p>
+            <span>Address:</span>
+            <strong
+              >{{ currentOrder?.user?.country }}, {{ currentOrder?.user?.city }}, {{ currentOrder?.user?.street }} №
+              {{ currentOrder?.user?.streetNumber }}</strong
+            >
+          </p>
+          <p>
+            <span>Created:</span> <strong>{{ currentOrder?.createdAt | date : "short" }}</strong>
+          </p>
+          <p>
+            <span>Modified:</span> <strong> {{ currentOrder?.updatedAt | date : "short" }}</strong>
           </p>
         </div>
         <div class="center">
-          <p><span>Status:</span> <strong> {{currentOrder?.status}}</strong></p>
-          <p><span>Payment method:</span> <strong> {{(currentOrder?.paymentMethod || '') | firstCapitalLetter}}</strong>
+          <p>
+            <span>Status:</span> <strong> {{ currentOrder?.status }}</strong>
           </p>
-          <p><span>Total products:</span> <strong>
-              {{currentOrder?.totalProducts}}</strong>
+          <p>
+            <span>Payment method:</span> <strong> {{ currentOrder?.paymentMethod || "" | firstCapitalLetter }}</strong>
           </p>
-          <p><span>Price:</span> <strong>{{(currentOrder?.price||0)
-              | decimalFixed}} BGN</strong></p>
-          <p><span>Delivery price:</span> <strong>{{(currentOrder?.deliveryPrice||0)
-              | decimalFixed}} BGN</strong></p>
-          <p><span>Total price:</span> <strong>{{(currentOrder?.totalPrice||0)
-              | decimalFixed}} BGN</strong></p>
+          <p>
+            <span>Total products:</span> <strong> {{ currentOrder?.totalProducts }}</strong>
+          </p>
+          <p>
+            <span>Price:</span> <strong>{{ currentOrder?.price || 0 | decimalFixed }} BGN</strong>
+          </p>
+          <p>
+            <span>Delivery price:</span> <strong>{{ currentOrder?.deliveryPrice || 0 | decimalFixed }} BGN</strong>
+          </p>
+          <p>
+            <span>Total price:</span> <strong>{{ currentOrder?.totalPrice || 0 | decimalFixed }} BGN</strong>
+          </p>
         </div>
         <div class="right">
-          <app-order-status-form [orderId]="currentOrder._id" [currentStatus]="currentOrder.status"
-            [orderStatuses]="(ordersStatuses$|async) || []">
+          <app-order-status-form
+            [orderId]="currentOrder._id"
+            [currentStatus]="currentOrder.status"
+            [orderStatuses]="(ordersStatuses$ | async) || []">
           </app-order-status-form>
         </div>
       </div>
@@ -51,7 +73,6 @@
           <app-product-item [product]="product"></app-product-item>
         </li>
       </ul>
-
     </ng-container>
   </mat-dialog-content>
 </section>

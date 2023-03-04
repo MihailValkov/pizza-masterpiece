@@ -3,63 +3,83 @@
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>person</mat-icon>
       <mat-label>First Name</mat-label>
-      <input type="text" matInput formControlName="firstName" placeholder="Ex. Mihail" [readonly]="isFormFulfilled" [value]="userForm.controls['firstName']?.value">
+      <input
+        type="text"
+        matInput
+        formControlName="firstName"
+        placeholder="Ex. Mihail"
+        [readonly]="isFormFulfilled"
+        [value]="userForm.controls['firstName']?.value" />
       <mat-error
-        *ngIf="userForm.controls['firstName'].hasError('minlength') && !userForm.controls['firstName'].hasError('required')">
+        *ngIf="
+          userForm.controls['firstName'].hasError('minlength') && !userForm.controls['firstName'].hasError('required')
+        ">
         First Name should be at least 3 characters
       </mat-error>
-      <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
-        First Name is required
-      </mat-error>
+      <mat-error *ngIf="userForm.controls['firstName'].hasError('required')"> First Name is required </mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>person</mat-icon>
       <mat-label>Last Name</mat-label>
-      <input type="text" matInput formControlName="lastName" placeholder="Ex. Valkov" [readonly]="isFormFulfilled" [value]="userForm.controls['lastName']?.value">
+      <input
+        type="text"
+        matInput
+        formControlName="lastName"
+        placeholder="Ex. Valkov"
+        [readonly]="isFormFulfilled"
+        [value]="userForm.controls['lastName']?.value" />
       <mat-error
-        *ngIf="userForm.controls['lastName'].hasError('minlength') && !userForm.controls['lastName'].hasError('required')">
+        *ngIf="
+          userForm.controls['lastName'].hasError('minlength') && !userForm.controls['lastName'].hasError('required')
+        ">
         Last Name should be at least 3 characters
       </mat-error>
-      <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
-        Last Name is required
-      </mat-error>
+      <mat-error *ngIf="userForm.controls['lastName'].hasError('required')"> Last Name is required </mat-error>
     </mat-form-field>
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>email</mat-icon>
       <mat-label>Email</mat-label>
-      <input type="email" matInput formControlName="email" placeholder="Ex. Bul. Bulgaria" [readonly]="isFormFulfilled" [value]="userForm.controls['email']?.value">
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. Bul. Bulgaria"
+        [readonly]="isFormFulfilled"
+        [value]="userForm.controls['email']?.value" />
       <mat-error
         *ngIf="userForm.controls['email'].hasError('email') && !userForm.controls['email'].hasError('required')">
         Please enter a valid email address
       </mat-error>
-      <mat-error *ngIf="userForm.controls['email'].hasError('required')">
-        Email is required
-      </mat-error>
+      <mat-error *ngIf="userForm.controls['email'].hasError('required')"> Email is required </mat-error>
     </mat-form-field>
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>phone</mat-icon>
       <mat-label>Phone Number</mat-label>
-      <input type="tel" matInput formControlName="phoneNumber" placeholder="Ex. 0888888888"
-        [readonly]="isFormFulfilled" [value]="userForm.controls['phoneNumber']?.value">
+      <input
+        type="tel"
+        matInput
+        formControlName="phoneNumber"
+        placeholder="Ex. 0888888888"
+        [readonly]="isFormFulfilled"
+        [value]="userForm.controls['phoneNumber']?.value" />
       <mat-error
-        *ngIf="userForm.controls['phoneNumber'].hasError('pattern') && !userForm.controls['phoneNumber'].hasError('required')">
+        *ngIf="
+          userForm.controls['phoneNumber'].hasError('pattern') && !userForm.controls['phoneNumber'].hasError('required')
+        ">
         Phone Number is not valid
       </mat-error>
-      <mat-error *ngIf="userForm.controls['phoneNumber'].hasError('required')">
-        Phone Number is required
-      </mat-error>
+      <mat-error *ngIf="userForm.controls['phoneNumber'].hasError('required')"> Phone Number is required </mat-error>
     </mat-form-field>
     <ng-container *ngIf="!hideActions">
+      <div *ngIf="isFormFulfilled" class="link">
+        Your information is auto fulfilled. If you want to change it, go to <a routerLink="/user/profile">My Profile</a>
+      </div>
 
-    <div *ngIf="isFormFulfilled" class="link">
-      Your information is auto fulfilled. If you want to change it, go to <a routerLink="/user/profile">My Profile</a>
-    </div>
-
-    <div class="btn-actions">
-      <button mat-raised-button matStepperPrevious>Back</button>
-      <button mat-raised-button matStepperNext (click)="setFormValue()">Next</button>
-    </div>
-  </ng-container>
+      <div class="btn-actions">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button matStepperNext (click)="setFormValue()">Next</button>
+      </div>
+    </ng-container>
   </form>
 </ng-container>

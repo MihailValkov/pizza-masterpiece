@@ -1,9 +1,16 @@
 <section class="products-list-container">
-  <app-loading-spinner *ngIf="isLoading$ |async"></app-loading-spinner>
-  <ul class="products-list" *ngIf="productsCount$|async as count" infiniteScroll [infiniteScrollDistance]="2"
-    [infiniteScrollThrottle]="50" (scrolled)="onScrollDown(count)" [scrollWindow]="false"
-    infiniteScrollContainer=".mat-drawer-content" [fromRoot]="true">
-    <li *ngFor="let product of (products$ | async)">
+  <app-loading-spinner *ngIf="isLoading$ | async"></app-loading-spinner>
+  <ul
+    class="products-list"
+    *ngIf="productsCount$ | async as count"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScrollDown(count)"
+    [scrollWindow]="false"
+    infiniteScrollContainer=".mat-drawer-content"
+    [fromRoot]="true">
+    <li *ngFor="let product of products$ | async">
       <app-product-item [product]="product"></app-product-item>
     </li>
   </ul>

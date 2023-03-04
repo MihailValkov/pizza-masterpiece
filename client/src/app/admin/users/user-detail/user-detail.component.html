@@ -1,52 +1,55 @@
-<app-loading-spinner *ngIf="(currentUserIsLoading$ | async) && !(currentUser$ |async)"></app-loading-spinner>
+<app-loading-spinner *ngIf="(currentUserIsLoading$ | async) && !(currentUser$ | async)"></app-loading-spinner>
 <section class="container">
   <header class="header">
-    <h2 mat-dialog-title> User Detail</h2>
+    <h2 mat-dialog-title>User Detail</h2>
     <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
   </header>
   <mat-divider></mat-divider>
   <mat-dialog-content class="mat-typography content">
-    <ng-container *ngIf="(currentUser$ |async) as currentUser">
+    <ng-container *ngIf="currentUser$ | async as currentUser">
       <div class="image-container">
         <img [src]="currentUser?.image?.url || noAvatarImagePath" alt="profile-picture" />
       </div>
       <div class="user-details">
         <div class="left">
           <p>
-            User Id: <strong>{{currentUser?._id}}</strong>
+            User Id: <strong>{{ currentUser?._id }}</strong>
           </p>
           <p>
-            Full Name: <strong>{{currentUser?.firstName}} {{currentUser?.lastName}}</strong>
+            Full Name: <strong>{{ currentUser?.firstName }} {{ currentUser?.lastName }}</strong>
           </p>
           <p>
-            Email: <strong>{{currentUser?.email}}</strong>
+            Email: <strong>{{ currentUser?.email }}</strong>
           </p>
           <p>
-            Phone Number: <strong>{{currentUser?.phoneNumber}}</strong>
+            Phone Number: <strong>{{ currentUser?.phoneNumber }}</strong>
           </p>
           <p>
-            Address: <strong>{{currentUser?.address?.country}}, {{currentUser?.address?.city}},
-              {{currentUser?.address?.street}}
+            Address:
+            <strong
+              >{{ currentUser?.address?.country }}, {{ currentUser?.address?.city }},
+              {{ currentUser?.address?.street }}
               №
-              {{currentUser?.address?.streetNumber}}</strong>
+              {{ currentUser?.address?.streetNumber }}</strong
+            >
           </p>
 
           <p>
-            Created on: <strong>{{currentUser?.createdAt | date:'short'}}</strong>
+            Created on: <strong>{{ currentUser?.createdAt | date : "short" }}</strong>
           </p>
           <p>
-            Modified on: <strong>{{currentUser?.updatedAt | date:'short'}}</strong>
+            Modified on: <strong>{{ currentUser?.updatedAt | date : "short" }}</strong>
           </p>
-
         </div>
         <div class="right">
-          <app-change-user-settings-form [userId]="(currentUser$|async)!._id"
-            [currentUserRole]="(currentUser$|async)!.role" [currentAccountStatus]="(currentUser$|async)!.accountStatus">
+          <app-change-user-settings-form
+            [userId]="(currentUser$ | async)!._id"
+            [currentUserRole]="(currentUser$ | async)!.role"
+            [currentAccountStatus]="(currentUser$ | async)!.accountStatus">
           </app-change-user-settings-form>
         </div>
-
       </div>
     </ng-container>
   </mat-dialog-content>

@@ -24,30 +24,33 @@
         <mat-divider></mat-divider>
         <p class="total-products">
           <span>Total products:</span>
-          <span>{{(cartTotalProducts$ | async) || 0}}</span>
+          <span>{{ (cartTotalProducts$ | async) || 0 }}</span>
         </p>
         <p>
           <span>Price:</span>
-          <span>{{(cartPrice$ | async) || 0 | decimalFixed}} BGN</span>
+          <span>{{ (cartPrice$ | async) || 0 | decimalFixed }} BGN</span>
         </p>
         <p>
           <span>Delivery price:</span>
-          <span>{{(cartDeliveryPrice$ | async) || 0 | decimalFixed}} BGN</span>
+          <span>{{ (cartDeliveryPrice$ | async) || 0 | decimalFixed }} BGN</span>
         </p>
         <mat-divider></mat-divider>
 
         <div class="total-price">
           <h2>Total price:</h2>
-          <h2>{{((cartPrice$ | async) || 0) + ((cartDeliveryPrice$ | async) || 0) | decimalFixed}} BGN</h2>
+          <h2>{{ ((cartPrice$ | async) || 0) + ((cartDeliveryPrice$ | async) || 0) | decimalFixed }} BGN</h2>
         </div>
       </mat-card>
     </div>
   </div>
-
 </div>
 <div class="btn-actions">
   <button mat-raised-button matStepperPrevious>Back</button>
-  <button mat-raised-button (click)="completeOrder()"
+  <button
+    mat-raised-button
+    (click)="completeOrder()"
     [title]="(cartTotalProducts$ | async) === 0 ? 'Your cart is empty!' : ''"
-    [disabled]="paymentMethodControl.invalid || (cartTotalProducts$ | async) === 0">Confirm Order</button>
+    [disabled]="paymentMethodControl.invalid || (cartTotalProducts$ | async) === 0">
+    Confirm Order
+  </button>
 </div>

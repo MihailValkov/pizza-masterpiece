@@ -33,7 +33,8 @@
 }
 
 @media (max-width: 550px) {
-  .container ,.btn{
+  .container,
+  .btn {
     width: 100%;
   }
   .image {

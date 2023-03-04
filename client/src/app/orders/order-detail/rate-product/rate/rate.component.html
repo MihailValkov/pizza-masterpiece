@@ -1,6 +1,6 @@
 <div class="rate-buttons">
   <ng-container *ngFor="let id of ids">
-    <input type='radio' name='rating' [id]="id" [value]="id" (change)="onSelectRating(id)"/>
+    <input type="radio" name="rating" [id]="id" [value]="id" (change)="onSelectRating(id)" />
     <label [for]="id">
       <mat-icon>star</mat-icon>
     </label>

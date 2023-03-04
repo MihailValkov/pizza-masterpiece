@@ -1,54 +1,55 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div [ngClass]="{'form-row':true,vertical: position === 'vertical'}">
+  <div [ngClass]="{ 'form-row': true, vertical: position === 'vertical' }">
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>person</mat-icon>
       <mat-label>First Name</mat-label>
-      <input type="text" matInput formControlName="firstName" placeholder="Ex. Mihail" [readonly]="readOnly">
+      <input type="text" matInput formControlName="firstName" placeholder="Ex. Mihail" [readonly]="readOnly" />
       <mat-error
-        *ngIf="userForm.controls['firstName'].hasError('minlength') && !userForm.controls['firstName'].hasError('required')">
+        *ngIf="
+          userForm.controls['firstName'].hasError('minlength') && !userForm.controls['firstName'].hasError('required')
+        ">
         First Name should be at least 3 characters
       </mat-error>
-      <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
-        First Name is required
-      </mat-error>
+      <mat-error *ngIf="userForm.controls['firstName'].hasError('required')"> First Name is required </mat-error>
     </mat-form-field>
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>person</mat-icon>
       <mat-label>Last Name</mat-label>
-      <input type="text" matInput formControlName="lastName" placeholder="Ex. Valkov" [readonly]="readOnly">
+      <input type="text" matInput formControlName="lastName" placeholder="Ex. Valkov" [readonly]="readOnly" />
       <mat-error
-        *ngIf="userForm.controls['lastName'].hasError('minlength') && !userForm.controls['lastName'].hasError('required')">
+        *ngIf="
+          userForm.controls['lastName'].hasError('minlength') && !userForm.controls['lastName'].hasError('required')
+        ">
         Last Name should be at least 3 characters
       </mat-error>
-      <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
-        Last Name is required
-      </mat-error>
+      <mat-error *ngIf="userForm.controls['lastName'].hasError('required')"> Last Name is required </mat-error>
     </mat-form-field>
-
   </div>
-  <div [ngClass]="{'form-row':true,vertical: position === 'vertical'}">
+  <div [ngClass]="{ 'form-row': true, vertical: position === 'vertical' }">
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>email</mat-icon>
       <mat-label>Email</mat-label>
-      <input type="email" matInput formControlName="email" [readonly]="true">
+      <input type="email" matInput formControlName="email" [readonly]="true" />
     </mat-form-field>
     <mat-form-field class="form-control" appearance="outline">
       <mat-icon matPrefix>phone</mat-icon>
       <mat-label>Phone Number</mat-label>
-      <input type="tel" matInput formControlName="phoneNumber" placeholder="Ex. 0888888888" [readonly]="readOnly">
+      <input type="tel" matInput formControlName="phoneNumber" placeholder="Ex. 0888888888" [readonly]="readOnly" />
       <mat-error
-        *ngIf="userForm.controls['phoneNumber'].hasError('pattern') && !userForm.controls['phoneNumber'].hasError('required')">
+        *ngIf="
+          userForm.controls['phoneNumber'].hasError('pattern') && !userForm.controls['phoneNumber'].hasError('required')
+        ">
         Phone Number is not valid
       </mat-error>
-      <mat-error *ngIf="userForm.controls['phoneNumber'].hasError('required')">
-        Phone Number is required
-      </mat-error>
+      <mat-error *ngIf="userForm.controls['phoneNumber'].hasError('required')"> Phone Number is required </mat-error>
     </mat-form-field>
   </div>
   <div class="btn-actions" *ngIf="!readOnly">
-
-    <button mat-raised-button [disabled]="userForm.invalid" color="primary"
-      [disabled]="userForm.invalid || !userForm.touched|| (updateUserInfoIdLoading$|async)">
+    <button
+      mat-raised-button
+      [disabled]="userForm.invalid"
+      color="primary"
+      [disabled]="userForm.invalid || !userForm.touched || (updateUserInfoIdLoading$ | async)">
       <span>Save</span>
     </button>
   </div>

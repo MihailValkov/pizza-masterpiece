@@ -181,7 +181,7 @@ mat-card-content {
   .image-container {
     padding: 0;
   }
-  .image-container img{
+  .image-container img {
     max-width: 300px;
     max-height: 250px;
   }
