@@ -10,6 +10,15 @@ import { IErrorResponse } from "../../shared/interfaces/error-response";
 import { NotificationService } from "../../core/notification.service";
 import { rateOrdererProductSuccess } from "src/app/orders/+store/actions";
 
+type FailureActions =
+  | typeof authActions.loginFailure
+  | typeof authActions.registerFailure
+  | typeof authActions.authenticateFailure
+  | typeof authActions.updateUserImageFailure
+  | typeof authActions.updateUserInfoFailure
+  | typeof authActions.updateUserAddressFailure
+  | typeof authActions.updateUserPasswordFailure;
+
 @Injectable()
 export class AuthEffects {
   login$ = createEffect(() => {
@@ -23,11 +32,7 @@ export class AuthEffects {
             this.router.navigateByUrl("/");
             return authActions.loginSuccess({ user });
           }),
-          catchError((err: IErrorResponse) => {
-            const message = err.error.message;
-            this.notificationService.showMessage(message, "error");
-            return [authActions.loginFailure({ message: err.error.message })];
-          })
+          catchError(err => this.catchErrorMessage(err, authActions.loginFailure))
         )
       )
     );
@@ -47,11 +52,7 @@ export class AuthEffects {
             this.router.navigateByUrl("/");
             return authActions.registerSuccess({ user });
           }),
-          catchError((err: IErrorResponse) => {
-            const message = err.error.message;
-            this.notificationService.showMessage(message, "error");
-            return [authActions.registerFailure({ message: err.error.message })];
-          })
+          catchError(err => this.catchErrorMessage(err, authActions.registerFailure))
         )
       )
     );
@@ -95,15 +96,7 @@ export class AuthEffects {
             this.notificationService.showMessage("Your image has been changed successfully!", "success");
             return authActions.updateUserImageSuccess({ image });
           }),
-          catchError((err: IErrorResponse) => {
-            const message = err.error.message;
-            this.notificationService.showMessage(message, "error");
-            return [
-              authActions.updateUserImageFailure({
-                message,
-              }),
-            ];
-          })
+          catchError(err => this.catchErrorMessage(err, authActions.updateUserImageFailure))
         )
       )
     )
@@ -119,15 +112,7 @@ export class AuthEffects {
             this.notificationService.showMessage("Your personal information has been changed successfully!", "success");
             return authActions.updateUserInfoSuccess({ userInfo });
           }),
-          catchError((err: IErrorResponse) => {
-            const message = err.error.message;
-            this.notificationService.showMessage(message, "error");
-            return [
-              authActions.updateUserInfoFailure({
-                message,
-              }),
-            ];
-          })
+          catchError(err => this.catchErrorMessage(err, authActions.updateUserInfoFailure))
         )
       )
     )
@@ -143,15 +128,7 @@ export class AuthEffects {
             this.notificationService.showMessage("Your delivery address has been changed successfully!", "success");
             return authActions.updateUserAddressSuccess({ userAddress });
           }),
-          catchError((err: IErrorResponse) => {
-            const message = err.error.message;
-            this.notificationService.showMessage(message, "error");
-            return [
-              authActions.updateUserAddressFailure({
-                message,
-              }),
-            ];
-          })
+          catchError(err => this.catchErrorMessage(err, authActions.updateUserAddressFailure))
         )
       )
     )
@@ -167,15 +144,7 @@ export class AuthEffects {
             this.notificationService.showMessage(message, "success");
             return authActions.updateUserPasswordSuccess();
           }),
-          catchError((err: IErrorResponse) => {
-            const message = err.error.message;
-            this.notificationService.showMessage(message, "error");
-            return [
-              authActions.updateUserPasswordFailure({
-                message,
-              }),
-            ];
-          })
+          catchError(err => this.catchErrorMessage(err, authActions.updateUserPasswordFailure))
         )
       )
     )
@@ -194,4 +163,10 @@ export class AuthEffects {
     private actions$: Actions,
     private router: Router
   ) {}
+
+  private catchErrorMessage(err: IErrorResponse, action: FailureActions) {
+    const message = err.error.message;
+    this.notificationService.showMessage(message, "error");
+    return [action({ message })];
+  }
 }
