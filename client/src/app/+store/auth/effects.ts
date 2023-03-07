@@ -5,10 +5,10 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 import { ILoginUser, IRegisterUser, IUser } from "../../shared/interfaces/user";
 import { AuthService } from "../../core/auth.service";
-import * as authActions from "./actions";
 import { IErrorResponse } from "../../shared/interfaces/error-response";
 import { NotificationService } from "../../core/notification.service";
 import { rateOrdererProductSuccess } from "src/app/orders/+store/actions";
+import * as authActions from "./actions";
 
 type FailureActions =
   | typeof authActions.loginFailure
@@ -21,6 +21,7 @@ type FailureActions =
 
 @Injectable()
 export class AuthEffects {
+
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.loginStart),
