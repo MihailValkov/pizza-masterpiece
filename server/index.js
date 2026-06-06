@@ -15,11 +15,9 @@ const start = async () => {
     require('./routes/router')(app);
 
     app.get('*', (req, res) => {
-      if (allowed.filter((ext) => req.url.indexOf(ext) > 0).length > 0) {
-        res.sendFile(path.resolve(`public/${req.url}`));
-      } else {
-        res.sendFile(path.join(__dirname, 'public/index.html'));
-      }
+      const isAllowed = allowed.filter((ext) => req.url.indexOf(ext) > 0).length > 0;
+      const pathName = isAllowed ? path.resolve(`public/${req.url}`) : path.join(__dirname, 'public/index.html');
+      res.sendFile(pathName);
     });
     console.log('*** >>> Database is connected <<< ***');
     app.listen(port, () => console.log(`Server is listening on port: ${port}`));
@@ -27,6 +25,7 @@ const start = async () => {
     console.error('!!! >>> Database is not connected <<< !!!\nError:', error.message);
   }
 };
+
 start();
 
 module.exports.globalDir = __dirname;
