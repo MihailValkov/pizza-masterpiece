@@ -21,9 +21,9 @@ const createProduct = async (req, res) => {
     const createdIngredients = await Promise.all([
       ...ingredients.map((x) => ingredientModel.create(x)),
     ]);
-    const createdSizes = await Promise.all([...sizes.map((x) => sizeModel.create(x))]);
-    const createdDoughs = await Promise.all([...doughs.map((x) => doughModel.create(x))]);
-    const createdExtras = await Promise.all([...extras.map((x) => extraModel.create(x))]);
+    const createdSizes = await Promise.all(sizes.map(sizeModel.create));
+    const createdDoughs = await Promise.all(doughs.map(doughModel.create));
+    const createdExtras = await Promise.all(extras.map(extraModel.create));
     const createdProduct = await productModel.create({
       name,
       description,

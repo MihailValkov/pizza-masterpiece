@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const { globalDir } = require('../index');
-const UPLOAD_FOLDER_NAME = 'uploads';
 
+const UPLOAD_FOLDER_NAME = 'uploads';
 const MIME_TYPE_MAP = {
   'image/png': 'png',
   'image/jpeg': 'jpeg',
@@ -31,7 +31,7 @@ const fileUpload = multer({
   }),
   fileFilter: (req, file, cb) => {
     const isValid = !!MIME_TYPE_MAP[file.mimetype] && file !== 'null';
-    let error = isValid ? null : new Error('Invalid mime type!');
+    const error = isValid ? null : new Error('Invalid mime type!');
     cb(error, isValid);
   },
 });
